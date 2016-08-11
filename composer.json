@@ -1,42 +1,17 @@
 {
-    "name": ":vendor/:package_name",
+    "name": "TravelPAQ/PackagesAPI",
     "type": "library",
-    "description": ":package_description",
-    "keywords": [
-        ":vendor",
-        ":package_name"
-    ],
-    "homepage": "https://github.com/:vendor/:package_name",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
-            "role": "Developer"
-        }
-    ],
+    "description": "Api para la búsqueda y reserva de paquetes turísticos de Tour Operadores",
     "require": {
-        "php" : "~5.6|~7.0"
+        "php": "~5.6",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
-        "phpunit/phpunit" : "~4.0||~5.0",
-        "scrutinizer/ocular": "~1.1",
-        "squizlabs/php_codesniffer": "~2.3"
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "TravelPAQ\\PackagesAPI\\": "src"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            ":vendor\\:package_name\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit",
-        "format": "phpcbf --standard=psr2 src/"
     },
     "extra": {
         "branch-alias": {
