@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Root schema.",
+  "description": "An explanation about the purpose of this instance.",
+  "properties": {
+    "order_type": {
+      "type": "string",
+      "enum": [
+        "ASC",
+        "DESC"
+      ],
+      "title": "order_type schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "order_field": {
+      "type": "string",
+      "enum": [
+        "PRICE",
+        "DAPARTURE_DATE"
+      ],
+      "title": "order_field schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "currency": {
+      "type": "string",
+      "enum": [
+        "EUR",
+        "USD",
+        "ARS"
+      ],
+      "title": "currency schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "origin_place": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3,
+      "title": "Origin_place schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "destination_place": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3,
+      "title": "Destination_palce schema.",
+      "description": "An explanation about the purpose of this instance."      
+    },
+    "month_departure": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "title": "Month_departure schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "year_departure": {
+      "type": "integer",
+      "title": "Year_departure schema.",
+      "description": "An explanation about the purpose of this instance."
+    },
+    "Room": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "title": "Room schema.",
+      "description": "An explanation about the purpose of this instance.",
+      "items": {
+        "type": "object",
+        "title": "1 schema.",
+        "description": "An explanation about the purpose of this instance.",
+        "properties": {
+          "adult": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "title": "Adult schema.",
+            "description": "An explanation about the purpose of this instance."
+          },
+          "Children": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "title": "Children schema.",
+            "description": "An explanation about the purpose of this instance.",
+            "items": {
+              "type": "object",
+              "title": "1 schema.",
+              "description": "An explanation about the purpose of this instance.",
+              "properties": {
+                "age": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 17,
+                  "title": "Age schema.",
+                  "description": "An explanation about the purpose of this instance."
+                }
+              },
+              "required": [
+                "age"
+              ]
+            }
+          }
+        },
+        "required": [
+          "adult",
+          "Children"
+        ]
+      }
+    }
+  },
+  "required": [
+    "order_type",
+    "order_field",
+    "currency",
+    "origin_place",
+    "destination_place",
+    "month_departure",
+    "year_departure",
+    "Room"
+  ]
+}
