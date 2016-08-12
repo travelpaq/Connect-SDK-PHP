@@ -10,7 +10,7 @@ public class PackagesAPI
     public function __construct($api_key) 
     {
         HttpClient::getInstance([
-            'url' => 'http://api.travelpaq.com.ar/v1/',
+            'url' => 'http://api.gonzalezfj.com.ar/v1/',
             'token' => $api_key
         ]);
     }
