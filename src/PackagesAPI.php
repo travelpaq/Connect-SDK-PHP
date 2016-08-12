@@ -4,17 +4,15 @@ namespace TravelPAQ\PackagesAPI;
 
 public class PackagesAPI
 {
-    var $api_key;
     /**
      * Crea una nueva instancia de PackagesAPI
      */
     public function __construct($api_key) 
     {
-        $this->api_key = $api_key;
-        $this->http_client = HttpClient::getInstance([
-                                                       'url' => 'http://api.travelpaq.com.ar/v1/',
-                                                       'token' => $token
-                                                    ]);
+        HttpClient::getInstance([
+            'url' => 'http://api.travelpaq.com.ar/v1/',
+            'token' => $api_key
+        ]);
     }
 
     /**
@@ -26,7 +24,8 @@ public class PackagesAPI
      */
     public function getPackageList($filters)
     {
-        return Package::all($filters);
+        //validation
+        return PackageService::all($filters);
     }
 
     /**
@@ -37,7 +36,7 @@ public class PackagesAPI
      * @return Package Retorna un paquete con sus datos 
      */
     public function getPackage($id){
-        return Package::find($id);
+        return PackageService::find($id);
     }
     
     /**
@@ -48,7 +47,7 @@ public class PackagesAPI
      * @return PackageStatus Retorna si un paquete esta disponible
      */
     public function checkAvail($selection){
-        return BookingPackage::checkAvail($selection);
+        return BookingPackageService::checkAvail($selection);
     }
     
     /**
@@ -60,7 +59,7 @@ public class PackagesAPI
      *
      */
     public function bookingPackage($booking){
-        $bookingPackage = BookingPackage::create($booking);
+        $bookingPackage = BookingPackageService::create($booking);
         return $bookingPackage;
     }
     
@@ -72,7 +71,7 @@ public class PackagesAPI
      * @return BookingPackage Retorna la reserva de un paquete
      */
     public function getBookingPackage($id){
-        return BookingPackage::find($id);;
+        return BookingPackageService::find($id);;
     }
 
 }
