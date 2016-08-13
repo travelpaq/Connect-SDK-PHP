@@ -1,0 +1,24 @@
+{
+	"order_type":"ASC",
+    "order_field":"PRICE",
+    "currency":"ARS",
+    "origin_place":"EZE",
+    "destination_place":"CUN",
+    "month_departure":12,
+    "year_departure":2016,
+    "Room":
+    [
+    	{
+    		"adult":2,
+    		"Children":
+    		[
+    			{
+    				"age":3
+    			},
+    			{
+    				"age":14
+    			}
+    		]
+    	}
+    ]
+}

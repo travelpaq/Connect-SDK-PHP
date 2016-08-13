@@ -1,8 +1,8 @@
 <?php
 
 namespace TravelPAQ\PackagesAPI;
-
-public class PackagesAPI
+require "vendor/autoload.php";
+class PackagesAPI
 {
     /**
      * Crea una nueva instancia de PackagesAPI
