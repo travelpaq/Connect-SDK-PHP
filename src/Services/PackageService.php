@@ -1,17 +1,19 @@
 <?php
 
-namespace TravelPAQ\Services\PackageService;
+namespace TravelPAQ\PackagesAPI\Services;
 
-use TravelPAQ\Services;
+use TravelPAQ\PackagesAPI\Services\Service;
 
-public class PackageService extends Services
+ class PackageService extends Service
 {
-	public static function all($params){
-		$this->http_client
-			 ->request('POST',
-					   'search-engine/getPackageList/',
-					   ['body' => json_encode($params)]);
+	public function all($params){
+
+		$response = $this->http_client->http_client->request('POST',
+								   'search/getPackageList',
+								   ['body' => json_encode($params)]
+								   );
 		$body = $response->getBody();
+		return $body;
 
 	}
 }

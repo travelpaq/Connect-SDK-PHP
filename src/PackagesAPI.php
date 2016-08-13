@@ -1,7 +1,10 @@
 <?php
 
 namespace TravelPAQ\PackagesAPI;
-require "vendor/autoload.php";
+
+use TravelPAQ\PackagesAPI\Services\HttpClient;
+use TravelPAQ\PackagesAPI\Services\PackageService;
+
 class PackagesAPI
 {
     /**
@@ -10,8 +13,8 @@ class PackagesAPI
     public function __construct($api_key) 
     {
         HttpClient::getInstance([
-            'url' => 'http://api.gonzalezfj.com.ar/v1/',
-            'token' => $api_key
+            'url' => 'https://gonzalezfj.com.ar/',
+            'key' => $api_key
         ]);
     }
 
@@ -25,7 +28,8 @@ class PackagesAPI
     public function getPackageList($filters)
     {
         //validation
-        return PackageService::all($filters);
+        $ps = new PackageService();
+        return $ps->all($filters);
     }
 
     /**

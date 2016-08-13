@@ -1,8 +1,8 @@
 <?php
 
-namespace TravelPAQ\Services\Service;
+namespace TravelPAQ\PackagesAPI\Services;
 
-public class Service
+ class Service
 {
 	var $http_client;
     public function __construct() 

@@ -11,12 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "TravelPAQ\\PackagesAPI\\": "src"
+            "TravelPAQ\\PackagesAPI\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "master": "1.0"
         }
     },
     "config": {

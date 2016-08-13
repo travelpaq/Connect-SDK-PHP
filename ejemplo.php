@@ -4,4 +4,7 @@ require "vendor/autoload.php";
 
 use TravelPAQ\PackagesAPI\PackagesAPI;
 
-$tp = new PackagesAPI('9DzbdkARd.9l82C5NALHefxTYcVSvsKe4Y2B8HQqqCIW9eM.LaiBfy0VPJ29Vv08P9A2y4/AaTMhSkafUt99120xlPicsnZRDBb6jK3xiAtgNxMLtuC/DGv.sGimEjvn');
+
+
+$tp = new PackagesAPI('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpIjoiNTAifQ.35LFiBOikbD0zQxSlXKe6_t2jltNxQc3FZm5cMGKssA');
+echo $tp->getPackageList([]);
