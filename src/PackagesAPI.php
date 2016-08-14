@@ -4,6 +4,7 @@ namespace TravelPAQ\PackagesAPI;
 
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
+use TravelPAQ\PackagesAPI\Validator\SearchFilter;
 
 class PackagesAPI
 {
@@ -27,7 +28,9 @@ class PackagesAPI
      */
     public function getPackageList($filters)
     {
-        //validation
+        $sf = new SearchFilter($filters);
+        if(!$sf->validate())
+            throw new \Exception("Parametros no válidos");
         $ps = new PackageService();
         return $ps->all($filters);
     }

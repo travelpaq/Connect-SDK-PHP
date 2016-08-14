@@ -4,8 +4,8 @@
     "description": "Api para la búsqueda y reserva de paquetes turísticos de Tour Operadores.",
     "require": {
         "php": "~5.6",
-        "geraintluff/jsv4": "^1.0",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "league/json-guard": "^0.3.2"
     },
     "require-dev": {
     },
