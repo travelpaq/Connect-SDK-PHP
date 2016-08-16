@@ -77,9 +77,8 @@ class PackagesAPI
         $sf = new BookFilter($booking);
         if(!$sf->validate())
             throw new \Exception("Parámetros no válidos");
-        $bookingService = new BookingPackageService($booking);
-        $bookingService->book();
-        return $bookingService->getBook();
+        $bookingService = new BookingPackageService();
+        return $bookingService->book($booking);
     }
     
     /**

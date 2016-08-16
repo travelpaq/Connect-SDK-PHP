@@ -6,20 +6,29 @@ use TravelPAQ\PackagesAPI\Services\Service;
 
 class BookingPackageService extends Service
 {
-	public function all($params){
+	public function checkAvail($id){
 
-		$response = $this->http_client->http_client->request('POST',
-								   'search/getPackageList',
-								   ['body' => json_encode($params)]
-								   );
+		$response = $this->http_client->http_client->request('GET',
+								   "booking/checkAvail/$id");
 		$body = $response->getBody();
 		return $body;
 
 	}
-	public function find($id){
+	public function book($params){
+
+		$response = $this->http_client->http_client->request('POST',
+								   'booking/bookingPackage',
+								   ['body' => json_encode($params)]
+								   );
+
+		$body = $response->getBody();
+		return $body;
+
+	}
+	public function find(){
 
 		$response = $this->http_client->http_client->request('GET',
-								   "search/getPackage/$id");
+								   "booking/find/$id");
 		$body = $response->getBody();
 		return $body;
 

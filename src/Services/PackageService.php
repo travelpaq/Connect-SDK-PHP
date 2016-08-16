@@ -9,7 +9,7 @@ class PackageService extends Service
 	public function all($params){
 
 		$response = $this->http_client->http_client->request('POST',
-								   'search/getPackageList',
+								   'package/getPackageList',
 								   ['body' => json_encode($params)]
 								   );
 		$body = $response->getBody();
@@ -19,7 +19,7 @@ class PackageService extends Service
 	public function find($id){
 
 		$response = $this->http_client->http_client->request('GET',
-								   "search/getPackage/$id");
+								   "package/getPackage/$id");
 		$body = $response->getBody();
 		return $body;
 
