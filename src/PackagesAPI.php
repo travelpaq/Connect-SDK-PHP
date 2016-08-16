@@ -30,7 +30,7 @@ class PackagesAPI
     {
         $sf = new SearchFilter($filters);
         if(!$sf->validate())
-            throw new \Exception("Parametros no válidos");
+            throw new \Exception("Parámetros no válidos");
         $ps = new PackageService();
         return $ps->all($filters);
     }
@@ -38,12 +38,16 @@ class PackagesAPI
     /**
      * Obtiene un paquete en particular
      *
-     * @param string $id 
+     * @param int $id 
      *
      * @return Package Retorna un paquete con sus datos 
      */
     public function getPackage($id){
-        return PackageService::find($id);
+        if(!is_numeric($id)){
+            throw new \Exception("Parámetros no válidos");
+        }
+        $ps = new PackageService();
+        return $ps->find($id);
     }
     
     /**
