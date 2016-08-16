@@ -58,7 +58,11 @@ class PackagesAPI
      * @return PackageStatus Retorna si un paquete esta disponible
      */
     public function checkAvail($selection){
-        return BookingPackageService::checkAvail($selection);
+        if(!is_numeric($id)){
+            throw new \Exception("Parámetros no válidos");
+        }
+        $bookingService = new BookingPackageService();
+        return $bookingService->checkAvail($selection);
     }
     
     /**
@@ -70,8 +74,12 @@ class PackagesAPI
      *
      */
     public function bookingPackage($booking){
-        $bookingPackage = BookingPackageService::create($booking);
-        return $bookingPackage;
+        $sf = new BookFilter($booking);
+        if(!$sf->validate())
+            throw new \Exception("Parámetros no válidos");
+        $bookingService = new BookingPackageService($booking);
+        $bookingService->book();
+        return $bookingService->getBook();
     }
     
     /**
@@ -82,7 +90,11 @@ class PackagesAPI
      * @return BookingPackage Retorna la reserva de un paquete
      */
     public function getBookingPackage($id){
-        return BookingPackageService::find($id);;
+        if(!is_numeric($id)){
+            throw new \Exception("Parámetros no válidos");
+        }
+        $bookingService = new BookingPackageService();
+        return $bookingService->find($id);
     }
 
 }

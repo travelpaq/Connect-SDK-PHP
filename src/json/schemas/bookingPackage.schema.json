@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Root schema.",
+  "description": "Este esquema contiene los datos que se reciben como parámetro de entrada para el método getPackageList.",
+  "properties": {
+    "order_field": {
+      "type": "string",
+      "enum": [
+        "PRICE",
+        "DAPARTURE_DATE"
+      ],
+      "title": "Campo  que marcará orden de resultados.",
+      "description": "Atributo de paquete por el cual se establecerá el orden de los resultados."
+    },
+    "order_type": {
+      "type": "string",
+      "enum": [
+        "ASC",
+        "DESC"
+      ],
+      "title": "Criterio de orden de resultados",
+      "description": "Criterio de orden de resultados ascendente o descendente."
+    },
+    "currency": {
+      "type": "string",
+      "enum": [
+        "EUR",
+        "USD",
+        "ARS"
+      ],
+      "title": "Tipo de cambio de paquetes.",
+      "description": "Especifica el tipo de cambio que tendrán los paquetes retornadoss por el getPackageList."
+    },
+    "origin_place": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3,
+      "title": "Ciudad de origen.",
+      "description": "Ciudad de la cual el pasajeros desean comenzar el viaje."
+    },
+    "destination_place": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3,
+      "title": "Ciudad de destino.",
+      "description": "Ciudad a la cual el pasajeros desean viajar."      
+    },
+    "month_departure": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "title": "Mes de salida.",
+      "description": "Mes en el cual el pasajeros desean salir."
+    },
+    "year_departure": {
+      "type": "integer",
+      "title": "Año de salida.",
+      "description": "Junto con month_departure forman el mes en que el pasajeros desean salir."
+    },
+    "Room": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "title": "Habiataciones de hospedaje.",
+      "description": "Se describe la distribución de los pasajeros en el viaje.",
+      "items": {
+        "type": "object",
+        "title": "Habitación.",
+        "description": "Cada habitación que se cague se compone de los adultos que la habitan, los niños y sus edades.",
+        "properties": {
+          "adult": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "title": "Adultos de la habitación.",
+            "description": "Cantidad de adultos que ocupan la habitación."
+          },
+          "Children": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "title": "Niños que ocuparán la habitación .",
+            "description": "Array de edades de los niños que ocuparán la habitación.",
+            "items": {
+              "type": "object",
+              "title": "Niño que ocupa la habitación.",
+              "description": "Objeto con los datos relevantes de niño que ocupará la habitación .",
+              "properties": {
+                "age": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 17,
+                  "title": "Edad de los niños.",
+                  "description": "Esta es la única propiedad del niño, y que se usa para validar la tarifa."
+                }
+              },
+              "required": [
+                "age"
+              ]
+            }
+          }
+        },
+        "required": [
+          "adult",
+          "Children"
+        ]
+      }
+    }
+  },
+  "required": [
+    "order_type",
+    "order_field",
+    "currency",
+    "origin_place",
+    "destination_place",
+    "month_departure",
+    "year_departure",
+    "Room"
+  ]
+}
