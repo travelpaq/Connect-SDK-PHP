@@ -21,7 +21,7 @@ class HttpClient
     	if(!array_key_exists('url', $params))
     		throw new \Exception('Falta la URL para la API.');
     	if(!array_key_exists('timeout', $params))
-    		$params['timeout'] = 2.0;
+    		$params['timeout'] = 200.0;
     	if(!array_key_exists('key', $params))
     		throw new \Exception('Falta la KEY para la API.');
     		

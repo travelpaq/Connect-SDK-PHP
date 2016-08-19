@@ -10,7 +10,7 @@ class BookingPackageService extends Service
 
 		$response = $this->http_client->http_client->request('GET',
 								   "booking/checkAvail/$id");
-		$body = $response->getBody();
+		$body = $response->getBody()->getContents();
 		return $body;
 
 	}
@@ -21,7 +21,7 @@ class BookingPackageService extends Service
 								   ['body' => json_encode($params)]
 								   );
 
-		$body = $response->getBody();
+		$body = $response->getBody()->getContents();
 		return $body;
 
 	}
@@ -29,7 +29,7 @@ class BookingPackageService extends Service
 
 		$response = $this->http_client->http_client->request('GET',
 								   "booking/find/$id");
-		$body = $response->getBody();
+		$body = $response->getBody()->getContents();
 		return $body;
 
 	}

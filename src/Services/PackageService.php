@@ -9,18 +9,22 @@ class PackageService extends Service
 	public function all($params){
 
 		$response = $this->http_client->http_client->request('POST',
-								   'package/getPackageList',
-								   ['body' => json_encode($params)]
-								   );
-		$body = $response->getBody();
+								   'Packages/getPackageList',
+								   [
+									    'form_params' => [
+									        'data' => base64_encode(json_encode($params))
+									    ]
+									]);
+		$body = $response->getBody()->getContents();
+
 		return $body;
 
 	}
 	public function find($id){
 
 		$response = $this->http_client->http_client->request('GET',
-								   "package/getPackage/$id");
-		$body = $response->getBody();
+								   "Packages/getPackage/$id");
+		$body = $response->getBody()->getContents();
 		return $body;
 
 	}

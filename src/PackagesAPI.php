@@ -14,7 +14,7 @@ class PackagesAPI
     public function __construct($api_key) 
     {
         HttpClient::getInstance([
-            'url' => 'https://gonzalezfj.com.ar/',
+            'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
             'key' => $api_key
         ]);
     }

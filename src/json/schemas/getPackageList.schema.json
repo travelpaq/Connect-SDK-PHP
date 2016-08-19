@@ -78,7 +78,7 @@
           },
           "Children": {
             "type": "array",
-            "minItems": 1,
+            "minItems": 0,
             "maxItems": 8,
             "title": "Niños que ocuparán la habitación .",
             "description": "Array de edades de los niños que ocuparán la habitación.",
