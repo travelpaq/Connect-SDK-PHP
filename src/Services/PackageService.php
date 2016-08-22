@@ -6,10 +6,10 @@ use TravelPAQ\PackagesAPI\Services\Service;
 
 class PackageService extends Service
 {
-	public function all($params){
+	public function all($params, $page = 0){
 
 		$response = $this->http_client->http_client->request('POST',
-								   'Packages/getPackageList',
+								   'Packages/getPackageList/'.$page,
 								   [
 									    'form_params' => [
 									        'data' => base64_encode(json_encode($params))

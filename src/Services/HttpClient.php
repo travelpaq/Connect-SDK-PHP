@@ -28,7 +28,8 @@ class HttpClient
     	$this->http_client = new Client([
 		    'base_uri' => $params['url'],
 		    'timeout'  => $params['timeout'],
-            'headers' => ['TP-AUTH' => $params['key']]
+            'headers' => ['TP-AUTH' => $params['key'],
+                          'TP-IPP' => $params['item_per_page']]
 		]);
     }
     private function __clone()

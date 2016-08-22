@@ -11,12 +11,13 @@ class PackagesAPI
     /**
      * Crea una nueva instancia de PackagesAPI
      */
-    public function __construct($api_key) 
+    public function __construct($config) 
     {
         HttpClient::getInstance([
-            //'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
-            'url' => 'http://localhost/search-engine/',
-            'key' => $api_key
+            'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
+            //'url' => 'http://localhost/search-engine/',
+            'key' => $config['api_key'],
+            'item_per_page' => $config['item_per_page'],
         ]);
     }
 
@@ -27,13 +28,13 @@ class PackagesAPI
      * 
      * @return Array Listado de paquetes
      */
-    public function getPackageList($filters)
+    public function getPackageList($filters,$page = 0)
     {
         $sf = new SearchFilter($filters);
         if(!$sf->validate())
             throw new \Exception("Parámetros no válidos");
         $ps = new PackageService();
-        return $ps->all($filters);
+        return $ps->all($filters,$page);
     }
 
     /**
