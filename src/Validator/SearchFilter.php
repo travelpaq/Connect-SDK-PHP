@@ -22,11 +22,12 @@ class SearchFilter
 		$schema = $deref->dereference($schema);
 		$data = $this->filter;
 		$validator = new \League\JsonGuard\Validator($data, $schema);
-		if ($validator->fails()) {
+		if ($validator->fails()) 
+		{
 		    $this->_last_error = $validator->errors();
-            throw new \Exception("Fallo en la validación de los filtros de búsqueda");
+            return false;
 		}
-		return $validator->passes();
+		return true;
 	}
 	public function get_last_error()
 	{

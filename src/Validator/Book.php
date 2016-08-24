@@ -9,21 +9,20 @@ class Book
 {
 	var $package_fare_id;
 	var $Passenger;
+	
 	function __construct($params) 
 	{
 		$this->Passenger = [];
 		$this->schema = file_get_contents(__DIR__.'/../json/schemas/bookingPackage.schema.json');
-		$this->package_fare_id = $params['package_fare_id'];
-		foreach ($params['Passenger'] as $passenger)
-		{
-			try 
-			{
+		if(array_key_exists('package_fare_id', $params))
+			$this->package_fare_id = $params['package_fare_id'];
+		else 
+			throw new \Exception("No se ha especificado el identificador del paquete sobre el cual se desea realizar la reserva");
+		
+		if(array_key_exists('package_fare_id', $params))	
+			foreach ($params['Passenger'] as $passenger)
 				$this->Passenger[] = new Passenger($passenger);	
-			}
-			catch(Exception $e)
-			{
-				return json_encode(array('status' => 'ERROR'));
-			}
-		}
+		else 
+			throw new \Exception("No se han los pasajeros que viajarán con el paquete sobre el cual se desea realizar la reserva");
 	}
 }

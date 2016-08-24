@@ -6,32 +6,28 @@ use TravelPAQ\PackagesAPI\Validator\Book;
 
 class BookData 
 {
-	var $data;
+	var $book;
 	var $schema;
+	var $_last_error;
 	function __construct($params) 
 	{
 		$this->schema = file_get_contents(__DIR__.'/../json/schemas/bookingPackage.schema.json');
-		$this->data = new Book($params);
+		$this->book = new Book($params);
 	}
 
 	public function validate()
 	{
 		$deref  = new \League\JsonGuard\Dereferencer();
 		$schema = json_decode($this->schema);
-
 		$schema = $deref->dereference($schema);
-
-		$data = $this->data;
-
+		$data = $this->book;
 		$validator = new \League\JsonGuard\Validator($data, $schema);
-
 		if ($validator->fails()) 
 		{
-            echo "<pre>";
-            var_dump($validator->errors());
 		    $this->_last_error = $validator->errors();
+		    return false;
 		}
-		return $validator->passes();
+		return true;
 	}
 	public function get_last_error()
 	{

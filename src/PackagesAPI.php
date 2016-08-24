@@ -35,13 +35,13 @@ class PackagesAPI
             $sf = new SearchFilter($filters);
             if(!$sf->validate())
             {
-                return json_encode(array('status' => 'error', 'type_error' => 'validation_error', 'error_information' => $sf->get_last_error()));
+                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
             }
             $ps = new PackageService();
             return $ps->all($filters,$page);
         } catch(Exception $e)
         {
-            return json_encode(array('status' => 'error', 'type_error' => 'exception_error', 'error_information' => json_encode($e)));
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
         }
     }
 
@@ -56,7 +56,7 @@ class PackagesAPI
     {
         if(!is_numeric($id) && $id > 0)
         {
-            return json_encode(array('status' => 'error', 'type_error' => 'exception_error', 'error_information' => 'El identificador que debe recibir este método debe ser un numero entero mayor que cero'));
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
         }
         $ps = new PackageService();
         return $ps->find($id);
@@ -73,7 +73,7 @@ class PackagesAPI
     {
         if(!is_numeric($id))
         {
-            throw new \Exception("Parámetros no válidos");
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
         }
         $bookingService = new BookingPackageService();
         return $bookingService->checkAvail($selection);
@@ -89,13 +89,19 @@ class PackagesAPI
      */
     public function bookingPackage($booking)
     {
-        $sf = new BookData($booking);
-        if(!$sf->validate())
+        try
         {
-            throw new \Exception("Parámetros no válidos");
+            $sf = new BookData($booking);
+            if(!$sf->validate())
+            {
+                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
+            }
+            $bookingService = new BookingPackageService();
+            return $bookingService->book($booking);
+        } catch(Exception $e)
+        {
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
         }
-        $bookingService = new BookingPackageService();
-        return $bookingService->book($booking);
     }
     
     /**
@@ -109,7 +115,7 @@ class PackagesAPI
     {
         if(!is_numeric($id))
         {
-            throw new \Exception("Parámetros no válidos");
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
         }
         $bookingService = new BookingPackageService();
         return $bookingService->find($id);
