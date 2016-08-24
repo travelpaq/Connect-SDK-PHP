@@ -30,11 +30,19 @@ class PackagesAPI
      */
     public function getPackageList($filters,$page = 0)
     {
-        $sf = new SearchFilter($filters);
-        if(!$sf->validate())
-            throw new \Exception("Parámetros no válidos");
-        $ps = new PackageService();
-        return $ps->all($filters,$page);
+        try
+        {
+            $sf = new SearchFilter($filters);
+            if(!$sf->validate())
+            {
+                return json_encode(array('status' => 'error', 'type_error' => 'validation_error', 'error_information' => $sf->get_last_error()));
+            }
+            $ps = new PackageService();
+            return $ps->all($filters,$page);
+        } catch(Exception $e)
+        {
+            return json_encode(array('status' => 'error', 'type_error' => 'exception_error', 'error_information' => json_encode($e)));
+        }
     }
 
     /**
@@ -44,9 +52,11 @@ class PackagesAPI
      *
      * @return Package Retorna un paquete con sus datos 
      */
-    public function getPackage($id){
-        if(!is_numeric($id)){
-            throw new \Exception("Parámetros no válidos");
+    public function getPackage($id)
+    {
+        if(!is_numeric($id) && $id > 0)
+        {
+            return json_encode(array('status' => 'error', 'type_error' => 'exception_error', 'error_information' => 'El identificador que debe recibir este método debe ser un numero entero mayor que cero'));
         }
         $ps = new PackageService();
         return $ps->find($id);
@@ -59,8 +69,10 @@ class PackagesAPI
      *
      * @return PackageStatus Retorna si un paquete esta disponible
      */
-    public function checkAvail($selection){
-        if(!is_numeric($id)){
+    public function checkAvail($selection)  
+    {
+        if(!is_numeric($id))
+        {
             throw new \Exception("Parámetros no válidos");
         }
         $bookingService = new BookingPackageService();
@@ -75,10 +87,13 @@ class PackagesAPI
      * @return string Retorna la reserva
      *
      */
-    public function bookingPackage($booking){
-        $sf = new BookFilter($booking);
+    public function bookingPackage($booking)
+    {
+        $sf = new BookData($booking);
         if(!$sf->validate())
+        {
             throw new \Exception("Parámetros no válidos");
+        }
         $bookingService = new BookingPackageService();
         return $bookingService->book($booking);
     }
@@ -90,8 +105,10 @@ class PackagesAPI
      *
      * @return BookingPackage Retorna la reserva de un paquete
      */
-    public function getBookingPackage($id){
-        if(!is_numeric($id)){
+    public function getBookingPackage($id)
+    {
+        if(!is_numeric($id))
+        {
             throw new \Exception("Parámetros no válidos");
         }
         $bookingService = new BookingPackageService();
