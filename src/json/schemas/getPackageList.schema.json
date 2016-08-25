@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "Root schema.",
+  "title": "Esquema de validación para parámetros de getPackageList.",
   "description": "Este esquema contiene los datos que se reciben como parámetro de entrada para el método getPackageList.",
   "properties": {
     "order_field": {

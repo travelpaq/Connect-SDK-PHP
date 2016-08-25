@@ -1,0 +1,29 @@
+{
+	"package_fare_id":1,
+	"Passenger":
+	[
+		{
+			"name":"Maximiliano",
+			"surname":"Alves Pinheiro",
+			"kind_doc":"Pasaporte",
+			"num_doc":"AAA45820",
+			"gender":"M",
+			"birthdate":"17/06/1989",
+			"residence":"AR",
+			"nationality":"AR",
+			"mail":"maximilianoalvespinheiro@gmail.com"
+		},
+		{
+			"name":"Gustavo",
+			"surname":"Conturzo",
+			"kind_doc":"Pasaporte",
+			"num_doc":"AAA54882",
+			"gender":"M",
+			"birthdate":"26/07/1973",
+			"residence":"AR",
+			"nationality":"AR",
+			"mail":"gconturzo@gmail.com"
+		}
+
+	]
+}
