@@ -13,7 +13,7 @@ class Book
 	function __construct($params) 
 	{
 		$this->Passenger = [];
-		$this->schema = file_get_contents(__DIR__.'/../json/schemas/bookingPackage.schema.json');
+		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/bookingPackage.schema.json');
 		if(array_key_exists('package_fare_id', $params))
 			$this->package_fare_id = $params['package_fare_id'];
 		else 
