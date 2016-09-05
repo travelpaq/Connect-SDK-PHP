@@ -6,29 +6,19 @@
   "properties": {
     "order_field": {
       "type": "string",
-      "enum": [
-        "PRICE",
-        "DAPARTURE_DATE"
-      ],
+      "enum": ["PRICE","DAPARTURE_DATE"],
       "title": "Campo  que marcará orden de resultados.",
       "description": "Atributo de paquete por el cual se establecerá el orden de los resultados."
     },
     "order_type": {
       "type": "string",
-      "enum": [
-        "ASC",
-        "DESC"
-      ],
+      "enum": ["ASC","DESC"],
       "title": "Criterio de orden de resultados",
       "description": "Criterio de orden de resultados ascendente o descendente."
     },
     "currency": {
       "type": "string",
-      "enum": [
-        "EUR",
-        "USD",
-        "ARS"
-      ],
+      "enum": ["EUR","USD","ARS"],
       "title": "Tipo de cambio de paquetes.",
       "description": "Especifica el tipo de cambio que tendrán los paquetes retornadoss por el getPackageList."
     },

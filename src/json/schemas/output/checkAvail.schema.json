@@ -3,7 +3,8 @@
   "type": "object",
   "properties": {
     "status": {
-      "type": "string"
+      "type": "string",
+      "enum":["AVAILABLE", "NOT_AVAILABLE"]
     },
     "Package": {
       "type": "object",
@@ -14,6 +15,16 @@
           "type": "integer",
           "title": "Id del paquete.",
           "description": "Identificador de paquete que permite buscarlo dentro de todos los paquetes integrado de todos los operadores."
+        },
+        "title": {
+          "type": "string",
+          "title": "Titulo del paquete.",
+          "description": "Nombre con el cual se lo identifica al paquete."
+        },
+        "transport": {
+          "type": "integer",
+          "title": "Transporte.",
+          "description": "Indica si el paquete tiene transporte al primer destino de recorrida del paquete: 0 = NO INCLUYE | 1 = SIN INCLUYE."
         },
         "Category": {
           "type": "array",
@@ -67,11 +78,6 @@
             ]
           }
         },
-        "title": {
-          "type": "string",
-          "title": "Titulo del paquete.",
-          "description": "Nombre con el cual se lo identifica al paquete."
-        },
         "Image": {
           "type": "array",
           "title": "Imagenes del paquete.",
@@ -114,6 +120,8 @@
                 "properties": {
                   "direction": {
                     "type": "integer",
+                    "minimum":0,
+                    "maximum":1,
                     "title": "Dirección del viaje.",
                     "description": "Expresa si el tramo es parte del viaje de ida o vuelta: 1 = IDA | 2 = VUETLA."
                   },
@@ -127,7 +135,9 @@
                       },
                       "iata": {
                         "type": "string",
-                        "title": "Código IATA del lugar de salida."
+                        "title": "Código IATA del lugar de salida.",
+                        "minLength": 3,
+                        "maxLength": 3
                       }
                     },
                     "required": [
@@ -168,7 +178,9 @@
                       },
                       "iata": {
                         "type": "string",
-                        "title": "Código IATA del destino de salida."
+                        "title": "Código IATA del destino de salida.",
+                        "minLength": 3,
+                        "maxLength": 3
                       }
                     },
                     "required": [
@@ -207,9 +219,11 @@
                   "type": "string",
                   "title": "Nombre del lugar de salida."
                 },
-                "iata": {
+                "iata":{
                   "type": "string",
-                  "title": "Código IATA del lugar de salida."
+                  "title": "Código IATA del lugar de salida.",
+                  "minLength": 3,
+                  "maxLength": 3
                 }
               },
               "required": [
@@ -224,6 +238,7 @@
             },
             "transport_kind": {
               "type": "string",
+              "enum":["airline", "bus", "cruise"],
               "title": "Tipo de transporte.",
               "description": "Puerde ser airline, bus o cruise."
             }
@@ -256,6 +271,8 @@
                 "properties": {
                   "iata": {
                     "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2,
                     "title": "Código IATA del país."
                   },
                   "name": {
@@ -270,6 +287,8 @@
               },
               "iata": {
                 "type": "string",
+                "minLength": 3,
+                "maxLength": 3,
                 "title": "Código IATA del destino."
               }
             },
@@ -287,6 +306,7 @@
           "properties": {
             "currency": {
               "type": "string",
+              "enum":["ARS", "USD","EUR"],
               "title": "Tipo de moneda del paquete."
             },
             "Total_Price": {
@@ -350,6 +370,8 @@
                   },
                   "star_rating": {
                     "type": "integer",
+                    "minimum":1,
+                    "maximum":6,
                     "title": "Número de estrellas del hotel."
                   },
                   "name": {
@@ -366,6 +388,8 @@
                       },
                       "iata": {
                         "type": "string",
+                        "minLength": 3,
+                        "maxLength": 3,
                         "title": "Código IATA del destino al que pertenece el hotel."
                       }
                     },
@@ -398,11 +422,6 @@
           "required": [
             "Hotel"
           ]
-        },
-        "transport": {
-          "type": "integer",
-          "title": "Transporte.",
-          "description": "Indica si el paquete tiene transporte al primer destino de recorrida del paquete: 0 = NO INCLUYE | 1 = SIN INCLUYE."
         }
       },
       "required": [

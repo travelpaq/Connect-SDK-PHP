@@ -1,22 +1,113 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "Resultados devueltos por el método getPackageList.",
-  "description": "El método devuelve el una página del resultado de búsqueda.",
+  "description": "Estructura de datos retornados por el método bookingPackage.",
   "properties": {
-    "result": {
+    "Fare": {
       "type": "array",
-      "title": "Paquetes resultantes de la búsqueda.",
-      "description": "Esta propiedad contiene el conjunto de paquetes pertenecientes la pagína actual.",
+      "title": "Tarifas de la reserva.",
       "items": {
         "type": "object",
-        "title": "Paquete devuelto desde la búsqueda.",
-        "description": "Cada item del arreglo representa un paquete turístico.",
+        "title": "Conjunto de tarifas / habitaciones de la reserva.",
         "properties": {
-           "id": {
+          "type": {
+            "type": "string",
+            "title": "Tipo de tarifa.",
+          },
+          "quantity": {
+            "type": "integer",
+            "title": "Cantadad solicitada.",
+            "description": "Este campo contiene la cantidad de tarifas expresadas en type."
+          }
+        },
+        "required": [
+          "type",
+          "quantity"
+        ]
+      }
+    },
+    "Passenger": {
+      "type": "array",
+      "title": "Pasajeros que van a reservar.",
+      "description": "Lista de los pasajeros que reservarán junto con los datos necesarios de cada uno para la reserva.",
+      "items": {
+        "type": "object",
+        "title": "Objeto Passenger.",
+        "description": "Este objeto contiene el conjunto de los datos necesario por cada uno para poder realizar la reserva.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Nombre del pasajero."
+          },
+          "surname": {
+            "type": "string",
+            "title": "Apellido del pasajero."
+          },
+          "kind_doc": {
+            "type": "string",
+            "title": "Tipo de documento.",
+            "description": "Dependiendo de la documentación DNI o PASS, en otros países puede ser otro.."
+          },
+          "num_doc": {
+            "type": "string",
+            "title": "Número de documento.",
+            "description": "Es el número del tipo de documento que se especificó en el item anterior."
+          },
+          "gender": {
+            "type": "string",
+            "title": "Gnénero del pasajero.",
+            "enum": ["F","M"]
+          },
+          "birthdate": {
+            "type": "string",
+            "title": "Fecha de nacimiento del pasajero."
+          },
+          "residence": {
+            "type": "string",
+            "title": "País de residencia del pasajero.",
+            "enum":["AD","AE","AF","AG","AG","AI","AL","AM","AO","AR","AS","AT","AU","AW","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BM","BN","BO","BQ","BQ","BQ","BR","BS","BT","BW","BY","BZ","CA","CD","CG","CH","CI","CK","CL","CM","CN","CO","CR","CS","CV","CW","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","ER","ES","ET","FI","FJ","FM","FO","FR","GA","GD","GE","GF","GH","GI","GL","GM","GN","GP","GP","GR","GT","GU","GY","HK","HN","HR","HT","HU","ID","IE","IL","IN","IQ","IS","IT","IT","IT","JM","JO","JP","KE","KG","KH","KN","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","MF","MG","MH","MK","ML","MN","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","NA","NC","NE","NG","NI","NL","NO","NP","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PS","PT","PW","PY","QA","RE","RO","RU","RW","SA","SC","SE","SG","SI","SK","SN","SR","SV","SX","SY","SZ","TC","TD","TG","TH","TL","TN","TO","TR","TT","TW","TZ","UA","UG","US","US","UY","UZ","VC","VE","VG","VI","VN","VU","WF","WS","YE","ZA","ZM","ZW"]
+          },
+          "nationality": {
+            "type": "string",
+            "title": "Nacionalidad del pasajero.",
+            "enum":["AD","AE","AF","AG","AG","AI","AL","AM","AO","AR","AS","AT","AU","AW","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BM","BN","BO","BQ","BQ","BQ","BR","BS","BT","BW","BY","BZ","CA","CD","CG","CH","CI","CK","CL","CM","CN","CO","CR","CS","CV","CW","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","ER","ES","ET","FI","FJ","FM","FO","FR","GA","GD","GE","GF","GH","GI","GL","GM","GN","GP","GP","GR","GT","GU","GY","HK","HN","HR","HT","HU","ID","IE","IL","IN","IQ","IS","IT","IT","IT","JM","JO","JP","KE","KG","KH","KN","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","MF","MG","MH","MK","ML","MN","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","NA","NC","NE","NG","NI","NL","NO","NP","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PS","PT","PW","PY","QA","RE","RO","RU","RW","SA","SC","SE","SG","SI","SK","SN","SR","SV","SX","SY","SZ","TC","TD","TG","TH","TL","TN","TO","TR","TT","TW","TZ","UA","UG","US","US","UY","UZ","VC","VE","VG","VI","VN","VU","WF","WS","YE","ZA","ZM","ZW"]
+          },
+          "mail": {
+            "type": "string",
+            "title": "Mail del pasajero."
+          }
+        },
+        "required": [
+          "name",
+          "surname",
+          "kind_doc",
+          "num_doc",
+          "gender",
+          "birthdate",
+          "residence",
+          "nationality",
+          "mail"
+        ]
+      },
+    "Package": {
+      "type": "object",
+      "title": "Package schema.",
+      "description": "An explanation about the purpose of this instance.",
+        "properties": {
+          "id": {
             "type": "integer",
             "title": "Id del paquete.",
             "description": "Identificador de paquete que permite buscarlo dentro de todos los paquetes integrado de todos los operadores."
+          },
+          "title": {
+            "type": "string",
+            "title": "Titulo del paquete.",
+            "description": "Nombre con el cual se lo identifica al paquete."
+          },
+          "transport": {
+            "type": "integer",
+            "title": "Transporte.",
+            "description": "Indica si el paquete tiene transporte al primer destino de recorrida del paquete: 0 = NO INCLUYE | 1 = SIN INCLUYE."
           },
           "Category": {
             "type": "array",
@@ -28,7 +119,7 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "title": "Nombre de la categoría.",
+                  "title": "Nombre de la categoría."
                 }
               },
               "required": [
@@ -51,7 +142,7 @@
                   "properties": {
                     "name": {
                       "type": "string",
-                      "title": "Nombre de tipo de servicio.",
+                      "title": "Nombre de tipo de servicio."
                     }
                   },
                   "required": [
@@ -62,18 +153,13 @@
                   "type": "string",
                   "title": "Detalles del servicio.",
                   "description": "Descripción del servicio completa."
-                },
+                }
               },
               "required": [
                 "ServiceKind",
-                "detail",
+                "detail"
               ]
             }
-          },
-          "title": {
-            "type": "string",
-            "title": "Titulo del paquete.",
-            "description": "Nombre con el cual se lo identifica al paquete."
           },
           "Image": {
             "type": "array",
@@ -117,6 +203,8 @@
                   "properties": {
                     "direction": {
                       "type": "integer",
+                      "minimum":0,
+                      "maximum":1,
                       "title": "Dirección del viaje.",
                       "description": "Expresa si el tramo es parte del viaje de ida o vuelta: 1 = IDA | 2 = VUETLA."
                     },
@@ -126,12 +214,14 @@
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Nombre del lugar de salida.",
+                          "title": "Nombre del lugar de salida."
                         },
                         "iata": {
-		                  "type": "string",
-		                  "title": "Código IATA del lugar de salida.",
-		                }
+                          "type": "string",
+                          "title": "Código IATA del lugar de salida.",
+                          "minLength": 3,
+                          "maxLength": 3
+                        }
                       },
                       "required": [
                         "name",
@@ -145,7 +235,7 @@
                     },
                     "arrival_time": {
                       "type": "string",
-                      "title": "Hora de llegada al ArrivalPlace.",
+                      "title": "Hora de llegada al ArrivalPlace."
                     },
                     "TransportCompany": {
                       "type": "object",
@@ -153,7 +243,7 @@
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Nombre de la empresa de transporte.",
+                          "title": "Nombre de la empresa de transporte."
                         }
                       },
                       "required": [
@@ -170,9 +260,11 @@
                           "description": "An explanation about the purpose of this instance."
                         },
                         "iata": {
-		                  "type": "string",
-		                  "title": "Código IATA del destino de salida.",
-		                }
+                          "type": "string",
+                          "title": "Código IATA del destino de salida.",
+                          "minLength": 3,
+                          "maxLength": 3
+                        }
                       },
                       "required": [
                         "name",
@@ -186,7 +278,7 @@
                     },
                     "departure_time": {
                       "type": "string",
-                      "title": "Hora de salida al desde el DeparturePlace.",
+                      "title": "Hora de salida al desde el DeparturePlace."
                     }
                   },
                   "required": [
@@ -208,12 +300,14 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "title": "Nombre del lugar de salida.",
+                    "title": "Nombre del lugar de salida."
                   },
                   "iata":{
                     "type": "string",
                     "title": "Código IATA del lugar de salida.",
-                  },
+                    "minLength": 3,
+                    "maxLength": 3
+                  }
                 },
                 "required": [
                   "name",
@@ -227,6 +321,7 @@
               },
               "transport_kind": {
                 "type": "string",
+                "enum":["airline", "bus", "cruise"],
                 "title": "Tipo de transporte.",
                 "description": "Puerde ser airline, bus o cruise."
               }
@@ -251,7 +346,7 @@
               "properties": {
                 "name": {
                   "type": "string",
-                  "title": "Nombre del destino.",
+                  "title": "Nombre del destino."
                 },
                 "Country": {
                   "type": "object",
@@ -259,11 +354,13 @@
                   "properties": {
                     "iata": {
                       "type": "string",
-                      "title": "Código IATA del país.",
+                      "minLength": 2,
+                      "maxLength": 2,
+                      "title": "Código IATA del país."
                     },
                     "name": {
                       "type": "string",
-                      "title": "Nombre del país.",
+                      "title": "Nombre del país."
                     }
                   },
                   "required": [
@@ -273,7 +370,9 @@
                 },
                 "iata": {
                   "type": "string",
-                  "title": "Código IATA del destino.",
+                  "minLength": 3,
+                  "maxLength": 3,
+                  "title": "Código IATA del destino."
                 }
               },
               "required": [
@@ -290,7 +389,8 @@
             "properties": {
               "currency": {
                 "type": "string",
-                "title": "Tipo de moneda del paquete.",
+                "enum":["ARS", "USD","EUR"],
+                "title": "Tipo de moneda del paquete."
               },
               "Total_Price": {
                 "type": "object",
@@ -299,15 +399,15 @@
                 "properties": {
                   "neto": {
                     "type": "number",
-                    "title": "Tarifa neta.",
+                    "title": "Tarifa neta."
                   },
                   "tax": {
                     "type": "number",
-                    "title": "Impuestos.",
+                    "title": "Impuestos."
                   },
                   "vat": {
                     "type": "integer",
-                    "title": "IVA.",
+                    "title": "IVA."
                   }
                 },
                 "required": [
@@ -344,7 +444,7 @@
                   "properties": {
                     "check_in": {
                       "type": "string",
-                      "title": "Fecha de check-in.",
+                      "title": "Fecha de check-in."
                     },
                     "check_out": {
                       "type": "string",
@@ -353,11 +453,13 @@
                     },
                     "star_rating": {
                       "type": "integer",
-                      "title": "Número de estrellas del hotel.",
+                      "minimum":1,
+                      "maximum":6,
+                      "title": "Número de estrellas del hotel."
                     },
                     "name": {
                       "type": "string",
-                      "title": "Nombre del hotel.",
+                      "title": "Nombre del hotel."
                     },
                     "Place": {
                       "type": "object",
@@ -365,11 +467,13 @@
                       "properties": {
                         "name": {
                           "type": "string",
-                          "title": "Nombre del destino.",
+                          "title": "Nombre del destino."
                         },
                         "iata": {
                           "type": "string",
-                          "title": "Código IATA del destino al que pertenece el hotel.",
+                          "minLength": 3,
+                          "maxLength": 3,
+                          "title": "Código IATA del destino al que pertenece el hotel."
                         }
                       },
                       "required": [
@@ -379,11 +483,11 @@
                     },
                     "type_room": {
                       "type": "string",
-                      "title": "Tipo de habitación.",
+                      "title": "Tipo de habitación."
                     },
                     "hotel_service": {
                       "type": "string",
-                      "title": "Servicio del hotel.",
+                      "title": "Servicio del hotel."
                     }
                   },
                   "required": [
@@ -396,16 +500,11 @@
                     "hotel_service"
                   ]
                 }
-              },
+              }
             },
             "required": [
               "Hotel"
             ]
-          },
-          "transport": {
-            "type": "integer",
-            "title": "Transporte.",
-            "description": "Indica si el paquete tiene transporte al primer destino de recorrida del paquete: 0 = NO INCLUYE | 1 = SIN INCLUYE."
           }
         },
         "required": [
@@ -420,28 +519,11 @@
           "Accommodation",
           "transport"
         ]
-      }
-    },
-    "current_page": {
-      "type": "string",
-      "title": "Página actual.",
-      "description": "Página que se esta leyendo de los resultados de búsqueda."
-    },
-    "total_page": {
-      "type": "integer",
-      "title": "Cantidad total de páginas.",
-      "description": "Todas las páginas que devolvió una búsqueda determinada."
-    },
-    "item_per_page": {
-      "type": "string",
-      "title": "Paquetes por página.",
-      "description": "Cantidad de paquetes que se retornan en una página."
     }
   },
   "required": [
-    "result",
-    "current_page",
-    "total_page",
-    "item_per_page"
+    "Fare",
+    "Passenger",
+    "Package"
   ]
 }
