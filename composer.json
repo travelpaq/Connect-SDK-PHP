@@ -1,6 +1,8 @@
 {
     "name": "TravelPAQ/PackagesAPI",
     "type": "library",
+    "homepage": "https://github.com/travelpaq/Connect-SDK-PHP",
+    "license": "MIT",
     "description": "Api para la búsqueda y reserva de paquetes turísticos de Tour Operadores.",
     "require": {
         "php": "~5.6",
