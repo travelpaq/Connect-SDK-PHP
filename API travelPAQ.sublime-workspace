@@ -1,0 +1,576 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"IG",
+				"IGZ"
+			],
+			[
+				"des",
+				"destino"
+			],
+			[
+				"array_ke",
+				"array_key_exists"
+			],
+			[
+				"passen",
+				"Passenger"
+			],
+			[
+				"bar",
+				"background"
+			],
+			[
+				"payment",
+				"payments"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"count",
+				"countQueries"
+			],
+			[
+				"fora",
+				"foreach	foreach …"
+			],
+			[
+				"Search",
+				"SearchRange"
+			],
+			[
+				"strto",
+				"strtotime"
+			],
+			[
+				"link",
+				"linkHover"
+			],
+			[
+				"Service",
+				"ServiceKind"
+			],
+			[
+				"Accommodation",
+				"AccommodationBase"
+			],
+			[
+				"Packa",
+				"PackagesPlace"
+			],
+			[
+				"compa",
+				"company_id"
+			],
+			[
+				"country",
+				"country_images"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"countr",
+				"country"
+			],
+			[
+				"au",
+				"auxRegions"
+			],
+			[
+				"dele",
+				"deleted"
+			],
+			[
+				"cOMP",
+				"Company"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"company",
+				"company_type"
+			],
+			[
+				"operator",
+				"operatorFilter"
+			],
+			[
+				"com",
+				"companies"
+			],
+			[
+				"md",
+				"md-panorama"
+			],
+			[
+				"Se",
+				"SearchRange"
+			],
+			[
+				"Sear",
+				"SearchDestination"
+			],
+			[
+				"Packages",
+				"PackagesPlaces"
+			],
+			[
+				"unse",
+				"unset"
+			],
+			[
+				"UNBIND",
+				"unbindModel"
+			],
+			[
+				"paC",
+				"package"
+			],
+			[
+				"del",
+				"deleted"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/sdk_php/src/json/schemas/output/bookingPackage.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/input/bookingPackage.example.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/checkAvail.example.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/getPackageList.example.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/getPackage.example.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/bookingPackage",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/getPackageList.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/getPackage.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/output/checkAvail.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/Validator/SearchFilter.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/Book.php",
+		"/C/Users/Diego Medel/Downloads/package_structure_result_get_package_list.json",
+		"/C/xampp/htdocs/sdk_php/src/PackagesAPI.php",
+		"/C/xampp/htdocs/search-engine/bitbucket-pipeline.yml",
+		"/C/xampp/htdocs/sdk_php/tests/ExampleTest.php",
+		"/C/xampp/htdocs/sdk_php/src/Services/PackageService.php",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/getPackageList.example.json",
+		"/C/xampp/htdocs/sdk_php/src/json/examples/bookingPackage.json",
+		"/C/xampp/htdocs/search-engine/app/Controller/PackagesController.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/Passenger.php",
+		"/C/xampp/htdocs/sdk_php/src/json/schemas/bookingPackage.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/json/schemas/getPackageList.schema.json",
+		"/C/xampp/htdocs/sdk_php/src/Services/BookingPackageService.php",
+		"/C/xampp/htdocs/search-engine/app/Controller/BookingController.php",
+		"/C/xampp/htdocs/sdk_php/src/Services/HttpClient.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/BookData.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/Filter.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/Room.php",
+		"/C/xampp/htdocs/sdk_php/src/Validator/Child.php",
+		"/C/xampp/htdocs/sdk_php/composer.json",
+		"/C/xampp/htdocs/sdk_php/ejemplo.php",
+		"/C/xampp/apache/conf/extra/httpd-ssl.conf",
+		"/C/xampp54/apache/conf/extra/httpd-ssl.conf",
+		"/C/xampp54/apache/conf/httpd.conf",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Controller/PostsController.php",
+		"/C/Users/Diego Medel/Desktop/manifest.json",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/webroot/css/package.css",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/View/Packages/view.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/View/Posts/view_package.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/View/Packages/results.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/View/Packages/add.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Vendor/Methods.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Controller/PackagesController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Model/Change.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Controller/PaymentsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/View/Elements/chat.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Controller/ThreadsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/webroot/vendors/bower_components/pusher/pusher.min.js",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.93/tpaqcake/app/Controller/MessagesController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/webroot/vendors/bower_components/pusher-realtime-chat-widget/src/js/PusherChatWidget.js",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/Controller/PackagesController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/View/Layouts/default.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/Config/bootstrap.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/webroot/vendors/bower_components/pusher-realtime-chat-widget/src/php/config.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/webroot/includes/headertp.html",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/webroot/vendors/bower_components/pusher-realtime-chat-widget/src/php/chat.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/View/Elements/chat.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/Vendor/Pusher.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/Controller/MessagesController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/Controller/ReservationsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/View/Elements/menubar.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.90/tpaqcake/app/View/Packages/reservation.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.85/tpaqcake/app/Controller/PaymentsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.85/tpaqcake/app/Controller/ReportsController.php",
+		"/C/Users/Diego Medel/Desktop/holamundo.html",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.85/tpaqcake/app/View/Reports/reports_companies.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/lib/Cake/Utility/Hash.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Users/login.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Places/index.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/lib/Cake/Model/Datasource/CakeSession.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/lib/Cake/Controller/Component/SessionComponent.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/lib/Cake/Model/Datasource/Session/DatabaseSession.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Publications/add.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/webroot/vendors/chosen_v1.4.2/chosen.jquery.js",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/ReportsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/PaymentsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/AppController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Favorites/favorite.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Packages/results.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Fanpages/fanpages.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Contacts/events.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Contacts/register.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/ContactsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/SuscriptionsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/PostsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Reports/reports_companies.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/Controller/DebugErrorsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.69/tpaqcake/app/View/Layouts/onepage.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.57/tpaqcake/app/View/SocialNetworks/index.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.57/tpaqcake/app/Controller/AppController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.57/tpaqcake/app/Controller/PublicationsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.57/tpaqcake/app/View/Publications/add.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.57/tpaqcake/app/View/Layouts/default.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.50/1.49/tpaqcake/app/View/Layouts/onepage.ctp",
+		"/C/Users/Diego Medel/Downloads/plans.sql",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.50/1.49/tpaqcake/app/Controller/PostsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.50/1.49/tpaqcake/app/Controller/AppController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.50/1.49/tpaqcake/app/Controller/UsersController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.50/1.49/tpaqcake/app/Model/Suscription.php",
+		"/C/Users/Diego Medel/AppData/Local/Temp/Rar$DIa0.229/error_log",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.42/tpaqcake/app/Controller/ContactsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.42/tpaqcake/app/View/Contacts/index.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/tpaqcake/app/View/Contacts/index.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/operadores/assets/script.js",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/assets/script.js",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/tpaqcake/app/View/Contacts/register.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/tpaqcake/app/View/Users/login.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/tpaqcake/app/Controller/ContactsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.39/tpaqcake/app/Controller/UsersController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.37/tpaqcake/app/Controller/ContactsController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.37/tpaqcake/app/Controller/PlacesController.php",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.37/tpaqcake/app/View/Companies/profile.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.37/tpaqcake/app/View/Users/profile.ctp",
+		"/C/Users/Diego Medel/Desktop/TravelPAQ/Versiones/1.37/tpaqcake/app/View/Contacts/register.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/View/Packages/results.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/webroot/css/finder.css",
+		"/C/xampp/htdocs/tpaqcake/app/View/Publications/add.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/webroot/css/app.min.1.css",
+		"/C/xampp/htdocs/tpaqcake/app/View/Layouts/default.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/Controller/QueriesController.php",
+		"/C/xampp/htdocs/tpaqcake/app/View/Queries/index.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/View/Packages/view.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/webroot/js/modules/table.js",
+		"/C/xampp/htdocs/tpaqcake/app/View/Contacts/index.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/View/Hotels/index.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/View/Queries/restructuracion.ctp",
+		"/C/xampp/htdocs/tpaqcake/app/Controller/PackagesController.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\xampp\\htdocs\\sdk_php\\src",
+			"C:\\Users\\Diego Medel\\Desktop\\TravelPAQ\\Versiones\\1.90\\tpaqcake",
+			"C:\\Users\\Diego Medel\\Desktop\\TravelPAQ\\Versiones\\1.69\\tpaqcake\\app\\Controller",
+			"C:\\Users\\Diego Medel\\Desktop\\TravelPAQ\\Versiones\\1.37\\tpaqcake\\app\\View",
+			"C:\\xampp\\htdocs\\tpaqcake\\app\\View\\Emails\\html",
+			"C:\\xampp\\htdocs\\tpaqcake\\app\\Model",
+			"C:\\xampp\\htdocs\\tpaqcake\\app\\View"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"function fatalErrorShutdownHandler()\n{\n  $last_error = error_get_last();\n  if ($last_error['type'] === E_ERROR) {\n    // fatal error\n    fatal_error_catcher(E_ERROR, $last_error['message'], $last_error['file'], $last_error['line']);\n  }\n}",
+			"validation_error",
+			"exception_error",
+			"No se ha recibido",
+			"resultado",
+			"tipo de orden",
+			"throw",
+			"pretty",
+			"Data",
+			"443",
+			"port",
+			"backgroundPlace",
+			"backgrounduser",
+			"()\">",
+			"count_idas",
+			"increment",
+			"operatorFilter",
+			"$change",
+			"calculations",
+			"$Change",
+			"$this",
+			"value_pesos",
+			"PackageData",
+			"fieldData",
+			"data:",
+			"data]",
+			"'data'",
+			"data'",
+			"data:",
+			"data'",
+			"function add",
+			"json_enco",
+			"getxml",
+			"$user",
+			"user",
+			"pusher",
+			"Pusher",
+			"Puser",
+			"Pusher",
+			"ajax",
+			"canal",
+			"newchat",
+			"new",
+			"NewChat",
+			"channel",
+			"msgBus",
+			"<?php echo Configure::read('Pusher.credentials.appKey')?>)",
+			"2913c038f68cbf88b17c",
+			"Confi",
+			"2913c038f68cbf88b17c",
+			"key",
+			"Pusher",
+			"+",
+			"new Pusher",
+			"\\\"",
+			"insert",
+			"_overwrite",
+			"write",
+			"database",
+			"stat",
+			"sta",
+			"static",
+			"write",
+			"Session",
+			"login",
+			"_timeout",
+			" $this->_timeout",
+			"search_results",
+			"\"back_url\" => \"http://artificiodigital.com/tpaq/tpaqcake/payments/notifications\"",
+			"\"back_url\" => \"http://travelpaq.com.ar/tpaqcake/payments/notifications\"",
+			"back_url",
+			"$this->layout = 'onepage'",
+			"regionandpost",
+			"cronj",
+			"loadMore",
+			"No hay redes sociales cargadas",
+			"40px",
+			"filter",
+			"tabAutomaticas",
+			"automatiza",
+			"Html->image",
+			"strip_diacritics",
+			"this.search_field",
+			"#finder",
+			"parameter",
+			"$http",
+			"swith",
+			"Chat",
+			"chat",
+			"#coupon_payment",
+			"servicios",
+			"mas tarde",
+			"309aad",
+			"marco",
+			"preguntajuego",
+			"noloading",
+			"pagefin",
+			"450%",
+			"preguntaJuego",
+			"preguntajuego",
+			"noloadin",
+			"pagejuego",
+			"160%",
+			"540",
+			"preguntaJuego",
+			"aling",
+			"Router",
+			"<!",
+			"Router",
+			"router",
+			"tpaq",
+			"register",
+			"href",
+			"$scope.chatToggled[chat.id]",
+			"$scope.\"chatToggled[chat.id]",
+			"\"chatToggled[chat.id]",
+			"data-toggle-chat",
+			"audio",
+			"rol ",
+			"rol",
+			"linkHover",
+			"hover",
+			"link-hober",
+			"GroupPrice",
+			"Group",
+			"GroupPrice",
+			"view",
+			"load_package"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"\"back_url\" => FULL_BASE_URL . Router::url('controller' => 'suscriptions' => 'index')",
+			"#finder_header",
+			"",
+			"FULL_BASE_URL . Router"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"hash",
+				"tpaqcake/lib/Cake/Utility/Hash.php"
+			],
+			[
+				"cakesession",
+				"tpaqcake/lib/Cake/Controller/Component/SessionComponent.php"
+			],
+			[
+				"sessioncom",
+				"tpaqcake/lib/Cake/Controller/Component/SessionComponent.php"
+			],
+			[
+				"cakess",
+				"tpaqcake/lib/Cake/Model/Datasource/CakeSession.php"
+			],
+			[
+				"data",
+				"tpaqcake/lib/Cake/Model/Datasource/Session/DatabaseSession.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 288.0,
+	"status_bar_visible": true
+}

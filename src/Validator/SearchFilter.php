@@ -2,35 +2,35 @@
 
 namespace TravelPAQ\PackagesAPI\Validator;
 
-use TravelPAQ\PackagesAPI\Validator\Data;
+use TravelPAQ\PackagesAPI\Validator\Filter;
 
-class SearchFilter {
-	var $data;
+class SearchFilter 
+{
+	var $filter;
 	var $schema;
 	var $_last_error;
-	function __construct($params) {
-		$this->schema = file_get_contents(__DIR__.'/../json/schemas/getPackageList.schema.json');
-		$this->data = new Data($params);
+	function __construct($params) 
+	{
+		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/getPackageList.schema.json');
+		$this->filter = new Filter($params);
 	}
 
-	public function validate(){
+	public function validate()
+	{
 		$deref  = new \League\JsonGuard\Dereferencer();
 		$schema = json_decode($this->schema);
-
 		$schema = $deref->dereference($schema);
-
-		$data = $this->data;
-
+		$data = $this->filter;
 		$validator = new \League\JsonGuard\Validator($data, $schema);
-
-		if ($validator->fails()) {
-            echo "<pre>";
-            var_dump($validator->errors());
+		if ($validator->fails()) 
+		{
 		    $this->_last_error = $validator->errors();
+            return false;
 		}
-		return $validator->passes();
+		return true;
 	}
-	public function get_last_error(){
+	public function get_last_error()
+	{
 		return $this->_last_error;
 	}
 }

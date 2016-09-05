@@ -17,24 +17,31 @@ class PackagesAPI
             'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
             //'url' => 'http://localhost/search-engine/',
             'key' => $config['api_key'],
-            'item_per_page' => $config['item_per_page'],
+            'item_per_page' => $config['item_per_page']
         ]);
     }
 
     /**
      * Obtiene el listado de los paquetes
      *
-     * @param $filters Criterio de busqueda de paquetes 
+     * @param $filters Criterio de búsqueda de paquetes 
      * 
      * @return Array Listado de paquetes
      */
     public function getPackageList($filters,$page = 0)
     {
-        $sf = new SearchFilter($filters);
-        if(!$sf->validate())
-            throw new \Exception("Parámetros no válidos");
-        $ps = new PackageService();
-        return $ps->all($filters,$page);
+        try
+        {
+            $sf = new SearchFilter($filters);
+            if(!$sf->validate())
+                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
+
+            $ps = new PackageService();
+            return $ps->getPackageList($filters,$page);
+        } catch(Exception $e)
+        {
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
+        }
     }
 
     /**
@@ -44,12 +51,13 @@ class PackagesAPI
      *
      * @return Package Retorna un paquete con sus datos 
      */
-    public function getPackage($id){
-        if(!is_numeric($id)){
-            throw new \Exception("Parámetros no válidos");
-        }
+    public function getPackage($id)
+    {
+        if(!is_numeric($id) && $id > 0)
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+
         $ps = new PackageService();
-        return $ps->find($id);
+        return $ps->getPackage($id);
     }
     
     /**
@@ -59,10 +67,11 @@ class PackagesAPI
      *
      * @return PackageStatus Retorna si un paquete esta disponible
      */
-    public function checkAvail($selection){
-        if(!is_numeric($id)){
-            throw new \Exception("Parámetros no válidos");
-        }
+    public function checkAvail($selection)  
+    {
+        if(!is_numeric($id))
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+
         $bookingService = new BookingPackageService();
         return $bookingService->checkAvail($selection);
     }
@@ -75,12 +84,20 @@ class PackagesAPI
      * @return string Retorna la reserva
      *
      */
-    public function bookingPackage($booking){
-        $sf = new BookFilter($booking);
-        if(!$sf->validate())
-            throw new \Exception("Parámetros no válidos");
-        $bookingService = new BookingPackageService();
-        return $bookingService->book($booking);
+    public function bookingPackage($booking)
+    {
+        try
+        {
+            $sf = new BookData($booking);
+            if(!$sf->validate())
+                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
+
+            $bookingService = new BookingPackageService();
+            return $bookingService->bookingPackage($booking);
+        } catch(Exception $e)
+        {
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
+        }
     }
     
     /**
@@ -90,12 +107,13 @@ class PackagesAPI
      *
      * @return BookingPackage Retorna la reserva de un paquete
      */
-    public function getBookingPackage($id){
-        if(!is_numeric($id)){
-            throw new \Exception("Parámetros no válidos");
-        }
+    public function getBookingPackage($id)
+    {
+        if(!is_numeric($id))
+            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+
         $bookingService = new BookingPackageService();
-        return $bookingService->find($id);
+        return $bookingService->getBookingPackage($id);
     }
 
 }

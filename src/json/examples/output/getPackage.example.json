@@ -1,0 +1,105 @@
+{
+    "Category": [
+        {
+            "name": "Playa"
+        }
+    ],
+    "Service": [
+        {
+            "ServiceKind": {
+                "name": "REGULAR"
+            },
+            "detail": "TRE IGR I-O BUS-HTL + EXC CAT ARG BRA             *Traslados al Hotel + Excursiones a Cataratas lado Argentino y Brasile\u00f1o , Ruinas de San Ignacio y Minas de Wanda. No incluyen la entrada a Parques Nacionales, Ruinas de San Ignacio y Minas de Wanda",
+        }
+    ],
+    "title": "IGUAZU BUS - 4 NOCHES",
+    "Image": [
+        {
+            "picture": "https:\/\/s3-sa-east-1.amazonaws.com\/travelpaq.com.ar\/travelpaq_places_45-1.jpeg",
+            "thumbnail": "https:\/\/s3-sa-east-1.amazonaws.com\/travelpaq.com.ar\/travelpaq_places_thumbnail_45-1.jpeg"
+        }
+    ],
+    "Departure": {
+        "Route": [
+            {
+                "direction": 1,
+                "DeparturePlace": {
+                    "name": "BUENOS AIRES",
+                    "iata":"BUE"
+                },
+                "travel_number": "BUS-I",
+                "arrival_time": "14:00",
+                "TransportCompany": {
+                    "name": "CRUCERO DEL NORTE"
+                },
+                "ArrivalPlace": {
+                    "name": "IGUAZU",
+                    "iata":"IGZ"
+                },
+                "order_number": 1,
+                "departure_time": "16:00"
+            },
+            {
+                "direction": 2,
+                "DeparturePlace": {
+                    "name": "IGUAZU",
+                    "iata":"IGZ"                        
+                },
+                "travel_number": "BUS-V",
+                "arrival_time": "09:45",
+                "TransportCompany": {
+                    "name": "CRUCERO DEL NORTE"
+                },
+                "ArrivalPlace": {
+                    "name": "BUENOS AIRES",
+                    "iata":"BUE"
+                },
+                "order_number": 1,
+                "departure_time": "10:00"
+            }
+        ],
+        "Place": {
+            "name": "BUENOS AIRES",
+            "iata":"BUE"
+        },
+        "date": "2016-09-18",
+        "transport_kind": "bus"
+    },
+    "id": 1,
+    "Place": [
+        {
+            "name": "Cataratas del Iguaz\u00fa",
+            "Country": {
+                "iata": "",
+                "name": "Argentina"
+            },
+            "iata": "IGR",
+        }
+    ],
+    "Price": {
+        "currency": "USD",
+        "Total_Price": {
+            "neto": 172.88,
+            "tax": 27.628,
+            "vat": 0
+        },
+        "price_per_person": 100.25
+    },
+    "Accommodation": {
+        "Hotel": [
+            {
+                "check_in": "2016-09-19",
+                "star_rating": 2,
+                "name": "LA STRADA",
+                "check_out": "2016-09-23",
+                "Place": {
+                    "name": "IGUAZU",
+                    "iata":"IGZ"
+                },
+                "type_room": "STD CB PR",
+                "hotel_service": "HABITACION STANDARD CON DESAYUNO - PROMO",
+            }
+        ],
+    },
+    "transport": 0
+}

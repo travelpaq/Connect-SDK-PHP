@@ -1,0 +1,38 @@
+{
+	"package_fare_id":1,
+	"Passenger":
+	[
+		{
+			"name":"Maximiliano",
+			"surname":"Alves Pinheiro",
+			"kind_doc":"Pasaporte",
+			"num_doc":"AAA45820",
+			"gender":"M",
+			"birthdate":"17/06/1989",
+			"residence":"AR",
+			"nationality":"AR",
+			"mail":"maximilianoalvespinheiro@gmail.com"
+		},
+		{
+			"name":"Elvia",
+			"surname":"Castro",
+			"kind_doc":"Pasaporte",
+			"num_doc":"AAA54882",
+			"gender":"F",
+			"birthdate":"16/03/1989",
+			"residence":"AR",
+			"nationality":"AR",
+			"mail":"elviacastrobarros@hotmail.com"
+		},
+		{
+			"name":"Lourdes Gabriela",
+			"surname":"Alves Pinheiro",
+			"kind_doc":"Pasaporte",
+			"num_doc":"AAA54862",
+			"gender":"F",
+			"birthdate":"23/10/2009",
+			"residence":"AR",
+			"nationality":"AR"
+		}
+	]
+}

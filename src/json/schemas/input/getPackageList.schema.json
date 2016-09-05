@@ -1,34 +1,24 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "Root schema.",
+  "title": "Esquema de validación para parámetros de getPackageList.",
   "description": "Este esquema contiene los datos que se reciben como parámetro de entrada para el método getPackageList.",
   "properties": {
     "order_field": {
       "type": "string",
-      "enum": [
-        "PRICE",
-        "DAPARTURE_DATE"
-      ],
+      "enum": ["PRICE","DAPARTURE_DATE"],
       "title": "Campo  que marcará orden de resultados.",
       "description": "Atributo de paquete por el cual se establecerá el orden de los resultados."
     },
     "order_type": {
       "type": "string",
-      "enum": [
-        "ASC",
-        "DESC"
-      ],
+      "enum": ["ASC","DESC"],
       "title": "Criterio de orden de resultados",
       "description": "Criterio de orden de resultados ascendente o descendente."
     },
     "currency": {
       "type": "string",
-      "enum": [
-        "EUR",
-        "USD",
-        "ARS"
-      ],
+      "enum": ["EUR","USD","ARS"],
       "title": "Tipo de cambio de paquetes.",
       "description": "Especifica el tipo de cambio que tendrán los paquetes retornadoss por el getPackageList."
     },
@@ -78,7 +68,7 @@
           },
           "Children": {
             "type": "array",
-            "minItems": 1,
+            "minItems": 0,
             "maxItems": 8,
             "title": "Niños que ocuparán la habitación .",
             "description": "Array de edades de los niños que ocuparán la habitación.",
