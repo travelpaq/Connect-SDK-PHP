@@ -13,7 +13,7 @@ Api para la búsqueda y reserva de paquetes turísticos de Tour Operadores
 Via Composer
 
 ``` bash
-$ composer require TravelPAQ/ConnectApi
+$ composer require travel-paq/packages-api
 ```
 
 ## Usage
