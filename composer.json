@@ -16,11 +16,6 @@
             "TravelPAQ\\PackagesAPI\\": "src/"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "master": "1.0"
-        }
-    },
     "config": {
         "sort-packages": true
     }
