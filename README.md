@@ -19,8 +19,32 @@ $ composer require travel-paq/packages-api
 ## Usage
 
 ``` php
-$travelPaqApi = new TravelPAQ\ConnectApi('api_key');
-echo $travelPaqApi->getPackageList();
+
+require "vendor/autoload.php";
+
+use TravelPAQ\PackagesAPI\PackagesAPI;
+
+$params = [
+	'order_type' => "ASC",
+	'order_field' => "PRICE",
+	'currency' => "USD",
+	'origin_place' => "EZE",
+	'destination_place' => "IGR",
+	'month_departure' => 9,
+	'year_departure' => 2016,
+	'Room' => [
+		[
+			'adult' => 2,
+			'Children' => []
+		]
+	]
+];
+
+$tp = new PackagesAPI(['api_key' => 'YOUR_API_KEY','item_per_page' => 10]);
+$list = json_decode($tp->getPackageList($params),true);
+var_dump($list);
+$package = json_decode($tp->getPackage($list['result'][0]['id']));
+var_dump($package);
 ```
 
 ## Change log
