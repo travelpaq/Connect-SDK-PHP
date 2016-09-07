@@ -1,21 +1,40 @@
 <?php
-
+/**
+ * TravelPAQ Connect Api - Api para la búsqueda y reserva 
+ * de paquetes turísticos de Tour Operadores
+ *
+ * @package  TravelPAQ
+ * 
+ * @author   Maximiliano Alves Pinheiro <malves@travelpaq.com.ar>
+ * @author   Facundo J Gonzalez <facujgg@gmail.com>
+ * 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace TravelPAQ\PackagesAPI;
 
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Validator\SearchFilter;
-
+use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
+/**
+ * Class PackagesAPI
+ *
+ * @package TravelPAQ
+ */
 class PackagesAPI
 {
     /**
-     * Crea una nueva instancia de PackagesAPI
+     * Constructor.
+     * 
+     * @param $config 'key' clave privada para acceder al servicio otorgada por TravelPAQ y 
+     * 'item_per_page' cantidad de items por pagina para pedir paquetes.
+     * 
      */
     public function __construct($config) 
     {
         HttpClient::getInstance([
             'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
-            //'url' => 'http://localhost/search-engine/',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);
@@ -25,23 +44,18 @@ class PackagesAPI
      * Obtiene el listado de los paquetes
      *
      * @param $filters Criterio de búsqueda de paquetes 
+     * @param $page Pagina a pedir
      * 
-     * @return Array Listado de paquetes
+     * @return PackagesPagination Listado de paquetes paginado.
+     * 
      */
     public function getPackageList($filters,$page = 0)
     {
-        try
-        {
-            $sf = new SearchFilter($filters);
-            if(!$sf->validate())
-                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
-
-            $ps = new PackageService();
-            return $ps->getPackageList($filters,$page);
-        } catch(Exception $e)
-        {
-            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
-        }
+        $sf = new SearchFilter($filters);
+        if(!$sf->validate())
+            throw new ValidationException($sf->get_last_error());
+        $ps = new PackageService();
+        return $ps->getPackageList($filters,$page);
     }
 
     /**
@@ -54,7 +68,7 @@ class PackagesAPI
     public function getPackage($id)
     {
         if(!is_numeric($id) && $id > 0)
-            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $ps = new PackageService();
         return $ps->getPackage($id);
@@ -70,7 +84,7 @@ class PackagesAPI
     public function checkAvail($selection)  
     {
         if(!is_numeric($id))
-            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $bookingService = new BookingPackageService();
         return $bookingService->checkAvail($selection);
@@ -86,18 +100,12 @@ class PackagesAPI
      */
     public function bookingPackage($booking)
     {
-        try
-        {
-            $sf = new BookData($booking);
-            if(!$sf->validate())
-                return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => $sf->get_last_error()));
+        $sf = new BookData($booking);
+        if(!$sf->validate())
+            throw new ValidationException($sf->get_last_error());
 
-            $bookingService = new BookingPackageService();
-            return $bookingService->bookingPackage($booking);
-        } catch(Exception $e)
-        {
-            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => json_encode($e)));
-        }
+        $bookingService = new BookingPackageService();
+        return $bookingService->bookingPackage($booking);
     }
     
     /**
@@ -110,7 +118,7 @@ class PackagesAPI
     public function getBookingPackage($id)
     {
         if(!is_numeric($id))
-            return json_encode(array('status' => 'error', 'type_error' => 'data_error', 'error_information' => 'El identificador que debe recibir este método debe ser un número entero mayor que cero'));
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $bookingService = new BookingPackageService();
         return $bookingService->getBookingPackage($id);
