@@ -13,16 +13,16 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class ServiceKind
  *
  * @package TravelPAQ
  */
-class Category
+class ServiceKind
 {
 	var $name;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos del tipo de servicio
      */
     public function __construct($data)
     {

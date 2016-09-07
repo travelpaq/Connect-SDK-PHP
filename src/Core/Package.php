@@ -19,10 +19,19 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Package
 {
-	/*
-	* @var Array Campos requeridos en el paquete
-	*/
-	var $required_fields = [
+    var $id;
+    var $title;
+    var $transport;
+    var $Category;
+    var $Service;
+    var $Image;
+    var $Departure;
+    var $Place;
+    var $Price;
+  	/*
+  	* @var Array Campos requeridos en el paquete
+  	*/
+  	var $required_fields = [
       "Category",
       "Service",
       "title",
@@ -47,14 +56,32 @@ class Package
       $this->id = $package['id'];
       $this->title = $package['title'];
       $this->transport = $package['transport'];
+      
       $this->Category = [];
       foreach ($package['Category'] as $key => $value) {
-        $this->Category = new Category($value);
+        $this->Category[] = new Category($value);
       }
+      
       $this->Service = [];
       foreach ($package['Service'] as $key => $value) {
-        $this->Service = new Service($value);
+        $this->Service[] = new Service($value);
       }
-       
+      
+      $this->Image = [];
+      foreach ($package['Image'] as $key => $value) {
+        $this->Image[] = new Image($value);
+      }
+
+      $this->Departure = new Departure($package['Departure']);
+
+      $this->Place = [];
+      foreach ($package['Place'] as $key => $value) {
+        $this->Place[] = new Destination($value);
+      }
+
+      $this->Price = new Price($package['Price']);
+
+      $this->Accommodation = new Accommodation($package['Accommodation']);
+
     }
 }

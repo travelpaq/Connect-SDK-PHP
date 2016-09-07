@@ -13,22 +13,23 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class Accommodation
  *
  * @package TravelPAQ
  */
-class Category
+class Accommodation
 {
-	var $name;
+	var $Hotel;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos del hospedaje
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+		$this->Hotel = [];
+		foreach ($data['Hotel'] as $key => $value) {
+			$this->Hotel[] = new Hotel($value);
+		}
     }
 
 }

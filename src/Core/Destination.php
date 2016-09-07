@@ -13,22 +13,21 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class Destination
  *
  * @package TravelPAQ
  */
-class Category
+class Destination extends Place
 {
-	var $name;
+    var $Country;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos de un destino
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+    	parent::__construct($data);
+        $this->Country = new Place($data['Country']);
     }
 
 }

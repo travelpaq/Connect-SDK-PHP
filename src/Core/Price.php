@@ -13,22 +13,30 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class Price
  *
  * @package TravelPAQ
  */
-class Category
+class Price
 {
-	var $name;
+	var $currency;
+	var $price_per_person;
+	var $Total_Price;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos del precio
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+    	if(!array_key_exists('currency', $data))
+    		$data['currency'] = "";
+    	$this->currency = $data['currency'];
+ 
+ 		if(!array_key_exists('price_per_person', $data))
+    		$data['price_per_person'] = "";
+    	$this->price_per_person = $data['price_per_person'];
+ 
+    	$this->Total_Price = new Total_Price($data['Total_Price']);
     }
 
 }

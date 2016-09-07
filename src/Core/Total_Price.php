@@ -13,22 +13,34 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class Total_Price
  *
  * @package TravelPAQ
  */
-class Category
+class Total_Price
 {
-	var $name;
+	var $neto;
+	var $tax;
+	var $vat;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos detallados de los impuesto del precio
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+    	if(!array_key_exists('neto', $data))
+    		$data['neto'] = "";
+    	$this->neto = $data['neto'];
+ 
+ 		if(!array_key_exists('tax', $data))
+    		$data['tax'] = "";
+    	$this->tax = $data['tax'];
+
+ 		if(!array_key_exists('vat', $data))
+    		$data['vat'] = "";
+    	$this->vat = $data['vat'];
+ 
+    	
     }
 
 }

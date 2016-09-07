@@ -13,22 +13,26 @@ namespace TravelPAQ\PackagesAPI\Core;
 
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class Category
+ * Class Image
  *
  * @package TravelPAQ
  */
-class Category
+class Image
 {
-	var $name;
+    var $picture;
+    var $thumbnail;
     /**
      * Constructor
-     * @param Array data datos de la categoria
+     * @param Array data datos del servicio
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+        if(!array_key_exists('picture', $data))
+            $data['picture'] = "";
+        $this->picture = $data['picture'];
+        if(!array_key_exists('thumbnail', $data))
+            $data['thumbnail'] = "";
+        $this->thumbnail = $data['thumbnail'];
     }
 
 }
