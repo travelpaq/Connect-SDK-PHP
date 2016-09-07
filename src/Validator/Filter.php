@@ -41,12 +41,12 @@ class Filter
 			throw new \Exception("No se ha recibido el destino de los paquetes devueltos por la búsqueda");
 
 		if(array_key_exists('month_departure', $params))
-			$this->month_departure = $params['month_departure'];
+			$this->month_departure = (int)$params['month_departure'];
 		else 
 			throw new \Exception("No se ha recibido el mes de salida de los paquetes devueltos por la búsquedas");
 
 		if(array_key_exists('year_departure', $params))
-			$this->year_departure = $params['year_departure'];
+			$this->year_departure = (int)$params['year_departure'];
 		else 
 			throw new \Exception("No se ha recibido el año de salida de los paquetes devueltos por la búsquedas");
 		

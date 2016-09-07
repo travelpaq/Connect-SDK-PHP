@@ -16369,7 +16369,7 @@ body.login-content:before {
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 80px;
   border-bottom-right-radius: 1px;
   border-top-right-radius: 1px;
 }

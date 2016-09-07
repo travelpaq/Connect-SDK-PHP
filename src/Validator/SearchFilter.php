@@ -31,6 +31,14 @@ class SearchFilter
 	}
 	public function get_last_error()
 	{
-		return $this->_last_error;
+        $error = '';
+        foreach ($this->_last_error as $i => $last_error) {
+            if($i == count($this->_last_error) - 1){
+                $error .= $last_error['pointer'].' '.$last_error['message'];
+            } else {
+                $error .= $last_error['message'] . PHP_EOL;
+            }
+        }
+		return $error;
 	}
 }

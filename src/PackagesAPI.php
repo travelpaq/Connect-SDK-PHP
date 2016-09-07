@@ -17,6 +17,7 @@ use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Validator\SearchFilter;
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
+use TravelPAQ\PackagesAPI\Exceptions\JsonValidatorException;
 /**
  * Class PackagesAPI
  *
@@ -52,8 +53,9 @@ class PackagesAPI
     public function getPackageList($filters,$page = 0)
     {
         $sf = new SearchFilter($filters);
-        if(!$sf->validate())
+        if(!$sf->validate()){
             throw new ValidationException($sf->get_last_error());
+        }
         $ps = new PackageService();
         return $ps->getPackageList($filters,$page);
     }

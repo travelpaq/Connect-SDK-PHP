@@ -11,7 +11,7 @@
  */
 namespace TravelPAQ\PackagesAPI\Exceptions;
 
-abstract class PackagesAPIException extends Exception implements IException
+    abstract class PackagesAPIException extends \Exception implements IException
 {
     protected $message = 'Unknown exception';     // Exception message
     private   $string;                            // Unknown
@@ -25,7 +25,7 @@ abstract class PackagesAPIException extends Exception implements IException
         if (!$message) {
             throw new $this('Unknown '. get_class($this));
         }
-        parent::__construct($message, $code);
+        parent::__construct($message, $code, null);
     }
     
     public function __toString()
