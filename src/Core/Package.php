@@ -43,8 +43,18 @@ class Package
     	foreach ($package as $key => $value) {
     		if(!in_array($key, $required_fields))
     			throw new ValidationException("Falta el campo $key");
-    			
     	}
+      $this->id = $package['id'];
+      $this->title = $package['title'];
+      $this->transport = $package['transport'];
+      $this->Category = [];
+      foreach ($package['Category'] as $key => $value) {
+        $this->Category = new Category($value);
+      }
+      $this->Service = [];
+      foreach ($package['Service'] as $key => $value) {
+        $this->Service = new Service($value);
+      }
+       
     }
-
 }

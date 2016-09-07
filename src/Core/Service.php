@@ -11,29 +11,24 @@
  */
 namespace TravelPAQ\PackagesAPI\Core;
 
+use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 /**
- * Class PackagesList
- * 
- * Clase que contiene un listado de paquetes
+ * Class Service
  *
  * @package TravelPAQ
  */
-class PackagesList
+class Service
 {
-	/*
-	* @var Array Listado de paquetes
-	*/
-	var $items;
+	var $name;
     /**
      * Constructor
-     * @param Array Listado de paquetes
+     * @param Array data datos de la categoria
      */
-    public function __construct($packages) 
+    public function __construct($data)
     {
-    	$items = [];
-    	foreach ($packages as $key => $package) {
-    		$items[] = new Package($package);
-    	}
+    	if(!array_key_exists('name', $params))
+    		$data['name'] = "";
+    	$this->name = $data['name'];
     }
 
 }
