@@ -19,10 +19,10 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Departure
 {
-    var $date;
-    var $transport_kind;
-    var $Route;
-    var $Place;
+    public $date;
+    public $transport_kind;
+    public $Route;
+    public $Place;
     /**
      * Constructor
      * @param Array data datos de la salida

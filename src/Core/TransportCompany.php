@@ -19,7 +19,7 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class TransportCompany
 {
-	var $name;
+	public $name;
     /**
      * Constructor
      * @param Array data datos la compañia de transporte

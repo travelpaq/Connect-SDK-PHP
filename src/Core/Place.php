@@ -19,8 +19,8 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Place
 {
-	var $name;
-	var $iata;
+	public $name;
+	public $iata;
     /**
      * Constructor
      * @param Array data datos de un lugar de un tramo de una ruta

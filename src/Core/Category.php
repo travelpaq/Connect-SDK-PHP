@@ -19,7 +19,7 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Category
 {
-	var $name;
+	public $name;
     /**
      * Constructor
      * @param Array data datos de la categoria

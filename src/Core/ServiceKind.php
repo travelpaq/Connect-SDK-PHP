@@ -19,7 +19,7 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class ServiceKind
 {
-	var $name;
+	public $name;
     /**
      * Constructor
      * @param Array data datos del tipo de servicio

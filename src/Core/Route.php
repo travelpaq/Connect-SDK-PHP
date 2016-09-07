@@ -19,15 +19,14 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Route
 {
-    var $direction;
-    var $travel_number;
-    var $arrival_time;
-    var $order_number;
-    var $departure_time;
-	var $Route;
-	var $DeparturePlace;
-	var $TransportCompany;
-	var $ArrivalPlace;
+    public $direction;
+    public $travel_number;
+    public $arrival_time;
+    public $order_number;
+    public $departure_time;
+	public $DeparturePlace;
+	public $TransportCompany;
+	public $ArrivalPlace;
 	
     /**
      * Constructor

@@ -19,8 +19,8 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Service
 {
-	var $detail;
-	var $ServiceKind;
+	public $detail;
+	public $ServiceKind;
     /**
      * Constructor
      * @param Array data datos del servicio

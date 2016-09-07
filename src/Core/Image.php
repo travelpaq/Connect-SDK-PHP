@@ -19,8 +19,8 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Image
 {
-    var $picture;
-    var $thumbnail;
+    public $picture;
+    public $thumbnail;
     /**
      * Constructor
      * @param Array data datos del servicio

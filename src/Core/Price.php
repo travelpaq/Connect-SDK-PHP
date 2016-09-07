@@ -19,9 +19,9 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Price
 {
-	var $currency;
-	var $price_per_person;
-	var $Total_Price;
+	public $currency;
+	public $price_per_person;
+	public $Total_Price;
     /**
      * Constructor
      * @param Array data datos del precio

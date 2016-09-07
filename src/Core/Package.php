@@ -19,19 +19,19 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Package
 {
-    var $id;
-    var $title;
-    var $transport;
-    var $Category;
-    var $Service;
-    var $Image;
-    var $Departure;
-    var $Place;
-    var $Price;
+    public $id;
+    public $title;
+    public $transport;
+    public $Category;
+    public $Service;
+    public $Image;
+    public $Departure;
+    public $Place;
+    public $Price;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
-  	var $required_fields = [
+  	private $required_fields = [
       "Category",
       "Service",
       "title",
@@ -50,7 +50,7 @@ class Package
     public function __construct($package)
     {
     	foreach ($package as $key => $value) {
-    		if(!in_array($key, $required_fields))
+    		if(!in_array($key, $this->required_fields))
     			throw new ValidationException("Falta el campo $key");
     	}
       $this->id = $package['id'];

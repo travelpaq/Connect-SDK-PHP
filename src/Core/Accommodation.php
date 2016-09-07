@@ -19,7 +19,7 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Accommodation
 {
-	var $Hotel;
+	public $Hotel;
     /**
      * Constructor
      * @param Array data datos del hospedaje

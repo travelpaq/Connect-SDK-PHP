@@ -19,14 +19,14 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Hotel
 {
-    var $date;    
-    var $check_in;
-    var $check_out;
-    var $star_rating;
-    var $name;
-    var $type_room;
-    var $hotel_service;
-    var $Place;
+    public $date;    
+    public $check_in;
+    public $check_out;
+    public $star_rating;
+    public $name;
+    public $type_room;
+    public $hotel_service;
+    public $Place;
     /**
      * Constructor
      * @param Array data datos de la salida
@@ -36,9 +36,9 @@ class Hotel
 
         $this->Place = new Place($data['Place']);
 
-        if(!array_key_exists('date', $data))
-            $data['date'] = "";
-        $this->date = $data['date'];
+        if(!array_key_exists('name', $data))
+            $data['name'] = "";
+        $this->name = $data['name'];
         
         if(!array_key_exists('check_in', $data))
             $data['check_in'] = "";

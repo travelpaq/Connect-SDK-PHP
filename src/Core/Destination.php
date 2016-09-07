@@ -19,7 +19,7 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Destination extends Place
 {
-    var $Country;
+    public $Country;
     /**
      * Constructor
      * @param Array data datos de un destino

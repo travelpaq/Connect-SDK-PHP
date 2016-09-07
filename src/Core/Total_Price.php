@@ -19,9 +19,9 @@ use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
  */
 class Total_Price
 {
-	var $neto;
-	var $tax;
-	var $vat;
+	public $neto;
+	public $tax;
+	public $vat;
     /**
      * Constructor
      * @param Array data datos detallados de los impuesto del precio
