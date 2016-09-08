@@ -49,9 +49,10 @@ class Package
      */
     public function __construct($package)
     {
-    	foreach ($package as $key => $value) {
-    		if(!in_array($key, $this->required_fields))
-    			throw new ValidationException("Falta el campo $key");
+      $packageKeys = array_keys($package);
+      foreach ($this->required_fields as $required_field) {
+    		if(!in_array($required_field,$packageKeys))
+    		  throw new ValidationException("Falta el campo $required_field");
     	}
       $this->id = $package['id'];
       $this->title = $package['title'];
