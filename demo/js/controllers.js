@@ -768,6 +768,14 @@ materialAdmin
                   return nights;
             }
 
+            $scope.currency = function (currency){
+                  switch(currency){
+                        case 'ARS' :{return '$';};
+                        case 'USD' :{return 'U$D';};
+                        case 'EUR' :{return '€';};
+                  }
+            }
+
             $scope.getPackageList = function () {
                   $http
                     .post("getPackageList.php", $scope.params)

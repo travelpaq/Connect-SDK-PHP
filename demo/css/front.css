@@ -6,6 +6,8 @@
 
 .package-list .package-data{
 	padding: 0;
+    border-collapse: separate;
+    border-spacing: 3px;
 }
 
 .package-list .package-data .package-title{
@@ -45,3 +47,44 @@
     width: 31px;
     font-size: 18px;
 }
+
+.package-list .package-price{
+    background-color: rgb(0,173,239);
+    margin-left: 12px;
+    width: calc(33.3333333% - 15px);
+    padding-top: 17px;
+}
+
+.package-list .package-price .price h2{
+    margin: 15px 15px 2px 15px;
+    color: white;
+    padding: 0;
+    padding-bottom: 22px;
+    border-bottom: 1px solid white;
+}
+
+.package-list .package-price .price h2 small{
+    color: white;
+    display: block;
+    margin-left: 5%;
+    margin-bottom: 5px;
+    font-family: Helvetica;
+}
+
+.package-list .package-price .description{
+    padding: 18px 0px;
+    color: white;
+    font-size: 14px;
+    list-style-type: none;
+    font-weight: 500;
+    font-family: helvetica;
+}
+.package-list .package-price .description ul li div{
+    padding: 0;
+}
+
+.package-list .package-price .description ul {
+    padding: 0;
+    list-style-type: none;
+}
+

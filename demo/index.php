@@ -85,231 +85,265 @@
             </div>
             <div id="contents" style="display:none;padding-top: 200px;">
                 <div class="row w-100">
-                    <div class="card col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1 bgm-white">
-                        <div class="header-mac"><div></div><div></div><div></div></div>
-                        <div class="card-header">
-                            <h2 class="m-t-20">Buscador de paquetes</h2>
-                        </div>
-                        <div class="card-body">
-                            <form name="search" id="search" novalidate="novalidate" method="post" accept-charset="utf-8">
-                                <div class="card-body card-padding">
-                                    <div class="row w-100 m-0">
-                                        <div class="col-xs-12">
-                                            <div class="form-group fg-float">
-                                                <div class="fg-line">
-                                                    <div class="input text required">
-                                                        <input type="text" ng-model="origin_place_name" uib-typeahead="place.name for place in origins_place | filter:$viewValue | limitTo:8" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <label class="fg-label">Ciudad de origen</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="form-group fg-float">
-                                                <div class="fg-line">
-                                                    <div class="input text required">
-                                                        <input type="text" ng-model="destination_place_name" uib-typeahead="place.name for place in destinations_place | filter:$viewValue | limitTo:8" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <label class="fg-label">Ciudad de destino</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group fg-float">
-                                                <div class="fg-line">
-                                                    <div class="input text required">
-                                                        <input type="text" ng-model="month_departure_name" uib-typeahead="month.name for month in months | filter:$viewValue | limitTo:8" class="form-control">
-                                                    </div>                                        
-                                                </div>
-                                                <label class="fg-label">Mes de salida</label>
-                                                <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group fg-float">
-                                                <div class="fg-line">
-                                                    <div class="input text required">
-                                                        <input type="text" ng-model="params.year_departure" uib-typeahead="year for year in years | filter:$viewValue | limitTo:8" class="form-control">
-                                                    </div>                                        
-                                                </div>
-                                                <label class="fg-label">Año de salida</label>
-                                                <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group">
-                                                <p class="f-500 c-black m-b-5">Dato criterio de orden</p>
-                                                <div class="btn-group w-100" style="box-shadow: none;">
-                                                    <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'PRICE'" style="width:50%;">Precio</label>
-                                                    <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'DEPARTURE_DATE'" style="width:50%;">Fecha</label>
-                                                </div>                                      
-                                                <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group">
-                                                <p class="f-500 c-black m-b-5">Orden de resultados</p>
-                                                <div class="btn-group w-100" style="box-shadow: none;">
-                                                    <label class="btn btn-primary" ng-model="params.order_type" uib-btn-radio="'ASC'" style="width:50%;">ASC</label>
-                                                    <label class="btn btn-primary" ng-model="params.order_type" uib-btn-radio="'DESC'" style="width:50%;">DESC</label>
-                                                </div>                                      
-                                                <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="form-group">
-                                                <p class="f-500 c-black m-b-5">Cantidad de habitaciones</p>
-                                                <div class="fg-line">
-                                                    <div class="select">
-                                                        <select class="form-control" ng-model="rooms">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="w-100 pull-left z-depth-1 p-10 m-b-20" ng-repeat="room in params.Room">
-                                                <p class="f-500 c-black m-b-5">Habitación # {{$index + 1}}</p>
-                                                <div class="col-sm-6 col-xs-12">
-                                                    <div class="form-group">
-                                                        <p class="f-500 c-black m-b-5"># Adultos</p>
-                                                        <div class="fg-line">
-                                                            <div class="select">
-                                                                <select class="form-control" ng-model="room.adult">
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                </select>
-                                                            </div>
+                    <div class="row">
+                        <div class="card col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1 bgm-white">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Buscador de paquetes</h2>
+                            </div>
+                            <div class="card-body">
+                                <form name="search" id="search" novalidate="novalidate" method="post" accept-charset="utf-8">
+                                    <div class="card-body card-padding">
+                                        <div class="row w-100 m-0">
+                                            <div class="col-xs-12">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <div class="input text required">
+                                                            <input type="text" ng-model="origin_place_name" uib-typeahead="place.name for place in origins_place | filter:$viewValue | limitTo:8" class="form-control">
                                                         </div>
                                                     </div>
+                                                    <label class="fg-label">Ciudad de origen</label>
                                                 </div>
-                                                <div class="col-sm-6 col-xs-12">
-                                                    <div class="form-group">
-                                                        <p class="f-500 c-black m-b-5"># Niños</p>
-                                                        <div class="fg-line">
-                                                            <div class="select">
-                                                                <select class="form-control" ng-model="children[$index]" ng-change="changeRoom(room, children[$index])">
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">9</option>
-                                                                </select>
-                                                            </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <div class="input text required">
+                                                            <input type="text" ng-model="destination_place_name" uib-typeahead="place.name for place in destinations_place | filter:$viewValue | limitTo:8" class="form-control">
                                                         </div>
                                                     </div>
+                                                    <label class="fg-label">Ciudad de destino</label>
                                                 </div>
-                                                 <div class="col-xs-6" ng-repeat="child in room.Children">
-                                                    <div class="form-group">
-                                                        <p class="f-500 c-black m-b-5">Edad # {{$index + 1}}</p>
-                                                        <div class="fg-line">
-                                                            <div class="select">
-                                                                <select class="form-control" ng-model="child.age">
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                    <option value="5">5</option>
-                                                                    <option value="6">6</option>
-                                                                    <option value="7">7</option>
-                                                                    <option value="8">8</option>
-                                                                    <option value="9">17</option>
-                                                                </select>
-                                                            </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <div class="input text required">
+                                                            <input type="text" ng-model="month_departure_name" uib-typeahead="month.name for month in months | filter:$viewValue | limitTo:8" class="form-control">
+                                                        </div>                                        
+                                                    </div>
+                                                    <label class="fg-label">Mes de salida</label>
+                                                    <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="form-group fg-float">
+                                                    <div class="fg-line">
+                                                        <div class="input text required">
+                                                            <input type="text" ng-model="params.year_departure" uib-typeahead="year for year in years | filter:$viewValue | limitTo:8" class="form-control">
+                                                        </div>                                        
+                                                    </div>
+                                                    <label class="fg-label">Año de salida</label>
+                                                    <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <p class="f-500 c-black m-b-5">Dato criterio de orden</p>
+                                                    <div class="btn-group w-100" style="box-shadow: none;">
+                                                        <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'PRICE'" style="width:50%;">Precio</label>
+                                                        <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'DEPARTURE_DATE'" style="width:50%;">Fecha</label>
+                                                    </div>                                      
+                                                    <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <p class="f-500 c-black m-b-5">Orden de resultados</p>
+                                                    <div class="btn-group w-100" style="box-shadow: none;">
+                                                        <label class="btn btn-primary" ng-model="params.order_type" uib-btn-radio="'ASC'" style="width:50%;">ASC</label>
+                                                        <label class="btn btn-primary" ng-model="params.order_type" uib-btn-radio="'DESC'" style="width:50%;">DESC</label>
+                                                    </div>                                      
+                                                    <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="form-group">
+                                                    <p class="f-500 c-black m-b-5">Cantidad de habitaciones</p>
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control" ng-model="rooms">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>                          
-                                    <button ng-click="getPackageList()" class="btn btn-success w-100" type="button">
-                                        <i style="padding: 8px 2px;font-size: 10px;" class="glyphicon glyphicon-search"></i>
-                                        Buscar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card col-md-5 col-xs-10 col-xs-offset-0 bgm-white m-l-30" style="min-height: 690px;">
-                        <div class="header-mac"><div></div><div></div><div></div></div>
-                        <div class="card-header">
-                            <h2 class="m-t-20">Formato de JSON Request</h2>
-                        </div>
-                        <div class="card-body">
-                            <pre>
-                              {{params | json}}
-                            </pre>
-                        </div>
-                    </div>
-                    <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
-                        <div class="header-mac"><div></div><div></div><div></div></div>
-                        <div class="card-header">
-                            <h2 class="m-t-20">Resultados del buscador (Front)</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row package-list ng-scope" ng-repeat="package in response.result">
-                                <div class="col-xs-12 package-data" >
-                                    <div class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}')">
-                                        <div class="col-xs-12 package-title">
-                                            <h2 class="title col-xs-9">{{package.title}}<small>{{numberNights(package)}} noches</small></h2>
-                                            <div class="col-xs-3 icons">
-                                                <div class="icon"><i class="md md-hotel"></i></div>
-                                                <div class="icon"><i class="md md-hotel"></i></div>
-                                                <div class="icon"><i class="md md-hotel"></i></div>
-                                                <div class="icon"><i class="md md-hotel"></i></div>
-                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                            <div class="col-xs-12">
+                                                <div class="w-100 pull-left z-depth-1 p-10 m-b-20" ng-repeat="room in params.Room">
+                                                    <p class="f-500 c-black m-b-5">Habitación # {{$index + 1}}</p>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5"># Adultos</p>
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" ng-model="room.adult">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5"># Niños</p>
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" ng-model="children[$index]" ng-change="changeRoom(room, children[$index])">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xs-6" ng-repeat="child in room.Children">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5">Edad # {{$index + 1}}</p>
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" ng-model="child.age">
+                                                                        <option value="0">0</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">17</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </div>                          
+                                        <button ng-click="getPackageList()" class="btn btn-success w-100" type="button">
+                                            <i style="padding: 8px 2px;font-size: 10px;" class="glyphicon glyphicon-search"></i>
+                                            Buscar
+                                        </button>
                                     </div>
-                                    <div class="col-xs-4 package-price">
-                                        <div class="w-100 price">
-                                            <h2><small></small></h2>
-                                        </div>        
-                                        <div class="w-100 description">
-                                            <ul>
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </div>
-                                        <div class="w-100 buy">Comprar</div>
-                                    </div>
-                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card col-md-5 col-xs-10 col-xs-offset-0 bgm-white m-l-30" style="min-height: 690px;">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Formato de JSON Request</h2>
+                            </div>
+                            <div class="card-body">
+                                <pre style="height: 550px;">
+                                  {{params | json}}
+                                </pre>
                             </div>
                         </div>
                     </div>
-                    <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
-                        <div class="header-mac"><div></div><div></div><div></div></div>
-                        <div class="card-header">
-                            <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
+                    <div class="row">
+                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30" style="max-height: 850px;overflow-y: auto;">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Resultados del buscador (Front)</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row package-list ng-scope" ng-repeat="package in response.result">
+                                    <table class="col-xs-12 package-data" >
+                                        <tr>
+                                            <td class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}');vertical-align: top;">
+                                                <div class="col-xs-12 package-title">
+                                                    <h2 class="title col-xs-9">{{package.title}}<small>{{numberNights(package)}} noches</small></h2>
+                                                    <div class="col-xs-3 icons">
+                                                        <div ng-if="package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
+                                                        <div ng-if="package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
+                                                        <div ng-if="package.Departure.transport_kind == 'bus'" class="icon"><i class="md md-directions-bus"></i></div>
+                                                        <div ng-if="package.Departure.transport_kind == 'cruise'" class="icon"><i class="md md-directions-ferry"></i></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-xs-4 package-price">
+                                                <div class="w-100 price text-center">
+                                                    <h2>
+                                                        <small>precio por persona</small>
+                                                        {{currency(package.Price.currency)}} {{package.Price.price_per_person | number}}
+
+                                                    </h2>
+                                                </div>        
+                                                <div class="w-100 description">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="col-xs-6 text-left">Precio total: </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(package.Price.currency)}} 
+                                                                {{package.Price.Total_Price.neto + package.Price.Total_Price.tax + package.Price.Total_Price.imp | number}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="package.Price.Total_Price.neto > 0">
+                                                            <div class="col-xs-6 text-left">Precio neto: </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(package.Price.currency)}} 
+                                                                {{package.Price.Total_Price.neto}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="package.Price.Total_Price.tax  > 0">
+                                                            <div class="col-xs-6 text-left">Impuestos: </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(package.Price.currency)}} 
+                                                                {{package.Price.Total_Price.tax}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="package.Price.Total_Price .vat > 0">
+                                                            <div class="col-xs-6 text-left">IVA: </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(package.Price.currency)}} 
+                                                                {{package.Price.Total_Price.vat}}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-6 buy">Disponibilidad</div>
+                                                <div class="col-xs-6 buy">Detalles</div>
+                                            </td>
+                                        <tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <pre>
-                              {{response | json}}
-                            </pre>
+                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30" style="max-height: 850px;overflow-y: auto;">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
+                            </div>
+                            <div class="card-body">
+                                <pre>
+                                  {{response | json}}
+                                </pre>
+                            </div>
                         </div>
                     </div>
                 </div>
