@@ -24,26 +24,30 @@ class PackagesPagination
 	/*
 	* @var PackageList listado de paquetes
 	*/
-	var $packagesList;
+	public $result;
 	/*
 	* Página actual
 	*/
-	var $current_page;
+	public $current_page;
 	/*
 	* Total de páginas
 	*/
-	var $total_page;
+	public $total_page;
 	/*
 	* Items por página
 	*/
-	var $item_per_page;
+	public $item_per_page;
+    
     /**
      * Constructor
      * @param Array Listado de paquetes desde la API
      */
     public function __construct($packagesList)
     {
-    	$this->packagesList = new PackagesList($packagesList['result']);
+    	$this->result = [];
+    	foreach ($packagesList['result'] as $key => $package) {
+    		$this->result[] = new Package($package);
+    	}
     	$this->current_page = $packagesList['current_page'];
     	$this->total_page = $packagesList['total_page'];
     	$this->item_per_page = $packagesList['item_per_page'];

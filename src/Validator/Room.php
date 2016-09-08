@@ -12,7 +12,7 @@ class Room
 		if(array_key_exists('adult', $params))
 			$this->adult = $params['adult'];
 		else 
-			throw new \Exception("No se ha recibido el número de adultos que viajarán en los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha recibido el número de adultos que viajarán en los paquetes devueltos por la búsquedas");
 
 		if(array_key_exists('Children', $params))
 		{
@@ -22,6 +22,6 @@ class Room
 			}
 		}
 		else 
-			throw new \Exception("No se ha recibido el conjunto de Children que viajarán en los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha recibido el conjunto de Children que viajarán en los paquetes devueltos por la búsquedas");
 	}
 }

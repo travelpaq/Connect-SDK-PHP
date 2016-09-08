@@ -3,6 +3,7 @@
 namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
+use TravelPAQ\PackagesAPI\Core\PackagesPagination;
 
 class PackageService extends Service
 {
@@ -21,7 +22,7 @@ class PackageService extends Service
 		$body = $response->getBody()
 						 ->getContents();
 
-		return $body;
+		return new PackagesPagination(json_decode($body,true));
 	}
 	public function getPackage($id){
 		$response = $this->http_client

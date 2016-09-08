@@ -11,7 +11,11 @@
  */
 namespace TravelPAQ\PackagesAPI\Exceptions;
 
+<<<<<<< HEAD
     abstract class PackagesAPIException extends \Exception implements IException
+=======
+abstract class PackagesAPIException extends \Exception implements IException
+>>>>>>> bbcd316b68897d066cafdb68daa2383f40bc915d
 {
     protected $message = 'Unknown exception';     // Exception message
     private   $string;                            // Unknown
