@@ -655,7 +655,39 @@ materialAdmin
                                     {'id':'WHK', 'name':'Whakatane, Nueva Zelanda'},
                                     {'id':'APW', 'name':'Apia, Samoa, Estado Independiente de'},
                                     {'id':'APW', 'name':'Apia, Samoa, Estado Independiente de'},
-                                    {'id':'VLI', 'name':'Port Vila, Vanuatu'}
+                                    {'id':'VLI', 'name':'Port Vila, Vanuatu'},
+                                    {'id':'ARR', 'name':'Alto Río Senguerr, Argentina'},
+                                    {'id':'CCT', 'name':'Colonial Catriel, Argentina'},
+                                    {'id':'COC', 'name':'Concordia, Argentina'},
+                                    {'id':'CUT', 'name':'Cutral Co, Argentina'},
+                                    {'id':'EHL', 'name':'El Bolsón, Argentina'},
+                                    {'id':'EMX', 'name':'El Mait, Argentina'},
+                                    {'id':'GPO', 'name':'General Pico, Argentina'},
+                                    {'id':'GNR', 'name':'General Roca, Argentina'},
+                                    {'id':'GGS', 'name':'Gobernador Gregores, Argentina'},
+                                    {'id':'JSM', 'name':'José de San Martí, Argentina'},
+                                    {'id':'LPG', 'name':'La Plata, Argentina'},
+                                    {'id':'ING', 'name':'Lago Argentino, Argentina'},
+                                    {'id':'NEC', 'name':'Necochea, Argentina'},
+                                    {'id':'PRA', 'name':'Paraná, Argentina'},
+                                    {'id':'AOL', 'name':'Paso de los Libres, Argentina'},
+                                    {'id':'PMQ', 'name':'Perito Moreno, Argentina'},
+                                    {'id':'PUD', 'name':'Puerto Deseado, Argentina'},
+                                    {'id':'PMY', 'name':'Puerto Madryn, Argentina'},
+                                    {'id':'RCU', 'name':'Río Cuarto, Argentina'},
+                                    {'id':'ROY', 'name':'Río Mayo, Argentina'},
+                                    {'id':'RYO', 'name':'Río Turbio, Argentina'},
+                                    {'id':'RCQ', 'name':'Reconquista, Argentina'},
+                                    {'id':'OES', 'name':'San Antonio Oeste, Argentina'},
+                                    {'id':'ULA', 'name':'San Juli, Argentina'},
+                                    {'id':'RZA', 'name':'Santa Cruz, Argentina'},
+                                    {'id':'RSA', 'name':'Santa Rosa, Argentina'},
+                                    {'id':'SGV', 'name':'Sierra Grande, Argentina'},
+                                    {'id':'TDL', 'name':'Tandil, Argentina'},
+                                    {'id':'OYO', 'name':'Tres Arroyos, Argentina'},
+                                    {'id':'VLG', 'name':'Villa Gesell, Argentina'},
+                                    {'id':'VME', 'name':'Villa Mercedes, Argentina'},
+                                    {'id':'APZ', 'name':'Zapala, Argentina'}
                                     ];
                                                     
             $scope.months = [{'id':1,  'name':'Enero'},{'id':2,  'name':'Febrero'},{'id':3,  'name':'Marzo'},{'id':4,  'name':'Abril'},{'id':5,  'name':'Mayo'},{'id':6,  'name':'Junio'},{'id':7,  'name':'Julio'},{'id':8,  'name':'Agosto'},{'id':9,  'name':'Septiembre'},{'id':10, 'name':'Octubre'},{'id':11, 'name':'Noviembre'},{'id':12, 'name':'Diciembre'}];
@@ -724,15 +756,29 @@ materialAdmin
                   }
             }
 
+            $scope.numberNights = function (package){
+                  nights = 0;
+                  for(i = 0;i < package.Place.length;i++){
+                        nights = nights + package.Place.number_nights;
+                  }
+
+                  /*prubas*/
+                  nights = 12;
+
+                  return nights;
+            }
+
             $scope.getPackageList = function () {
                   $http
-                    .post("connect.php", $scope.params)
+                    .post("getPackageList.php", $scope.params)
                     .success(function(data, status, headers, config) {
                         $scope.response = data;
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El hotel no pudo ser guardado.', 'error');
-                });
+                  });
             }
+
+
     });
 
 

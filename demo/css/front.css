@@ -1,0 +1,47 @@
+.package-list{
+	margin: 5px;
+    width: 100%;
+    float: left;
+}
+
+.package-list .package-data{
+	padding: 0;
+}
+
+.package-list .package-data .package-title{
+    margin: 15px;
+    background-color: rgba(0,0,0,0.5);
+    float: left;
+    width: calc(100% - 30px);
+}
+.package-list .package-data .title{
+    margin: 15px;
+    color: white;
+    padding: 0;
+    width: calc(74% - 30px);
+    float: left;
+}
+
+.package-list .package-data .title small{
+    color: white;
+    display: block;
+    margin-top: 5px;
+    font-size: 20px;
+    font-family: Calibri;
+    font-style: italic;
+}
+
+.package-list .package-data .icons{
+    color: white;
+    margin-top: 10px;
+}
+
+.package-list .package-data .icons .icon{
+	float: left;
+    padding: 1px 4px 2px 6px;
+    margin: 3px;
+    border: 1px white solid;
+    border-radius: 50%;
+    width: 31px;
+    font-size: 18px;
+}

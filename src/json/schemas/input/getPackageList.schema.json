@@ -6,7 +6,7 @@
   "properties": {
     "order_field": {
       "type": "string",
-      "enum": ["PRICE","DAPARTURE_DATE"],
+      "enum": ["PRICE","DEPARTURE_DATE"],
       "title": "Campo  que marcará orden de resultados.",
       "description": "Atributo de paquete por el cual se establecerá el orden de los resultados."
     },

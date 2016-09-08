@@ -17,7 +17,7 @@
 
 	try{
 		$response = $tp->getPackageList($request_params,0);
-		echo json_encode(json_decode($response),JSON_PRETTY_PRINT);
+		echo json_encode($response, JSON_PRETTY_PRINT);
 	} catch(Exception $e){
 		echo $e->getMessage();
 	}

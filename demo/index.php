@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="vendors/bower_components/angular-loading-bar/src/loading-bar.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.min.1.css">
         <link rel="stylesheet" type="text/css" href="css/app.min.2.css">
+        <link rel="stylesheet" type="text/css" href="css/front.css">
         <script type="text/javascript" src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
@@ -84,7 +85,7 @@
             </div>
             <div id="contents" style="display:none;padding-top: 200px;">
                 <div class="row w-100">
-                    <div class="card col-md-4 col-md-offset-1 col-xs-10 col-xs-offset-1 bgm-white">
+                    <div class="card col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1 bgm-white">
                         <div class="header-mac"><div></div><div></div><div></div></div>
                         <div class="card-header">
                             <h2 class="m-t-20">Buscador de paquetes</h2>
@@ -140,7 +141,7 @@
                                                 <p class="f-500 c-black m-b-5">Dato criterio de orden</p>
                                                 <div class="btn-group w-100" style="box-shadow: none;">
                                                     <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'PRICE'" style="width:50%;">Precio</label>
-                                                    <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'DATE_DEPARTURE'" style="width:50%;">Fecha</label>
+                                                    <label class="btn btn-primary" ng-model="params.order_field" uib-btn-radio="'DEPARTURE_DATE'" style="width:50%;">Fecha</label>
                                                 </div>                                      
                                                 <!--<small data-ng-show="submitted && !name" class="help-block c-red ng-hide">Completá este campo</small>-->
                                             </div>
@@ -251,7 +252,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card col-md-4 col-md-offset-2 col-xs-10 col-xs-offset-1 bgm-white" style="min-height: 654px;">
+                    <div class="card col-md-5 col-xs-10 col-xs-offset-0 bgm-white m-l-30" style="min-height: 690px;">
                         <div class="header-mac"><div></div><div></div><div></div></div>
                         <div class="card-header">
                             <h2 class="m-t-20">Formato de JSON Request</h2>
@@ -262,10 +263,48 @@
                             </pre>
                         </div>
                     </div>
-                    <div class="card col-xs-10 col-xs-offset-1 bgm-white m-t-30">
+                    <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
                         <div class="header-mac"><div></div><div></div><div></div></div>
                         <div class="card-header">
-                            <h2 class="m-t-20">Resultados del buscador</h2>
+                            <h2 class="m-t-20">Resultados del buscador (Front)</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row package-list ng-scope" ng-repeat="package in response.result">
+                                <div class="col-xs-12 package-data" >
+                                    <div class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}')">
+                                        <div class="col-xs-12 package-title">
+                                            <h2 class="title col-xs-9">{{package.title}}<small>{{numberNights(package)}} noches</small></h2>
+                                            <div class="col-xs-3 icons">
+                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                                <div class="icon"><i class="md md-hotel"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 package-price">
+                                        <div class="w-100 price">
+                                            <h2><small></small></h2>
+                                        </div>        
+                                        <div class="w-100 description">
+                                            <ul>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
+                                            </ul>
+                                        </div>
+                                        <div class="w-100 buy">Comprar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
+                        <div class="header-mac"><div></div><div></div><div></div></div>
+                        <div class="card-header">
+                            <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
                         </div>
                         <div class="card-body">
                             <pre>
