@@ -22,6 +22,8 @@ materialAdmin
 
             $scope.response = {};
 
+            $scope.selected_package = null;
+
 
             $scope.origins_place = [{'id':'BHI', 'name':'Bahía Blanca'},{'id':'BUE', 'name':'Buenos Aires'},{'id':'COR', 'name':'Córdoba'},{'id':'CTC', 'name':'Catamarca'},{'id':'CPC', 'name':'Chapelco'},{'id':'CRD', 'name':'Comodoro Rivadavia'},{'id':'CNQ', 'name':'Corrientes'},{'id':'FTE', 'name':'El Calafate'},{'id':'EQS', 'name':'Esquel'},{'id':'FMA', 'name':'Formosa'},{'id':'IGR', 'name':'Iguazú'},{'id':'JUJ', 'name':'Jujuy'},{'id':'IRJ', 'name':'La Rioja'},{'id':'MDQ', 'name':'Mar del Plata'},{'id':'MDZ', 'name':'Mendoza'},{'id':'NQN', 'name':'Neuquen'},{'id':'PSS', 'name':'Posadas'},{'id':'RGL', 'name':'Río Gallegos'},{'id':'RGA', 'name':'Río Grande'},{'id':'RES', 'name':'Resistencia'},{'id':'ROS', 'name':'Rosario'},{'id':'SLA', 'name':'Salta'},{'id':'BRC', 'name':'San Carlos de Bariloche'},{'id':'UAQ', 'name':'San Juan'},{'id':'LUQ', 'name':'San Luis'},{'id':'AFA', 'name':'San Rafael'},{'id':'SFN', 'name':'Santa Fe'},{'id':'SDE', 'name':'Santiago del Estero'},{'id':'REL', 'name':'Trelew'},{'id':'TUC', 'name':'Tucum'},{'id':'USH', 'name':'Ushuaia'},{'id':'VDM', 'name':'Viedma'}];
             $scope.destinations_place = [
@@ -782,12 +784,25 @@ materialAdmin
                     .success(function(data, status, headers, config) {
                         $scope.response = data;
                     }).error(function(data, status, headers, config) {
-                        swal('Lo sentimos!', 'El hotel no pudo ser guardado.', 'error');
+                        swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
             }
 
+            $scope.getPackage = function (id) {
+                  $http
+                    .get("getPackage.php?id=" + id)
+                    .success(function(data, status, headers, config) {
+                        $scope.selected_package = JSON.parse(JSON.parse(data));
+                        
+                        target_offset = $('#package-view').offset(),
+                        target_top = target_offset.top - 50;
+                        $('html, body').animate({
+                            scrollTop: target_top
+                        });
+                     
 
+                    }).error(function(data, status, headers, config) {
+                        swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
+                  });
+            }
     });
-
-
-

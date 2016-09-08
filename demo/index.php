@@ -71,7 +71,6 @@
                 color: white;
                 margin: 20px;
             }
-            
         </style>
     </head>
     <body id="body" data-ng-controller="materialadminCtrl as mactrl">
@@ -266,13 +265,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30" style="max-height: 850px;overflow-y: auto;">
+                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Resultados del buscador (Front)</h2>
                             </div>
                             <div class="card-body">
-                                <div class="row package-list ng-scope" ng-repeat="package in response.result">
+                                <div class="row package-list z-depth-2" ng-repeat="package in response.result">
                                     <table class="col-xs-12 package-data" >
                                         <tr>
                                             <td class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}');vertical-align: top;">
@@ -297,28 +296,28 @@
                                                 <div class="w-100 description">
                                                     <ul>
                                                         <li>
-                                                            <div class="col-xs-6 text-left">Precio total: </div>
+                                                            <div class="col-xs-6 text-left">Precio total </div>
                                                             <div class="col-xs-6 text-right">
                                                                 {{currency(package.Price.currency)}} 
                                                                 {{package.Price.Total_Price.neto + package.Price.Total_Price.tax + package.Price.Total_Price.imp | number}}
                                                             </div>
                                                         </li>
                                                         <li ng-if="package.Price.Total_Price.neto > 0">
-                                                            <div class="col-xs-6 text-left">Precio neto: </div>
+                                                            <div class="col-xs-6 text-left">Precio neto </div>
                                                             <div class="col-xs-6 text-right">
                                                                 {{currency(package.Price.currency)}} 
                                                                 {{package.Price.Total_Price.neto}}
                                                             </div>
                                                         </li>
                                                         <li ng-if="package.Price.Total_Price.tax  > 0">
-                                                            <div class="col-xs-6 text-left">Impuestos: </div>
+                                                            <div class="col-xs-6 text-left">Impuestos </div>
                                                             <div class="col-xs-6 text-right">
                                                                 {{currency(package.Price.currency)}} 
                                                                 {{package.Price.Total_Price.tax}}
                                                             </div>
                                                         </li>
                                                         <li ng-if="package.Price.Total_Price .vat > 0">
-                                                            <div class="col-xs-6 text-left">IVA: </div>
+                                                            <div class="col-xs-6 text-left">IVA </div>
                                                             <div class="col-xs-6 text-right">
                                                                 {{currency(package.Price.currency)}} 
                                                                 {{package.Price.Total_Price.vat}}
@@ -326,15 +325,15 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-xs-6 buy">Disponibilidad</div>
-                                                <div class="col-xs-6 buy">Detalles</div>
+                                                <!--<div class="col-xs-6 btn btn-warning" style="width: 80px;margin-left: 20px;margin-right: 10px;">avail</div>-->
+                                                <div class="w-100 btn btn-success" ng-click="getPackage(package.id)">detalles</div>
                                             </td>
                                         <tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30" style="max-height: 850px;overflow-y: auto;">
+                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
@@ -342,6 +341,88 @@
                             <div class="card-body">
                                 <pre>
                                   {{response | json}}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="package-view">
+                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Detalle de paquete <span ng-if="selected_package"> # {{selected_package.id}}</span></h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row package-list z-depth-2" ng-if="selected_package">
+                                    <table class="col-xs-12 package-data">
+                                        <tr>
+                                            <td class="col-xs-8 package-data" style="background-image:url('{{selected_package.Image[0].picture}}');vertical-align: top;">
+                                                <div class="col-xs-12 package-title">
+                                                    <h2 class="title col-xs-9">{{selected_package.title}}<small>{{numberNights(package)}} noches</small></h2>
+                                                    <div class="col-xs-3 icons">
+                                                        <div ng-if="selected_package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
+                                                        <div ng-if="selected_package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
+                                                        <div ng-if="selected_package.Departure.transport_kind == 'bus'" class="icon"><i class="md md-directions-bus"></i></div>
+                                                        <div ng-if="selected_package.Departure.transport_kind == 'cruise'" class="icon"><i class="md md-directions-ferry"></i></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-xs-4 package-price">
+                                                <div class="w-100 price text-center">
+                                                    <h2>
+                                                        <small>precio por persona</small>
+                                                        {{currency(selected_package.Price.currency)}} {{selected_package.Price.price_per_person | number}}
+
+                                                    </h2>
+                                                </div>        
+                                                <div class="w-100 description">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="col-xs-6 text-left">Precio total </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(selected_package.Price.currency)}} 
+                                                                {{selected_package.Price.Total_Price.neto + selected_package.Price.Total_Price.tax + selected_package.Price.Total_Price.imp | number}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="selected_package.Price.Total_Price.neto > 0">
+                                                            <div class="col-xs-6 text-left">Precio neto </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(selected_package.Price.currency)}} 
+                                                                {{selected_package.Price.Total_Price.neto}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="selected_package.Price.Total_Price.tax  > 0">
+                                                            <div class="col-xs-6 text-left">Impuestos </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(selected_package.Price.currency)}} 
+                                                                {{selected_package.Price.Total_Price.tax}}
+                                                            </div>
+                                                        </li>
+                                                        <li ng-if="selected_package.Price.Total_Price .vat > 0">
+                                                            <div class="col-xs-6 text-left">IVA </div>
+                                                            <div class="col-xs-6 text-right">
+                                                                {{currency(selected_package.Price.currency)}} 
+                                                                {{selected_package.Price.Total_Price.vat}}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!--<div class="col-xs-6 btn btn-warning" style="width: 80px;margin-left: 20px;margin-right: 10px;">avail</div>-->
+                                                <div class="w-100 btn btn-warning m-b-15">Disponibilidad</div>
+                                                <div class="w-100 btn btn-success">Reserva</div>
+                                            </td>
+                                        <tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
+                            <div class="header-mac"><div></div><div></div><div></div></div>
+                            <div class="card-header">
+                                <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
+                            </div>
+                            <div class="card-body">
+                                <pre>
+                                  {{selected_package | json}}
                                 </pre>
                             </div>
                         </div>

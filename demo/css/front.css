@@ -1,13 +1,13 @@
 .package-list{
-	margin: 5px;
+    margin: 0px;
     width: 100%;
     float: left;
+    margin-bottom: 40px;
 }
 
 .package-list .package-data{
 	padding: 0;
-    border-collapse: separate;
-    border-spacing: 3px;
+    border-collapse: collapse;
 }
 
 .package-list .package-data .package-title{
@@ -49,22 +49,23 @@
 }
 
 .package-list .package-price{
-    background-color: rgb(0,173,239);
     margin-left: 12px;
     width: calc(33.3333333% - 15px);
     padding-top: 17px;
+    background-color: #f3f3f3 !important;
+    padding-bottom: 20px;
 }
 
 .package-list .package-price .price h2{
     margin: 15px 15px 2px 15px;
-    color: white;
+    color: #9e9e9e;
     padding: 0;
     padding-bottom: 22px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #dcdcdc;
 }
 
 .package-list .package-price .price h2 small{
-    color: white;
+    color: #9e9e9e;
     display: block;
     margin-left: 5%;
     margin-bottom: 5px;
@@ -73,11 +74,12 @@
 
 .package-list .package-price .description{
     padding: 18px 0px;
-    color: white;
+    color: #a9a9a9;
     font-size: 14px;
     list-style-type: none;
-    font-weight: 500;
+    font-weight: 600;
     font-family: helvetica;
+    float: left;
 }
 .package-list .package-price .description ul li div{
     padding: 0;
@@ -88,3 +90,12 @@
     list-style-type: none;
 }
 
+.package-list .package-price .avail{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.package-list .package-price .book{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

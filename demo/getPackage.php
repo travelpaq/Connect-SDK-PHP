@@ -13,13 +13,8 @@
 
 	
 	//Conversión de los parámetros
-	$request_params = json_decode(file_get_contents('php://input'),true);
-
 	try{
-		$response = $tp->getPackageList($request_params,0);
-		foreach($response->result as $package){
-			$response->getPackage = 
-		}
+		$response = $tp->getPackage($_GET["id"]);
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	} catch(Exception $e){
 		echo $e->getMessage();
