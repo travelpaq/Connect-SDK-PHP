@@ -11,10 +11,10 @@ materialAdmin
             $scope.params.order_type = "DESC";
             $scope.params.order_field = "PRICE";
             $scope.params.currency = "ARS";
-            $scope.params.origin_place = "";
-            $scope.params.destination_place = "";
-            //$scope.month_departure = 0;
-            //$scope.year_departure = 0;
+            $scope.params.origin_place = "BUE";
+            $scope.params.destination_place = "IGR";
+            $scope.params.month_departure = 10;
+            $scope.params.year_departure = 2016;
             $scope.params.Room = [];
             $scope.rooms = 1;
 
@@ -23,6 +23,7 @@ materialAdmin
             $scope.response = {};
 
             $scope.selected_package = null;
+            $scope.checked_package = null;
 
 
             $scope.origins_place = [{'id':'BHI', 'name':'Bahía Blanca'},{'id':'BUE', 'name':'Buenos Aires'},{'id':'COR', 'name':'Córdoba'},{'id':'CTC', 'name':'Catamarca'},{'id':'CPC', 'name':'Chapelco'},{'id':'CRD', 'name':'Comodoro Rivadavia'},{'id':'CNQ', 'name':'Corrientes'},{'id':'FTE', 'name':'El Calafate'},{'id':'EQS', 'name':'Esquel'},{'id':'FMA', 'name':'Formosa'},{'id':'IGR', 'name':'Iguazú'},{'id':'JUJ', 'name':'Jujuy'},{'id':'IRJ', 'name':'La Rioja'},{'id':'MDQ', 'name':'Mar del Plata'},{'id':'MDZ', 'name':'Mendoza'},{'id':'NQN', 'name':'Neuquen'},{'id':'PSS', 'name':'Posadas'},{'id':'RGL', 'name':'Río Gallegos'},{'id':'RGA', 'name':'Río Grande'},{'id':'RES', 'name':'Resistencia'},{'id':'ROS', 'name':'Rosario'},{'id':'SLA', 'name':'Salta'},{'id':'BRC', 'name':'San Carlos de Bariloche'},{'id':'UAQ', 'name':'San Juan'},{'id':'LUQ', 'name':'San Luis'},{'id':'AFA', 'name':'San Rafael'},{'id':'SFN', 'name':'Santa Fe'},{'id':'SDE', 'name':'Santiago del Estero'},{'id':'REL', 'name':'Trelew'},{'id':'TUC', 'name':'Tucum'},{'id':'USH', 'name':'Ushuaia'},{'id':'VDM', 'name':'Viedma'}];
@@ -742,6 +743,19 @@ materialAdmin
                         }
                   }
             });
+
+            $scope.number_nights = function (){
+                  var number_nights = 0;
+                  for(i = 0;i < $scope.selected_package.Place.length;i++){
+                        number_nights += $scope.selected_package.Place[i].number_nights;
+                  }
+
+                  if(number_nights == 1){
+                        return number_nights + " noche";
+                  } else {
+                        return number_nights + " noches";
+                  }
+            }
         
             $scope.changeRoom = function (room, children){
                   children = parseInt(children);
@@ -756,18 +770,6 @@ materialAdmin
                              room.Children.pop();
                         }
                   }
-            }
-
-            $scope.numberNights = function (package){
-                  nights = 0;
-                  for(i = 0;i < package.Place.length;i++){
-                        nights = nights + package.Place.number_nights;
-                  }
-
-                  /*prubas*/
-                  nights = 12;
-
-                  return nights;
             }
 
             $scope.currency = function (currency){
@@ -804,5 +806,20 @@ materialAdmin
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
+            }
+
+            $scope.checkAvail = function (id){
+                  $http
+                    .get("checkAvail.php?id=" + id)
+                    .success(function(data, status, headers, config) {
+                        $scope.checked_package = data;
+                        console.log($scope.checked_package);
+                    }).error(function(data, status, headers, config) {
+                        swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
+                  });
+            }
+
+            $scope.bookingPackage = function (){
+
             }
     });

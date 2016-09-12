@@ -15,6 +15,7 @@ namespace TravelPAQ\PackagesAPI;
 
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
+use TravelPAQ\PackagesAPI\Services\BookingPackageService;
 use TravelPAQ\PackagesAPI\Validator\SearchFilter;
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 use TravelPAQ\PackagesAPI\Exceptions\JsonValidatorException;
@@ -35,7 +36,7 @@ class PackagesAPI
     public function __construct($config) 
     {
         HttpClient::getInstance([
-            'url' => 'http://search-engine.us-east-1.elasticbeanstalk.com/',
+            'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/api/',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);
@@ -79,17 +80,17 @@ class PackagesAPI
     /**
      * Verifica disponibilidad
      *
-     * @param mixed $selection 
+     * @param int $id 
      *
      * @return PackageStatus Retorna si un paquete esta disponible
      */
-    public function checkAvail($selection)  
+    public function checkAvail($id)  
     {
         if(!is_numeric($id))
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $bookingService = new BookingPackageService();
-        return $bookingService->checkAvail($selection);
+        return $bookingService->checkAvail($id);
     }
     
     /**

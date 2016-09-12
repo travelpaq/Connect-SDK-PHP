@@ -52,7 +52,7 @@
     margin-left: 12px;
     width: calc(33.3333333% - 15px);
     padding-top: 17px;
-    background-color: #f3f3f3 !important;
+    background-color: #ececec !important;
     padding-bottom: 20px;
 }
 
@@ -98,4 +98,33 @@
 .package-list .package-price .book{
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#package-view .package-data .title{
+    margin-bottom: 15px;
+    color: white;
+    padding: 0;
+    float: left;
+    margin-top: 15px;
+}
+
+#package-view .package-data .icons .icon {
+    padding: 1px 4px 2px 6px;
+    margin: 3px;
+    border: 1px white solid;
+    border-radius: 50%;
+    width: 31px;
+    font-size: 18px;
+    float: right;
+}
+
+#package-view .package-item h2 {
+    float: left;
+    font-family: Helvetica;
+    padding: 30px 30px 0px 30px;
+    width: 100%;
+}
+#package-view .package-item h2 small label{
+    font-size: 12px;
+    padding-top: 5px;
 }

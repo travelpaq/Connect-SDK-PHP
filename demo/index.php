@@ -72,6 +72,16 @@
                 margin: 20px;
             }
         </style>
+        <style>
+            @media(max-width: 1200px){
+                .chica{
+                    margin-left: 4%  !important;;
+                    width: calc(100% - 4% - 15px);
+                    padding: 0px 15px;
+                    float: left;
+                }
+            }
+        </style>
     </head>
     <body id="body" data-ng-controller="materialadminCtrl as mactrl">
         <div id="container" ng-init="init()">
@@ -84,8 +94,8 @@
             </div>
             <div id="contents" style="display:none;padding-top: 200px;">
                 <div class="row w-100">
-                    <div class="row">
-                        <div class="card col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1 bgm-white">
+                    <div class="row m-10">
+                        <div class="card col-md-6 col-xs-10 bgm-white" style="margin-left: 4%;">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Buscador de paquetes</h2>
@@ -264,8 +274,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
+                    <div class="row m-10">
+                        <div class="card col-lg-6 chica bgm-white" style="margin-left: 4%;">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Resultados del buscador (Front)</h2>
@@ -274,12 +284,12 @@
                                 <div class="row package-list z-depth-2" ng-repeat="package in response.result">
                                     <table class="col-xs-12 package-data" >
                                         <tr>
-                                            <td class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}');vertical-align: top;">
+                                            <td class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}');vertical-align: top;background-size: cover;">
                                                 <div class="col-xs-12 package-title">
-                                                    <h2 class="title col-xs-9">{{package.title}}<small>{{numberNights(package)}} noches</small></h2>
+                                                    <h2 class="title col-xs-9">{{package.title}}<small>{{package.total_nights}} noches</small></h2>
                                                     <div class="col-xs-3 icons">
                                                         <div ng-if="package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
-                                                        <div ng-if="package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
+                                                        <div ng-if="package.selected_package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
                                                         <div ng-if="package.Departure.transport_kind == 'bus'" class="icon"><i class="md md-directions-bus"></i></div>
                                                         <div ng-if="package.Departure.transport_kind == 'cruise'" class="icon"><i class="md md-directions-ferry"></i></div>
                                                     </div>
@@ -333,7 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
+                        <div class="card col-lg-5 chica bgm-white m-l-30">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Resultados del buscador (JSON)</h2>
@@ -345,19 +355,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="package-view">
-                        <div class="card col-xs-5 col-xs-10 col-xs-offset-1 bgm-white m-t-30">
+                    <div class="row m-10" id="package-view">
+                        <div class="card col-lg-6 chica col-xs-10 bgm-white" style="margin-left: 4%;">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
-                                <h2 class="m-t-20">Detalle de paquete <span ng-if="selected_package"> # {{selected_package.id}}</span></h2>
+                                <h2 class="m-t-20 m-b-20">Detalle de paquete: <span ng-if="selected_package"> {{selected_package.title}}</span></h2>
+                                <a href="javascript:void(0)" ng-repeat="category in selected_package.Category">#{{category.name}} </a>
                             </div>
                             <div class="card-body">
-                                <div class="row package-list z-depth-2" ng-if="selected_package">
+                                <div class="row package-list" ng-if="selected_package">
                                     <table class="col-xs-12 package-data">
                                         <tr>
-                                            <td class="col-xs-8 package-data" style="background-image:url('{{selected_package.Image[0].picture}}');vertical-align: top;">
+                                            <td class="col-xs-8 package-data" style="background-image:url('{{selected_package.Image[0].picture}}');vertical-align:top;background-size:cover;">
+                                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                                    <div class="carousel-inner" role="listbox" ng-init="active = 1">
+                                                      <div ng-repeat="image in selected_package.Image" class="item" ng-class="{'active':active == 1}">
+                                                        <img ng-init="active = 0" src="{{image.picture}}">
+                                                        <div class="carousel-caption"></div>
+                                                      </div>
+                                                    </div>
                                                 <div class="col-xs-12 package-title">
-                                                    <h2 class="title col-xs-9">{{selected_package.title}}<small>{{numberNights(package)}} noches</small></h2>
+                                                    <h2 class="title col-xs-9"><small>{{number_nights()}}</small></h2>
                                                     <div class="col-xs-3 icons">
                                                         <div ng-if="selected_package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
                                                         <div ng-if="selected_package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
@@ -407,15 +425,163 @@
                                                     </ul>
                                                 </div>
                                                 <!--<div class="col-xs-6 btn btn-warning" style="width: 80px;margin-left: 20px;margin-right: 10px;">avail</div>-->
-                                                <div class="w-100 btn btn-warning m-b-15">Disponibilidad</div>
-                                                <div class="w-100 btn btn-success">Reserva</div>
+                                                <div class="w-100 btn btn-warning m-b-15" ng-click="checkAvail(selected_package.id)">Disponibilidad</div>
+                                                <div class="w-100 btn btn-success" ng-click="bookingPackage()">Reserva</div>
                                             </td>
                                         <tr>
                                     </table>
+                                    <div class="p-30 package-item w-100 pull-left m-t-30 z-depth-1" ng-if="selected_package.Place.length">
+                                        <h2 class="m-b-20 p-t-0 m-t-0">Destinos del paquete</h2>
+                                        <h4 ng-repeat="place in selected_package.Place">
+                                            <label class="label label-primary">
+                                                {{place.number_nights}} <i class="md md-brightness-2" style="margin-bottom: 1px;"></i> | {{place.name}}, {{place.Country.name}}
+                                            </label>
+                                            <i ng-if="$index < selected_package.Place - 1" class="md md-arrow-forward"></i>
+                                        </h4>
+                                    </div>
+                                    <div class="p-30 package-item w-100 pull-left m-t-30 z-depth-1 rating-list" ng-if="selected_package.Accommodation">
+                                        <div class="listview col-xs-12 col-md-6">
+                                            <div class="lv-body">
+                                                <h2 class="m-b-20 p-t-0 m-t-0">Hotel</h2>
+                                                <label class="lv-item">
+                                                    <div class="media">
+                                                        <div class="pull-left" ng-repeat="hotel in selected_package.Accommodation.Hotel">
+                                                            <h4 class="hotel-name">{{hotel.name}} 
+                                                                <small>
+                                                                    <label class="label label-primary">{{hotel.Place.name}}</label>
+                                                                </small>
+                                                            </h4>
+                                                            <div class="clearfix"></div>
+                                                            <div class="rl-star m-t-0">
+                                                                <i class="md md-star" ng-class="{'active':hotel.star_rating >= 1}"></i>
+                                                                <i class="md md-star" ng-class="{'active':hotel.star_rating >= 2}"></i>
+                                                                <i class="md md-star" ng-class="{'active':hotel.star_rating >= 3}"></i>
+                                                                <i class="md md-star" ng-class="{'active':hotel.star_rating >= 4}"></i>
+                                                                <i class="md md-star" ng-class="{'active':hotel.star_rating >= 5}"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="pull-right"></div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="pull-left hotel-room">
+                                                            <small>
+                                                                Habitación: {{hotel.type_room}}<br>
+                                                                Servicio: {{hotel.hotel_service}}<br>
+                                                                <div ng-if="hotel.hotel.check_in != '0000-00-00' && hotel.hotel.check_out != '0000-00-00'" class="pull-left">
+                                                                    Fechas checkin/checkout: {{hotel.check_in | date:'dd/MM/yyyy'}} al {{hotel.check_out | date:'dd/MM/yyyy'}}
+                                                                </div>
+                                                            </small>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!--<h4>
+                                            {{selected_package.Accommodation.Hotel.name}}
+                                            <small>
+
+                                            </small>
+                                            <label class="label label-primary">
+                                                {{place.number_nights}} <i class="md md-brightness-2" style="margin-bottom: 1px;"></i> | {{place.name}}, {{place.Country.name}}
+                                            </label>
+                                            <i ng-if="$index < selected_package.Place - 1" class="md md-arrow-forward"></i>
+                                        </h4>-->
+                                    </div>
+                                    <div class="p-30 package-item w-100 pull-left m-t-30 z-depth-1" ng-if="selected_package.Departure != {}">
+                                        <h2 class="m-b-20 p-t-0 m-t-0">Salida
+                                            <small> el 
+                                                <label class="label label-primary">{{selected_package.Departure.date}}</label> desde 
+                                                <label class="label label-primary">{{selected_package.Departure.Place.name}}</label>
+                                            </small>
+                                        </h2>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left"></th>
+                                                    <th class="text-left"><span>{{selected_package.Departure.transport_kind == 'airline' ? 'AEROLÍNEA' : 'COMPAÑÍA DE TRANSPORTE'}}</span></th>
+                                                    <th style="width:120px;" class="text-center"><span>#    {{selected_package.Departure.transport_kind == 'airline' ? 'VUELO' : 'VIAJE'}}</span></th>
+                                                    <th class="text-left"><span>SALIDA</span></th>
+                                                    <th style="width:60px;" class="text-left"></th>
+                                                    <th class="text-left"><span>LLEGADA</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-repeat="frame in selected_package.Departure.Route | filter:{direction: '1'} | orderBy:['direction', 'order_travel']">
+                                                    <td style="font-size: 10px;" class="number">
+                                                        <i style="font-size: 20px;" class="md md-airplanemode-on"  data-ng-if="selected_package.Departure.transport_kind == 'airline'"></i>
+                                                        <i style="font-size: 20px;" class="md md-directions-bus"   data-ng-if="selected_package.Departure.transport_kind == 'bus'"    ></i>
+                                                        <i style="font-size: 20px;" class="md md-directions-ferry" data-ng-if="selected_package.Departure.transport_kind == 'cruise'" ></i>
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.TransportCompany.name}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15 text-center">
+                                                        {{frame.travel_number?frame.travel_number: "No especifica"}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.DeparturePlace.name}}<div class="clearfix"></div>{{frame.departure_time}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        <i class="departure-arrow md md-arrow-forward c-teal" style="font-size: x-large"></i>
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.ArrivalPlace.name}}<div class="clearfix"></div>{{frame.arrival_time}}
+                                                    </td>
+                                                </tr>
+                                                <tr data-ng-repeat="frame in selected_package.Departure.Route | filter:{direction: '2'} | orderBy:['direction', '-order_travel']">
+                                                    <td style="font-size: 10px;" class="number">
+                                                        <i style="font-size: 20px;" class="md md-airplanemode-on"  data-ng-if="selected_package.Departure.transport_kind == 'airline'"></i>
+                                                        <i style="font-size: 20px;" class="md md-directions-bus"   data-ng-if="selected_package.Departure.transport_kind == 'bus'"    ></i>
+                                                        <i style="font-size: 20px;" class="md md-directions-ferry" data-ng-if="selected_package.Departure.transport_kind == 'cruise'" ></i>
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.TransportCompany.name}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15 text-center">
+                                                        {{frame.travel_number?frame.travel_number: "No especifica"}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.DeparturePlace.name}}<div class="clearfix"></div>{{frame.departure_time}}
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        <i class="departure-arrow md md-arrow-back c-teal" style="font-size: x-large"></i>
+                                                    </td>
+                                                    <td style="font-size: 10px;" class="m-b-15">
+                                                        {{frame.ArrivalPlace.name}}<div class="clearfix"></div>{{frame.arrival_time}}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="p-30 package-item w-100 pull-left m-t-30 z-depth-1" ng-if="selected_package.Service.length">
+                                        <h2 class="m-b-20 p-t-0 m-t-0">Servicios</h2>
+                                        <table class="table">
+                                            <thrad>
+                                                <tr>
+                                                    <th>Tipo de servicio</th>
+                                                    <th>Detalles del servicio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="service in selected_package.Service">
+                                                    <td>{{service.ServiceKind.name}}</td>
+                                                    <td>{{service.detail}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="p-30 package-item w-100 pull-left m-t-30 z-depth-1" ng-if="selected_package.Observations">
+                                        <h2 class="m-b-20 p-t-0 m-t-0">Observaciones</h2>
+                                        <p class="table">
+                                            {{selected_package.Observations}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-xs-5 col-xs-offset-0 col-xs-10 col-xs-offset-1  bgm-white m-t-30 m-l-30">
+                        <div class="card col-lg-5 chica col-xs-10 col-xs-offset-0 bgm-white m-l-30">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
                                 <h2 class="m-t-20">Resultados del buscador (JSON)</h2>

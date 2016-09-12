@@ -41,7 +41,8 @@ class Package
       "Place",
       "Price",
       "Accommodation",
-      "transport"
+      "transport",
+      "total_nights"
     ];
     /**
      * Constructor

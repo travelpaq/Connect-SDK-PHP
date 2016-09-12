@@ -10,7 +10,7 @@ class Room
     var $Children; //array(Child)
 	function __construct($params){
 		if(array_key_exists('adult', $params))
-			$this->adult = $params['adult'];
+			$this->adult = (int)($params['adult']);
 		else 
 			throw new ValidationException("No se ha recibido el número de adultos que viajarán en los paquetes devueltos por la búsquedas");
 
