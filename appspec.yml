@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/api
+permissions:
+  - object: /var/www/html/api
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+    type:
+      - directory
+      - file
+hooks:
+  BeforeInstall:
+    - location: init.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: composer.sh
+      timeout: 500
+      runas: ec2-user
