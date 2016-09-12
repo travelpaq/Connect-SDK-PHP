@@ -21,13 +21,16 @@ class Place
 {
 	public $name;
 	public $iata;
+    public $Country;
     /**
      * Constructor
      * @param Array data datos de un lugar de un tramo de una ruta
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
+        $this->Country = new Country($data['Country']);
+    	
+        if(!array_key_exists('name', $data))
     		$data['name'] = "";
     	$this->name = $data['name'];
     	

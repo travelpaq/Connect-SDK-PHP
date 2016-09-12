@@ -135,6 +135,26 @@
                           "type": "string",
                           "title": "Nombre del lugar de salida."
                         },
+                        "Country": {
+                          "type": "object",
+                          "title": "País al cual pertenece el destino.",
+                          "properties": {
+                            "iata": {
+                              "type": "string",
+                              "minLength": 2,
+                              "maxLength": 2,
+                              "title": "Código IATA del país."
+                            },
+                            "name": {
+                              "type": "string",
+                              "title": "Nombre del país."
+                            }
+                          },
+                          "required": [
+                            "iata",
+                            "name"
+                          ]
+                        },
                         "iata": {
                           "type": "string",
                           "title": "Código IATA del lugar de salida.",
@@ -144,6 +164,7 @@
                       },
                       "required": [
                         "name",
+                        "Country",
                         "iata"
                       ]
                     },
@@ -178,6 +199,26 @@
                           "title": "Name schema.",
                           "description": "An explanation about the purpose of this instance."
                         },
+                        "Country": {
+                          "type": "object",
+                          "title": "País al cual pertenece el destino.",
+                          "properties": {
+                            "iata": {
+                              "type": "string",
+                              "minLength": 2,
+                              "maxLength": 2,
+                              "title": "Código IATA del país."
+                            },
+                            "name": {
+                              "type": "string",
+                              "title": "Nombre del país."
+                            }
+                          },
+                          "required": [
+                            "iata",
+                            "name"
+                          ]
+                        },
                         "iata": {
                           "type": "string",
                           "title": "Código IATA del destino de salida.",
@@ -187,6 +228,7 @@
                       },
                       "required": [
                         "name",
+                        "Country",
                         "iata"
                       ]
                     },
@@ -221,6 +263,26 @@
                     "type": "string",
                     "title": "Nombre del lugar de salida."
                   },
+                  "Country": {
+                    "type": "object",
+                    "title": "País al cual pertenece el destino.",
+                    "properties": {
+                      "iata": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 2,
+                        "title": "Código IATA del país."
+                      },
+                      "name": {
+                        "type": "string",
+                        "title": "Nombre del país."
+                      }
+                    },
+                    "required": [
+                      "iata",
+                      "name"
+                    ]
+                  },
                   "iata":{
                     "type": "string",
                     "title": "Código IATA del lugar de salida.",
@@ -230,6 +292,7 @@
                 },
                 "required": [
                   "name",
+                  "Country",
                   "iata"
                 ]
               },
@@ -368,7 +431,7 @@
                     "check_out": {
                       "type": "string",
                       "title": "Fecha de check out.",
-                      "description": "An explanation about the purpose of this instance."
+                      "description": "Fecha de check-out"
                     },
                     "star_rating": {
                       "type": "integer",
@@ -387,6 +450,27 @@
                         "name": {
                           "type": "string",
                           "title": "Nombre del destino."
+                        },
+                        "Country": {
+                          "type": "object",
+                          "title": "País al cual pertenece el destino.",
+                          "properties": {
+                            "iata": {
+                              "type": "string",
+                              "minLength": 2,
+                              "maxLength": 2,
+                              "title": "Código IATA del país."
+                            },
+                            "name": {
+                              "type": "string",
+                              "title": "Nombre del país."
+                            }
+                          },
+                          "required": [
+                            "iata",
+                            "Country",
+                            "name"
+                          ]
                         },
                         "iata": {
                           "type": "string",

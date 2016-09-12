@@ -20,8 +20,11 @@ class PackageService extends Service
 						 		   	]
 						 );
 		$body = $response->getBody()->getContents();
-		echo $body;die();
-		return new PackagesPagination(json_decode($body,true));
+		$body_decoded = json_decode($body,true);
+		if($body_decoded == null){
+			throw new Exception("Json mal formado");
+		}
+		return new PackagesPagination($body_decoded);
 	}
 	public function getPackage($id){
 		$response = $this->http_client
