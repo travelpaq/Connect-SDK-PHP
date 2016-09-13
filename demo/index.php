@@ -11,6 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/app.min.1.css">
         <link rel="stylesheet" type="text/css" href="css/app.min.2.css">
         <link rel="stylesheet" type="text/css" href="css/front.css">
+        <link rel="stylesheet" type="text/css" href="vendors/bower_components/sweetalert/dist/sweetalert-override.min.css">
+        
         <script type="text/javascript" src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
@@ -31,55 +33,11 @@
         <script type="text/javascript" src="js/modules/ui.js"></script>
         <script type="text/javascript" src="js/modules/form.js"></script>
         <script type="text/javascript" src="js/infinite-scroll.js"></script>
+        <script type="text/javascript" src="vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>
         <style>
-            .header-mac{
-                position: absolute;
-                width: 100%;
-                height: 20px;
-                left: 0px;
-                background-color: #dcdcdc;
-                border-radius: 2px 2px 0 0;
-            }
-
-            .header-mac div{
-                background-color: #bbb;
-                width: 10px;
-                height: 10px;
-                position: absolute;
-                border-radius: 50%;
-            }
-
-            .header-mac div:nth-child(1){
-                top: 5px;
-                left: 5px;
-            }
-
-            .header-mac div:nth-child(2){
-                top: 5px;
-                left: 18px;
-            }
-
-            .header-mac div:nth-child(3){
-                top: 5px;
-                left: 31px;
-            }
-
-            pre {
-                background-color: #585858;
-                border: 1px solid silver;
-                padding: 10px 20px;
-                color: white;
-                margin: 20px;
-            }
-        </style>
-        <style>
-            @media(max-width: 1200px){
-                .chica{
-                    margin-left: 4%  !important;;
-                    width: calc(100% - 4% - 15px);
-                    padding: 0px 15px;
-                    float: left;
-                }
+            .sweet-big{
+                width: 80%;
+                margin-left: -40%;
             }
         </style>
     </head>
@@ -274,7 +232,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row m-10">
+                    <div class="row m-10" id="package-result">
                         <div class="card col-lg-6 chica bgm-white" style="margin-left: 4%;">
                             <div class="header-mac"><div></div><div></div><div></div></div>
                             <div class="card-header">
@@ -286,7 +244,7 @@
                                         <tr>
                                             <td class="col-xs-8 package-data" style="background-image:url('{{package.Image[0].picture}}');vertical-align: top;background-size: cover;">
                                                 <div class="col-xs-12 package-title">
-                                                    <h2 class="title col-xs-9">{{package.title}}<small>{{package.total_nights}} noches</small></h2>
+                                                    <h2 class="title col-xs-9">{{package.title}}<small>{{number_nights(package)}}</small></h2>
                                                     <div class="col-xs-3 icons">
                                                         <div ng-if="package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
                                                         <div ng-if="package.selected_package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
@@ -375,7 +333,7 @@
                                                       </div>
                                                     </div>
                                                 <div class="col-xs-12 package-title">
-                                                    <h2 class="title col-xs-9"><small>{{number_nights()}}</small></h2>
+                                                    <h2 class="title col-xs-9"><small>{{number_nights(selected_package)}}</small></h2>
                                                     <div class="col-xs-3 icons">
                                                         <div ng-if="selected_package.Accommodation" class="icon"><i class="md md-hotel"></i></div>
                                                         <div ng-if="selected_package.Departure.transport_kind == 'airline'" class="icon"><i class="md md-flight"></i></div>
@@ -426,7 +384,7 @@
                                                 </div>
                                                 <!--<div class="col-xs-6 btn btn-warning" style="width: 80px;margin-left: 20px;margin-right: 10px;">avail</div>-->
                                                 <div class="w-100 btn btn-warning m-b-15" ng-click="checkAvail(selected_package.id)">Disponibilidad</div>
-                                                <div class="w-100 btn btn-success" ng-click="bookingPackage()">Reserva</div>
+                                                <div class="w-100 btn btn-success" ng-click="bookingPackage()" data-toggle="modal" data-target="#bookingPackage">Reservar</div>
                                             </td>
                                         <tr>
                                     </table>
@@ -459,18 +417,17 @@
                                                                 <i class="md md-star" ng-class="{'active':hotel.star_rating >= 4}"></i>
                                                                 <i class="md md-star" ng-class="{'active':hotel.star_rating >= 5}"></i>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="pull-right"></div>
-                                                        <div class="clearfix"></div>
-                                                        <div class="pull-left hotel-room">
-                                                            <small>
-                                                                Habitación: {{hotel.type_room}}<br>
-                                                                Servicio: {{hotel.hotel_service}}<br>
-                                                                <div ng-if="hotel.hotel.check_in != '0000-00-00' && hotel.hotel.check_out != '0000-00-00'" class="pull-left">
-                                                                    Fechas checkin/checkout: {{hotel.check_in | date:'dd/MM/yyyy'}} al {{hotel.check_out | date:'dd/MM/yyyy'}}
-                                                                </div>
-                                                            </small>
+                                                            <div class="pull-right"></div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="pull-left hotel-room">
+                                                                <small>                     
+                                                                    Habitación: {{hotel.type_room}}<br>
+                                                                    Servicio: {{hotel.hotel_service}}<br>
+                                                                    <div ng-if="hotel.hotel.check_in != '0000-00-00' && hotel.hotel.check_out != '0000-00-00'" class="pull-left">
+                                                                        Fechas checkin/checkout: {{hotel.check_in | date:'dd/MM/yyyy'}} al {{hotel.check_out | date:'dd/MM/yyyy'}}
+                                                                    </div>
+                                                                </small>
+                                                            </div>
                                                         </div>
                                                         <br>
                                                     </div>
@@ -597,6 +554,145 @@
             </div> 
             <div id="loading-bar-spinner"><div class="spinner-icon"></div></div>
         </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="bookingPackage">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Datos de los pasajeros</h4>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="col-xs-6">
+                                    <div class="w-100 p-15 m-t-20 pull-left" ng-repeat="passenger in Booking.Passenger" style="border: 1px solid #e2e1e1;border-radius: 2px;">
+                                        <h4>Pasajero # {{$index + 1}}</h4>
+                                        <form name="booking" id="booking" novalidate="novalidate" method="post" accept-charset="utf-8">
+                                            <div class="card-body card-padding">
+                                                <div class="row w-100 m-0">
+                                                    <div class="col-xs-12">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.name" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <label class="fg-label">Nombre</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.surname" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <label class="fg-label">Apellido</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5">Tipo de documento</p>
+                                                            <div class="btn-group w-100" style="box-shadow: none;">
+                                                                <label class="btn btn-primary" ng-model="passenger.kind_doc" uib-btn-radio="'DNI'" style="width:50%;">DNI</label>
+                                                                <label class="btn btn-primary" ng-model="passenger.kind_doc" uib-btn-radio="'Pasaporte'" style="width:50%;">Pasaporte</label>
+                                                            </div>                                      
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12 m-t-20">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.num_doc" class="form-control">
+                                                                </div>                                        
+                                                            </div>
+                                                            <label class="fg-label">N° de documento</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5">Sexo</p>
+                                                            <div class="btn-group w-100" style="box-shadow: none;">
+                                                                <label class="btn btn-primary" ng-model="passenger.gender" uib-btn-radio="'M'" style="width:50%;">Masculino</label>
+                                                                <label class="btn btn-primary" ng-model="passenger.gender" uib-btn-radio="'F'" style="width:50%;">Femenino</label>
+                                                            </div>                                      
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12 m-t-20">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.birthdate" class="form-control">
+                                                                </div>                                        
+                                                            </div>
+                                                            <label class="fg-label">Fecha de nacimiento (yyyy-mm-dd)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5">Nacionalidad</p>
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select ng-options="country.id as country.name for country in countries" class="form-control" ng-model="passenger.nationality">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <p class="f-500 c-black m-b-5">País de residencia</p>
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select ng-options="country.id as country.name for country in countries"  class="form-control" ng-model="passenger.residence">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>             
+                                                <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.mail" class="form-control">
+                                                                </div>                                        
+                                                            </div>
+                                                            <label class="fg-label">Mail</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-xs-12">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.tax_status"   class="form-control">
+                                                                </div>                                        
+                                                            </div>
+                                                            <label class="fg-label">Condición tributaria</label>
+                                                        </div>
+                                                    </div>
+                                                </div>                          
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="col-xs-6">
+                                    <pre style="height:100%;">
+                                        {{Booking | json}}
+                                    </pre>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="bookingPackage()">Reservar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <script type="text/javascript">
             window.onload=function(){
                 $('#header').show();
