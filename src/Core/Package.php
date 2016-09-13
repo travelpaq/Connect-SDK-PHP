@@ -28,6 +28,7 @@ class Package
     public $Departure;
     public $Place;
     public $Price;
+    public $Accommodation;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
@@ -42,7 +43,7 @@ class Package
       "Price",
       "Accommodation",
       "transport",
-      "total_nights"
+      //"total_nights" hay que habilitarlo en el json
     ];
     /**
      * Constructor
@@ -78,7 +79,7 @@ class Package
 
       $this->Place = [];
       foreach ($package['Place'] as $key => $value) {
-        $this->Place[] = new Destination($value);
+        $this->Place[] = new Place($value);
       }
 
       $this->Price = new Price($package['Price']);
