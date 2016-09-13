@@ -30,7 +30,8 @@ class HttpClient
 		    'base_uri' => $params['url'],
 		    'timeout'  => $params['timeout'],
             'headers' => ['TP-AUTH' => $params['key'],
-                          'TP-IPP' => $params['item_per_page']]
+                          'TP-IPP' => $params['item_per_page'],
+                          'ACCEPTS' => 'application/json']
 		]);
     }
     private function __clone()
