@@ -19,14 +19,16 @@ materialAdmin
             $scope.rooms = 1;
 
             $scope.children = [];
-
             $scope.response = {};
 
             $scope.selected_package = null;
             $scope.checked_package = null;
 
+            $scope.Booking = {"package_fare_id":0, "Passenger":[]};
 
-            $scope.origins_place = [{'id':'BHI', 'name':'Bahía Blanca'},{'id':'BUE', 'name':'Buenos Aires'},{'id':'COR', 'name':'Córdoba'},{'id':'CTC', 'name':'Catamarca'},{'id':'CPC', 'name':'Chapelco'},{'id':'CRD', 'name':'Comodoro Rivadavia'},{'id':'CNQ', 'name':'Corrientes'},{'id':'FTE', 'name':'El Calafate'},{'id':'EQS', 'name':'Esquel'},{'id':'FMA', 'name':'Formosa'},{'id':'IGR', 'name':'Iguazú'},{'id':'JUJ', 'name':'Jujuy'},{'id':'IRJ', 'name':'La Rioja'},{'id':'MDQ', 'name':'Mar del Plata'},{'id':'MDZ', 'name':'Mendoza'},{'id':'NQN', 'name':'Neuquen'},{'id':'PSS', 'name':'Posadas'},{'id':'RGL', 'name':'Río Gallegos'},{'id':'RGA', 'name':'Río Grande'},{'id':'RES', 'name':'Resistencia'},{'id':'ROS', 'name':'Rosario'},{'id':'SLA', 'name':'Salta'},{'id':'BRC', 'name':'San Carlos de Bariloche'},{'id':'UAQ', 'name':'San Juan'},{'id':'LUQ', 'name':'San Luis'},{'id':'AFA', 'name':'San Rafael'},{'id':'SFN', 'name':'Santa Fe'},{'id':'SDE', 'name':'Santiago del Estero'},{'id':'REL', 'name':'Trelew'},{'id':'TUC', 'name':'Tucum'},{'id':'USH', 'name':'Ushuaia'},{'id':'VDM', 'name':'Viedma'}];
+            $scope.getBooking = "";
+
+            $scope.origins_place = [{'id':'BHI', 'name':'Bahía Blanca, Argentina'},{'id':'BUE', 'name':'Buenos Aires, Argentina'},{'id':'COR', 'name':'Córdoba, Argentina'},{'id':'CTC', 'name':'Catamarca, Argentina'},{'id':'CPC', 'name':'Chapelco, Argentina'},{'id':'CRD', 'name':'Comodoro Rivadavia, Argentina'},{'id':'CNQ', 'name':'Corrientes, Argentina'},{'id':'FTE', 'name':'El Calafate, Argentina'},{'id':'EQS', 'name':'Esquel, Argentina'},{'id':'FMA', 'name':'Formosa, Argentina'},{'id':'IGR', 'name':'Iguazú, Argentina'},{'id':'JUJ', 'name':'Jujuy, Argentina'},{'id':'IRJ', 'name':'La Rioja, Argentina'},{'id':'MDQ', 'name':'Mar del Plata, Argentina'},{'id':'MDZ', 'name':'Mendoza, Argentina'},{'id':'NQN', 'name':'Neuquen, Argentina'},{'id':'PSS', 'name':'Posadas, Argentina'},{'id':'RGL', 'name':'Río Gallegos, Argentina'},{'id':'RGA', 'name':'Río Grande, Argentina'},{'id':'RES', 'name':'Resistencia, Argentina'},{'id':'ROS', 'name':'Rosario, Argentina'},{'id':'SLA', 'name':'Salta, Argentina'},{'id':'BRC', 'name':'San Carlos de Bariloche, Argentina'},{'id':'UAQ', 'name':'San Juan, Argentina'},{'id':'LUQ', 'name':'San Luis, Argentina'},{'id':'AFA', 'name':'San Rafael, Argentina'},{'id':'SFN', 'name':'Santa Fe, Argentina'},{'id':'SDE', 'name':'Santiago del Estero, Argentina'},{'id':'REL', 'name':'Trelew, Argentina'},{'id':'TUC', 'name':'Tucum, Argentina'},{'id':'USH', 'name':'Ushuaia, Argentina'},{'id':'VDM', 'name':'Viedma, Argentina'}];
             $scope.destinations_place = [
                                     {'id':'LAD', 'name':'Luanda, Angola'},
                                     {'id':'ALG', 'name':'Argel, Argelia'},
@@ -692,7 +694,11 @@ materialAdmin
                                     {'id':'VME', 'name':'Villa Mercedes, Argentina'},
                                     {'id':'APZ', 'name':'Zapala, Argentina'}
                                     ];
-                                                    
+
+            $scope.nationalities = [];
+            $scope.residences = [];
+                            
+            $scope.countries = [{'id':'AO', 'name':'Angola'}, {'id':'AD', 'name':'Andorra'}, {'id':'AE', 'name':'Emiratos Árabes Unidos'}, {'id':'AG', 'name':'Antigua y Barbuda'}, {'id':'AI', 'name':'Anguila'}, {'id':'AL', 'name':'Albania'}, {'id':'AM', 'name':'Armenia'}, {'id':'AN', 'name':'Antillas Holandesas'}, {'id':'AO', 'name':'Angola'}, {'id':'AR', 'name':'Argentina'}, {'id':'AS', 'name':'Samoa Americana'}, {'id':'AT', 'name':'Austria'}, {'id':'AU', 'name':'Australia'}, {'id':'AZ', 'name':'Azerbaiy'}, {'id':'BA', 'name':'Bosnia y Herzegovina'}, {'id':'BB', 'name':'Barbados'}, {'id':'BD', 'name':'Bangladesh'}, {'id':'BE', 'name':'Bélgica'}, {'id':'BF', 'name':'Burkina Faso'}, {'id':'BG', 'name':'Bulgaria'}, {'id':'BN', 'name':'Brun'}, {'id':'BO', 'name':'Bolivia'}, {'id':'BR', 'name':'Brasil'}, {'id':'BS', 'name':'Bahamas'}, {'id':'BT', 'name':'Bhut'}, {'id':'BV', 'name':'Isla Bouvet'}, {'id':'BW', 'name':'Botsuana'}, {'id':'BY', 'name':'Bielorrusia'}, {'id':'BZ', 'name':'Belice'}, {'id':'CA', 'name':'Canadá'}, {'id':'CC', 'name':'Islas Cocos'}, {'id':'CD', 'name':'Congo, Rep?blica Democr?tica de'}, {'id':'CF', 'name':'República Centroafricana'}, {'id':'CG', 'name':'Congo'}, {'id':'CH', 'name':'Suiza'}, {'id':'CI', 'name':'Costa de Marfil'}, {'id':'CK', 'name':'Islas Cook'}, {'id':'CL', 'name':'Chile'}, {'id':'CM', 'name':'República de Camerún'}, {'id':'CN', 'name':'China'}, {'id':'CO', 'name':'Colombia'}, {'id':'CR', 'name':'Costa Rica'}, {'id':'CU', 'name':'Cuba'}, {'id':'CV', 'name':'República de Cabo Verde'}, {'id':'CX', 'name':'Isla Christmas'}, {'id':'CY', 'name':'Chipre'}, {'id':'CZ', 'name':'República Checa'}, {'id':'DE', 'name':'Alemania'}, {'id':'DJ', 'name':'Yibuti'}, {'id':'DK', 'name':'Dinamarca'}, {'id':'DM', 'name':'Dominica'}, {'id':'DO', 'name':'República Dominicana'}, {'id':'DZ', 'name':'Argelia'}, {'id':'EC', 'name':'Ecuador'}, {'id':'EE', 'name':'Estonia'}, {'id':'EG', 'name':'Egipto'}, {'id':'EH', 'name':'Sahara Occidental'}, {'id':'ER', 'name':'Eritrea'}, {'id':'ES', 'name':'España'}, {'id':'ET', 'name':'Etiop'}, {'id':'FI', 'name':'Finlandia'}, {'id':'FJ', 'name':'Islas Fiji'}, {'id':'FK', 'name':'Islas Malvinas'}, {'id':'FM', 'name':'Micronesia'}, {'id':'FO', 'name':'Islas Feroe'}, {'id':'FR', 'name':'Francia'}, {'id':'GA', 'name':'Gab?n'}, {'id':'GB', 'name':'Reino Unido'}, {'id':'GD', 'name':'Granada'}, {'id':'GE', 'name':'Georgia'}, {'id':'GF', 'name':'Guyana Francesa'}, {'id':'GH', 'name':'Ghana'}, {'id':'GL', 'name':'Groenlandia'}, {'id':'GM', 'name':'Gambia'}, {'id':'GP', 'name':'Guadalupe'}, {'id':'GR', 'name':'Grecia'}, {'id':'GT', 'name':'Guatemala'}, {'id':'GU', 'name':'Guam'}, {'id':'GY', 'name':'Guyana'}, {'id':'HK', 'name':'Hong Kong'}, {'id':'HN', 'name':'Honduras'}, {'id':'HR', 'name':'Croacia'}, {'id':'HT', 'name':'Haití'}, {'id':'HU', 'name':'Hungr'}, {'id':'ID', 'name':'Indonesia'}, {'id':'IE', 'name':'República de Irlanda'}, {'id':'IL', 'name':'Israel'}, {'id':'IN', 'name':'India'}, {'id':'IQ', 'name':'Iraq'}, {'id':'IR', 'name':'Irák'}, {'id':'IS', 'name':'Islandia'}, {'id':'IT', 'name':'Italia'}, {'id':'JM', 'name':'Jamaica'}, {'id':'JO', 'name':'Jordania'}, {'id':'JP', 'name':'Japón'}, {'id':'KE', 'name':'Kenia'}, {'id':'KH', 'name':'Camboya'}, {'id':'KI', 'name':'Kiribati'}, {'id':'KM', 'name':'Comoras'}, {'id':'KN', 'name':'San Cristóbal y Nieves'}, {'id':'KP', 'name':'Corea del Sur'}, {'id':'KR', 'name':'Corea del Norte'}, {'id':'KY', 'name':'Islas Caim'}, {'id':'KZ', 'name':'Kazajstán'}, {'id':'LA', 'name':'República Popular Democrática de Laos'}, {'id':'LB', 'name':'Líbano'}, {'id':'LC', 'name':'Santa Lucía'}, {'id':'LI', 'name':'Liechtenstein'}, {'id':'LK', 'name':'Sri Lanka'}, {'id':'LR', 'name':'Liberia'}, {'id':'LS', 'name':'Lesotho'}, {'id':'LT', 'name':'Lituania'}, {'id':'LV', 'name':'Letonia'}, {'id':'LY', 'name':'Yamahiriya Árabe Libia'}, {'id':'MA', 'name':'Marruecos'}, {'id':'MC', 'name':'Mónaco'}, {'id':'MD', 'name':'Moldavia'}, {'id':'MG', 'name':'Madagascar'}, {'id':'MH', 'name':'Islas Marshall'}, {'id':'MK', 'name':'Macedonia'}, {'id':'ML', 'name':'Mal'}, {'id':'MM', 'name':'Myanmar'}, {'id':'MO', 'name':'Macao'}, {'id':'MP', 'name':'Islas Marianas'}, {'id':'MQ', 'name':'Martinica'}, {'id':'MR', 'name':'Mauritania'}, {'id':'MS', 'name':'Montserrat'}, {'id':'MT', 'name':'Malta'}, {'id':'MU', 'name':'Mauricio'}, {'id':'MW', 'name':'Malawi'}, {'id':'MX', 'name':'México'}, {'id':'MY', 'name':'Malasia'}, {'id':'MZ', 'name':'Mozambique'}, {'id':'NA', 'name':'Namibia'}, {'id':'NC', 'name':'Nueva Caledonia'}, {'id':'NG', 'name':'Nigeria'}, {'id':'NL', 'name':'Países Bajos'}, {'id':'NO', 'name':'Noruega'}, {'id':'NP', 'name':'Nepal'}, {'id':'NR', 'name':'Nauru'}, {'id':'NU', 'name':'Niue'}, {'id':'NZ', 'name':'Nueva Zelanda'}, {'id':'OM', 'name':'Sultanato de Omán'}, {'id':'PA', 'name':'Panam'}, {'id':'PE', 'name':'Perú'}, {'id':'PF', 'name':'Polinesia Francesa'}, {'id':'PG', 'name':'Pap?a Nueva Guinea (Niugini)'}, {'id':'PH', 'name':'Filipinas'}, {'id':'PK', 'name':'Pakist'}, {'id':'PL', 'name':'Polonia'}, {'id':'PM', 'name':'San Pedro y Miquelón'}, {'id':'PS', 'name':'Territorio ocupado de Palestina'}, {'id':'PT', 'name':'Portugal'}, {'id':'PW', 'name':'Palaos'}, {'id':'PY', 'name':'Paraguay'}, {'id':'RE', 'name':'Reunión'}, {'id':'RO', 'name':'Ruman'}, {'id':'RU', 'name':'Rusia'}, {'id':'RW', 'name':'Ruanda'}, {'id':'SA', 'name':'Arabia Saudita'}, {'id':'SB', 'name':'Islas Salomón'}, {'id':'SC', 'name':'Islas Seychelles'}, {'id':'SD', 'name':'Sudán'}, {'id':'SE', 'name':'Suecia'}, {'id':'SH', 'name':'Isla Ascensión/Sta. Elena'}, {'id':'SI', 'name':'Eslovenia'}, {'id':'SJ', 'name':'Islas Svalbard y Jan Mayen'}, {'id':'SK', 'name':'Eslovaquia'}, {'id':'SL', 'name':'Sierra Leona'}, {'id':'SM', 'name':'San Marino'}, {'id':'SN', 'name':'Senegal'}, {'id':'SO', 'name':'Somalia'}, {'id':'SR', 'name':'Surinam'}, {'id':'ST', 'name':'Santo Tomé y Príncipe'}, {'id':'SY', 'name':'República Árabe Siria'}, {'id':'SZ', 'name':'Suazilandia'}, {'id':'TC', 'name':'Islas Turcos y Caicos'}, {'id':'TD', 'name':'Chad'}, {'id':'TG', 'name':'Togo'}, {'id':'TH', 'name':'Tailandia'}, {'id':'TJ', 'name':'Tayikist'}, {'id':'TM', 'name':'Turkmenist'}, {'id':'TN', 'name':'Túnez'}, {'id':'TO', 'name':'Tonga'}, {'id':'TR', 'name':'Turquía'}, {'id':'TV', 'name':'Tuvalu'}, {'id':'TW', 'name':'Taiwán'}, {'id':'TZ', 'name':'Tanzania'}, {'id':'UA', 'name':'Ucrania'}, {'id':'UG', 'name':'Uganda'}, {'id':'UM', 'name':'Islas menores alejadas de los Estados Unidos'}, {'id':'US', 'name':'Estados Unidos'}, {'id':'UZ', 'name':'Sum de Uzbekist'}, {'id':'VA', 'name':'Estado de la Ciudad del Vaticano'}, {'id':'VC', 'name':'San Vicente y las Granadinas'}, {'id':'VG', 'name':'Islas Vírgenes Británicas'}, {'id':'VN', 'name':'Vietnam'}, {'id':'VU', 'name':'Vanuatu'}, {'id':'WF', 'name':'Islas Wallis y Futuna'}, {'id':'WS', 'name':'Samoa, Estado Independiente de'}, {'id':'YE', 'name':'República de Yemen'}, {'id':'YT', 'name':'Mayotte'}, {'id':'YU', 'name':'Yugoslavia'}, {'id':'ZA', 'name':'Sudáfrica'}, {'id':'ZM', 'name':'Zambia'}, {'id':'ZW', 'name':'Zimbabue'}];
             $scope.months = [{'id':1,  'name':'Enero'},{'id':2,  'name':'Febrero'},{'id':3,  'name':'Marzo'},{'id':4,  'name':'Abril'},{'id':5,  'name':'Mayo'},{'id':6,  'name':'Junio'},{'id':7,  'name':'Julio'},{'id':8,  'name':'Agosto'},{'id':9,  'name':'Septiembre'},{'id':10, 'name':'Octubre'},{'id':11, 'name':'Noviembre'},{'id':12, 'name':'Diciembre'}];
             $scope.years = [(new Date()).getFullYear(), parseInt((new Date()).getFullYear()) + 1, parseInt((new Date()).getFullYear()) + 2] ;
 
@@ -742,12 +748,22 @@ materialAdmin
                               $scope.params.Room.pop();
                         }
                   }
+
+                  for(i = 0;i < $scope.params.Room.length;i++){
+                        for(j = 0;j < $scope.params.Room[i].adult;j++){
+                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":"", "tax_status":""});
+                        }
+
+                        for(j = 0;j < $scope.params.Room[i].Children.length;j++){
+                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":"", "tax_status":""});
+                        }                        
+                  }
             });
 
-            $scope.number_nights = function (){
+            $scope.number_nights = function (package){
                   var number_nights = 0;
-                  for(i = 0;i < $scope.selected_package.Place.length;i++){
-                        number_nights += $scope.selected_package.Place[i].number_nights;
+                  for(i = 0;i < package.Place.length;i++){
+                        number_nights += package.Place[i].number_nights;
                   }
 
                   if(number_nights == 1){
@@ -785,6 +801,11 @@ materialAdmin
                     .post("getPackageList.php", $scope.params)
                     .success(function(data, status, headers, config) {
                         $scope.response = data;
+                        target_offset = $('#package-result').offset(),
+                        target_top = target_offset.top - 100;
+                        $('html, body').animate({
+                            scrollTop: target_top
+                        });
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
@@ -795,9 +816,9 @@ materialAdmin
                     .get("getPackage.php?id=" + id)
                     .success(function(data, status, headers, config) {
                         $scope.selected_package = JSON.parse(JSON.parse(data));
-                        
+                        $scope.Booking.package_fare_id = id;
                         target_offset = $('#package-view').offset(),
-                        target_top = target_offset.top - 50;
+                        target_top = target_offset.top - 100;
                         $('html, body').animate({
                             scrollTop: target_top
                         });
@@ -813,13 +834,25 @@ materialAdmin
                     .get("checkAvail.php?id=" + id)
                     .success(function(data, status, headers, config) {
                         $scope.checked_package = data;
-                        console.log($scope.checked_package);
+                        swal({   
+                              title: "Paquete disponible!",   
+                              text: '<pre>' + JSON.stringify($scope.checked_package, undefined, 1) + '</pre>',   
+                              customClass: 'sweet-big',
+                              type: "success",   
+                              html:true
+                        });
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
             }
 
             $scope.bookingPackage = function (){
-
+                  $http
+                    .post("bookingPackage.php", $scope.Booking)
+                    .success(function(data, status, headers, config) {
+                        $scope.getBooking = data;
+                    }).error(function(data, status, headers, config) {
+                        swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
+                  });
             }
     });

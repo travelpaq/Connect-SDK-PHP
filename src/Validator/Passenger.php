@@ -14,6 +14,8 @@ class Passenger
 	var $residence;
 	var $nationality;
 	var $mail;
+	var $tax_status;
+	var $cuil;
 
 	function __construct($params) 
 	{
@@ -61,6 +63,14 @@ class Passenger
 			$this->year_departure = $params['mail'];
 		else 
 			throw new ValidationException("No se ha recibido el mail del pasajero");
+		if(array_key_exists('tax_satus', $params))
+			$this->year_departure = $params['tax_satus'];
+		else 
+			throw new ValidationException("No se ha recibido la consición tributaria del pasajero");
+		if(array_key_exists('cuil', $params))
+			$this->year_departure = $params['cuil'];
+		else 
+			throw new ValidationException("No se ha recibido la consición tributaria del pasajero");
 
 
 	}

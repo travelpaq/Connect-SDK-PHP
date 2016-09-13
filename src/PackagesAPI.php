@@ -13,6 +13,7 @@
  */
 namespace TravelPAQ\PackagesAPI;
 
+use TravelPAQ\PackagesAPI\Validator;
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Services\BookingPackageService;

@@ -128,3 +128,128 @@
     font-size: 12px;
     padding-top: 5px;
 }
+
+.header-mac{
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    left: 0px;
+    background-color: #dcdcdc;
+    border-radius: 2px 2px 0 0;
+}
+
+.header-mac div{
+    background-color: #bbb;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.header-mac div:nth-child(1){
+    top: 5px;
+    left: 5px;
+}
+
+.header-mac div:nth-child(2){
+    top: 5px;
+    left: 18px;
+}
+
+.header-mac div:nth-child(3){
+    top: 5px;
+    left: 31px;
+}
+
+pre {
+    background-color: #585858;
+    border: 1px solid silver;
+    padding: 10px 20px;
+    color: white;
+    margin: 20px;
+}       
+
+.sweet-big{
+    width: 80%;
+    margin-left: -40%;
+}
+.sweet-big pre{
+    text-align: left;
+}
+
+@media(max-height: 649px){
+    .sweet-big{
+        top: 80%;
+        height: 85%;
+    }
+    .sweet-big pre{
+        height: 150px;
+    }
+}
+@media(min-height: 650px){
+    .sweet-big{
+        top: 75%;
+        height: 85%;
+    }
+    .sweet-big pre{
+        height: 200px;
+    }
+}
+@media(min-height: 700px){
+    .sweet-big{
+        top: 70%;
+        height: 86%;
+    }
+    .sweet-big pre{
+        height: 270px;
+    }
+}
+@media(min-height: 740px){
+    .sweet-big{
+        top: 65%;
+        height: 87%;
+    }
+    .sweet-big pre{
+        height: 350px;
+    }
+}
+@media(min-height: 810px){
+    .sweet-big{
+        top: 60%;
+        height: 88%;
+    }
+    .sweet-big pre{
+        height: 420px;
+    }
+}
+@media(min-height: 875px){
+    .sweet-big{
+        top: 55%;
+        height: 89%;
+    }
+    .sweet-big pre{
+        height: 480px;
+    }
+}
+@media(min-height: 930px){
+     .sweet-big{
+        top: 52%;
+        height: 90%;
+    }     
+    .sweet-big pre{
+        height: 530px;
+    }
+}
+
+@media(max-width: 1200px){
+    .chica{
+        margin-left: 4%  !important;;
+        width: calc(100% - 4% - 15px);
+        padding: 0px 15px;
+        float: left;
+    }
+}
+
+.modal-lg{
+    width: 90% !important;
+}

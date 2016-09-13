@@ -21,6 +21,7 @@ class Place
 {
 	public $name;
 	public $iata;
+    public $number_nights;
     /**
      * Constructor
      * @param Array data datos de un lugar de un tramo de una ruta
@@ -34,6 +35,11 @@ class Place
     	if(!array_key_exists('iata', $data))
     		$data['iata'] = "";
     	$this->iata = $data['iata'];
+
+        if(!array_key_exists('number_nights', $data))
+            $data['number_nights'] = "";
+        $this->number_nights = $data['number_nights'];
+
     	
     }
 

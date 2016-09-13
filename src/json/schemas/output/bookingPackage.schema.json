@@ -76,6 +76,10 @@
           "mail": {
             "type": "string",
             "title": "Mail del pasajero."
+          },
+          "tax_satus": {
+            "type": "string",
+            "title": "Condición tributaria del pasajero.",
           }
         },
         "required": [

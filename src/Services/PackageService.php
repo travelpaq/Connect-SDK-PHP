@@ -20,7 +20,6 @@ class PackageService extends Service
 						 		   	]
 						 );
 		$body = $response->getBody()->getContents();
-		echo $body;die();
 		return new PackagesPagination(json_decode($body,true));
 	}
 	public function getPackage($id){
