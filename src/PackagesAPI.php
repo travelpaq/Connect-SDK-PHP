@@ -37,7 +37,7 @@ class PackagesAPI
     public function __construct($config) 
     {
         HttpClient::getInstance([
-            'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/api/',
+            'url' => 'https://api.travelpaq.com.ar',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);
