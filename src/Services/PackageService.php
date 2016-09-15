@@ -4,13 +4,14 @@ namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Core\PackagesPagination;
+use TravelPAQ\PackagesAPI\Core\Package;
 
 class PackageService extends Service
 {
 	public function getPackageList($params, $page = 0){
 		$response = $this->http_client
-						 ->http_client
-						 ->request('POST', 
+						->http_client
+						->request('POST', 
 						 		   'Packages/getPackageList/' . $page,
 						 		   [
 						 		   		'form_params' => 
@@ -26,6 +27,7 @@ class PackageService extends Service
 		}
 		return new PackagesPagination($body_decoded);
 	}
+	
 	public function getPackage($id){
 		$response = $this->http_client
 						 ->http_client

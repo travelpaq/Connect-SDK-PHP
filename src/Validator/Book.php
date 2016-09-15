@@ -19,10 +19,14 @@ class Book
 		else 
 			throw new \Exception("No se ha especificado el identificador del paquete sobre el cual se desea realizar la reserva");
 		
-		if(array_key_exists('package_fare_id', $params))	
+		if(array_key_exists('Passenger', $params))	
 			foreach ($params['Passenger'] as $passenger)
 				$this->Passenger[] = new Passenger($passenger);	
 		else 
 			throw new \Exception("No se han los pasajeros que viajarán con el paquete sobre el cual se desea realizar la reserva");
+		echo '<pre>';
+		var_dump($params);
+		echo '</pre>';
+		die();
 	}
 }

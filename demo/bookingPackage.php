@@ -14,6 +14,8 @@
 	
 	//Conversión de los parámetros
 	$booking_params = json_decode(file_get_contents('php://input'),true);
+	var_dump($booking_params);
+	die();
 
 	try{
 		//LLamada al método 

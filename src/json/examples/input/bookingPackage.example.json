@@ -12,8 +12,6 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"maximilianoalvespinheiro@gmail.com",
-			"tax_status":"CONSUMIDOR_FINAL",
-			"cuil":"20-34549364-7"
 		},
 		{
 			"name":"Elvia",
@@ -25,8 +23,6 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"elviacastrobarros@hotmail.com",
-			"tax_status":"CONSUMIDOR_FINAL",
-			"cuil":"27-34459666-8"
 		},
 		{
 			"name":"Lourdes Gabriela",
@@ -38,8 +34,6 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"elviacastrobarros@hotmail.com",
-			"tax_status":"CONSUMIDOR_FINAL",
-			"cuil":"23-49549373-3"
 		}
 	]
 }

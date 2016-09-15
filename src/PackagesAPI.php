@@ -13,7 +13,7 @@
  */
 namespace TravelPAQ\PackagesAPI;
 
-use TravelPAQ\PackagesAPI\Validator;
+use TravelPAQ\PackagesAPI\Validator\BookData;
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Services\BookingPackageService;
@@ -105,9 +105,9 @@ class PackagesAPI
     public function bookingPackage($booking)
     {
         $sf = new BookData($booking);
+
         if(!$sf->validate())
             throw new ValidationException($sf->get_last_error());
-
         $bookingService = new BookingPackageService();
         return $bookingService->bookingPackage($booking);
     }

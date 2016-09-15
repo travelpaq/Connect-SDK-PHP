@@ -11,7 +11,7 @@ class BookData
 	var $_last_error;
 	function __construct($params) 
 	{
-		$this->schema = file_get_contents(__DIR__.'/../json/schemas/bookingPackage.schema.json');
+		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/bookingPackage.schema.json');
 		$this->book = new Book($params);
 	}
 
@@ -34,7 +34,7 @@ class BookData
 	{
         $error = '';
         foreach ($this->_last_error as $i => $last_error) {
-            if($i == count($get_last_error) - 1){
+            if($i == count($this->_last_error) - 1){
                 $error .= $last_error['pointer'].' '.$last_error['message'];
             } else {
                 $error .= $last_error['message'] . PHP_EOL;
@@ -42,5 +42,4 @@ class BookData
         }
 		return $error;
 	}
-}
 }

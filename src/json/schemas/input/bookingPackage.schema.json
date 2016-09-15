@@ -58,15 +58,6 @@
           "mail": {
             "type": "string",
             "title": "Mail del pasajero."
-          },
-          "tax_satus": {
-            "type": "string",
-            "title": "Condición tributaria del pasajero.",
-            "enum":["CONSUMIDOR_FINAL", "MONOTRIBUTISTA", "EXENTO", "RESPONSABLE_INSCRIPTO"]
-          },
-          "cuil":{
-            "type": "string",
-            "title": "CUIL/CUIT del pasajero.",
           }
         },
         "required": [
@@ -78,9 +69,7 @@
           "birthdate",
           "residence",
           "nationality",
-          "mail",
-          "tax_satus",
-          "cuil"
+          "mail"
         ]
       }
     }

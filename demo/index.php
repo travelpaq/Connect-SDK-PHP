@@ -40,6 +40,17 @@
                 margin-left: -40%;
             }
         </style>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-84196500-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>  
+
     </head>
     <body id="body" data-ng-controller="materialadminCtrl as mactrl">
         <div id="container" ng-init="init()">
@@ -384,7 +395,7 @@
                                                 </div>
                                                 <!--<div class="col-xs-6 btn btn-warning" style="width: 80px;margin-left: 20px;margin-right: 10px;">avail</div>-->
                                                 <div class="w-100 btn btn-warning m-b-15" ng-click="checkAvail(selected_package.id)">Disponibilidad</div>
-                                                <div class="w-100 btn btn-success" ng-click="bookingPackage()" data-toggle="modal" data-target="#bookingPackage">Reservar</div>
+                                                <div class="w-100 btn btn-success" data-toggle="modal" data-target="#bookingPackage">Reservar</div>
                                             </td>
                                         <tr>
                                     </table>
@@ -567,7 +578,7 @@
                             <tr>
                                 <td class="col-xs-6">
                                     <div class="w-100 p-15 m-t-20 pull-left" ng-repeat="passenger in Booking.Passenger" style="border: 1px solid #e2e1e1;border-radius: 2px;">
-                                        <h4>Pasajero # {{$index + 1}}</h4>
+                                        <h4 class="m-b-20">Pasajero # {{$index + 1}}</h4>
                                         <form name="booking" id="booking" novalidate="novalidate" method="post" accept-charset="utf-8">
                                             <div class="card-body card-padding">
                                                 <div class="row w-100 m-0">
@@ -651,8 +662,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>             
-                                                <div class="col-md-6 col-xs-12">
+                                                    <div class="col-xs-12">
                                                         <div class="form-group fg-float">
                                                             <div class="fg-line">
                                                                 <div class="input text required">
@@ -662,17 +672,7 @@
                                                             <label class="fg-label">Mail</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 col-xs-12">
-                                                        <div class="form-group fg-float">
-                                                            <div class="fg-line">
-                                                                <div class="input text required">
-                                                                    <input type="text" ng-model="passenger.tax_status"   class="form-control">
-                                                                </div>                                        
-                                                            </div>
-                                                            <label class="fg-label">Condición tributaria</label>
-                                                        </div>
-                                                    </div>
-                                                </div>                          
+                                                </div>             
                                             </div>
                                         </form>
                                     </div>

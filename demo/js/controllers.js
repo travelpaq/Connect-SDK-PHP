@@ -751,11 +751,11 @@ materialAdmin
 
                   for(i = 0;i < $scope.params.Room.length;i++){
                         for(j = 0;j < $scope.params.Room[i].adult;j++){
-                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":"", "tax_status":""});
+                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":""});
                         }
 
                         for(j = 0;j < $scope.params.Room[i].Children.length;j++){
-                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":"", "tax_status":""});
+                              $scope.Booking.Passenger.push({"name":"","surname":"","kind_doc":"","num_doc":"","gender":"","birthdate":"","residence":"","nationality":"","mail":""});
                         }                        
                   }
             });
@@ -815,7 +815,7 @@ materialAdmin
                   $http
                     .get("getPackage.php?id=" + id)
                     .success(function(data, status, headers, config) {
-                        $scope.selected_package = JSON.parse(JSON.parse(data));
+                        $scope.selected_package = data;
                         $scope.Booking.package_fare_id = id;
                         target_offset = $('#package-view').offset(),
                         target_top = target_offset.top - 100;
@@ -834,21 +834,35 @@ materialAdmin
                     .get("checkAvail.php?id=" + id)
                     .success(function(data, status, headers, config) {
                         $scope.checked_package = data;
-                        swal({   
-                              title: "Paquete disponible!",   
-                              text: '<pre>' + JSON.stringify($scope.checked_package, undefined, 1) + '</pre>',   
-                              customClass: 'sweet-big',
-                              type: "success",   
-                              html:true
-                        });
+                        if(data.status == "AVAILABLE"){
+                              swal({   
+                                    title: "Paquete disponible!",   
+                                    text: '<pre>' + JSON.stringify($scope.checked_package, undefined, 1) + '</pre>',   
+                                    customClass: 'sweet-big',
+                                    type: "success",   
+                                    html:true
+                              });
+                        } else {
+                              swal({   
+                                    title: "Paquete no disponible!",   
+                                    text: '<pre>' + JSON.stringify($scope.checked_package, undefined, 1) + '</pre>',   
+                                    customClass: 'sweet-big',
+                                    type: "error",   
+                                    html:true
+                              });
+                        }
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
             }
 
             $scope.bookingPackage = function (){
+                  var _data = {"package_fare_id":$scope.Booking.package_fare_id, "Passenger":[]}
+                  for(i = 0;i < $scope.Booking.Passenger.length;i++){
+                        _data.Passenger.push({"name":$scope.Booking.Passenger[i].name,"surname":$scope.Booking.Passenger[i].surname,"kind_doc":$scope.Booking.Passenger[i].kind_doc,"num_doc":$scope.Booking.Passenger[i].num_doc,"gender":$scope.Booking.Passenger[i].gender,"birthdate":$scope.Booking.Passenger[i].birthdate,"residence":$scope.Booking.Passenger[i].residence,"nationality":$scope.Booking.Passenger[i].nationality});
+                  }
                   $http
-                    .post("bookingPackage.php", $scope.Booking)
+                    .post("bookingPackage.php", _data)
                     .success(function(data, status, headers, config) {
                         $scope.getBooking = data;
                     }).error(function(data, status, headers, config) {
