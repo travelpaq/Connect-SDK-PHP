@@ -12,6 +12,11 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"maximilianoalvespinheiro@gmail.com",
+			"Passport":
+			{
+				"number":"AAA54882",
+				"expiration_date":"2023-06-17"
+			}
 		},
 		{
 			"name":"Elvia",
@@ -23,6 +28,11 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"elviacastrobarros@hotmail.com",
+			"Passport":
+			{
+				"number":"AAA54883",
+				"expiration_date":"2023-06-17"
+			}
 		},
 		{
 			"name":"Lourdes Gabriela",
@@ -34,6 +44,11 @@
 			"residence":"AR",
 			"nationality":"AR",
 			"mail":"elviacastrobarros@hotmail.com",
+			"Passport":
+			{
+				"number":"AAA54884",
+				"expiration_date":"2023-06-17"
+			}
 		}
 	]
 }
