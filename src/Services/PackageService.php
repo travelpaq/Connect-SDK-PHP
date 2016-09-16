@@ -23,9 +23,14 @@ class PackageService extends Service
 		$body = $response->getBody()->getContents();
 		$body_decoded = json_decode($body,true);
 		if($body_decoded == null){
-			throw new Exception("Json mal formado");
+			throw new Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
 		}
-		return new PackagesPagination($body_decoded);
+
+		if($response->getHeader('Status Code') == 200){
+			return new PackagesPagination($body_decoded);
+		} else {
+			throw new Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+		}
 	}
 	
 	public function getPackage($id){
@@ -36,8 +41,13 @@ class PackageService extends Service
 						 ->getContents();
 		$body_decoded = json_decode($body,true);
 		if($body_decoded == null){
-			throw new Exception("Json mal formado");
+			throw new Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
 		}
-		return new Package($body_decoded);
+
+		if($response->getStatus() == 200){
+			return new Package($body_decoded);
+		} else {
+			throw new Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+		}
 	}
 }

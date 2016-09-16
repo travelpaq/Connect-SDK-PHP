@@ -29,6 +29,7 @@
           "kind_doc": {
             "type": "string",
             "title": "Tipo de documento.",
+            "enum":["DNI", "Pasaporte"],
             "description": "Dependiendo de la documentación DNI o PASS, en otros países puede ser otro.."
           },
           "num_doc": {
@@ -60,7 +61,7 @@
             "title": "Mail del pasajero."
           },
           "Passport": {
-              "type": "object",
+              "type": ["object", "null"],
               "title": "Objeto Passport.",
               "description": "Este objeto contiene el conjunto de los datos necesario por cada uno para poder realizar la reserva.",
               "properties": {
@@ -75,7 +76,7 @@
               },
               "required": [
                 "number",
-                "expired_date",
+                "expired_date"
               ]
           }
         },

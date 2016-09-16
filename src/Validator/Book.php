@@ -24,9 +24,5 @@ class Book
 				$this->Passenger[] = new Passenger($passenger);	
 		else 
 			throw new \Exception("No se han los pasajeros que viajarán con el paquete sobre el cual se desea realizar la reserva");
-		echo '<pre>';
-		var_dump($params);
-		echo '</pre>';
-		die();
 	}
 }
