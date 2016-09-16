@@ -29,6 +29,7 @@ class HttpClient
     	$this->http_client = new Client([
 		    'base_uri' => $params['url'],
 		    'timeout'  => $params['timeout'],
+            'verify'   => __DIR__.'/cacert.pem',
                     'headers' => [
                             'TP-AUTH' => $params['key'],
                             'TP-IPP' => $params['item_per_page'],
