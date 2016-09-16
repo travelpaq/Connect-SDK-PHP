@@ -859,7 +859,7 @@ materialAdmin
             $scope.bookingPackage = function (){
                   var _data = {"package_fare_id":$scope.Booking.package_fare_id, "Passenger":[]}
                   for(i = 0;i < $scope.Booking.Passenger.length;i++){
-                        _data.Passenger.push({"name":$scope.Booking.Passenger[i].name,"surname":$scope.Booking.Passenger[i].surname,"kind_doc":$scope.Booking.Passenger[i].kind_doc,"num_doc":$scope.Booking.Passenger[i].num_doc,"gender":$scope.Booking.Passenger[i].gender,"birthdate":$scope.Booking.Passenger[i].birthdate,"residence":$scope.Booking.Passenger[i].residence,"nationality":$scope.Booking.Passenger[i].nationality});
+                        _data.Passenger.push({"name":$scope.Booking.Passenger[i].name,"surname":$scope.Booking.Passenger[i].surname,"kind_doc":$scope.Booking.Passenger[i].kind_doc,"num_doc":$scope.Booking.Passenger[i].num_doc,"gender":$scope.Booking.Passenger[i].gender,"birthdate":$scope.Booking.Passenger[i].birthdate,"residence":$scope.Booking.Passenger[i].residence,"nationality":$scope.Booking.Passenger[i].nationality,"mail":$scope.Booking.Passenger[i].mail});
                   }
                   $http
                     .post("bookingPackage.php", _data)

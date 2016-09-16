@@ -21,6 +21,7 @@ class BookData
 		$schema = json_decode($this->schema);
 		$schema = $deref->dereference($schema);
 		$data = $this->book;
+		
 		$validator = new \League\JsonGuard\Validator($data, $schema);
 		if ($validator->fails()) 
 		{
