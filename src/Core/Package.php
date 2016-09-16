@@ -21,6 +21,7 @@ class Package
 {
     public $id;
     public $title;
+    public $total_nights;
     public $transport;
     public $Category;
     public $Service;
@@ -43,7 +44,7 @@ class Package
       "Price",
       "Accommodation",
       "transport",
-      //"total_nights" hay que habilitarlo en el json
+      "total_nights"// hay que habilitarlo en el json
     ];
     /**
      * Constructor
@@ -58,6 +59,7 @@ class Package
     	}
       $this->id = $package['id'];
       $this->title = $package['title'];
+      $this->total_nights = $package['total_nights'];
       $this->transport = $package['transport'];
       
       $this->Category = [];

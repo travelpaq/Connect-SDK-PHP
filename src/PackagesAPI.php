@@ -30,7 +30,8 @@ class PackagesAPI
     /**
      * Constructor.
      * 
-     * - 'key' clave privada de la empresa de turismo para acceder al servicio otorgada por TravelPAQ y 
+     * - 'key' clave privada de la empresa de turismo para acceder al servicio
+     *         otorgada por TravelPAQ.
      * - 'item_per_page' cantidad de items por pagina para pedir paquetes.
      *
      * @param mixed $config 
@@ -45,7 +46,8 @@ class PackagesAPI
     }
 
     /**
-     * Obtiene un listado de paquetes en base a un conjunto de parámetros que filtrán la búsqueda
+     * Obtiene un listado de paquetes en base a un conjunto de parámetros
+     * que filtrán la búsqueda
      * 
      * Array que reprsenta los parametros de bísqueda
      * 
@@ -82,11 +84,11 @@ class PackagesAPI
      */
     public function getPackage($package_id)
     {
-        if(!is_numeric($id) && $package_id > 0)
+        if(!is_numeric($package_id) && $package_id > 0)
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $ps = new PackageService();
-        return $ps->getPackage($id);
+        return $ps->getPackage($package_id);
     }
     
     /**
@@ -96,7 +98,8 @@ class PackagesAPI
      *
      * @param int $package_id 
      *
-     * Retorna el estado del paquete junto con los datos del paquete. El objeto PackageStatus contienen el estado de disponibilidad
+     * Retorna el estado del paquete junto con los datos del paquete.
+     * El objeto PackageStatus contienen el estado de disponibilidad
      * y los datos del paquete en cuestion
      *
      * - AVAILABLE: status de un paquete disponible
@@ -110,17 +113,20 @@ class PackagesAPI
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
 
         $bookingService = new BookingPackageService();
-        return $bookingService->checkAvail($id);
+        return $bookingService->checkAvail($package_id);
     }
     
     /**
-     * Realiza el booking un paquete basandose en el parametro $booking, el cual tiene toda la información necesaria para realizarlo
+     * Realiza el booking un paquete basandose en el parametro $booking, el cual tiene 
+     * toda la información necesaria para realizarlo.
      *
-     * Datos necesarios para la reserva de un paquete. Incluye tarifa, id del paquete y los  pasajeros del paquete
+     * Datos necesarios para la reserva de un paquete. Incluye tarifa, id del paquete 
+     * y los  pasajeros del paquete.
      * 
      * @param mixed $book_data
      * 
-     * Retorna una instancia de BookingStatus, el cual tiene el estadi de la reserva más todos los datos de la misma. Los estados:
+     * Retorna una instancia de BookingStatus, el cual tiene el estado de la reserva 
+     * más todos los datos de la misma. Los estados:
      *
      * - WAITING
      * - EXPIRED
@@ -151,7 +157,8 @@ class PackagesAPI
      *
      * @param int $booking_id
      *
-     * Retorno del estado de la reserva identificada con el id $booking_id. Los estados posibles son los mismos que para el 
+     * Retorno del estado de la reserva identificada con el id $booking_id. 
+     * Los estados posibles son los mismos que para el 
      *
      * @return BookingStatus Retorna la reserva de un paquete
      */

@@ -14,8 +14,8 @@ class Passport
 		else 
 			throw new \Exception("No se ha encontrado el número de pasaporte del pasajero");
 
-		if(array_key_exists('expiration_date', $params))	
-			$this->number = $params['expiration_date'];
+		if(array_key_exists('expired_date', $params))	
+			$this->number = $params['expired_date'];
 		else 
 			throw new \Exception("No se ha encontrado la fecha de expiración de pasaporte del pasajero");
 	}
