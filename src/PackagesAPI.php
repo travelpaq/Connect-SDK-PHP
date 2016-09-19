@@ -39,8 +39,8 @@ class PackagesAPI
     public function __construct($config) 
     {
         HttpClient::getInstance([
-            //'url' => 'https://api.travelpaq.com.ar',
-            'url' => 'http://localhost/search-engine/',
+            'url' => 'https://api.travelpaq.com.ar',
+            //'url' => 'http://localhost/search-engine/',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);
