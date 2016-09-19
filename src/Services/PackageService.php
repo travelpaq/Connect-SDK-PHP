@@ -33,11 +33,10 @@ class PackageService extends Service
 			}
 			return new PackagesPagination($body_decoded);
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
-		    // echo Psr7\str($e->getRequest());
-		    // if ($e->hasResponse()) {
-		    //     echo Psr7\str($e->getResponse());
-		    // }
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 	}
 	
@@ -54,7 +53,10 @@ class PackageService extends Service
 			}
 			return new Package($body_decoded);
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 	}
 }

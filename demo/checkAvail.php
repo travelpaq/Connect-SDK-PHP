@@ -15,7 +15,7 @@
 	//Conversión de los parámetros
 	try{
 		$response = $tp->checkAvail($_GET["id"]);
-		echo $response;
+		echo json_encode($response);
 		//echo json_encode($response;
 	} catch(Exception $e){
 		echo $e->getMessage();

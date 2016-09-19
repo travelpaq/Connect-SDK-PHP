@@ -20,7 +20,10 @@ class BookingPackageService extends Service
 			}
 			return new PackageStatus($body_decoded);	
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 	}
 	public function bookingPackage($params){
@@ -39,9 +42,11 @@ class BookingPackageService extends Service
 			}
 			return new BookingStatus($body_decoded);	
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
-		}
-		
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+		}	
 	}
 	public function getBooking(){
 		try {
@@ -55,7 +60,10 @@ class BookingPackageService extends Service
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 		
 	}
@@ -71,7 +79,10 @@ class BookingPackageService extends Service
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 		
 	}
@@ -87,7 +98,10 @@ class BookingPackageService extends Service
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 		
 	}
