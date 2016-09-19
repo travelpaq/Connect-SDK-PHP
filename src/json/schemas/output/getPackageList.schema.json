@@ -9,11 +9,11 @@
       "title": "Paquetes resultantes de la búsqueda.",
       "description": "Esta propiedad contiene el conjunto de paquetes pertenecientes la pagína actual.",
       "items": {
-        "$ref": "#/getPackage.schema.json"
+        "$ref": "file://%%PATH%%/json/schemas/output/getPackage.schema.json"
       }
     },
     "current_page": {
-      "type": "string",
+      "type": "integer",
       "title": "Página actual.",
       "description": "Página que se esta leyendo de los resultados de búsqueda."
     },
@@ -23,7 +23,7 @@
       "description": "Todas las páginas que devolvió una búsqueda determinada."
     },
     "item_per_page": {
-      "type": "string",
+      "type": "integer",
       "title": "Paquetes por página.",
       "description": "Cantidad de paquetes que se retornan en una página."
     }

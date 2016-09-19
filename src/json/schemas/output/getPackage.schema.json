@@ -1,6 +1,48 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
+  "definitions": {
+    "Place":{
+      "type" : "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Nombre del lugar."
+        },
+        "Country": {
+          "type": "object",
+          "title": "País al cual pertenece el lugar.",
+          "properties": {
+            "iata": {
+              "type": ["string","null"],
+              "minLength": 2,
+              "maxLength": 2,
+              "title": "Código IATA del país."
+            },
+            "name": {
+              "type": "string",
+              "title": "Nombre del país."
+            }
+          },
+          "required": [
+            "iata",
+            "name"
+          ]
+        },
+        "iata": {
+          "type": "string",
+          "title": "Código IATA del lugar.",
+          "minLength": 3,
+          "maxLength": 3
+        }
+      },
+      "required": [
+        "name",
+        "Country",
+        "iata"
+      ]
+    }
+  },
   "title": "Resultados devueltos por el método getPackage.",
   "description": "El objeto representa un paquete turístico.",
   "properties": {
@@ -113,8 +155,8 @@
             "properties": {
               "direction": {
                 "type": "integer",
-                "minimum":0,
-                "maximum":1,
+                "minimum":1,
+                "maximum":2,
                 "title": "Dirección del viaje.",
                 "description": "Expresa si el tramo es parte del viaje de ida o vuelta: 1 = IDA | 2 = VUETLA."
               },
@@ -122,42 +164,8 @@
                 "type": "object",
                 "title": "Lugar de salida del tramo.",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "title": "Nombre del lugar de salida."
-                  },
-                  "Country": {
-                    "type": "object",
-                    "title": "País al cual pertenece el destino.",
-                    "properties": {
-                      "iata": {
-                        "type": "string",
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "title": "Código IATA del país."
-                      },
-                      "name": {
-                        "type": "string",
-                        "title": "Nombre del país."
-                      }
-                    },
-                    "required": [
-                      "iata",
-                      "name"
-                    ]
-                  },
-                  "iata": {
-                    "type": "string",
-                    "title": "Código IATA del lugar de salida.",
-                    "minLength": 3,
-                    "maxLength": 3
-                  }
-                },
-                "required": [
-                  "name",
-                  "Country",
-                  "iata"
-                ]
+                  "$ref": "#/definitions/Place" 
+                }
               },
               "travel_number": {
                 "type": "string",
@@ -185,43 +193,8 @@
                 "type": "object",
                 "title": "Lugar de llegada del tramo.",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "title": "Name schema.",
-                    "description": "An explanation about the purpose of this instance."
-                  },
-                  "Country": {
-                    "type": "object",
-                    "title": "País al cual pertenece el destino.",
-                    "properties": {
-                      "iata": {
-                        "type": "string",
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "title": "Código IATA del país."
-                      },
-                      "name": {
-                        "type": "string",
-                        "title": "Nombre del país."
-                      }
-                    },
-                    "required": [
-                      "iata",
-                      "name"
-                    ]
-                  },
-                  "iata": {
-                    "type": "string",
-                    "title": "Código IATA del destino de salida.",
-                    "minLength": 3,
-                    "maxLength": 3
-                  }
-                },
-                "required": [
-                  "name",
-                  "Country",
-                  "iata"
-                ]
+                  "$ref": "#/definitions/Place" 
+                }
               },
               "order_number": {
                 "type": "integer",
@@ -250,42 +223,8 @@
           "title": "Lugar de salida.",
           "description": "Desde este punto comienza el paquete.",
           "properties": {
-            "name": {
-              "type": "string",
-              "title": "Nombre del lugar de salida."
-            },
-            "Country": {
-              "type": "object",
-              "title": "País al cual pertenece el destino.",
-              "properties": {
-                "iata": {
-                  "type": "string",
-                  "minLength": 2,
-                  "maxLength": 2,
-                  "title": "Código IATA del país."
-                },
-                "name": {
-                  "type": "string",
-                  "title": "Nombre del país."
-                }
-              },
-              "required": [
-                "iata",
-                "name"
-              ]
-            },
-            "iata":{
-              "type": "string",
-              "title": "Código IATA del lugar de salida.",
-              "minLength": 3,
-              "maxLength": 3
-            }
-          },
-          "required": [
-            "name",
-            "Country",
-            "iata"
-          ]
+            "$ref": "#/definitions/Place" 
+          }
         },
         "date": {
           "type": "string",
@@ -301,8 +240,6 @@
       },
       "required": [
         "Route",
-        "quotas",
-        "package_id",
         "Place",
         "date",
         "transport_kind"
@@ -317,42 +254,8 @@
         "title": "Destino.",
         "description": "Cada item representa uno de los destino que recorre el paquete y en el orden de la lista es el orden de recorrida.",
         "properties": {
-          "name": {
-            "type": "string",
-            "title": "Nombre del destino."
-          },
-          "Country": {
-            "type": "object",
-            "title": "País al cual pertenece el destino.",
-            "properties": {
-              "iata": {
-                "type": "string",
-                "minLength": 2,
-                "maxLength": 2,
-                "title": "Código IATA del país."
-              },
-              "name": {
-                "type": "string",
-                "title": "Nombre del país."
-              }
-            },
-            "required": [
-              "iata",
-              "name"
-            ]
-          },
-          "iata": {
-            "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
-            "title": "Código IATA del destino."
-          }
-        },
-        "required": [
-          "name",
-          "Country",
-          "iata"
-        ]
+          "$ref": "#/definitions/Place" 
+        }
       }
     },
     "Price": {
@@ -379,7 +282,7 @@
               "title": "Impuestos."
             },
             "vat": {
-              "type": "integer",
+              "type": "number",
               "title": "IVA."
             }
           },
@@ -438,42 +341,8 @@
                 "type": "object",
                 "title": "Destino al que pertenece el hotel.",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "title": "Nombre del destino."
-                  },
-                  "Country": {
-                    "type": "object",
-                    "title": "País al cual pertenece el destino.",
-                    "properties": {
-                      "iata": {
-                        "type": "string",
-                        "minLength": 2,
-                        "maxLength": 2,
-                        "title": "Código IATA del país."
-                      },
-                      "name": {
-                        "type": "string",
-                        "title": "Nombre del país."
-                      }
-                    },
-                    "required": [
-                      "iata",
-                      "name"
-                    ]
-                  },
-                  "iata": {
-                    "type": "string",
-                    "minLength": 3,
-                    "maxLength": 3,
-                    "title": "Código IATA del destino al que pertenece el hotel."
-                  }
-                },
-                "required": [
-                  "name",
-                  "Country",
-                  "iata"
-                ]
+                  "$ref": "#/definitions/Place" 
+                }
               },
               "type_room": {
                 "type": "string",

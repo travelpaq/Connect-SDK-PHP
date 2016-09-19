@@ -39,7 +39,8 @@ class PackagesAPI
     public function __construct($config) 
     {
         HttpClient::getInstance([
-            'url' => 'https://api.travelpaq.com.ar',
+            //'url' => 'https://api.travelpaq.com.ar',
+            'url' => 'http://localhost/search-engine/',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);
@@ -162,13 +163,43 @@ class PackagesAPI
      *
      * @return BookingStatus Retorna la reserva de un paquete
      */
-    public function getBookingPackage($booking_id)
+    public function getBooking($booking_id)
     {
-        if(!is_numeric($booking_id) && $booking_id > 0)
+        if(!is_numeric($booking_id) || $booking_id < 0)
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
 
         $bookingService = new BookingPackageService();
         return $bookingService->getBookingPackage($booking_id);
+    }
+    /**
+     * Confirma una reserva, retornando los mismos datos que el bookingPackage
+     *
+     * @param int $booking_id Identificador de la reserva
+     *
+     * @return BookingStatus Retorna la confirmación de un paquete
+     */
+    public function confirmBooking($booking_id)
+    {
+        if(!is_numeric($booking_id) || $booking_id < 0)
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
+
+        $bookingService = new BookingPackageService();
+        return $bookingService->confirmBooking($booking_id);
+    }
+    /**
+     * Cancela una reserva, retornando los mismos datos que el bookingPackage
+     *
+     * @param int $booking_id Identificador de la reserva
+     *
+     * @return BookingStatus Retorna la cancelación de un paquete
+     */
+    public function cancelBooking($booking_id)
+    {
+        if(!is_numeric($booking_id) || $booking_id < 0)
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
+
+        $bookingService = new BookingPackageService();
+        return $bookingService->cancelBooking($booking_id);
     }
 
 }
