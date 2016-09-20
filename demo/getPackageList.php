@@ -42,12 +42,12 @@
     *		    [year_departure] => 2016
     *		    [Room] => Array
     *		        (
-    *		            [0] => stdClass Object
+    *		            [0] => array
     *		                (
     *		                    [adult] => 2
     *		                    [Children] => Array
     *		                        (
-    *		                            [0] => stdClass Object
+    *		                            [0] => array
     *		                                (
     *		                                    [age] => 2
     *		                                )
