@@ -5,11 +5,16 @@ namespace TravelPAQ\PackagesAPI\Services;
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Core\PackagesPagination;
 use TravelPAQ\PackagesAPI\Core\Package;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
 
 class PackageService extends Service
 {
 	public function getPackageList($params, $page = 0){
-		$response = $this->http_client
+		
+		try {
+
+		    $response = $this->http_client
 						->http_client
 						->request('POST', 
 						 		   'Packages/getPackageList/' . $page,
@@ -20,34 +25,38 @@ class PackageService extends Service
 						 		   		]
 						 		   	]
 						 );
-		$body = $response->getBody()->getContents();
-		$body_decoded = json_decode($body,true);
-		if($body_decoded == null){
-			throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
-		}
-		
-		if($response->getStatusCode() == 200){
+			$body = $response->getBody()->getContents();
+
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+			}
 			return new PackagesPagination($body_decoded);
-		} else {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 	}
 	
 	public function getPackage($id){
-		$response = $this->http_client
-						 ->http_client
-						 ->request('GET',"Packages/getPackage/$id");
-		$body = $response->getBody()
-						 ->getContents();
-		$body_decoded = json_decode($body,true);
-		if($body_decoded == null){
-			throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
-		}
-
-		if($response->getStatusCode() == 200){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET',"Packages/getPackage/$id");
+			$body = $response->getBody()
+							 ->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+			}
 			return new Package($body_decoded);
-		} else {
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " . $response->getBody());
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = Psr7\str($e->getResponse());
+			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
 		}
 	}
 }

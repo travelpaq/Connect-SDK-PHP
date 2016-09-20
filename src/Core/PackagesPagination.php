@@ -37,6 +37,11 @@ class PackagesPagination
 	* Items por página
 	*/
 	public $item_per_page;
+
+	/*
+	* Total de items
+	*/
+	public $total_items;
     
     /**
      * Constructor
@@ -48,9 +53,10 @@ class PackagesPagination
     	foreach ($packagesList['result'] as $key => $package) {
     		$this->result[] = new Package($package);
     	}
-    	$this->current_page = $packagesList['current_page'];
-    	$this->total_page = $packagesList['total_page'];
-    	$this->item_per_page = $packagesList['item_per_page'];
+    	$this->current_page = (int)$packagesList['current_page'];
+    	$this->total_page = (int)$packagesList['total_page'];
+    	$this->item_per_page = (int)$packagesList['item_per_page'];
+    	$this->total_items = (int)$packagesList['total_items'];
     }
 
 }
