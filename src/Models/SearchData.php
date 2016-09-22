@@ -9,7 +9,7 @@ class SearchData
 	var $_last_error;
 	function __construct($params) 
 	{
-		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/getPackageList.schema.json');
+		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/searchData.schema.json');
 		$this->search = new Search($params);
 	}
 

@@ -10,7 +10,7 @@ class BookData
 	var $_last_error;
 	function __construct($params) 
 	{
-		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/bookingPackage.schema.json');
+		$this->schema = file_get_contents(__DIR__.'/../json/schemas/input/bookData.schema.json');
 		$this->book = new Book($params);
 	}
 
