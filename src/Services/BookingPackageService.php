@@ -3,7 +3,7 @@
 namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
-use TravelPAQ\PackagesAPI\Core\PackageStatus;
+use TravelPAQ\PackagesAPI\Models\PackageStatus;
 
 class BookingPackageService extends Service
 {

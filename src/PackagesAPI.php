@@ -13,11 +13,13 @@
  */
 namespace TravelPAQ\PackagesAPI;
 
-use TravelPAQ\PackagesAPI\Validator\BookData;
+use TravelPAQ\PackagesAPI\Models\BookData;
+use TravelPAQ\PackagesAPI\Models\SearchData;
+
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Services\BookingPackageService;
-use TravelPAQ\PackagesAPI\Validator\SearchFilter;
+
 use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
 use TravelPAQ\PackagesAPI\Exceptions\JsonValidatorException;
 /**
@@ -50,21 +52,15 @@ class PackagesAPI
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda
      * 
-     * Array que reprsenta los parametros de bísqueda
+     * @param Array $filters Representa los parametros de búsqueda
      * 
-     * @param mixed $filters 
+     * @param int $page Número de página
      * 
-     * Número de página que retornara el método
-     * 
-     * @param int $page 
-     * 
-     * Representa una página de resultado de búsqueda.
-     * 
-     * @return PackagesPagination
+     * @return PackagesPagination Representa una página de resultado de búsqueda.
      */
     public function getPackageList($filters,$page = 0)
     {
-        $sf = new SearchFilter($filters);
+        $sf = new SearchData($filters);
         if(!$sf->validate()){
             throw new ValidationException($sf->get_last_error());
         }
@@ -74,14 +70,10 @@ class PackagesAPI
 
     /**
      * Obtiene un paquete en dado un identificador
-     * 
-     * Identificador del paquete que se desea obtener
-     * 
-     * @param int $package_id 
      *
-     * Retorna un objeto Package, el cual representa paquete con sus datos 
+     * @param int $package_id Identificador del paquete que se desea obtener
      * 
-     * @return Package
+     * @return Package Representa paquete con sus datos 
      */
     public function getPackage($package_id)
     {
@@ -95,18 +87,16 @@ class PackagesAPI
     /**
      * Verifica disponibilidad de un paquete
      *
-     * Identificador del paquete del cual se desea verificar la disponibilidad
+     * @param int $package_id Identificador del paquete del cual se desea
+     *  verificar la disponibilidad
      *
-     * @param int $package_id 
-     *
-     * Retorna el estado del paquete junto con los datos del paquete.
+     * @return PackageStatus Retorna el estado del paquete junto con los datos del paquete.
      * El objeto PackageStatus contienen el estado de disponibilidad
      * y los datos del paquete en cuestion
      *
      * - AVAILABLE: status de un paquete disponible
      * - NOT_AVAILABLE: status de un paquete no disponible
      *
-     * @return PackageStatus packageStatus
      */
     public function checkAvail($package_id)  
     {
@@ -121,13 +111,11 @@ class PackagesAPI
      * Realiza el booking un paquete basandose en el parametro $booking, el cual tiene 
      * toda la información necesaria para realizarlo.
      *
-     * Datos necesarios para la reserva de un paquete. Incluye tarifa, id del paquete 
-     * y los  pasajeros del paquete.
+     * @param mixed $book_data Datos necesarios para la reserva de un paquete.
+     * Incluye tarifa, id del paquete y los  pasajeros del paquete.
      * 
-     * @param mixed $book_data
-     * 
-     * Retorna una instancia de BookingStatus, el cual tiene el estado de la reserva 
-     * más todos los datos de la misma. Los estados:
+     * @return BookingStatus Retorna una instancia de BookingStatus, el cual tiene
+     *  el estado de la reserva más todos los datos de la misma. Los estados:
      *
      * - WAITING
      * - EXPIRED
@@ -137,8 +125,6 @@ class PackagesAPI
      * - CONFIRMED
      * - ACTIVE
      * - ERROR
-     * 
-     * @return BookingStatus bookingStatus
      *
      */
     public function bookingPackage($book_data)
@@ -152,16 +138,14 @@ class PackagesAPI
     
 
     /**
-     * Obtiene el estado actual de una reserva, retornando los mismos datos que el bookingPackage, solo que este método es de lectura bookingPackage()
+     * Obtiene el estado actual de una reserva, retornando los mismos datos 
+     * que el bookingPackage, solo que este método es de lectura bookingPackage()
      *
-     * Identificador de la reserva
+     * @param int $booking_id Identificador de la reserva
      *
-     * @param int $booking_id
+     * @return BookingStatus Retorno del estado de la reserva identificada con 
+     * el id $booking_id. Los estados posibles son los mismos que para el 
      *
-     * Retorno del estado de la reserva identificada con el id $booking_id. 
-     * Los estados posibles son los mismos que para el 
-     *
-     * @return BookingStatus Retorna la reserva de un paquete
      */
     public function getBooking($booking_id)
     {

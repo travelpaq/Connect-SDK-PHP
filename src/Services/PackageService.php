@@ -3,8 +3,8 @@
 namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
-use TravelPAQ\PackagesAPI\Core\PackagesPagination;
-use TravelPAQ\PackagesAPI\Core\Package;
+use TravelPAQ\PackagesAPI\Models\PackagesPagination;
+use TravelPAQ\PackagesAPI\Models\Package;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 
