@@ -33,7 +33,7 @@ class HttpClient
                     'headers' => [
                             'TP-AUTH' => $params['key'],
                             'TP-IPP' => $params['item_per_page'],
-                            'ACCEPTS' => 'application/json'
+                            'ACCEPTS' => 'application/vnd.api+json'
                           ]
 		]);
     }
