@@ -27,7 +27,7 @@ class Accommodation
     public function __construct($data)
     {
 		$this->Hotel = [];
-        if(!array_key_exists('Hotel', $params))  
+        if(!array_key_exists('Hotel', $data))  
             throw new ValidationException("No se ha especificado el hotel");
 		foreach ($data['Hotel'] as $key => $value) {
 			$this->Hotel[] = new Hotel($value);
