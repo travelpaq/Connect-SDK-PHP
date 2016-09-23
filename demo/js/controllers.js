@@ -796,6 +796,14 @@ materialAdmin
                   }
             }
 
+            $scope.changeKindDoc = function (kind_doc, passenger){
+                  if(kind_doc == 'DNI'){
+                        passenger.Passport = null;
+                  } else {
+                        passenger.Passport = {"expired_date":""};
+                  }
+            }
+
             $scope.getPackageList = function () {
                   $http
                     .post("getPackageList.php", $scope.params)
@@ -827,7 +835,7 @@ materialAdmin
                     }).error(function(data, status, headers, config) {
                         swal('Lo sentimos!', 'El request no pudo ser procesado.', 'error');
                   });
-            }
+            }            
 
             $scope.checkAvail = function (id){
                   $http

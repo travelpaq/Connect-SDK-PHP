@@ -21,10 +21,6 @@ namespace TravelPAQ\PackagesAPI\Core;
 class Passport
 {
 	/*
-	* @var string Número de pasaporte.
-	*/
-	public $number;
-	/*
 	* @var int Fecha de vencimiento de pasaporte.
 	*/
 	public $expired_date;
@@ -35,9 +31,6 @@ class Passport
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('number', $data))
-            $data['number'] = "";
-        $this->number = $data['number'];
         if(!array_key_exists('expired_date', $data))
             $data['expired_date'] = "";
         $this->expired_date = $data['expired_date'];

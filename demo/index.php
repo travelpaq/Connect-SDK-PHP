@@ -606,8 +606,8 @@
                                                         <div class="form-group">
                                                             <p class="f-500 c-black m-b-5">Tipo de documento</p>
                                                             <div class="btn-group w-100" style="box-shadow: none;">
-                                                                <label class="btn btn-primary" ng-model="passenger.kind_doc" uib-btn-radio="'DNI'" style="width:50%;">DNI</label>
-                                                                <label class="btn btn-primary" ng-model="passenger.kind_doc" uib-btn-radio="'Pasaporte'" style="width:50%;">Pasaporte</label>
+                                                                <label class="btn btn-primary" ng-change="changeKindDoc(passenger.kind_doc, passenger)" ng-model="passenger.kind_doc" uib-btn-radio="'DNI'" style="width:50%;">DNI</label>
+                                                                <label class="btn btn-primary" ng-change="changeKindDoc(passenger.kind_doc, passenger)" ng-model="passenger.kind_doc" uib-btn-radio="'Pasaporte'" style="width:50%;">Pasaporte</label>
                                                             </div>                                      
                                                         </div>
                                                     </div>
@@ -619,6 +619,16 @@
                                                                 </div>                                        
                                                             </div>
                                                             <label class="fg-label">N° de documento</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 m-t-20" ng-if="passenger.kind_doc == 'Pasaporte'">
+                                                        <div class="form-group fg-float">
+                                                            <div class="fg-line">
+                                                                <div class="input text required">
+                                                                    <input type="text" ng-model="passenger.Passaport.expired_date" class="form-control">
+                                                                </div>                                        
+                                                            </div>
+                                                            <label class="fg-label">Fecha de vencimiento de pasaporte (yyyy-mm-dd)</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-xs-12">
