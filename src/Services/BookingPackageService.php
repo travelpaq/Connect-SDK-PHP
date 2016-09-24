@@ -4,26 +4,32 @@ namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Models\PackageStatus;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\RequestException;
 
 class BookingPackageService extends Service
 {
 	public function checkAvail($id){
+
 		try {
 			$response = $this->http_client
 						 ->http_client
 						 ->request('GET',"booking/checkAvail/$id");
 
 			$body = $response->getBody()->getContents();
+			echo $body;die();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
 			}
+
 			return new PackageStatus($body_decoded);	
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			echo $response_str;die();
+			return $response_str;
 		}
 	}
 	public function bookingPackage($params){
@@ -44,8 +50,8 @@ class BookingPackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
 		}	
 	}
 	public function getBooking(){
@@ -62,8 +68,8 @@ class BookingPackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;			
 		}
 		
 	}
@@ -81,8 +87,8 @@ class BookingPackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;			
 		}
 		
 	}
@@ -100,8 +106,8 @@ class BookingPackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;			
 		}
 		
 	}

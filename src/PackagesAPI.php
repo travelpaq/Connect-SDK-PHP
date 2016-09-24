@@ -20,7 +20,7 @@ use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Services\BookingPackageService;
 
-use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 use TravelPAQ\PackagesAPI\Exceptions\JsonValidatorException;
 /**
  * Class PackagesAPI
@@ -41,8 +41,8 @@ class PackagesAPI
     public function __construct($config) 
     {
         HttpClient::getInstance([
-            'url' => 'https://api.travelpaq.com.ar',
-            //'url' => 'http://localhost/search-engine/',
+            //'url' => 'https://api.travelpaq.com.ar',
+            'url' => 'http://localhost/search-engine/',
             'key' => $config['api_key'],
             'item_per_page' => $config['item_per_page']
         ]);

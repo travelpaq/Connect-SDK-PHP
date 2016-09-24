@@ -11,7 +11,7 @@
  */
 namespace TravelPAQ\PackagesAPI\Models;
 
-use TravelPAQ\PackagesAPI\Exceptions\ValidationException;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 /**
  * Class Package
  *

@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\RequestException;
 class PackageService extends Service
 {
 	public function getPackageList($params, $page = 0){
-		
+
 		try {
 
 		    $response = $this->http_client
@@ -35,8 +35,8 @@ class PackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
 		}
 	}
 	
@@ -55,8 +55,8 @@ class PackageService extends Service
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
-				$response_str = Psr7\str($e->getResponse());
-			throw new \Exception("Se produjo un error interno y arrojo los siguientes datos: " .$response_str);
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
 		}
 	}
 }
