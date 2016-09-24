@@ -44,7 +44,7 @@ class Package
       "Price",
       "Accommodation",
       "transport",
-      "total_nights"// hay que habilitarlo en el json
+      "total_nights"
     ];
     /**
      * Constructor

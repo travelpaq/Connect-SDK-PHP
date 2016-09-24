@@ -21,10 +21,6 @@ namespace TravelPAQ\PackagesAPI\Models;
 class Passport
 {
 	/*
-	* @var string Número de pasaporte.
-	*/
-	public $number;
-	/*
 	* @var int Fecha de vencimiento de pasaporte.
 	*/
 	public $expired_date;
@@ -35,16 +31,9 @@ class Passport
      */
     public function __construct($data)
     {
-    	
-        if(!array_key_exists('number', $data))    
-            throw new ValidationException("Falta el número de pasaporte del pasajero."); 
-        else
-            $this->number = $data['number'];
-
-        if(!array_key_exists('expired_date', $data))  
-            throw new ValidationException("Falta la fecha de expiración."); 
-        else
-            $this->expired_date = $data['expired_date'];
+        if(!array_key_exists('expired_date', $data))
+            $data['expired_date'] = "";
+        $this->expired_date = $data['expired_date'];
     }
 
 }
