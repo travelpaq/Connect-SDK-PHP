@@ -2,6 +2,8 @@
 
 namespace TravelPAQ\PackagesAPI\Models;
 
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
+
 class Child
 {
     var $age; //int
@@ -10,6 +12,6 @@ class Child
 		if(array_key_exists('age', $params))
 			$this->age = (int)$params['age'];
 		else 
-			throw new \Exception("No se ha especificado la edad de los uno de los Child que viajarán en los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha especificado la edad de los uno de los Child que viajarán en los paquetes devueltos por la búsquedas");
 	}
 }

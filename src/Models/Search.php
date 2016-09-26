@@ -3,6 +3,7 @@
 namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Room;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 
 class Search
 {
@@ -18,37 +19,37 @@ class Search
 		if(array_key_exists('order_type', $params))
 			$this->order_type = $params['order_type'];
 		else 
-			throw new \Exception("No se ha recibido el tipo de orden del resultado de la búsqueda");
+			throw new ValidationException("No se ha recibido el tipo de orden del resultado de la búsqueda");
 
 		if(array_key_exists('order_field', $params))
 			$this->order_field = $params['order_field'];
 		else 
-			throw new \Exception("No se ha recibido el campo que define el criterio de orden del resultado de la búsqueda");
+			throw new ValidationException("No se ha recibido el campo que define el criterio de orden del resultado de la búsqueda");
 
 		if(array_key_exists('currency', $params))
 			$this->currency = $params['currency'];
 		else 
-			throw new \Exception("No se ha recibido el tipo de moneda los paquetes devueltos por la búsqueda");
+			throw new ValidationException("No se ha recibido el tipo de moneda los paquetes devueltos por la búsqueda");
 
 		if(array_key_exists('origin_place', $params))
 			$this->origin_place = $params['origin_place'];
 		else 
-			throw new \Exception("No se ha recibido el lugar de salida de los paquetes devueltos por la búsqueda");
+			throw new ValidationException("No se ha recibido el lugar de salida de los paquetes devueltos por la búsqueda");
 
 		if(array_key_exists('destination_place', $params))
 			$this->destination_place = $params['destination_place'];
 		else 
-			throw new \Exception("No se ha recibido el destino de los paquetes devueltos por la búsqueda");
+			throw new ValidationException("No se ha recibido el destino de los paquetes devueltos por la búsqueda");
 
 		if(array_key_exists('month_departure', $params))
 			$this->month_departure = (int)$params['month_departure'];
 		else 
-			throw new \Exception("No se ha recibido el mes de salida de los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha recibido el mes de salida de los paquetes devueltos por la búsquedas");
 
 		if(array_key_exists('year_departure', $params))
 			$this->year_departure = (int)$params['year_departure'];
 		else 
-			throw new \Exception("No se ha recibido el año de salida de los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha recibido el año de salida de los paquetes devueltos por la búsquedas");
 		
 		$this->Room = [];
 
