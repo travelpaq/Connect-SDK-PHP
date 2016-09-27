@@ -30,6 +30,7 @@ class Package
     public $Place;
     public $Price;
     public $Accommodation;
+    public $Room;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
@@ -43,6 +44,7 @@ class Package
       "Place",
       "Price",
       "Accommodation",
+      "Room",
       "transport",
       "total_nights"
     ];
@@ -87,6 +89,8 @@ class Package
       $this->Price = new Price($package['Price']);
 
       $this->Accommodation = new Accommodation($package['Accommodation']);
+
+      $this->Room = new Room($package['Room']);
 
     }
 }
