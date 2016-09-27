@@ -44,7 +44,7 @@ class Package
       "Place",
       "Price",
       "Accommodation",
-      "Room",
+      //"Room",
       "transport",
       "total_nights"
     ];
@@ -55,6 +55,7 @@ class Package
     public function __construct($package)
     {
       $packageKeys = array_keys($package);
+
       foreach ($this->required_fields as $required_field) {
     		if(!in_array($required_field,$packageKeys))
     		  throw new ValidationException("Falta el campo $required_field");
@@ -89,8 +90,8 @@ class Package
       $this->Price = new Price($package['Price']);
 
       $this->Accommodation = new Accommodation($package['Accommodation']);
-
-      $this->Room = new Room($package['Room']);
+      if(array_key_exists('Room', $package))
+        $this->Room = new Room($package['Room']);
 
     }
 }
