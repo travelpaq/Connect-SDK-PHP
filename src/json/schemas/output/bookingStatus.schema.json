@@ -22,7 +22,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "title": "Tipo de tarifa.",
+            "title": "Tipo de tarifa."
           },
           "quantity": {
             "type": "integer",
@@ -112,7 +112,8 @@
           "nationality",
           "mail"
         ]
-      },
+      }
+    },
     "Package": {
       "type": "object",
       "title": "Package schema.",

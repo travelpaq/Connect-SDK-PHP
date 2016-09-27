@@ -110,7 +110,7 @@ class PackagesAPI
      * Realiza el booking un paquete basandose en el parametro $booking, el cual tiene 
      * toda la información necesaria para realizarlo.
      *
-     * @param mixed $book_data Datos necesarios para la reserva de un paquete.
+     * @param mixed $params Datos necesarios para la reserva de un paquete.
      * Incluye tarifa, id del paquete y los  pasajeros del paquete.
      * 
      * @return BookingStatus Retorna una instancia de BookingStatus, el cual tiene
@@ -126,13 +126,13 @@ class PackagesAPI
      * - ERROR
      *
      */
-    public function bookingPackage($book_data)
+    public function bookingPackage($params)
     {
-        $book_data = new BookData($book_data);
+        $book_data = new BookData($params);
         if(!$book_data->validate())
             throw new ValidationException($book_data->get_last_error());
         $bookingService = new BookingPackageService();
-        return $bookingService->bookingPackage($book_data);
+        return $bookingService->bookingPackage($params);
     }
     
 

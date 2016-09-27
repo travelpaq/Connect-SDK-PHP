@@ -33,15 +33,20 @@ class BookingPackageService extends Service
 		}
 	}
 	public function bookingPackage($params){
+		
 		try {
 			$response = $this->http_client
 							 ->http_client
 							 ->request('POST',
 							 		   'booking/bookingPackage',
 							 		   [
-							 		   	'body' => base64_encode(json_encode($params))
+								 		   	'form_params' => 
+							 		   		[
+							 		   			'data' => base64_encode(json_encode($params))
+							 		   		]
 							 		   ]);
 			$body = $response->getBody()->getContents();
+			
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
 				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
