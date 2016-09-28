@@ -65,17 +65,12 @@
               "title": "Objeto Passport.",
               "description": "Este objeto contiene el conjunto de los datos necesario por cada uno para poder realizar la reserva.",
               "properties": {
-                "number": {
-                  "type": "string",
-                  "title": "Número de pasaporte."
-                },
                 "expired_date": {
                   "type": "string",
                   "title": "Fecha de vencimiento de pasaporte."
                 }
               },
               "required": [
-                "number",
                 "expired_date"
               ]
           }
