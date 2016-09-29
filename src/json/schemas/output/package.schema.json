@@ -155,8 +155,6 @@
             "properties": {
               "direction": {
                 "type": "integer",
-                "minimum":1,
-                "maximum":2,
                 "title": "Dirección del viaje.",
                 "description": "Expresa si el tramo es parte del viaje de ida o vuelta: 1 = IDA | 2 = VUETLA."
               },

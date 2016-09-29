@@ -7,7 +7,7 @@
       "enum":["AVAILABLE", "NOT_AVAILABLE"]
     },
     "Package": {
-      "$ref": "file://%%PATH%%/json/schemas/output/getPackage.schema.json"
+      "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
     }
   },
   "required": [

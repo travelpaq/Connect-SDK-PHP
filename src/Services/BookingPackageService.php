@@ -4,6 +4,7 @@ namespace TravelPAQ\PackagesAPI\Services;
 
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Models\PackageStatus;
+use TravelPAQ\PackagesAPI\Models\BookingStatus;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 

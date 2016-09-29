@@ -11,6 +11,8 @@
  */
 namespace TravelPAQ\PackagesAPI\Models;
 
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
+
 /**
  * Class Passport
  * 
@@ -31,9 +33,11 @@ class Passport
      */
     public function __construct($data)
     {
-        if(!array_key_exists('expired_date', $data))
-            $data['expired_date'] = "";
-        $this->expired_date = $data['expired_date'];
+
+        if(!array_key_exists('expired_date', $data))  
+            throw new ValidationException("Falta la fecha de expiración."); 
+        else
+            $this->expired_date = $data['expired_date'];
     }
 
 }

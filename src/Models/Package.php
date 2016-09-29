@@ -44,7 +44,6 @@ class Package
       "Place",
       "Price",
       "Accommodation",
-      //"Room",
       "transport",
       "total_nights"
     ];
@@ -96,6 +95,5 @@ class Package
           $this->Room[] = new Room($value);
         }
       }
-
     }
 }

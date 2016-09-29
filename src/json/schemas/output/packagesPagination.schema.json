@@ -9,7 +9,7 @@
       "title": "Paquetes resultantes de la búsqueda.",
       "description": "Esta propiedad contiene el conjunto de paquetes pertenecientes la pagína actual.",
       "items": {
-        "$ref": "file://%%PATH%%/json/schemas/output/getPackage.schema.json"
+        "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
       }
     },
     "current_page": {
