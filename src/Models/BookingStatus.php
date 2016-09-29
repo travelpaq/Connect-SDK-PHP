@@ -51,10 +51,9 @@ class BookingStatus
      */
     public function __construct($data)
     {
-    	$this->Package = [];
-    	foreach ($data['Package'] as $key => $package) {
-    		$this->Package[] = new Package($package);
-    	}
+    	if(array_key_exists('Package', $data)){
+            $this->Package = new Package($data['Package']);
+        }
 
     	$this->Fare = [];
     	foreach ($data['Fare'] as $key => $fare) {

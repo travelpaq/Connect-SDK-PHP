@@ -59,7 +59,7 @@ class BookingPackageService extends Service
 			return $response_str;
 		}	
 	}
-	public function getBooking(){
+	public function getBooking($id){
 		try {
 			$response = $this->http_client
 							 ->http_client
@@ -78,7 +78,7 @@ class BookingPackageService extends Service
 		}
 		
 	}
-	public function confirmBooking(){
+	public function confirmBooking($id){
 		try {
 			$response = $this->http_client
 							 ->http_client
@@ -97,7 +97,7 @@ class BookingPackageService extends Service
 		}
 		
 	}
-	public function cancelBooking(){
+	public function cancelBooking($id){
 		try {
 			$response = $this->http_client
 							 ->http_client
