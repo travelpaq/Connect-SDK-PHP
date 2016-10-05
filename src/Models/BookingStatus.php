@@ -35,6 +35,10 @@ class BookingStatus
 	* @var Passenger Listado de los pasajeros
 	*/
 	public $Passenger;
+    /*
+    * @var Company Datos de la compania
+    */
+    public $Company;
 	/*
 	* @var Package Datos del paquete
 	*/
@@ -63,6 +67,12 @@ class BookingStatus
     		$this->Fare[] = new Fare($fare);
     	}
     	
+        if(array_key_exists('Company', $data) && $data['Company']){
+            $this->Company = [];
+            foreach ($data['Company'] as $key => $company) {
+                $this->Company[] = new Company($company);
+            }
+        }
 
     	$this->Passenger = [];
     	foreach ($data['Passenger'] as $key => $passenger) {
