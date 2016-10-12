@@ -18,7 +18,7 @@ class BookingPackageService extends Service
 						 ->request('GET',"booking/checkAvail/$id");
 
 			$body = $response->getBody()->getContents();
-			echo $body;die();
+
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
@@ -29,7 +29,7 @@ class BookingPackageService extends Service
 			$response_str = "";
 			if ($e->hasResponse())
 				$response_str = $e->getResponse()->getBody()->getContents();
-			echo $response_str;die();
+			
 			return $response_str;
 		}
 	}

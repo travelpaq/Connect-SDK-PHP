@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelPAQ\PackagesAPI\Models;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 
 class Room
 {
@@ -11,15 +12,9 @@ class Room
 			$this->adult = (int)($params['adult']);
 		else 
 			throw new ValidationException("No se ha recibido el número de adultos que viajarán en los paquetes devueltos por la búsquedas");
-
 		if(array_key_exists('Children', $params))
-		{
-			$this->Children = [];
-			foreach($params['Children'] as $child){
-				$this->Children[] = new Child($child);
-			}
-		}
+			$this->Children = (int)($params['Children']);
 		else 
-			throw new ValidationException("No se ha recibido el conjunto de Children que viajarán en los paquetes devueltos por la búsquedas");
+			throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
 	}
 }
