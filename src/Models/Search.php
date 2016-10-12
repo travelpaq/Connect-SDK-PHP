@@ -51,11 +51,10 @@ class Search
 		else 
 			throw new ValidationException("No se ha recibido el año de salida de los paquetes devueltos por la búsquedas");
 		
-		$this->Room = [];
 
 		if(array_key_exists('Room', $params))
-			foreach($params['Room'] as $room){
-				$this->Room[] = new Room($room);
-			}
+			$this->Room = new Room($room);
+		else 
+			throw new ValidationException("Faltan los room");
 	}
 }

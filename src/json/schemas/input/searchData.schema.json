@@ -49,15 +49,9 @@
       "description": "Junto con month_departure forman el mes en que el pasajeros desean salir."
     },
     "Room": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 4,
-      "title": "Habiataciones de hospedaje.",
-      "description": "Se describe la distribución de los pasajeros en el viaje.",
-      "items": {
         "type": "object",
         "title": "Habitación.",
-        "description": "Cada habitación que se cague se compone de los adultos que la habitan, los niños y sus edades.",
+        "description": " .",
         "properties": {
           "adult": {
             "type": "integer",
@@ -77,8 +71,7 @@
           "Children"
         ]
       }
-    }
-  },
+    },
   "required": [
     "order_type",
     "order_field",
