@@ -90,8 +90,8 @@ class Package
 
       $this->Accommodation = new Accommodation($package['Accommodation']);
       
-      if(array_key_exists('Room', $package)){
-          $this->Room = new Room($package['Room']);
+      if(array_key_exists('Room', $package) && $package['Room']){
+        $this->Room = new Room($value);
       }
     }
 }

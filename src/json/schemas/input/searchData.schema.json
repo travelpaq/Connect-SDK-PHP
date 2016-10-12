@@ -49,15 +49,9 @@
       "description": "Junto con month_departure forman el mes en que el pasajeros desean salir."
     },
     "Room": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 4,
-      "title": "Habiataciones de hospedaje.",
-      "description": "Se describe la distribución de los pasajeros en el viaje.",
-      "items": {
         "type": "object",
         "title": "Habitación.",
-        "description": "Cada habitación que se cague se compone de los adultos que la habitan, los niños y sus edades.",
+        "description": " .",
         "properties": {
           "adult": {
             "type": "integer",
@@ -67,28 +61,9 @@
             "description": "Cantidad de adultos que ocupan la habitación."
           },
           "Children": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 8,
-            "title": "Niños que ocuparán la habitación .",
-            "description": "Array de edades de los niños que ocuparán la habitación.",
-            "items": {
-              "type": "object",
-              "title": "Niño que ocupa la habitación.",
-              "description": "Objeto con los datos relevantes de niño que ocupará la habitación .",
-              "properties": {
-                "age": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 17,
-                  "title": "Edad de los niños.",
-                  "description": "Esta es la única propiedad del niño, y que se usa para validar la tarifa."
-                }
-              },
-              "required": [
-                "age"
-              ]
-            }
+            "type": "integer",
+            "title": "Niños de la habitación.",
+            "description": "Cantidad de niños que ocupan la habitación."
           }
         },
         "required": [
@@ -96,8 +71,7 @@
           "Children"
         ]
       }
-    }
-  },
+    },
   "required": [
     "order_type",
     "order_field",

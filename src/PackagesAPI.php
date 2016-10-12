@@ -40,12 +40,19 @@ class PackagesAPI
      */
     public function __construct($config) 
     {
-        HttpClient::getInstance([
-            //'url' => 'https://api.travelpaq.com.ar',
-            'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/api/',
-            'key' => $config['api_key'],
-            'item_per_page' => $config['item_per_page']
-        ]);
+        if(array_key_exists('test', $config) && $config['test'] == true){
+            HttpClient::getInstance([
+                'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/api/',
+                'key' => $config['api_key'],
+                'item_per_page' => $config['item_per_page']
+            ]);
+        }else{
+            HttpClient::getInstance([
+                'url' => 'https://api.travelpaq.com.ar',
+                'key' => $config['api_key'],
+                'item_per_page' => $config['item_per_page']
+            ]);
+        }
     }
 
     /**
