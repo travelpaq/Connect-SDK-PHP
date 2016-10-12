@@ -10,31 +10,25 @@ use GuzzleHttp\Exception\RequestException;
 
 class BookingPackageService extends Service
 {
-	public function checkAvail($id){
-
+	public function checkAvail($booking_id){
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"booking/checkAvail/$id");
-
+						 ->request('GET',"booking/checkAvail/$booking_id");
 			$body = $response->getBody()->getContents();
-			echo $body;die();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
-
 			return new PackageStatus($body_decoded);	
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
 				$response_str = $e->getResponse()->getBody()->getContents();
-			echo $response_str;die();
 			return $response_str;
 		}
 	}
 	public function bookingPackage($params){
-		
 		try {
 			$response = $this->http_client
 							 ->http_client
@@ -47,10 +41,9 @@ class BookingPackageService extends Service
 							 		   		]
 							 		   ]);
 			$body = $response->getBody()->getContents();
-			
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new BookingStatus($body_decoded);	
 		} catch (RequestException $e) {
@@ -60,15 +53,15 @@ class BookingPackageService extends Service
 			return $response_str;
 		}	
 	}
-	public function getBooking($id){
+	public function getBooking($booking_id){
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/getBooking/$id");
+							 ->request('GET',"booking/getBooking/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
@@ -77,17 +70,17 @@ class BookingPackageService extends Service
 				$response_str = $e->getResponse()->getBody()->getContents();
 			return $response_str;			
 		}
-		
+
 	}
-	public function confirmBooking($id){
+	public function confirmBooking($booking_id){
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/confirmBooking/$id");
+							 ->request('GET',"booking/confirmBooking/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
@@ -95,18 +88,18 @@ class BookingPackageService extends Service
 			if ($e->hasResponse())
 				$response_str = $e->getResponse()->getBody()->getContents();
 			return $response_str;			
-		}
-		
+		}	
 	}
-	public function cancelBooking($id){
+
+	public function cancelBooking($booking_id){
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/cancelBooking/$id");
+							 ->request('GET',"booking/cancelBooking/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
@@ -114,7 +107,6 @@ class BookingPackageService extends Service
 			if ($e->hasResponse())
 				$response_str = $e->getResponse()->getBody()->getContents();
 			return $response_str;			
-		}
-		
+		}	
 	}
 }
