@@ -11,25 +11,22 @@ use GuzzleHttp\Exception\RequestException;
 class PackageService extends Service
 {
 	public function getPackageList($params, $page = 0){
-
 		try {
-
 		    $response = $this->http_client
-						->http_client
-						->request('POST', 
-						 		   'Packages/getPackageList/' . $page,
-						 		   [
-						 		   		'form_params' => 
-						 		   		[
-						 		   			'data' => base64_encode(json_encode($params))
-						 		   		]
-						 		   	]
-						 );
+							 ->http_client
+							 ->request('POST', 
+							  		   'Packages/getPackageList/' . $page,
+							  		   [
+							  		   		'form_params' => 
+							  		   		[
+							  		   			'data' => base64_encode(json_encode($params))
+							  		   		]
+							  		   	]
+							 );
 			$body = $response->getBody()->getContents();
-
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new PackagesPagination($body_decoded);
 		} catch (RequestException $e) {
@@ -40,16 +37,17 @@ class PackageService extends Service
 		}
 	}
 	
-	public function getPackage($id){
+	public function getPackage($package_id){
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"Packages/getPackage/$id");
-			$body = $response->getBody()
-							 ->getContents();
+							 ->request('GET',"Packages/getPackage/$package_id");
+
+			$body = $response->getBody()->getContents();
+
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
-				throw new \Exception("El JSON que se ha retornado no es correcto debído a un error interno de la API");
+				throw new \Exception($body);
 			}
 			return new Package($body_decoded);
 		} catch (RequestException $e) {
