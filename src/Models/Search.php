@@ -53,7 +53,7 @@ class Search
 		
 
 		if(array_key_exists('Room', $params))
-			$this->Room = new Room($room);
+			$this->Room = new Room($params['Room']);
 		else 
 			throw new ValidationException("Faltan los room");
 	}
