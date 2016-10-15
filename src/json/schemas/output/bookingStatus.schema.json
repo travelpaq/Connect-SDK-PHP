@@ -119,7 +119,7 @@
       "title": "Operador del paquete reservado.",
       "properties": {
         "id": {
-          "type": "integer",
+          "type": ["integer","null"],
           "title": "Identificador del operador."
         },
         "name": {
