@@ -5,7 +5,7 @@
   "description": "Estructura de datos retornados por el método bookingPackage.",
   "properties": {
     "booking_id": {
-      "type": "integer",
+      "type": "string",
       "title": "Identificador de la reserva."
     },
     "status": {
@@ -132,18 +132,12 @@
         }
       },
       "required": [
-        "id",
         "name",
         "cuit"
       ]
     },
     "Package": {
-      "type": ["object","null"],
-      "title": "Package schema.",
-      "description": "An explanation about the purpose of this instance.",
-      "properties": {
         "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
-      }
     }
   },
   "required": [
