@@ -17,7 +17,7 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  *
  * @package TravelPAQ
  */
-class Country
+class Country implements \JsonSerializable
 {
     public $name;
     public $iata;
@@ -39,6 +39,16 @@ class Country
         if(!array_key_exists('region', $data))
             $data['region'] = "";
         $this->region = $data['region'];
+    }
+
+    public function jsonSerialize() {
+        $array = [
+            'name' => $this->name,
+            'iata' => $this->iata
+        ];
+        if($this->region != "")
+            $array['region'] = $this->region;
+        return $array;
     }
 
 }

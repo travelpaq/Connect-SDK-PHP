@@ -19,6 +19,7 @@ use TravelPAQ\PackagesAPI\Models\SearchData;
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
 use TravelPAQ\PackagesAPI\Services\BookingPackageService;
+use TravelPAQ\PackagesAPI\Services\TravelService;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 use TravelPAQ\PackagesAPI\Exceptions\JsonValidatorException;
@@ -112,6 +113,21 @@ class PackagesAPI
 
         $bookingService = new BookingPackageService();
         return $bookingService->checkAvail($package_id);
+    }
+
+    /**
+     * Obtiene todos los destinos
+     *
+     * @param string|null $country_iata IATA del pais del cual se requieren los lugares
+     *
+     * @return Destinies Retorna un listado de lugares del pais solicitado, o todos los
+     * destinos disponibles si el $country_iata no fue especificado o esta en null 
+     *
+     */
+    public function getPlaces($country_iata = null)  
+    {
+        $travelService = new TravelService();
+        return $travelService->getPlaces($country_iata);
     }
     
     /**
