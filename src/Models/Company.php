@@ -21,7 +21,7 @@ class Company
 {
     public $name;
     public $id;
-    public $cuil;
+    public $cuit;
     /**
      * Constructor
      * @param Array data datos de un Pais
@@ -36,9 +36,9 @@ class Company
             $data['id'] = "";
         $this->iata = $data['id'];
 
-        if(!array_key_exists('cuil', $data))
-            $data['cuil'] = "";
-        $this->cuil = $data['cuil'];
+        if(!array_key_exists('cuit', $data))
+            $data['cuit'] = "";
+        $this->cuit = $data['cuit'];
     }
 
 }

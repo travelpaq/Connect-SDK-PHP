@@ -8,10 +8,18 @@
       "type": "integer",
       "title": "Identificador de la reserva."
     },
+    "external_id": {
+      "type": "string",
+      "title": "Identificador de la reserva que retorna el Operador."
+    },
     "status": {
       "type": "string",
       "enum":["WAITING","EXPIRED","CANCELING","CANCELED","CONFIRMING","CONFIRMED","ACTIVE","ERROR"],
       "title": "Estado de la reserva."
+    },
+    "error_message": {
+      "type": "string",
+      "title": "Si hay un error, se muestra en este campo."
     },
     "Fare": {
       "type": "array",
@@ -35,6 +43,29 @@
           "quantity"
         ]
       }
+    },
+    "Company": {
+      "type": ["object", "null"],
+      "title": "Operador del paquete reservado.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Identificador del operador."
+        },
+        "name": {
+          "type": "string",
+          "title": "Nombre del operador."
+        },
+        "cuit": {
+          "type": "string",
+          "title": "CUIT del operador."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "cuit"
+      ]
     },
     "Passenger": {
       "type": "array",
@@ -114,29 +145,6 @@
         ]
       }
     },
-    "Company": {
-      "type": ["object", "null"],
-      "title": "Operador del paquete reservado.",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "title": "Identificador del operador."
-        },
-        "name": {
-          "type": "string",
-          "title": "Nombre del operador."
-        },
-        "cuit": {
-          "type": "string",
-          "title": "CUIT del operador."
-        }
-      },
-      "required": [
-        "id",
-        "name",
-        "cuit"
-      ]
-    },
     "Package": {
       "type": ["object","null"],
       "title": "Package schema.",
@@ -147,9 +155,13 @@
     }
   },
   "required": [
+    "booking_id",
+    "external_id",
+    "status",
     "Fare",
+    "Company",
     "Passenger",
-    "Package",
-    "Company"
+    "Package"
+
   ]
 }

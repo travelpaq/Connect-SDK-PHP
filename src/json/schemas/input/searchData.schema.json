@@ -70,8 +70,8 @@
           "adult",
           "Children"
         ]
-      }
-    },
+     }
+  },
   "required": [
     "order_type",
     "order_field",
