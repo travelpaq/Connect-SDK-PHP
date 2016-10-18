@@ -294,6 +294,16 @@
           "type": "number",
           "title": "Precio por persona.",
           "description": "El precio total se divide entre todos los pasajeros y se obtiene la tarifa final por persona."
+        },
+        "final_price": {
+          "type": "number",
+          "title": "Precio final.",
+          "description": "."
+        },
+        "markup": {
+          "type": "number",
+          "title": "Markup.",
+          "description": "."
         }
       },
       "required": [

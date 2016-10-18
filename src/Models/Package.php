@@ -44,8 +44,8 @@ class Package
       "Place",
       "Price",
       "Accommodation",
-      "transport",
       "Room",
+      "transport",
       "total_nights"
     ];
     /**

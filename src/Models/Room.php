@@ -6,7 +6,7 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 class Room
 {
     var $adult; //int
-    var $Children; //array(Child)
+    var $Children; //int
 	function __construct($params){
 		if(array_key_exists('adult', $params))
 			$this->adult = (int)($params['adult']);

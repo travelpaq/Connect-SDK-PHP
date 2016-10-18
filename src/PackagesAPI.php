@@ -176,7 +176,7 @@ class PackagesAPI
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
 
         $bookingService = new BookingPackageService();
-        return $bookingService->getBookingPackage($booking_id);
+        return $bookingService->getBooking($booking_id);
     }
     /**
      * Confirma una reserva, retornando los mismos datos que el bookingPackage
