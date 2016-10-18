@@ -66,7 +66,11 @@ class BookingStatus
     public function __construct($data)
     {
            
-        if(array_key_exists('Package', $data) && $data['Package']){
+        if(!array_key_exists('status', $data))
+            $data['status'] = "";
+        $this->status = $data['status'];
+        
+        if($this->status != 'ERROR' && array_key_exists('Package', $data) && $data['Package']){
             $this->Package = new Package($data['Package']);
         } else {
             $this->Package = null;
@@ -78,7 +82,7 @@ class BookingStatus
             $this->Fare[] = new Fare($fare);
         }
         
-        if(array_key_exists('Company', $data) && $data['Company']){
+        if($this->status != 'ERROR' && array_key_exists('Company', $data) && $data['Company']){
             $this->Company = new Company($data['Company']);
         } else {
             $this->Company = null;
@@ -89,9 +93,6 @@ class BookingStatus
             $this->Passenger[] = new Passenger($passenger);
         }
 
-        if(!array_key_exists('status', $data))
-            $data['status'] = "";
-        $this->status = $data['status'];
 
         if(array_key_exists('message_error', $data) && $data['message_error']){
             $this->message_error = $data['message_error'];
