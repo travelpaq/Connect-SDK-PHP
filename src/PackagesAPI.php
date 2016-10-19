@@ -49,7 +49,7 @@ class PackagesAPI
             ]);
         }else{
             HttpClient::getInstance([
-                'url' => 'https://api.travelpaq.com.ar/'.$config['version'],
+                'url' => 'https://api.travelpaq.com.ar/'.$config['version'] .'/',
                 'key' => $config['api_key'],
                 'item_per_page' => $config['item_per_page']
             ]);
