@@ -53,17 +53,22 @@ class BookingPackageService extends Service
 			return $response_str;
 		}	
 	}
-	public function getBooking($booking_id){
+	public function getBooking($booking_id, $html){
 		try {
-			$response = $this->http_client
-							 ->http_client
-							 ->request('GET',"booking/getBooking/$booking_id");
+			if($html)
+				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id", ['headers' => ['ACCEPT' => 'text/html']]);
+			else 
+				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id");
 			$body = $response->getBody()->getContents();
-			$body_decoded = json_decode($body,true);
-			if($body_decoded == null) {
-				throw new \Exception($body);
+			if(!$html){
+				$body_decoded = json_decode($body,true);
+				if($body_decoded == null) {
+					throw new \Exception($body);
+				}
+				return new BookingStatus($body_decoded);
+			} else {
+				return $body;
 			}
-			return new BookingStatus($body_decoded);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())

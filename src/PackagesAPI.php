@@ -170,13 +170,13 @@ class PackagesAPI
      * el id $booking_id. Los estados posibles son los mismos que para el 
      *
      */
-    public function getBooking($booking_id)
+    public function getBooking($booking_id, $html = false)
     {
         if(!is_numeric($booking_id) || $booking_id <= 0)
             throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
 
         $bookingService = new BookingPackageService();
-        return $bookingService->getBooking($booking_id);
+        return $bookingService->getBooking($booking_id, $html);
     }
     /**
      * Confirma una reserva, retornando los mismos datos que el bookingPackage
