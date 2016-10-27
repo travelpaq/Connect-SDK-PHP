@@ -39,7 +39,6 @@ class TravelService extends Service
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
-
 			$months = array();
 			foreach ($body_decoded as $month) {
 				$months[] = new Month($month);
