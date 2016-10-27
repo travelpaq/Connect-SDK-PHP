@@ -6,7 +6,7 @@
  * @package  TravelPAQ
  * 
  * @author   Maximiliano Alves Pinheiro <malves@travelpaq.com.ar>
- * @author   Facundo J Gonzalez <facujgg@gmail.com>
+ * @author   TravelPAQ <malves@travelpaq.com.ar>
  * 
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -129,6 +129,40 @@ class PackagesAPI
         $travelService = new TravelService();
         return $travelService->getPlaces($country_iata);
     }
+
+
+
+    /**
+     * Obtiene todos los destinos donde hay paquetes disponibles
+     *
+     * @param string|null $country_iata IATA del pais del cual se requieren los lugares
+     *
+     * @return Destinies Retorna un listado de lugares del pais solicitado, o todos los
+     * destinos disponibles si el $country_iata no fue especificado o esta en null 
+     *
+     */
+    public function getPlacesWithPackage($country_iata = null)  
+    {
+        $travelService = new TravelService();
+        return $travelService->getPlacesWithPackage($country_iata);
+    }
+
+    /**
+     * Obtiene todas los meses de salida para un IATA en particular
+     *
+     * @param string $place_iata IATA del lugar del cual se requieren los meses de salida
+     *
+     * @return Months Retorna un listado de meses en los que salen los paquetes de un 
+     * destino determinado
+     *
+     */
+    public function getMonthByPlaces($place_iata = null)  
+    {
+        $travelService = new TravelService();
+        return $travelService->getMonthByPlaces($place_iata);
+    }
+
+
     
     /**
      * Realiza el booking un paquete basandose en el parametro $booking, el cual tiene 
