@@ -26,6 +26,8 @@ class Hotel
     public $name;
     public $type_room;
     public $hotel_service;
+    public $max_num_child;
+    public $childre_age;
     public $Place;
     /**
      * Constructor
@@ -59,6 +61,14 @@ class Hotel
         if(!array_key_exists('hotel_service', $data))
             $data['hotel_service'] = "";
         $this->hotel_service = $data['hotel_service'];
+
+        if(!array_key_exists('max_num_child', $data))
+            $data['max_num_child'] = 0;
+        $this->max_num_child = $data['max_num_child'];
+
+        if(!array_key_exists('childre_age', $data))
+            $data['childre_age'] = 0;
+        $this->childre_age = $data['childre_age'];
     }
 
 }

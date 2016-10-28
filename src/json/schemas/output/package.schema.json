@@ -359,6 +359,14 @@
               "hotel_service": {
                 "type": "string",
                 "title": "Servicio del hotel."
+              },
+              "max_num_child":{
+                "type": "integer",
+                "title": "Servicio del hotel."
+              },
+              "childre_age":{
+                "type": "integer",
+                "title": "Servicio del hotel."
               }
             },
             "required": [
