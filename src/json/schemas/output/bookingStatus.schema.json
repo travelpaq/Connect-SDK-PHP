@@ -5,7 +5,7 @@
   "description": "Estructura de datos retornados por el método bookingPackage.",
   "properties": {
     "booking_id": {
-      "type": "string",
+      "type": "integer",
       "title": "Identificador de la reserva."
     },
     "external_id": {
@@ -146,7 +146,7 @@
       }
     },
     "Package": {
-        "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
+      "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
     }
   },
   "required": [
@@ -157,6 +157,5 @@
     "Company",
     "Passenger",
     "Package"
-
   ]
 }

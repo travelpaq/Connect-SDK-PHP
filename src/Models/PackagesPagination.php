@@ -42,6 +42,26 @@ class PackagesPagination
 	* Total de items
 	*/
 	public $total_items;
+
+	/*
+	* Precio mínimo para esa búsqueda
+	*/
+	public $min_price;
+
+	/*
+	* Precio máximo para esa búsqueda
+	*/
+	public $max_price;
+
+	/*
+	* Cantidad mínima de noches para esa búsqueda
+	*/
+	public $min_nights;
+
+	/*
+	* Cantidad máxima de noches para esa búsqueda
+	*/
+	public $max_nights;
     
     /**
      * Constructor
@@ -57,6 +77,10 @@ class PackagesPagination
     	$this->total_page = (int)$packagesList['total_page'];
     	$this->item_per_page = (int)$packagesList['item_per_page'];
     	$this->total_items = (int)$packagesList['total_items'];
+    	$this->min_price = (int)round($packagesList['min_price']);
+    	$this->max_price = (int)round($packagesList['max_price']);
+    	$this->min_nights = (int)$packagesList['min_nights'];
+    	$this->max_nights = (int)$packagesList['max_nights'];
     }
 
 }

@@ -26,13 +26,38 @@
       "type": "integer",
       "title": "Paquetes por página.",
       "description": "Cantidad de paquetes que se retornan en una página."
-    }
+    },
+    "total_items": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda.",
+    },
+    "min_price": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda.",
+    },
+    "max_price": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda.",
+    },
+    "min_nights": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda.",
+    },
+    "max_nights": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda.",
+    },
+
   },
   "required": [
     "result",
     "current_page",
     "total_page",
     "item_per_page",
-    "total_items"
+    "total_items",
+    "max_price",
+    "min_price",
+    "min_nights",
+    "max_nights"
   ]
 }
