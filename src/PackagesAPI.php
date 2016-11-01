@@ -15,6 +15,7 @@ namespace TravelPAQ\PackagesAPI;
 
 use TravelPAQ\PackagesAPI\Models\BookData;
 use TravelPAQ\PackagesAPI\Models\SearchData;
+use TravelPAQ\PackagesAPI\Models\FilterData;
 
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
@@ -60,20 +61,29 @@ class PackagesAPI
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda
      * 
-     * @param Array $filters Representa los parametros de búsqueda
+     * @param Array $params Representa los parametros de búsqueda
      * 
      * @param int $page Número de página
+     *
+     * @param Array $filters Representa los filtros para hacer más precisa la búsqeuda
      * 
      * @return PackagesPagination Representa una página de resultado de búsqueda.
      */
-    public function getPackageList($filters,$page = 0)
+    public function getPackageList($params,$page = 0, $filters = null)
     {
-        $sf = new SearchData($filters);
-        if(!$sf->validate()){
-            throw new ValidationException($sf->get_last_error());
+        $sd = new SearchData($params);
+        if(!$sd->validate()){
+            throw new ValidationException($sd->get_last_error());
         }
         $ps = new PackageService();
-        return $ps->getPackageList($filters,$page);
+        if($filters){
+            $fi = new FilterData($filters);
+            if(!$fi->validate()){
+                throw new ValidationException($fi->get_last_error());
+            }
+            return $ps->getPackageList($params,$page,$filters);
+        }
+        return $ps->getPackageList($params,$page); 
     }
 
     /**

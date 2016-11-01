@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "title": "Filtros de la búsqueda.",
+    "items": {
+	    "type": "object",
+	    "title": "Objeto Filtro.",
+	    "properties": {
+	      "name": {
+	        "type": "string",
+	        "title": "Nombre del pasajero."
+	      },
+	      "from": {
+	        "type": "string",
+	        "title": "Límite inferior del filtro."
+	      },
+	      "to": {
+	        "type": "string",
+	        "title": "Límite superior del filtro."
+	      }
+	    },
+	    "required": [
+	      "name",
+	      "from",
+	      "to"
+	    ]
+	}
+}

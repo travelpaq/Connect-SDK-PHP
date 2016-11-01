@@ -10,19 +10,34 @@ use GuzzleHttp\Exception\RequestException;
 
 class PackageService extends Service
 {
-	public function getPackageList($params, $page = 0){
+	public function getPackageList($params, $page = 0, $filters = null){
 		try {
-		    $response = $this->http_client
-							 ->http_client
-							 ->request('POST', 
-							  		   'Packages/getPackageList/' . $page,
-							  		   [
-							  		   		'form_params' => 
-							  		   		[
-							  		   			'data' => base64_encode(json_encode($params))
-							  		   		]
-							  		   	]
-							 );
+			if($filters){
+			    $response = $this->http_client
+								 ->http_client
+								 ->request('POST', 
+								  		   'Packages/getPackageList/' . $page,
+								  		   [
+								  		   		'form_params' => 
+								  		   		[
+								  		   			'data' => base64_encode(json_encode($params))
+								  		   		],
+								  		   		'headers' => ['TP-FILTERS' => base64_encode(json_encode($filters))]
+								  		   	]
+								 );
+			} else {
+				$response = $this->http_client
+								 ->http_client
+								 ->request('POST', 
+								  		   'Packages/getPackageList/' . $page,
+								  		   [
+								  		   		'form_params' => 
+								  		   		[
+								  		   			'data' => base64_encode(json_encode($params))
+								  		   		]
+								  		   	]
+								 );
+			}
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
