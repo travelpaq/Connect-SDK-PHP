@@ -384,6 +384,29 @@
       "required": [
         "Hotel"
       ]
+    },
+    "Company": {
+      "type": ["object", "null"],
+      "title": "Operador del paquete reservado.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Identificador del operador."
+        },
+        "name": {
+          "type": "string",
+          "title": "Nombre del operador."
+        },
+        "cuit": {
+          "type": "string",
+          "title": "CUIT del operador."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "cuit"
+      ]
     }
   },
   "required": [
@@ -396,6 +419,7 @@
     "Place",
     "Price",
     "Accommodation",
+    "Company",
     "transport"
   ]
 }

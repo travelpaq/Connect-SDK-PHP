@@ -44,29 +44,6 @@
         ]
       }
     },
-    "Company": {
-      "type": ["object", "null"],
-      "title": "Operador del paquete reservado.",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "title": "Identificador del operador."
-        },
-        "name": {
-          "type": "string",
-          "title": "Nombre del operador."
-        },
-        "cuit": {
-          "type": "string",
-          "title": "CUIT del operador."
-        }
-      },
-      "required": [
-        "id",
-        "name",
-        "cuit"
-      ]
-    },
     "Passenger": {
       "type": "array",
       "title": "Pasajeros que van a reservar.",
@@ -147,6 +124,102 @@
     },
     "Package": {
       "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"
+    },
+    "Pricing": {
+      "type": ["object", null],
+      "properties": {
+        "NonCommissionableService": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Description": {
+                "type": "string",
+              },
+              "Amount": {
+                "type": "number",
+              }
+            },
+            "required": [
+              "Description",
+              "Amount"
+            ]
+          }
+        },
+        "TourismTaxes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Description": {
+                "type": "string",
+              },
+              "Base": {
+                "type": "number",
+              },
+              "Rate": {
+                "type": "number",
+              },
+              "Amount": {
+                "type": "number",
+              }
+            },
+            "required": [
+              "Description",
+              "Base",
+              "Rate",
+              "Amount"
+            ]
+          }
+        },
+        "FiscalTaxes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Description": {
+                "type": "string",
+              },
+              "Base": {
+                "type": "number",
+              },
+              "Rate": {
+                "type": "number",
+              },
+              "Amount": {
+                "type": "number",
+              }
+            },
+            "required": [
+              "Description",
+              "Base",
+              "Rate",
+              "Amount"
+            ]
+          }
+        },
+        "CommissionablePrice": {
+          "type": "number",
+        },
+        "CommissionAmount": {
+          "type": "number",
+        },
+        "OverrideCommissionAmount": {
+          "type": "number",
+        },
+        "Total": {
+          "type": "number",
+        }
+      },
+      "required": [
+        "NonCommissionableService",
+        "TourismTaxes",
+        "FiscalTaxes",
+        "CommissionablePrice",
+        "CommissionAmount",
+        "OverrideCommissionAmount",
+        "Total"
+      ]
     }
   },
   "required": [
@@ -154,8 +227,8 @@
     "external_id",
     "status",
     "Fare",
-    "Company",
     "Passenger",
-    "Package"
+    "Package",
+    "Pricing"
   ]
 }

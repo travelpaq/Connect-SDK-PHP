@@ -40,10 +40,6 @@ class BookingStatus
     */
     public $Passenger;
     /*
-    * @var Company Datos de la compania
-    */
-    public $Company;
-    /*
     * @var Package Datos del paquete
     */
     public $Package;
@@ -57,6 +53,11 @@ class BookingStatus
     * @var string Si hay un error, se muestra en este campo.
     */
     public $message_error;
+
+    /*
+    * @var Pricing Muestra la liquidación con todos los datos que nevia el operador.
+    */
+    public $Pricing;
 
     
     /**
@@ -82,16 +83,15 @@ class BookingStatus
             $this->Fare[] = new Fare($fare);
         }
         
-        if($this->status != 'ERROR' && array_key_exists('Company', $data) && $data['Company']){
-            $this->Company = new Company($data['Company']);
-        } else {
-            $this->Company = null;
-        }
-
         $this->Passenger = [];
         foreach ($data['Passenger'] as $key => $passenger) {
             $this->Passenger[] = new Passenger($passenger);
         }
+
+        if(!(array_key_exists('Pricing', $data) && $data['Pricing'])){
+            $data['Pricing'] = null;
+        }
+        $this->Pricing = new Pricing($data['Pricing']);
 
 
         if(array_key_exists('message_error', $data) && $data['message_error']){

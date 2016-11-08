@@ -31,6 +31,7 @@ class Package
     public $Price;
     public $Accommodation;
     public $Room;
+    public $Company;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
@@ -45,6 +46,7 @@ class Package
       "Price",
       "Accommodation",
       "Room",
+      "Company", 
       "transport",
       "total_nights"
     ];
@@ -92,5 +94,12 @@ class Package
       $this->Accommodation = new Accommodation($package['Accommodation']);
       
       $this->Room = new Room($package['Room']);
+
+      if(array_key_exists('Company', $package) && $package['Company']){
+            $this->Company = new Company($package['Company']);
+        } else {
+            $this->Company = null;
+        }
+
     }
 }
