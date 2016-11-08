@@ -57,23 +57,35 @@ class Pricing
 		$this->NonCommissionableService = [];
         if(!array_key_exists('NonCommissionableService', $data))  
             throw new ValidationException("No se ha especificado el hotel");
-		foreach ($data['NonCommissionableService'] as $key => $value) {
-			$this->NonCommissionableService[] = new ItemPriceShort($value);
-		}
+        if(is_array($data['NonCommissionableService'])){
+    		foreach ($data['NonCommissionableService'] as $key => $value) {
+    			$this->NonCommissionableService[] = new ItemPriceShort($value);
+    		}
+        } else {
+            $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+        }
 
 		$this->TourismTaxes = [];
         if(!array_key_exists('TourismTaxes', $data))  
             throw new ValidationException("No se han especificado los impuestos de turísmo");
-		foreach ($data['TourismTaxes'] as $key => $value) {
-			$this->TourismTaxes[] = new ItemPriceLarge($value);
-		}
+        if(is_array($data['TourismTaxes'])){
+    		foreach ($data['TourismTaxes'] as $key => $value) {
+    			$this->TourismTaxes[] = new ItemPriceLarge($value);
+    		}
+        } else {
+            $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+        }
 
 		$this->FiscalTaxes = [];
         if(!array_key_exists('FiscalTaxes', $data))  
             throw new ValidationException("No se han especificado los impuestos fiscales");
-		foreach ($data['FiscalTaxes'] as $key => $value) {
-			$this->FiscalTaxes[] = new ItemPriceLarge($value);
-		}
+        if(is_array($data['FiscalTaxes'])){
+    		foreach ($data['FiscalTaxes'] as $key => $value) {
+    			$this->FiscalTaxes[] = new ItemPriceLarge($value);
+    		}
+        } else {
+            $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+        }
 
 		if(!(array_key_exists('CommissionablePrice', $data) && $data['CommissionablePrice'])){
             $data['CommissionablePrice'] = 0;
