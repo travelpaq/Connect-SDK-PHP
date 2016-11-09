@@ -80,11 +80,14 @@ class BookingStatus
             $this->Package = null;
         }
 
-        if($this->Package and $this->Package->Price && $this->Package->Price->currency){
-            $this->currency = $this->Package->Price->currency;
-        } else {
-            $this->currency = '$';
+        if(!array_key_exists('currency', $data)){
+            if($this->Package and $this->Package->Price && $this->Package->Price->currency){
+                $data['currency'] = $this->Package->Price->currency;
+            } else {
+                $data['currency'] = 'ARS';
+            }
         }
+        $this->currency = $data['currency'];
 
 
         $this->Fare = [];
