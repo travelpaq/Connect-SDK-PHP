@@ -97,11 +97,11 @@ class BookingStatus
             $this->Passenger[] = new Passenger($passenger);
         }
 
-        if(!(array_key_exists('Pricing', $data) && $data['Pricing'])){
+        if(!(array_key_exists('Pricing', $data) && $data['Pricing'] && count($data['Pricing']))){
             $data['Pricing'] = null;
+        } else {
+            $this->Pricing = new Pricing($data['Pricing']);
         }
-        $this->Pricing = new Pricing($data['Pricing']);
-
 
         if(array_key_exists('message_error', $data) && $data['message_error']){
             $this->message_error = $data['message_error'];
