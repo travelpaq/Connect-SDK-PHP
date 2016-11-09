@@ -12,6 +12,8 @@
 namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ItemPriceShort;
+use TravelPAQ\PackagesAPI\Models\Exceptions\ItemPriceLarge;
 /**
  * Class Pricing
  *
