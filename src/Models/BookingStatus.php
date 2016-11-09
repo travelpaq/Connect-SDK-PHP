@@ -31,6 +31,10 @@ class BookingStatus
     */
     public $external_id;
     /*
+    * @var string Tipo de moneda de la reserva
+    */
+    public $currency;
+    /*
     * @var Fare Tarifas de la reserva
     */
     public $Fare;
@@ -74,6 +78,12 @@ class BookingStatus
             $this->Package = new Package($data['Package']);
         } else {
             $this->Package = null;
+        }
+
+        if($this->Package and $this->Package->Price && $this->Package->Price->currency){
+            $this->currency = $this->Package->Price->currency;
+        } else {
+            $this->currency = '$';
         }
 
 
