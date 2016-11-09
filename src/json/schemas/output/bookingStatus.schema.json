@@ -134,10 +134,10 @@
             "type": "object",
             "properties": {
               "Description": {
-                "type": "string",
+                "type": "string"
               },
               "Amount": {
-                "type": "number",
+                "type": "number"
               }
             },
             "required": [
@@ -152,16 +152,16 @@
             "type": "object",
             "properties": {
               "Description": {
-                "type": "string",
+                "type": "string"
               },
               "Base": {
-                "type": "number",
+                "type": "number"
               },
               "Rate": {
-                "type": "number",
+                "type": "number"
               },
               "Amount": {
-                "type": "number",
+                "type": "number"
               }
             },
             "required": [
@@ -178,16 +178,16 @@
             "type": "object",
             "properties": {
               "Description": {
-                "type": "string",
+                "type": "string"
               },
               "Base": {
-                "type": "number",
+                "type": "number"
               },
               "Rate": {
-                "type": "number",
+                "type": "number"
               },
               "Amount": {
-                "type": "number",
+                "type": "number"
               }
             },
             "required": [
@@ -199,16 +199,16 @@
           }
         },
         "CommissionablePrice": {
-          "type": "number",
+          "type": "number"
         },
         "CommissionAmount": {
-          "type": "number",
+          "type": "number"
         },
         "OverrideCommissionAmount": {
-          "type": "number",
+          "type": "number"
         },
         "Total": {
-          "type": "number",
+          "type": "number"
         }
       },
       "required": [
