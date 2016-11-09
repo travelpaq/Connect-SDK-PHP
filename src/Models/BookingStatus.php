@@ -12,7 +12,6 @@
 namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
-use TravelPAQ\PackagesAPI\Models\Exceptions\Pricing;
 
 /**
  * Class BookingStatus
@@ -67,7 +66,6 @@ class BookingStatus
      */
     public function __construct($data)
     {
-           
         if(!array_key_exists('status', $data))
             $data['status'] = "";
         $this->status = $data['status'];

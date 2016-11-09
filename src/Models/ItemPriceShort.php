@@ -22,11 +22,11 @@ class ItemPriceShort
 	/*
     * @var string Descripción del precio.
     */
-	public $Description
+	public $Description;
 	/*
     * @var float Cantidad del itemPrice.
     */
-    public $Amount
+    public $Amount;
 
     /**
      * Constructor
@@ -34,13 +34,13 @@ class ItemPriceShort
      */
     public function __construct($data)
     {
-        if(!array_key_exists('Descrption', $data) && $data['Descrption'])
-        	$data['Descrption'] = '';
-        $this->Descrption = $data['Descrption'];
+        if(!array_key_exists('Description', $data) && $data['Description'])
+        	$data['Description'] = '';
+        $this->Description = $data['Description'];
 
         if(!array_key_exists('Amount', $data) && $data['Amount'])
         	$data['Amount'] = 0;
-        $this->Amount = $data['Amount'];
+        $this->Amount = (float)$data['Amount'];
     }
 
 }

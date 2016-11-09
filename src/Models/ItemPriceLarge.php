@@ -17,24 +17,24 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  *
  * @package TravelPAQ
  */
-class ItemPriceShort
+class ItemPriceLarge
 {
 	/*
     * @var string Descripción del precio.
     */
-	public $Description
+	public $Description;
 	/*
     * @var float Base sobre la que se calcula el Rate.
     */
-    public $Base
+    public $Base;
     /*
     * @var float Rate que se aplica sobre el rate
     */
-    public $Rate
+    public $Rate;
     /*
     * @var float Cantidad total del itemPrice.
     */
-    public $Amount
+    public $Amount;
 
     /**
      * Constructor
@@ -42,21 +42,21 @@ class ItemPriceShort
      */
     public function __construct($data)
     {
-        if(!array_key_exists('Descrption', $data) && $data['Descrption'])
-        	$data['Descrption'] = '';
-        $this->Descrption = $data['Descrption'];
+        if(!array_key_exists('Description', $data) && $data['Description'])
+        	$data['Description'] = '';
+        $this->Description = $data['Description'];
 
         if(!array_key_exists('Base', $data) && $data['Base'])
         	$data['Base'] = 0;
-        $this->Base = $data['Base'];
+        $this->Base = (float)$data['Base'];
 
         if(!array_key_exists('Rate', $data) && $data['Rate'])
         	$data['Rate'] = 0;
-        $this->Rate = $data['Rate'];
+        $this->Rate = (float)$data['Rate'];
 
         if(!array_key_exists('Amount', $data) && $data['Amount'])
         	$data['Amount'] = 0;
-        $this->Amount = $data['Amount'];
+        $this->Amount = (float)$data['Amount'];
 
 
     }
