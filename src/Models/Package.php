@@ -31,7 +31,7 @@ class Package
     public $Price;
     public $Accommodation;
     public $Room;
-    public $Company;
+    //public $Company;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
@@ -46,7 +46,7 @@ class Package
       "Price",
       "Accommodation",
       "Room",
-      "Company", 
+      //"Company", 
       "transport",
       "total_nights"
     ];

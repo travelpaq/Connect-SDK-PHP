@@ -77,9 +77,17 @@ class PackagesPagination
     	$this->total_page = (int)$packagesList['total_page'];
     	$this->item_per_page = (int)$packagesList['item_per_page'];
     	$this->total_items = (int)$packagesList['total_items'];
+    	
     	$this->min_price = (int)round($packagesList['min_price']);
+    	if($this->min_price < 0 || $this->min_price > 10000000)
+    		$this->min_price = 0;
+    	
     	$this->max_price = (int)round($packagesList['max_price']);
     	$this->min_nights = (int)$packagesList['min_nights'];
+
+    	if($this->min_nights < 0 || $this->min_nights > 10000000)
+    		$this->min_nights = 0;
+    	
     	$this->max_nights = (int)$packagesList['max_nights'];
     }
 
