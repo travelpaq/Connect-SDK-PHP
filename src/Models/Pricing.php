@@ -61,7 +61,9 @@ class Pricing
                     $this->NonCommissionableService[] = new ItemPriceShort($value);
                 }
             } else {
-                $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+                if($data['NonCommissionableService']){
+                    $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+                }
             }
         }
 
@@ -72,7 +74,9 @@ class Pricing
                     $this->TourismTaxes[] = new ItemPriceLarge($value);
                 }
             } else {
-                $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+                if($data['TourismTaxes']){
+                    $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+                }
             }
         }
 
@@ -83,7 +87,9 @@ class Pricing
                     $this->FiscalTaxes[] = new ItemPriceLarge($value);
                 }
             } else {
-                $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+                if($data['FiscalTaxes']){
+                    $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+                }
             }
         }
 
