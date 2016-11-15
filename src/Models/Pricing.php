@@ -19,11 +19,11 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class Pricing
 {
-	/*
+    /*
     * @var ItemPriceShort Servicios no comisionables.
     */
-	public $NonCommissionableService;
-	/*
+    public $NonCommissionableService;
+    /*
     * @var ItemPriceLarge Impuestos de turísmo.
     */
     public $TourismTaxes;
@@ -54,40 +54,40 @@ class Pricing
      */
     public function __construct($data)
     {
-		$this->NonCommissionableService = [];
-        if(!array_key_exists('NonCommissionableService', $data))  
-            throw new ValidationException("No se han especificado los servicios no comisionables");
-        if(array_key_exists(0, ($data['NonCommissionableService']))){
-    		foreach ($data['NonCommissionableService'] as $key => $value) {
-    			$this->NonCommissionableService[] = new ItemPriceShort($value);
-    		}
-        } else {
-            $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+        $this->NonCommissionableService = [];
+        if(array_key_exists('NonCommissionableService', $data))  {
+            if(array_key_exists(0, ($data['NonCommissionableService']))){
+                foreach ($data['NonCommissionableService'] as $key => $value) {
+                    $this->NonCommissionableService[] = new ItemPriceShort($value);
+                }
+            } else {
+                $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+            }
         }
 
-		$this->TourismTaxes = [];
-        if(!array_key_exists('TourismTaxes', $data))  
-            throw new ValidationException("No se han especificado los impuestos de turísmo");
-        if(array_key_exists(0, ($data['TourismTaxes']))){
-    		foreach ($data['TourismTaxes'] as $key => $value) {
-    			$this->TourismTaxes[] = new ItemPriceLarge($value);
-    		}
-        } else {
-            $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+        $this->TourismTaxes = [];
+        if(array_key_exists('TourismTaxes', $data)) {
+            if(array_key_exists(0, ($data['TourismTaxes']))){
+                foreach ($data['TourismTaxes'] as $key => $value) {
+                    $this->TourismTaxes[] = new ItemPriceLarge($value);
+                }
+            } else {
+                $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+            }
         }
 
-		$this->FiscalTaxes = [];
-        if(!array_key_exists('FiscalTaxes', $data))  
-            throw new ValidationException("No se han especificado los impuestos fiscales");
-        if(array_key_exists(0, ($data['FiscalTaxes']))){
-    		foreach ($data['FiscalTaxes'] as $key => $value) {
-    			$this->FiscalTaxes[] = new ItemPriceLarge($value);
-    		}
-        } else {
-            $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+        $this->FiscalTaxes = [];
+        if(array_key_exists('FiscalTaxes', $data)) {
+            if(array_key_exists(0, ($data['FiscalTaxes']))){
+                foreach ($data['FiscalTaxes'] as $key => $value) {
+                    $this->FiscalTaxes[] = new ItemPriceLarge($value);
+                }
+            } else {
+                $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+            }
         }
 
-		if(!(array_key_exists('CommissionablePrice', $data) && $data['CommissionablePrice'])){
+        if(!(array_key_exists('CommissionablePrice', $data) && $data['CommissionablePrice'])){
             $data['CommissionablePrice'] = 0;
         }
         $this->CommissionablePrice = (float)$data['CommissionablePrice'];
