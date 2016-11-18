@@ -68,7 +68,7 @@ class Package
       $this->total_nights = $package['total_nights'];
       $this->transport = $package['transport'];
 
-      if(!array_key_exists('observations', $package)
+      if(!array_key_exists('observations', $package))
         $this->observations = '';
       else 
         $this->observations = $package['observations'];
