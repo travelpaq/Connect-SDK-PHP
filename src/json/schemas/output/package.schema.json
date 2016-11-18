@@ -61,6 +61,10 @@
       "title": "Transporte.",
       "description": "Indica si el paquete tiene transporte al primer destino de recorrida del paquete: 0 = NO INCLUYE | 1 = SIN INCLUYE."
     },
+    "observations": {
+      "type": "string",
+      "title": "Observaciones del paquete."
+    },
     "Category": {
       "type": "array",
       "title": "Lista de categorías.",

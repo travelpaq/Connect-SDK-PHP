@@ -23,6 +23,7 @@ class Package
     public $title;
     public $total_nights;
     public $transport;
+    public $observations;
     public $Category;
     public $Service;
     public $Image;
@@ -66,7 +67,12 @@ class Package
       $this->title = $package['title'];
       $this->total_nights = $package['total_nights'];
       $this->transport = $package['transport'];
-      
+
+      if(!array_key_exists('observations', $package)
+        $this->observations = '';
+      else 
+        $this->observations = $package['observations'];
+        
       $this->Category = [];
       foreach ($package['Category'] as $key => $value) {
         $this->Category[] = new Category($value);
