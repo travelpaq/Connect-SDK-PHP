@@ -313,28 +313,47 @@
       ]
     },
     "Accommodation": {
-      "type": "object",
+      "type": "array",
       "title": "Información de hospedaje.",
       "description": "Todos los hoteles que se visitan en cada uno de los destinos que recorre el paquete.",
-      "properties": {
-        "Hotel": {
-          "type": "array",
-          "title": "Lista de hoteles.",
-          "description": "Todos los hoteles en el mismo orden de recorrida de los destinos.",
-          "items": {
+      "items": {
+        "type": "object",
+        "title": "Alojamiento.",
+        "properties": {
+          "number_nights": {
+            "type": "integer",
+            "title": "Cantidad de noches en el hotel."
+          },
+          "check_in": {
+            "type": "string",
+            "title": "Fecha de check-in."
+          },
+          "check_out": {
+            "type": "string",
+            "title": "Fecha de check out.",
+            "description": "Fecha de check-out"
+          },
+          "type_room": {
+            "type": "string",
+            "title": "Tipo de habitación."
+          },
+          "hotel_service": {
+            "type": "string",
+            "title": "Servicio del hotel."
+          },
+          "max_num_child":{
+            "type": "integer",
+            "title": "Servicio del hotel."
+          },
+          "children_age":{
+            "type": "integer",
+            "title": "Servicio del hotel."
+          },
+          "Hotel": {
             "type": "object",
-            "title": "Hotel.",
-            "description": "Información de un Hotel en particular.",
+            "title": "Lista de hoteles.",
+            "description": "Todos los hoteles en el mismo orden de recorrida de los destinos.",
             "properties": {
-              "check_in": {
-                "type": "string",
-                "title": "Fecha de check-in."
-              },
-              "check_out": {
-                "type": "string",
-                "title": "Fecha de check out.",
-                "description": "Fecha de check-out"
-              },
               "star_rating": {
                 "type": "integer",
                 "minimum":1,
@@ -351,38 +370,22 @@
                 "properties": {
                   "$ref": "#/definitions/Place" 
                 }
-              },
-              "type_room": {
-                "type": "string",
-                "title": "Tipo de habitación."
-              },
-              "hotel_service": {
-                "type": "string",
-                "title": "Servicio del hotel."
-              },
-              "max_num_child":{
-                "type": "integer",
-                "title": "Servicio del hotel."
-              },
-              "childre_age":{
-                "type": "integer",
-                "title": "Servicio del hotel."
               }
             },
             "required": [
-              "check_in",
-              "check_out",
               "star_rating",
               "name",
-              "Place",
-              "type_room",
-              "hotel_service"
+              "Place"
             ]
           }
         }
       },
       "required": [
-        "Hotel"
+        "check_in",
+        "check_out",
+        "Hotel",
+        "type_room",
+        "hotel_service"
       ]
     },
     "Company": {

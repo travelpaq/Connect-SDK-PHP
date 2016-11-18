@@ -91,7 +91,11 @@ class Package
 
       $this->Price = new Price($package['Price']);
 
-      $this->Accommodation = new Accommodation($package['Accommodation']);
+      $this->Accommodation = [];
+      foreach ($package['Accommodation'] as $accommodation) {
+        $this->Accommodation[] = new Accommodation($accommodation);
+      }
+      
       
       $this->Room = new Room($package['Room']);
 
