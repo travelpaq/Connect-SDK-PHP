@@ -24,6 +24,7 @@ class Package
     public $total_nights;
     public $transport;
     public $observations;
+    public $itinerary;
     public $Category;
     public $Service;
     public $Image;
@@ -33,6 +34,7 @@ class Package
     public $Accommodation;
     public $Room;
     public $Company;
+    public $Avail;
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
@@ -72,6 +74,11 @@ class Package
         $this->observations = '';
       else 
         $this->observations = $package['observations'];
+
+      if(!array_key_exists('itinerary', $package))
+        $this->itinerary = '';
+      else 
+        $this->itinerary = $package['itinerary'];
         
       $this->Category = [];
       foreach ($package['Category'] as $key => $value) {
@@ -110,6 +117,12 @@ class Package
         } else {
             $this->Company = null;
         }
+
+      if(array_key_exists('Avail', $package) && $package['Avail']){
+          $this->Avail = new Avail($package['Avail']);
+      } else {
+          $this->Avail = null;
+      }
 
     }
 }

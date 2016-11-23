@@ -65,6 +65,10 @@
       "type": "string",
       "title": "Observaciones del paquete."
     },
+    "itinerary": {
+      "type": "string",
+      "title": "Itinerario del paquete."
+    },
     "Category": {
       "type": "array",
       "title": "Lista de categorías.",
@@ -415,6 +419,30 @@
         "cuit"
       ]
     }
+    ,
+    "Avail": {
+      "type": ["object", "null"],
+      "title": "Disponibilidad del paquete.",
+      "properties": {
+        "seats": {
+          "type": "integer",
+          "title": "Cantidad de asientos disponibles."
+        },
+        "rooms": {
+          "type": "integer",
+          "title": "Cantidad de habiaciones disponibles."
+        },
+        "last_update": {
+          "type": "string",
+          "title": "Fecha - hora de ultima actualización."
+        }
+      },
+      "required": [
+        "seat",
+        "rooms",
+        "last_update"
+      ]
+    }
   },
   "required": [
     "Category",
@@ -427,6 +455,7 @@
     "Price",
     "Accommodation",
     "Company",
+    "Avail",
     "transport"
   ]
 }
