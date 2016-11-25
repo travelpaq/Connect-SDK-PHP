@@ -38,7 +38,7 @@ class Avail
 
         if(!array_key_exists('last_update', $data))
             $data['last_update'] = "";
-        $this->last_update = date('Y-d-m', strtotime($data['last_update']));
+        $this->last_update = date('Y-d-m H:i:s', strtotime($data['last_update']));
     }
 
 }

@@ -438,7 +438,7 @@
         }
       },
       "required": [
-        "seat",
+        "seats",
         "rooms",
         "last_update"
       ]
