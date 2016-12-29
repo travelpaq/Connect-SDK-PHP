@@ -49,10 +49,10 @@
       "description": "Junto con month_departure forman el mes en que el pasajeros desean salir."
     },
     "Room": {
-        "type": "object",
+        "type": "array",
         "title": "Habitación.",
         "description": " .",
-        "properties": {
+        "items": {
           "adult": {
             "type": "integer",
             "minimum": 1,
@@ -61,9 +61,22 @@
             "description": "Cantidad de adultos que ocupan la habitación."
           },
           "Children": {
-            "type": "integer",
+            "type": "array",
             "title": "Niños de la habitación.",
-            "description": "Cantidad de niños que ocupan la habitación."
+            "description": " .",
+            "items": {
+              "type": "object",
+              "title": "Un niño de la habitación.",
+              "description": " .",
+              "properties": {
+                "age": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 18,
+                  "title": "Edad del niño."
+                }
+              }
+            }
           }
         },
         "required": [

@@ -21,7 +21,11 @@ class Room
 					$this->Children[] = new Child($child);	
 				}
 			} else {
-				throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
+				if(count($params['Children']) == 0){
+					$this->Children = [];
+				} else {
+					throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
+				}
 			}
 		} else {
 			throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
