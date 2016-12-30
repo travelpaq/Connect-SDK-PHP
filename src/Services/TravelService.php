@@ -53,6 +53,34 @@ class TravelService extends Service
 		}
 	}
 
+	public function getFaresPackage($origin_iata, $departure_iata, $month, $year){
+		try {
+			if(!$$origin_iata || !$departure_iata || !$month || $year)
+				throw new RequestException("Se requiere que especifique los códigos IATA de las ciudades de salida y llegada y el mes/año", 1);
+				
+			$response = $this->http_client
+						 ->http_client
+						 ->request('GET',"travel/getFaresPackage/$origin_iata/$departure_iata/$month/$year");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			
+			$faresPackage = array();
+			foreach ($body_decoded as $farePackage) {
+				$faresPackage[] = new FarePackage($farePackage);
+			}
+
+			return $faresPackage;
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
 	public function getPlacesWithPackage($country_iata){
 		try {
 			$response = $this->http_client

@@ -172,6 +172,26 @@ class PackagesAPI
         return $travelService->getMonthByPlaces($place_iata);
     }
 
+    /**
+     * Obtiene todas las tarifas para un IATA determinado y mes / año específico
+     *
+     * @param string $origin_place IATA del lugar de salida de los paquetes de los cuales se requieren las tarifas
+     *
+     * @param string $departure_place IATA del lugar de llegada de los paquetes de los cuales se requieren las tarifas
+     *
+     * @param int $month Mes del que se quieren averiguar las tarifas disponibles
+     *
+     * @param year $year Año del que se quieren averiguar las tarifas disponibles
+     *
+     * @return FaresPackage Retorna un listado de tarifas de paquetes
+     *
+     */
+    public function getFaresPackage($origin_place = null, $departure_place = null, $month = null, $year = null)  
+    {
+        $travelService = new TravelService();
+        return $travelService->getFaresPackage($origin_place, $departure_place, $place_iata, $month, $year);
+    }
+
 
     
     /**
