@@ -20,22 +20,26 @@ namespace TravelPAQ\PackagesAPI\Models;
  */
 class ChildFare
 {
-	/*
-	* @var int Límite inferior inclusivo para la edad de los niños.
-	*/
-	public $ageFrom;
-	/*
-	* @var int Límite superior inclusivo para la edad de los niños.
-	*/
-	public $ageTo;
-	/*
-	* @var int Número máximo de niños que soporta la tarifa.
-	*/
-	public $maxNumber;
-	/*
-	* @var string Tipo de tarifa children.
-	*/
-	public $kind;
+    /*
+    * @var int Límite inferior inclusivo para la edad de los niños.
+    */
+    public $ageFrom;
+    /*
+    * @var int Límite superior inclusivo para la edad de los niños.
+    */
+    public $ageTo;
+    /*
+    * @var int Número máximo de niños que soporta la tarifa.
+    */
+    public $maxNumber;
+    /*
+    * @var int Orden para identificar tarifas que tienen un precio para un menor o otra para un segundo menor, y asi sucesivamente.
+    */
+    public $numberOrder;
+    /*
+    * @var string Tipo de tarifa children.
+    */
+    public $kind;
     
     /**
      * Constructor
@@ -43,7 +47,7 @@ class ChildFare
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('ageFrom', $data) && $data['ageFrom'] > 0)
+        if(!array_key_exists('ageFrom', $data) && $data['ageFrom'] > 0)
             $data['ageFrom'] = 0;
         $this->ageFrom = (int)($data['ageFrom']);
 
@@ -55,7 +59,11 @@ class ChildFare
             $data['maxNumber'] = 0;
         $this->maxNumber = (int)($data['maxNumber']);
 
-        if(!array_key_exists('kind', $data) && $data['kind'] > 0)
+        if(!array_key_exists('numberOrder', $data) && $data['numberOrder'] > 0)
+            $data['numberOrder'] = 0;
+        $this->numberOrder = $data['numberOrder'];
+
+        if(!array_key_exists('kind', $data) && $data['kind'])
             $data['kind'] = "";
         $this->kind = $data['kind'];
     }
