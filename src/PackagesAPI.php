@@ -189,7 +189,7 @@ class PackagesAPI
     public function getFaresPackage($origin_place = null, $departure_place = null, $month = null, $year = null)  
     {
         $travelService = new TravelService();
-        return $travelService->getFaresPackage($origin_place, $departure_place, $place_iata, $month, $year);
+        return $travelService->getFaresPackage($origin_place, $departure_place, $month, $year);
     }
 
 

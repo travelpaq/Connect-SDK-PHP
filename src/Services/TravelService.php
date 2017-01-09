@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 use TravelPAQ\PackagesAPI\Models\Destinies;
 use TravelPAQ\PackagesAPI\Models\Month;
+use TravelPAQ\PackagesAPI\Models\FarePackage;
 
 class TravelService extends Service
 {
@@ -55,7 +56,7 @@ class TravelService extends Service
 
 	public function getFaresPackage($origin_iata, $departure_iata, $month, $year){
 		try {
-			if(!$$origin_iata || !$departure_iata || !$month || $year)
+			if(!$origin_iata || !$departure_iata || !$month || !$year)
 				throw new RequestException("Se requiere que especifique los códigos IATA de las ciudades de salida y llegada y el mes/año", 1);
 				
 			$response = $this->http_client

@@ -39,9 +39,9 @@ class FarePackage
             $data['adult'] = 0;
         $this->adult = (int)($data['adult']);
         
-        if(!array_key_exists('ChildrenFare', $data) && count($data['ChildrenFare']) > 0){
-        	foreach($ChildrenFare as $ChildFare){
-        		$this->ChildFare[] = new ChildFare($ChildFare);
+        if(array_key_exists('ChildrenFare', $data) && count($data['ChildrenFare']) > 0){
+        	foreach($data['ChildrenFare'] as $ChildFare){
+        		$this->ChildrenFare[] = new ChildFare($ChildFare);
         	}
         } else {
         	$this->ChildrenFare = [];

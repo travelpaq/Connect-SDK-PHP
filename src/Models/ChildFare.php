@@ -57,6 +57,6 @@ class ChildFare
 
         if(!array_key_exists('kind', $data) && $data['kind'] > 0)
             $data['kind'] = "";
-        $this->kind = $data['kind']);
+        $this->kind = $data['kind'];
     }
 }
