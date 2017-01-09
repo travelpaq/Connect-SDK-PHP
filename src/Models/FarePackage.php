@@ -37,7 +37,7 @@ class FarePackage
     {
     	if(!array_key_exists('adult', $data) && $data['adult'] > 0)
             $data['adult'] = 0;
-        $this->adult = $data['adult'];
+        $this->adult = (int)($data['adult']);
         
         if(!array_key_exists('ChildrenFare', $data) && count($data['ChildrenFare']) > 0){
         	foreach($ChildrenFare as $ChildFare){

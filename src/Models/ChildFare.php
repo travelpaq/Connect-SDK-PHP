@@ -45,18 +45,18 @@ class ChildFare
     {
     	if(!array_key_exists('ageFrom', $data) && $data['ageFrom'] > 0)
             $data['ageFrom'] = 0;
-        $this->ageFrom = $data['ageFrom'];
+        $this->ageFrom = (int)($data['ageFrom']);
 
         if(!array_key_exists('ageTo', $data) && $data['ageTo'] > 0)
             $data['ageTo'] = 0;
-        $this->ageTo = $data['ageTo'];
+        $this->ageTo = (int)($data['ageTo']);
 
         if(!array_key_exists('maxNumber', $data) && $data['maxNumber'] > 0)
             $data['maxNumber'] = 0;
-        $this->maxNumber = $data['maxNumber'];
+        $this->maxNumber = (int)($data['maxNumber']);
 
         if(!array_key_exists('kind', $data) && $data['kind'] > 0)
             $data['kind'] = "";
-        $this->kind = $data['kind'];
+        $this->kind = $data['kind']);
     }
 }
