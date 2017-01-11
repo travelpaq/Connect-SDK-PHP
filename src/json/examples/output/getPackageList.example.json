@@ -87,7 +87,7 @@
             "expired_date": "2016-09-25",
             "Price": {
                 "currency": "USD",
-                "Total_Price": {
+                "TotalPrice": {
                     "neto": 172.88,
                     "tax": 27.628,
                     "vat": 0
@@ -201,7 +201,7 @@
             "expired_date": "2016-09-25",
             "Price": {
                 "currency": "USD",
-                "Total_Price": {
+                "TotalPrice": {
                     "neto": 172.88,
                     "tax": 27.628,
                     "vat": 0

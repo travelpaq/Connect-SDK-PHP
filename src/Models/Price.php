@@ -19,16 +19,17 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class Price
 {
-	public $currency;
-        public $price_per_person;
-        public $final_price;
-        public $markup;
-	public $Total_Price;
+    public $currency;
+    public $price_per_person;
+    public $final_price;
+    public $markup;
+    public $TotalPrice;
+    public $RoomsPrice;
     /**
      * Constructor
      * @param Array data datos del precio
      */
-    public function __construct($data)
+    public function __construct($data, $rooms)
     {
     	if(!array_key_exists('currency', $data))
     		$data['currency'] = "";
@@ -46,7 +47,12 @@ class Price
             $data['markup'] = "";
         $this->markup = $data['markup'];
  
-    	$this->Total_Price = new Total_Price($data['Total_Price']);
+    	$this->TotalPrice = new TotalPrice($data['TotalPrice']);
+
+        $this->RoomsPrice = [];
+        foreach($data['RoomPrice'] as $i => $roomPrice){
+            $this->RoomsPrice = new RoomPrice($roomPrice, $rooms[$i]);
+        }
     }
 
 }

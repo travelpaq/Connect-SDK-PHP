@@ -41,6 +41,51 @@
         "Country",
         "iata"
       ]
+    },
+    "Room":{
+      "adult": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 8,
+        "title": "Adultos de la habitación.",
+        "description": "Cantidad de adultos que ocupan la habitación."
+      },
+      "Children": {
+        "type": "array",
+        "title": "Niños de la habitación.",
+        "description": " .",
+        "items": {
+          "type": "object",
+          "title": "Un niño de la habitación.",
+          "description": " .",
+          "properties": {
+            "age": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18,
+              "title": "Edad del niño."
+            }
+          }
+        }
+      },
+      "TotalPrice": {
+        "type": "object",
+        "title": "Objeto con desglose de precio",
+        "properties":{
+          "neto": {
+            "type": "number",
+            "title": "Tarifa neta."
+          },
+          "tax": {
+            "type": "number",
+            "title": "Impuestos."
+          },
+          "vat": {
+            "type": "number",
+            "title": "IVA."
+          }
+        }
+      }
     }
   },
   "title": "Resultados devueltos por el método getPackage.",
@@ -264,62 +309,6 @@
         }
       }
     },
-    "Price": {
-      "type": "object",
-      "title": "Precio del paquete.",
-      "description": "Contiene todos los detalles del precio del paquete.",
-      "properties": {
-        "currency": {
-          "type": "string",
-          "enum":["ARS", "USD","EUR"],
-          "title": "Tipo de moneda del paquete."
-        },
-        "Total_Price": {
-          "type": "object",
-          "title": "Precio total del paquete.",
-          "description": "Este objeto contiene los detalles del precio total y su division por impuestos.",
-          "properties": {
-            "neto": {
-              "type": "number",
-              "title": "Tarifa neta."
-            },
-            "tax": {
-              "type": "number",
-              "title": "Impuestos."
-            },
-            "vat": {
-              "type": "number",
-              "title": "IVA."
-            }
-          },
-          "required": [
-            "neto",
-            "tax",
-            "vat"
-          ]
-        },
-        "price_per_person": {
-          "type": "number",
-          "title": "Precio por persona.",
-          "description": "El precio total se divide entre todos los pasajeros y se obtiene la tarifa final por persona."
-        },
-        "final_price": {
-          "type": "number",
-          "title": "Precio final.",
-          "description": "."
-        },
-        "markup": {
-          "type": "number",
-          "title": "Markup.",
-          "description": "."
-        }
-      },
-      "required": [
-        "currency",
-        "Total_Price",
-        "price_per_person"
-      ]
-    },
     "Accommodation": {
       "type": "array",
       "title": "Información de hospedaje.",
@@ -442,6 +431,100 @@
         "rooms",
         "last_update"
       ]
+    },
+    "Room": {
+        "type": "array",
+        "title": "Habitación.",
+        "description": " .",
+        "items": {
+          "type": "object",
+          "title": "Destino.",
+          "description": "Cada item representa una de las habitaciones que se presupuestan en este paquete.",
+          "properties": {
+            "$ref": "#/definitions/Room" 
+          }
+        }
+    },
+    "Price": {
+      "type": "object",
+      "title": "Precio del paquete.",
+      "description": "Contiene todos los detalles del precio del paquete.",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "enum":["ARS", "USD","EUR"],
+          "title": "Tipo de moneda del paquete."
+        },
+        "TotalPrice": {
+          "type": "object",
+          "title": "Precio total del paquete.",
+          "description": "Este objeto contiene los detalles del precio total y su division por impuestos.",
+          "properties": {
+            "$ref": "#/definitions/TotalPrice"
+          }
+        },
+        "price_per_person": {
+          "type": "number",
+          "title": "Precio por persona.",
+          "description": "El precio total se divide entre todos los pasajeros y se obtiene la tarifa final por persona."
+        },
+        "final_price": {
+          "type": "number",
+          "title": "Precio final.",
+          "description": "."
+        },
+        "markup": {
+          "type": "number",
+          "title": "Markup.",
+          "description": "."
+        },
+        "RoomsPrice": {
+          "type": "array",
+          "title": "Precio por habitación.",
+          "description": " .",
+          "items": {
+            "AdultPrice": {
+              "type": "object",
+              "title": "Adultos de la habitación.",
+              "properties": {
+                  "$ref": "#/definitions/TotalPrice" 
+                }
+            },
+            "ChildrenPrice": {
+              "type": "array",
+              "title": "Niños de la habitación.",
+              "description": " .",
+              "items": {
+                "type": "object",
+                "title": "Precio total.",
+                "properties": {
+                  "$ref": "#/definitions/TotalPrice" 
+                  }
+                }
+            },
+            "Room":{
+              "type": "object",
+              "title": "Destino.",
+              "properties": {
+                "$ref": "#/definitions/Room" 
+              }
+            }
+          },
+          "required": [
+            "AdultPrice",
+            "ChildrenPrice",
+            "Room"
+          ]
+        }
+      },
+      "required": [
+        "currency",
+        "TotalPrice",
+        "price_per_person",
+        "final_price",
+        "markup",
+        "RoomsPrice"
+      ]
     }
   },
   "required": [
@@ -456,6 +539,7 @@
     "Accommodation",
     "Company",
     "Avail",
+    "Room",
     "transport"
   ]
 }

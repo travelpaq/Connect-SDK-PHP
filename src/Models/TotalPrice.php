@@ -13,11 +13,11 @@ namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 /**
- * Class Total_Price
+ * Class TotalPrice
  *
  * @package TravelPAQ
  */
-class Total_Price
+class TotalPrice
 {
 	public $neto;
 	public $tax;

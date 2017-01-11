@@ -101,8 +101,13 @@ class Package
       foreach ($package['Place'] as $key => $value) {
         $this->Place[] = new Place($value);
       }
+      
+      $this->Room = [];
+      foreach ($package['Room'] as $room) {
+        $this->Room[] = new Room($room);
+      }
 
-      $this->Price = new Price($package['Price']);
+      $this->Price = new Price($package['Price'], $this->Room);
 
       $this->Accommodation = [];
       foreach ($package['Accommodation'] as $accommodation) {
@@ -110,7 +115,6 @@ class Package
       }
       
       
-      $this->Room = new Room($package['Room']);
 
       if(array_key_exists('Company', $package) && $package['Company']){
             $this->Company = new Company($package['Company']);
