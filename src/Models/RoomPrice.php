@@ -32,7 +32,7 @@ class RoomPrice
 
         if(count($data['ChildrenPrice']) > 0){
             foreach($data['ChildrenPrice'] as $childPrice){
-                $this->ChildrenPrice = new TotalPrice($childPrice)
+                $this->ChildrenPrice = new ChildPrice($childPrice)
             }
         } else {
             $this->ChildrenPrice = [];
