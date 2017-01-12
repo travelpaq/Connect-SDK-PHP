@@ -483,6 +483,13 @@
             "title": "Precio por habitación.",
             "description": " .",
             "items": {
+              "TotalPrice": {
+                "type": "object",
+                "title": "Precio total de la habitación.",
+                "properties": {
+                    "$ref": "#/definitions/TotalPrice" 
+                  }
+              },
               "AdultPrice": {
                 "type": "object",
                 "title": "Adultos de la habitación.",
@@ -502,9 +509,11 @@
                   "type": "object",
                   "title": "Precio total.",
                   "properties": {
-                    "age": {
-                        "type": "integer",
-                        "title": "Cantidad de adultos en el paquete."
+                      "age_from": {
+                        "type": "integer"
+                      },
+                      "age_to": {
+                        "type": "integer"
                       },
                       "$ref": "#/definitions/TotalPrice" 
                     }
