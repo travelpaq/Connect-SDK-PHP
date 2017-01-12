@@ -50,7 +50,7 @@ class Price
     	$this->TotalPrice = new TotalPrice($data['TotalPrice']);
 
         $this->RoomsPrice = [];
-        foreach($data['RoomPrice'] as $i => $roomPrice){
+        foreach($data['RoomsPrice'] as $i => $roomPrice){
             $this->RoomsPrice = new RoomPrice($roomPrice, $rooms[$i]);
         }
     }

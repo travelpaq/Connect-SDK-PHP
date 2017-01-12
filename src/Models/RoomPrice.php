@@ -28,7 +28,7 @@ class RoomPrice
      * Constructor
      * @param Array data datos del precio
      */
-    public function __construct($data, room)
+    public function __construct($data, $room)
     {
     	$this->AdultPrice = new AdultPrice($data['AdultPrice']);
 
@@ -36,7 +36,7 @@ class RoomPrice
 
         if(count($data['ChildrenPrice']) > 0){
             foreach($data['ChildrenPrice'] as $childPrice){
-                $this->ChildrenPrice = new ChildPrice($childPrice)
+                $this->ChildrenPrice = new ChildPrice($childPrice);
             }
         } else {
             $this->ChildrenPrice = [];
