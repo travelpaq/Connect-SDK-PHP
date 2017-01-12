@@ -13,11 +13,11 @@ namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 /**
- * Class ChildPrice
+ * Class AdultPrice
  *
  * @package TravelPAQ
  */
-class AdultdPrice extends TotalPrice
+class AdultPrice extends TotalPrice
 {
     public $adult;
     public function __construct($data)
