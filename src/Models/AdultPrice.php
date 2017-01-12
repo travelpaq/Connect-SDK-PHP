@@ -17,15 +17,22 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  *
  * @package TravelPAQ
  */
-class AdultPrice extends TotalPrice
+class AdultPrice
 {
     public $adult;
+    public $final_price;
+    public $TotalPrice;
     public function __construct($data)
     {
     	if(!array_key_exists('adult', $data))
             $data['adult'] = 0;
         $this->adult = $data['adult'];
-        parent::__construct($data);
+
+        if(!array_key_exists('final_price', $data))
+            $data['final_price'] = 0;
+        $this->final_price = $data['final_price'];
+
+        $this->TotalPrice = new TotalPrice($data['TotalPrice']);
     }
 
 }

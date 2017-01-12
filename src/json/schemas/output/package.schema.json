@@ -498,7 +498,13 @@
                         "type": "integer",
                         "title": "Cantidad de adultos en el paquete."
                       },
-                    "$ref": "#/definitions/TotalPrice" 
+                    "TotalPrice": {
+                      "type": "object",
+                      "title": "Precio total de la habitación.",
+                      "properties": {
+                          "$ref": "#/definitions/TotalPrice" 
+                        }
+                    }
                   }
               },
               "ChildrenPrice": {
@@ -515,7 +521,13 @@
                       "age_to": {
                         "type": "integer"
                       },
-                      "$ref": "#/definitions/TotalPrice" 
+                       "TotalPrice": {
+                      "type": "object",
+                      "title": "Precio total de la habitación.",
+                      "properties": {
+                          "$ref": "#/definitions/TotalPrice" 
+                        }
+                      }
                     }
                   }
               },
@@ -530,6 +542,7 @@
             "required": [
               "AdultPrice",
               "ChildrenPrice",
+              "TotalPrice",
               "Room"
             ]
           }

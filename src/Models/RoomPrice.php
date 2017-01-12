@@ -23,6 +23,7 @@ class RoomPrice
     public $ChildrenPrice;
     public $TotalPrice;
     public $Room;
+    public $final_price;
     /**
      * Constructor
      * @param Array data datos del precio
@@ -42,6 +43,10 @@ class RoomPrice
         }
 
         $this->Room = $room;
+
+        if(!array_key_exists('final_price', $data))
+            $data['final_price'] = 0;
+        $this->final_price = $data['final_price'];
     }
 
 }
