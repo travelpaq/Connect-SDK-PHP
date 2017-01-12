@@ -26,7 +26,7 @@ class AdultPrice
     {
     	if(!array_key_exists('adult', $data))
             $data['adult'] = 0;
-        $this->adult = $data['adult'];
+        $this->adult = (int)$data['adult'];
 
         if(!array_key_exists('final_price', $data))
             $data['final_price'] = 0;
