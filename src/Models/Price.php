@@ -51,7 +51,7 @@ class Price
 
         $this->RoomsPrice = [];
         foreach($data['RoomsPrice'] as $i => $roomPrice){
-            $this->RoomsPrice = new RoomPrice($roomPrice, $rooms[$i]);
+            $this->RoomsPrice[] = new RoomPrice($roomPrice, $rooms[$i]);
         }
     }
 

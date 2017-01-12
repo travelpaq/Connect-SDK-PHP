@@ -27,10 +27,10 @@ class ChildPrice
     {
         if(!array_key_exists('age_from', $data))
             $data['age_from'] = 0;
-        $this->age_from = $data['age_from'];
+        $this->age_from = (int)$data['age_from'];
         if(!array_key_exists('age_to', $data))
             $data['age_to'] = 0;
-        $this->age_to = $data['age_to'];
+        $this->age_to = (int)$data['age_to'];
 
         if(!array_key_exists('final_price', $data))
             $data['final_price'] = 0;

@@ -92,9 +92,9 @@
     "description": "El objeto representa un paquete turístico.",
     "properties": {
       "id": {
-        "type": "integer",
+        "type": "string",
         "title": "Id del paquete.",
-        "description": "Identificador de paquete que permite buscarlo dentro de todos los paquetes integrado de todos los operadores."
+        "description": "Identificador de paquete que permite buscarlo dentro de todos los paquetes integrados de todos los operadores."
       },
       "title": {
         "type": "string",
