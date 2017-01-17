@@ -54,12 +54,9 @@ class PackageService extends Service
 	
 	public function getPackage($package_id){
 		try {
-			$response = $this->http_client
-							 ->http_client
-							 ->request('GET',"Packages/getPackage/$package_id");
 
+			$response = $this->http_client->http_client->request('GET',"Packages/getPackage/$package_id");
 			$body = $response->getBody()->getContents();
-
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception($body);

@@ -95,9 +95,8 @@ class PackagesAPI
      */
     public function getPackage($package_id)
     {
-        if(!is_numeric($package_id) || $package_id <= 0)
-            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
-
+        if(!json_decode(base64_decode($package_id)))
+            throw new ValidationException('El identificador no es correcto');
         $ps = new PackageService();
         return $ps->getPackage($package_id);
     }
@@ -118,8 +117,8 @@ class PackagesAPI
      */
     public function checkAvail($package_id)  
     {
-        if(!is_numeric($package_id)|| $package_id <= 0)
-            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor que cero');
+         if(!json_decode(base64_decode($package_id)))
+            throw new ValidationException('El identificador no es correcto');
 
         $bookingService = new BookingPackageService();
         return $bookingService->checkAvail($package_id);
