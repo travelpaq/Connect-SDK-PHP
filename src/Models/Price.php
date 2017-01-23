@@ -44,8 +44,12 @@ class Price
         $this->final_price = $data['final_price'];
 
         if(!array_key_exists('markup', $data))
-            $data['markup'] = "";
+            $data['markup'] = 0;
         $this->markup = $data['markup'];
+
+        if(!array_key_exists('change', $data))
+            $data['change'] = 1;
+        $this->markup = $data['change'];
  
     	$this->TotalPrice = new TotalPrice($data['TotalPrice']);
 

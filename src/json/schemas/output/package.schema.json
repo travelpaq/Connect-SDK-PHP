@@ -478,6 +478,11 @@
             "title": "Markup.",
             "description": "."
           },
+          "change": {
+            "type": "number",
+            "title": "Tipo de cambio del paquete.",
+            "description": "."
+          },
           "RoomsPrice": {
             "type": "array",
             "title": "Precio por habitación.",
@@ -553,6 +558,7 @@
           "price_per_person",
           "final_price",
           "markup",
+          "change",
           "RoomsPrice"
         ]
       }
