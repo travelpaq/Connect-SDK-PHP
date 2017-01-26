@@ -93,22 +93,22 @@ class Pricing
             }
         }
 
-        if(!(array_key_exists('commissionable_price', $data) && $data['commissionable_price'])){
+        if(!(array_key_exists('commissionable_price', $data) && $data['commissionable_price']){
             $data['commissionable_price'] = 0;
         }
         $this->commissionable_price = (float)$data['commissionable_price'];
 
-        if(!(array_key_exists('commission_amount', $data) && $data['commission_amount'])){
+        if(!(array_key_exists('commission_amount', $data) && $data['commission_amount']){
             $data['commission_amount'] = 0;
         }
         $this->commission_amount = (float)$data['commission_amount'];
 
-        if(!(array_key_exists('override_commission_amount', $data) && $data['override_commission_amount'])){
+        if(!(array_key_exists('override_commission_amount', $data) && $data['override_commission_amount']){
             $data['override_commission_amount'] = 0;
         }
         $this->override_commission_amount = (float)$data['override_commission_amount'];
 
-        if(!(array_key_exists('total', $data) && $data['total'])){
+        if(!(array_key_exists('total', $data) && $data['total']){
             $data['total'] = 0;
         }
         $this->total = (float)$data['total'];
