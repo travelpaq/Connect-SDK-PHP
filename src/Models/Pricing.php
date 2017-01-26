@@ -34,19 +34,19 @@ class Pricing
     /*
     * @var float Precio comisionable.
     */
-    public $CommissionablePrice;
+    public $commissionable_price;
     /*
     * @var float Comision de la OTA.
     */
-    public $CommissionAmount;
+    public $commission_amount;
     /*
     * @var float Sobrecarga de la comsión.
     */
-    public $OverrideCommissionAmount;
+    public $override_commission_amount;
     /*
     * @var float Total a pagar de la reserva
     */
-    public $Total;
+    public $total;
     
     /**
      * Constructor
@@ -93,25 +93,25 @@ class Pricing
             }
         }
 
-        if(!(array_key_exists('CommissionablePrice', $data) && $data['CommissionablePrice'])){
-            $data['CommissionablePrice'] = 0;
+        if(!(array_key_exists('commissionable_price', $data) && $data['commissionable_price'])){
+            $data['commissionable_price'] = 0;
         }
-        $this->CommissionablePrice = (float)$data['CommissionablePrice'];
+        $this->commissionable_price = (float)$data['commissionable_price'];
 
-        if(!(array_key_exists('CommissionAmount', $data) && $data['CommissionAmount'])){
-            $data['CommissionAmount'] = 0;
+        if(!(array_key_exists('commission_amount', $data) && $data['commission_amount'])){
+            $data['commission_amount'] = 0;
         }
-        $this->CommissionAmount = (float)$data['CommissionAmount'];
+        $this->commission_amount = (float)$data['commission_amount'];
 
-        if(!(array_key_exists('OverrideCommissionAmount', $data) && $data['OverrideCommissionAmount'])){
-            $data['OverrideCommissionAmount'] = 0;
+        if(!(array_key_exists('override_commission_amount', $data) && $data['override_commission_amount'])){
+            $data['override_commission_amount'] = 0;
         }
-        $this->OverrideCommissionAmount = (float)$data['OverrideCommissionAmount'];
+        $this->override_commission_amount = (float)$data['override_commission_amount'];
 
-        if(!(array_key_exists('Total', $data) && $data['Total'])){
-            $data['Total'] = 0;
+        if(!(array_key_exists('total', $data) && $data['total'])){
+            $data['total'] = 0;
         }
-        $this->Total = (float)$data['Total'];
+        $this->total = (float)$data['total'];
 
 
     }

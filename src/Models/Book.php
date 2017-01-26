@@ -6,14 +6,14 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 
 class Book
 {
-	var $package_fare_id;
+	var $package_id;
 	var $Room;
 	
 	function __construct($params) 
 	{
 		$this->Room = [];
-		if(array_key_exists('package_fare_id', $params))
-			$this->package_fare_id = $params['package_fare_id'];
+		if(array_key_exists('package_id', $params))
+			$this->package_id = $params['package_id'];
 		else 
 			throw new ValidationException("No se ha especificado el identificador del paquete sobre el cual se desea realizar la reserva");
 		

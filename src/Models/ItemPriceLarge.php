@@ -22,19 +22,19 @@ class ItemPriceLarge
 	/*
     * @var string Descripción del precio.
     */
-	public $Description;
+	public $description;
 	/*
     * @var float Base sobre la que se calcula el Rate.
     */
-    public $Base;
+    public $base;
     /*
-    * @var float Rate que se aplica sobre el rate
+    * @var float Rate que se aplica sobre la base
     */
-    public $Rate;
+    public $rate;
     /*
     * @var float Cantidad total del itemPrice.
     */
-    public $Amount;
+    public $amount;
 
     /**
      * Constructor
@@ -42,21 +42,21 @@ class ItemPriceLarge
      */
     public function __construct($data)
     {
-        if(!array_key_exists('Description', $data) && $data['Description'])
-        	$data['Description'] = '';
-        $this->Description = $data['Description'];
+        if(!array_key_exists('description', $data) && $data['description'])
+        	$data['description'] = '';
+        $this->description = $data['description'];
 
-        if(!array_key_exists('Base', $data) && $data['Base'])
-        	$data['Base'] = 0;
-        $this->Base = (float)$data['Base'];
+        if(!array_key_exists('base', $data) && $data['base'])
+        	$data['base'] = 0;
+        $this->base = (float)$data['base'];
 
-        if(!array_key_exists('Rate', $data) && $data['Rate'])
-        	$data['Rate'] = 0;
-        $this->Rate = (float)$data['Rate'];
+        if(!array_key_exists('rate', $data) && $data['rate'])
+        	$data['rate'] = 0;
+        $this->rate = (float)$data['rate'];
 
-        if(!array_key_exists('Amount', $data) && $data['Amount'])
-        	$data['Amount'] = 0;
-        $this->Amount = (float)$data['Amount'];
+        if(!array_key_exists('amount', $data) && $data['amount'])
+        	$data['amount'] = 0;
+        $this->amount = (float)$data['amount'];
 
 
     }

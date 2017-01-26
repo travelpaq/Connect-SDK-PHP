@@ -133,16 +133,16 @@
           "items": {
             "type": "object",
             "properties": {
-              "Description": {
+              "description": {
                 "type": "string"
               },
-              "Amount": {
+              "amount": {
                 "type": "number"
               }
             },
             "required": [
-              "Description",
-              "Amount"
+              "description",
+              "amount"
             ]
           }
         },
@@ -151,24 +151,24 @@
           "items": {
             "type": "object",
             "properties": {
-              "Description": {
+              "description": {
                 "type": "string"
               },
-              "Base": {
+              "base": {
                 "type": "number"
               },
-              "Rate": {
+              "rate": {
                 "type": "number"
               },
-              "Amount": {
+              "amount": {
                 "type": "number"
               }
             },
             "required": [
-              "Description",
-              "Base",
-              "Rate",
-              "Amount"
+              "description",
+              "base",
+              "rate",
+              "amount"
             ]
           }
         },
@@ -177,37 +177,37 @@
           "items": {
             "type": "object",
             "properties": {
-              "Description": {
+              "description": {
                 "type": "string"
               },
-              "Base": {
+              "base": {
                 "type": "number"
               },
-              "Rate": {
+              "rate": {
                 "type": "number"
               },
-              "Amount": {
+              "amount": {
                 "type": "number"
               }
             },
             "required": [
-              "Description",
-              "Base",
-              "Rate",
-              "Amount"
+              "description",
+              "base",
+              "rate",
+              "amount"
             ]
           }
         },
-        "CommissionablePrice": {
+        "commissionable_price": {
           "type": "number"
         },
-        "CommissionAmount": {
+        "commission_amount": {
           "type": "number"
         },
-        "OverrideCommissionAmount": {
+        "override_commission_amount": {
           "type": "number"
         },
-        "Total": {
+        "total": {
           "type": "number"
         }
       },
@@ -215,10 +215,10 @@
         "NonCommissionableService",
         "TourismTaxes",
         "FiscalTaxes",
-        "CommissionablePrice",
-        "CommissionAmount",
-        "OverrideCommissionAmount",
-        "Total"
+        "commissionable_price",
+        "commission_amount",
+        "override_commission_amount",
+        "total"
       ]
     }
   },

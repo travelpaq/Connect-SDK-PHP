@@ -4,7 +4,7 @@
   "title": "Esquema de validación para bookingPackage.",
   "description": "Este esquema contiene los datos que se envían como parámetros de entrada para la reserva de un paquete.",
   "properties": {
-    "package_fare_id": {
+    "package_id": {
       "type": "string",
       "title": "Identificador del paquete.",
       "description": "Con este dato se puede acceder a la tabla de integración para saber cual es el operador y obtener la tarifa para la cantidad de pasageros ."
@@ -93,7 +93,7 @@
     }
   },
   "required": [
-    "package_fare_id",
+    "package_id",
     "Room"
   ]
 }
