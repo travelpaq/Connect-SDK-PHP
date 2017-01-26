@@ -115,10 +115,10 @@ class Passenger
 			$this->mail = $data['mail'];
 		
 		if($this->kind_doc == 'Pasaporte') {
-			if(array_key_exists('Passport', $data))
+			if(array_key_exists('Passport', $data) && $data['Passport'])
 				$this->Passport = new Passport($data['Passport']);
 			else 
-				throw new ValidationException("No se ha recibido el Pasaporte del pasajero");
+				$this->Passport = [];
 		} 
     }
 

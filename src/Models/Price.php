@@ -23,6 +23,7 @@ class Price
     public $price_per_person;
     public $final_price;
     public $markup;
+    public $change;
     public $TotalPrice;
     public $RoomsPrice;
     /**
@@ -49,7 +50,7 @@ class Price
 
         if(!array_key_exists('change', $data))
             $data['change'] = 1;
-        $this->markup = $data['change'];
+        $this->change = $data['change'];
  
     	$this->TotalPrice = new TotalPrice($data['TotalPrice']);
 
