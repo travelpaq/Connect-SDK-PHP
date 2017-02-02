@@ -35,6 +35,16 @@ class BookingStatus
     */
     public $currency;
     /*
+    * @var string Estado del paquete (WAITING, EXPIRED, CANCELING, CANCELED,
+    * CONFIRMING, CONFIRMED, ERROR)
+    */
+    public $status;
+
+    /*
+    * @var string Si hay un error, se muestra en este campo.
+    */
+    public $message_error;
+    /*
     * @var Fare Tarifas de la reserva
     */
     public $Fare;
@@ -47,16 +57,6 @@ class BookingStatus
     * @var Package Datos del paquete
     */
     public $Package;
-    /*
-    * @var string Estado del paquete (WAITING, EXPIRED, CANCELING, CANCELED,
-    * CONFIRMING, CONFIRMED, ERROR)
-    */
-    public $status;
-
-    /*
-    * @var string Si hay un error, se muestra en este campo.
-    */
-    public $message_error;
 
     /*
     * @var Pricing Muestra la liquidación con todos los datos que nevia el operador.

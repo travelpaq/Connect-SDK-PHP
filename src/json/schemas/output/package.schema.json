@@ -483,6 +483,11 @@
             "title": "Tipo de cambio del paquete.",
             "description": "."
           },
+          "ota_comission": {
+            "type": "number",
+            "title": "Comisión acordada entre la OTA y el operador.",
+            "description": "."
+          },
           "RoomsPrice": {
             "type": "array",
             "title": "Precio por habitación.",
