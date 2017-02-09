@@ -13,18 +13,17 @@ namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 /**
- * Class Country
+ * Class Region
  *
  * @package TravelPAQ
  */
-class Country
+class Region
 {
     public $name;
     public $iata;
-    public $Region;
     /**
      * Constructor
-     * @param Array data datos de un Pais
+     * @param Array data datos de una Región
      */
     public function __construct($data)
     {
@@ -35,9 +34,5 @@ class Country
         if(!array_key_exists('iata', $data))
             $data['iata'] = "";
         $this->iata = $data['iata'];
-
-        if(!array_key_exists('Region', $data))
-            $data['Region'] = "";
-        $this->Region = $data['Region'];
     }
 }

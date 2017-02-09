@@ -9,31 +9,50 @@
             "type": "string",
             "title": "Nombre del lugar."
           },
+          "iata": {
+            "type": "string",
+            "title": "Código IATA del lugar.",
+            "minLength": 3,
+            "maxLength": 3
+          },
           "Country": {
             "type": "object",
             "title": "País al cual pertenece el lugar.",
             "properties": {
+              "name": {
+                "type": "string",
+                "title": "Nombre del país."
+              },
               "iata": {
                 "type": ["string","null"],
                 "minLength": 2,
                 "maxLength": 2,
                 "title": "Código IATA del país."
               },
-              "name": {
-                "type": "string",
-                "title": "Nombre del país."
+              "Region": {
+                "type": "object",
+                "title": "Región al cual pertenece el país.",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "Nombre de la región."
+                  },
+                  "iata": {
+                    "type": ["string","null"],
+                    "title": "Código IATA de la Region."
+                  }
+                  
+                },
+                "required": [
+                  "iata",
+                  "name"
+                ]
               }
             },
             "required": [
               "iata",
               "name"
             ]
-          },
-          "iata": {
-            "type": "string",
-            "title": "Código IATA del lugar.",
-            "minLength": 3,
-            "maxLength": 3
           }
         },
         "required": [

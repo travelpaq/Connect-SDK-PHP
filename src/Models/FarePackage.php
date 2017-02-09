@@ -28,6 +28,11 @@ class FarePackage
 	* @var ChildFare tarifas de niños que soporta la tarifa.
 	*/
 	public $ChildrenFare;
+
+    /*
+    * @var maxNumberChildren Máxima cantidad de niños que pueden compatibilizarse con una tarifa adulto.
+    */
+    public $maxNumberChildren;
     
     /**
      * Constructor
@@ -46,6 +51,9 @@ class FarePackage
         } else {
         	$this->ChildrenFare = [];
         }
+        if(!array_key_exists('maxNumberChildren', $data) && $data['maxNumberChildren'] > 0)
+            $data['maxNumberChildren'] = 0;
+        $this->maxNumberChildren = (int)($data['maxNumberChildren']);
     }
 
 }
