@@ -233,7 +233,7 @@
     "external_id",
     "status",
     "Fare",
-    "Passenger",
+    "Room",
     "Package",
     "Pricing"
   ]

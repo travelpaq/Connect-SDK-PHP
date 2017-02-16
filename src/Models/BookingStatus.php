@@ -95,8 +95,8 @@ class BookingStatus
             $this->Fare[] = new Fare($fare);
         }
         
-        if(array_key_exists('Room', $params))   
-            foreach ($params['Room'] as $i => $room){
+        if(array_key_exists('Room', $data))   
+            foreach ($data['Room'] as $i => $room){
                 
                 $this->Room[] = [];
                 foreach ($room as $passenger)
