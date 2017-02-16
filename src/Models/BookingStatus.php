@@ -52,7 +52,7 @@ class BookingStatus
     /*
     * @var Passenger Listado de los pasajeros
     */
-    public $Passenger;
+    public $Room;
     /*
     * @var Package Datos del paquete
     */
@@ -95,10 +95,16 @@ class BookingStatus
             $this->Fare[] = new Fare($fare);
         }
         
-        $this->Passenger = [];
-        foreach ($data['Passenger'] as $key => $passenger) {
-            $this->Passenger[] = new Passenger($passenger);
-        }
+        if(array_key_exists('Room', $params))   
+            foreach ($params['Room'] as $i => $room){
+                
+                $this->Room[] = [];
+                foreach ($room as $passenger)
+                    $this->Room[$i][] = new Passenger($passenger);  
+            }
+        else 
+            throw new ValidationException("No se han los pasajeros que viajarán con el paquete sobre el cual se desea realizar la reserva");
+        
 
         if(!(array_key_exists('Pricing', $data) && $data['Pricing'] && count($data['Pricing']))){
             $data['Pricing'] = null;
