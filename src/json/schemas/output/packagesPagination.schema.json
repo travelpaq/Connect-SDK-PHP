@@ -60,7 +60,7 @@
       "title": "Cantidad total de paquetes para esa búsqueda."
     },
     "max_date_departure": {
-      "type": "sting",
+      "type": "string",
       "title": "Cantidad total de paquetes para esa búsqueda."
     }
   },

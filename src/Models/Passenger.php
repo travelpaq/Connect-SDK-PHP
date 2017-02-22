@@ -97,7 +97,7 @@ class Passenger
 		if(!array_key_exists('birthdate', $data))
 			throw new ValidationException("Falta el campo 'birthdate'");
 		else
-			$this->birthdate = $data['birthdate'];
+			$this->birthdate = date('Y-m-d', strtotime($data['birthdate']));
 		
 		if(!array_key_exists('residence', $data))
 			throw new ValidationException("Falta el campo 'residence'");
