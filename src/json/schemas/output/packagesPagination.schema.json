@@ -46,6 +46,22 @@
     "max_nights": {
       "type": "integer",
       "title": "Cantidad total de paquetes para esa búsqueda."
+    },
+    "min_star": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda."
+    },
+    "max_star": {
+      "type": "integer",
+      "title": "Cantidad total de paquetes para esa búsqueda."
+    },
+    "min_date_departure": {
+      "type": "string",
+      "title": "Cantidad total de paquetes para esa búsqueda."
+    },
+    "max_date_departure": {
+      "type": "sting",
+      "title": "Cantidad total de paquetes para esa búsqueda."
     }
   },
   "required": [
@@ -57,6 +73,10 @@
     "max_price",
     "min_price",
     "min_nights",
-    "max_nights"
+    "max_nights",
+    "min_star",
+    "max_star",
+    "min_date_departure",
+    "max_date_departure"
   ]
 }

@@ -62,6 +62,26 @@ class PackagesPagination
 	* Cantidad máxima de noches para esa búsqueda
 	*/
 	public $max_nights;
+
+	/*
+	* Cantidad mínima de estrellas de hotel para esa búsqueda
+	*/
+	public $min_star;
+
+	/*
+	* Cantidad máxima de estrellas de hotel para esa búsqueda
+	*/
+	public $max_star;
+
+	/*
+	* Cantidad mínima de fechas de salida para esa búsqueda
+	*/
+	public $min_date_departure;
+
+	/*
+	* Cantidad máxima de fechas de salida para esa búsqueda
+	*/
+	public $max_date_departure;
     
     /**
      * Constructor
@@ -81,14 +101,20 @@ class PackagesPagination
     	$this->min_price = (int)round($packagesList['min_price']);
     	if($this->min_price < 0 || $this->min_price > 10000000)
     		$this->min_price = 0;
-    	
     	$this->max_price = (int)round($packagesList['max_price']);
-    	$this->min_nights = (int)$packagesList['min_nights'];
-
+	
+	   	$this->min_nights = (int)$packagesList['min_nights'];
     	if($this->min_nights < 0 || $this->min_nights > 10000000)
     		$this->min_nights = 0;
-    	
     	$this->max_nights = (int)$packagesList['max_nights'];
+
+    	$this->min_star = (int)$packagesList['min_star'];
+    	if($this->min_star < 0 || $this->min_star > 10000000)
+    		$this->min_star = 0;
+    	$this->max_star = (int)$packagesList['max_star'];
+
+    	$this->min_date_departure = $packagesList['min_date_departure'];
+    	$this->max_date_departure = $packagesList['max_date_departure'];
     }
 
 }
