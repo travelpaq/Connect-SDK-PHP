@@ -44,6 +44,12 @@ class BookingStatus
     * @var string Si hay un error, se muestra en este campo.
     */
     public $message_error;
+
+    /*
+    * @var string Teléfono de contacto para la reserva.
+    */
+    public $contact_phone;
+
     /*
     * @var Fare Tarifas de la reserva
     */
@@ -116,6 +122,12 @@ class BookingStatus
             $this->message_error = $data['message_error'];
         } else {
             $this->message_error = "";
+        }
+
+        if(array_key_exists('contact_phone', $data) && $data['contact_phone']){
+            $this->contact_phone = $data['contact_phone'];
+        } else {
+            $this->contact_phone = "";
         }
 
         if(!array_key_exists('booking_id', $data))

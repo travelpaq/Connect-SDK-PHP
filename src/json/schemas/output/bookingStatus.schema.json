@@ -21,6 +21,10 @@
       "type": "string",
       "title": "Si hay un error, se muestra en este campo."
     },
+    "contact_phone": {
+      "type": "string",
+      "title": "Teléfono de contacto para la reserva."
+    },
     "Fare": {
       "type": "array",
       "title": "Tarifas de la reserva.",
