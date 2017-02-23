@@ -9,6 +9,10 @@
       "title": "Identificador del paquete.",
       "description": "Con este dato se puede acceder a la tabla de integración para saber cual es el operador y obtener la tarifa para la cantidad de pasageros ."
     },
+    "contact_phone": {
+      "type": "string",
+      "title": "Teléfono de contacto para la reserva."
+    },
     "Room": {
       "type": "array",
       "title": "Habitaciones de la reserva.",
