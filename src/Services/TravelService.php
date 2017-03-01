@@ -18,7 +18,7 @@ class TravelService extends Service
 						 ->request('GET',"travel/getPlaces/$country_iata");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			return new Destinies($body_decoded);	
@@ -37,7 +37,7 @@ class TravelService extends Service
 						 ->request('GET',"travel/getMonthByPlaces/$place_iata");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			$months = array();
@@ -64,7 +64,7 @@ class TravelService extends Service
 						 ->request('GET',"travel/getFaresPackage/$origin_iata/$departure_iata/$month/$year");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			
@@ -83,13 +83,14 @@ class TravelService extends Service
 	}
 
 	public function getPlacesWithPackage($country_iata){
+
 		try {
 			$response = $this->http_client
 						 ->http_client
 						 ->request('GET',"travel/getPlacesWithPackage/$country_iata");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			return new Destinies($body_decoded);	

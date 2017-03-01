@@ -17,7 +17,7 @@ class BookingPackageService extends Service
 						 ->request('GET',"booking/checkAvail/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			return new PackageStatus($body_decoded);	
@@ -42,7 +42,7 @@ class BookingPackageService extends Service
 							 		   ]);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null) {
+			if(!is_array($body_decoded) && $body_decoded == null) {
 				throw new \Exception($body);
 			}
 			return new BookingStatus($body_decoded);	
@@ -62,7 +62,7 @@ class BookingPackageService extends Service
 			$body = $response->getBody()->getContents();
 			if(!$html){
 				$body_decoded = json_decode($body,true);
-				if($body_decoded == null) {
+				if(!is_array($body_decoded) && $body_decoded == null) {
 					throw new \Exception($body);
 				}
 				return new BookingStatus($body_decoded);
