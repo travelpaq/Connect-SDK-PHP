@@ -44,7 +44,7 @@ class PackagesAPI
     {
         if(array_key_exists('test', $config) && $config['test'] == true){
             HttpClient::getInstance([
-                'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/api/',
+                'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/' . $config['version'] . '/',
                 'key' => $config['api_key'],
                 'item_per_page' => $config['item_per_page']
             ]);
