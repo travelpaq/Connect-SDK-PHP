@@ -21,7 +21,6 @@ class Place
 {
 	public $name;
 	public $iata;
-    public $number_nights;
     public $Country;
     /**
      * Constructor

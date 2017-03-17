@@ -24,8 +24,6 @@ class Accommodation
     public $check_out;
     public $type_room;
     public $hotel_service;
-    public $max_num_child;
-    public $children_age;
 	public $Hotel;
     private $required_fields = [
         "number_nights",
@@ -57,14 +55,6 @@ class Accommodation
         $this->type_room = $data['type_room'];
 
         $this->hotel_service = $data['hotel_service'];
-
-        if(!array_key_exists('max_num_child', $data))  
-            $data['children_age'] = 0;
-        $this->max_num_child = $data['max_num_child'];
-
-        if(!array_key_exists('children_age', $data))  
-            $data['children_age'] = 0;
-        $this->children_age = $data['children_age'];
 
 		$this->Hotel = new Hotel($data['Hotel']);
 
