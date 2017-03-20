@@ -34,16 +34,6 @@ class FarePackage
     */
     public $maxNumberChildren;
 
-    /*
-    * @var min_age Edad mínima de niños que pueden compatibilizarse con esta tarifa adulto.
-    */
-    public $min_age;
-
-    /*
-    * @var max_age Edad máxima de niños que pueden compatibilizarse con esta tarifa adulto.
-    */
-    public $max_age;
-    
     /**
      * Constructor
      * @param data 
@@ -64,14 +54,6 @@ class FarePackage
         if(!array_key_exists('maxNumberChildren', $data) && $data['maxNumberChildren'] > 0)
             $data['maxNumberChildren'] = 0;
         $this->maxNumberChildren = (int)($data['maxNumberChildren']);
-
-        if(!array_key_exists('min_age', $data) && $data['min_age'] > 0)
-            $data['min_age'] = 0;
-        $this->min_age = (int)($data['min_age']);
-
-        if(!array_key_exists('max_age', $data) && $data['max_age'] > 0)
-            $data['max_age'] = 0;
-        $this->max_age = (int)($data['max_age']);
     }
 
 }

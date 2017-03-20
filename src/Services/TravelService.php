@@ -101,4 +101,31 @@ class TravelService extends Service
 			return $response_str;
 		}
 	}
+
+		public function getFaresTree(){
+
+		try {
+			$response = $this->http_client
+						 ->http_client
+						 ->request('GET',"travel/faresTree/$country_iata");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if(!is_array($body_decoded) && $body_decoded == null){
+				throw new \Exception($body);
+			}
+			$faresTree = [];
+
+			foreach($body_decoded as $fares){
+				$faresTree[] = new PackageFare($fares);
+			}
+
+			return $faresTree;
+			
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
 }

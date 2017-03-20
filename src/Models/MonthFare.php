@@ -41,8 +41,8 @@ class MonthFare
 
         if(array_key_exists('PackageFares', $data) && count($data['PackageFares']) > 0){
         	$this->PackageFares = [];
-        	foreach($data['PackageFares'] as $FarePackage){
-        		$this->PackageFares[] = new FarePackage($FarePackage);
+        	foreach($data['PackageFares'] as $PackageFare){
+        		$this->PackageFares[] = new PackageFare($PackageFare);
         	}
         } else {
         	$this->PackageFares = [];

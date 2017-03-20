@@ -191,6 +191,18 @@ class PackagesAPI
         return $travelService->getFaresPackage($origin_place, $departure_place, $month, $year);
     }
 
+     /**
+     * Obtiene todas las tarifas 
+     *
+     * @return Array PackageFares Retorna un listado de tarifas de paquetes
+     *
+     */
+    public function getFaresTree()  
+    {
+        $travelService = new TravelService();
+        return $travelService->getFaresTree();
+    }
+
 
     
     /**
