@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 use TravelPAQ\PackagesAPI\Models\Destinies;
 use TravelPAQ\PackagesAPI\Models\Month;
 use TravelPAQ\PackagesAPI\Models\FarePackage;
+use TravelPAQ\PackagesAPI\Models\PlaceFare;
 
 class TravelService extends Service
 {
@@ -116,7 +117,7 @@ class TravelService extends Service
 			$faresTree = [];
 
 			foreach($body_decoded as $fares){
-				$faresTree[] = new PackageFare($fares);
+				$faresTree[] = new PlaceFare($fares);
 			}
 
 			return $faresTree;

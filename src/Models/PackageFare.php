@@ -12,13 +12,13 @@
 namespace TravelPAQ\PackagesAPI\Models;
 
 /**
- * Class FarePackage
+ * Class PackageFare
  * 
  * Clase que contiene datos de una tarifa con sus niños.
  *
  * @package TravelPAQ
  */
-class FarePackage
+class PackageFare
 {
 	/*
 	* @var int Cantidad de adultos que soporta la tarifa.
