@@ -108,7 +108,7 @@ class TravelService extends Service
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"travel/faresTree/$country_iata");
+						 ->request('GET',"travel/getFaresTree");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){
