@@ -20,14 +20,19 @@ namespace TravelPAQ\PackagesAPI\Models;
  */
 class MonthFare
 {
-	/*
-	* @var Month que contiene las tarifas en cuestión.
-	*/
-	public $Month;
-	/*
-	* @var PackageFares Tarifas contenidas en el mes en cuestión.
-	*/
-	public $PackageFares;
+    /*
+    * @var Month que contiene las tarifas en cuestión.
+    */
+    public $Month;
+    /*
+    * @var PackageFares Tarifas contenidas en el mes en cuestión.
+    */
+    public $PackageFares;
+
+    /*
+    * @var haveChildrenFare Bandera que muestra si el producto tiene tarifas children.
+    */
+    public $haveChildrenFare;
 
     /**
      * Constructor
@@ -36,16 +41,20 @@ class MonthFare
     public function __construct($data)
     {
         if(array_key_exists('Month', $data) && $data['Month'])
-        	$this->Month = new Month($data['Month']);
+            $this->Month = new Month($data['Month']);
         else $this->Month = [];
 
         if(array_key_exists('PackageFares', $data) && count($data['PackageFares']) > 0){
-        	$this->PackageFares = [];
-        	foreach($data['PackageFares'] as $PackageFare){
-        		$this->PackageFares[] = new PackageFare($PackageFare);
-        	}
+            $this->PackageFares = [];
+            foreach($data['PackageFares'] as $PackageFare){
+                $this->PackageFares[] = new PackageFare($PackageFare);
+            }
         } else {
-        	$this->PackageFares = [];
+            $this->PackageFares = [];
         }
+
+        if(array_key_exists('haveChildrenFare', $data) && $data['haveChildrenFare'])
+            $this->haveChildrenFare = $data['haveChildrenFare'];
+        else $this->haveChildrenFare = false;
     }
 }
