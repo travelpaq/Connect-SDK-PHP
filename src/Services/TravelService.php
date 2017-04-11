@@ -31,6 +31,55 @@ class TravelService extends Service
 		}
 	}
 
+	public function getCategories(){
+		try {
+			$response = $this->http_client
+						 ->http_client
+						 ->request('GET',"travel/getCategories");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if(!is_array($body_decoded) && $body_decoded == null){
+				throw new \Exception($body);
+			}
+			$categories = [];
+			foreach($body as $category){
+				$categories[] = new Category($category);	
+			}
+
+			return $categories;
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function getServiceKinds(){
+		try {
+			$response = $this->http_client
+						 ->http_client
+						 ->request('GET',"travel/getServiceKinds");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if(!is_array($body_decoded) && $body_decoded == null){
+				throw new \Exception($body);
+			}
+
+			$serviceKinds = [];
+			foreach($body as $serviceKind){
+				$serviceKinds[] = new ServiceKind($serviceKind);	
+			}
+			return $serviceKinds;
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+
 	public function getMonthByPlaces($place_iata){
 		try {
 			$response = $this->http_client

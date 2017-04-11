@@ -139,6 +139,32 @@ class PackagesAPI
         return $travelService->getPlaces($country_iata);
     }
 
+    /**
+     * Obtiene todas los categorias a las cuales pueden pertenecer los paquetes
+     *     
+     *
+     * @return Array Category Retorna un array con todas las categorias a las cuales puede pertenecer un paquete
+     *
+     */
+    public function getCategories()  
+    {
+        $travelService = new TravelService();
+        return $travelService->getCategories();
+    }
+
+    /**
+     * Obtiene todos los tipos de servicios los cuales puede incluir un paquete
+     *     
+     *
+     * @return Array ServiceKind Retorna un array con todos los tipos de servicio que puede incluir un paquete
+     *
+     */
+    public function getServiceKinds()  
+    {
+        $travelService = new TravelService();
+        return $travelService->getServiceKinds();
+    }
+
 
 
     /**
