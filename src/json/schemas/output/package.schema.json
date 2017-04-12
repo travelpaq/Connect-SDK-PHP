@@ -170,7 +170,7 @@
                 }
               },
               "required": [
-                "name"
+                "detail"
               ]
             },
             "detail": {

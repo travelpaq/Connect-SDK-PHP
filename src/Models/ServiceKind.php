@@ -26,9 +26,12 @@ class ServiceKind
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('detail', $data))
-    		$data['detail'] = "";
-    	$this->detail = $data['detail'];
+        if(!array_key_exists('detail', $data)){
+            if(!array_key_exists('name', $data))
+                $data['detail'] = "";
+            else $data['detail'] = $data['name'];
+        }
+        $this->detail = $data['detail'];
     }
 
 }
