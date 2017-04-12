@@ -7,6 +7,8 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 use TravelPAQ\PackagesAPI\Models\Destinies;
 use TravelPAQ\PackagesAPI\Models\Month;
+use TravelPAQ\PackagesAPI\Models\Category;
+use TravelPAQ\PackagesAPI\Models\ServiceKind;
 use TravelPAQ\PackagesAPI\Models\FarePackage;
 use TravelPAQ\PackagesAPI\Models\PlaceFare;
 
@@ -42,7 +44,7 @@ class TravelService extends Service
 				throw new \Exception($body);
 			}
 			$categories = [];
-			foreach($body as $category){
+			foreach($body_decoded as $category){
 				$categories[] = new Category($category);	
 			}
 
@@ -67,7 +69,7 @@ class TravelService extends Service
 			}
 
 			$serviceKinds = [];
-			foreach($body as $serviceKind){
+			foreach($body_decoded as $serviceKind){
 				$serviceKinds[] = new ServiceKind($serviceKind);	
 			}
 			return $serviceKinds;
