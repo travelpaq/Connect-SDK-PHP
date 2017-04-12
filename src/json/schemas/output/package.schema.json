@@ -164,7 +164,7 @@
               "title": "Tipo de servicio.",
               "description": "Representa una agrupación de servicios bajo una misma nomenclatura.",
               "properties": {
-                "name": {
+                "detail": {
                   "type": "string",
                   "title": "Nombre de tipo de servicio."
                 }
