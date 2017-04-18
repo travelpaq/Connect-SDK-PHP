@@ -37,7 +37,7 @@ class Avail
         $this->rooms = (int)($data['rooms']);
 
         if(!array_key_exists('last_update', $data))
-            $data['last_update'] = "";
+            $data['last_update'] = date('Y-m-d H:i:s');
         $this->last_update = date('Y-m-d H:i:s', strtotime('-3 hour', strtotime($data['last_update'])));
     }
 

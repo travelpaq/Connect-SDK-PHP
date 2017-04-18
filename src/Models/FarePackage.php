@@ -33,7 +33,7 @@ class FarePackage
     * @var maxNumberChildren Máxima cantidad de niños que pueden compatibilizarse con una tarifa adulto.
     */
     public $maxNumberChildren;
-
+    
     /**
      * Constructor
      * @param data 

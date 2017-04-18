@@ -44,7 +44,7 @@ class Hotel
 
         $this->name = $data['name'];
         
-        $this->star_rating = $data['star_rating'];
+        $this->star_rating = (int)$data['star_rating'];
     }
 
 }

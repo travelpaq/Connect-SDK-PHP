@@ -38,6 +38,6 @@ class Country
 
         if(!array_key_exists('Region', $data))
             $data['Region'] = "";
-        $this->Region = $data['Region'];
+        $this->Region = new Region($data['Region']);
     }
 }

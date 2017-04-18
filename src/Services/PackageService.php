@@ -69,4 +69,32 @@ class PackageService extends Service
 			return $response_str;
 		}
 	}
+
+	public function addPackage($package){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('POST', 
+							  		   'Packages/add/',
+							  		   [
+							  		   		'form_params' => 
+							  		   		[
+							  		   			'data' => base64_encode(json_encode($package))
+							  		   		]
+							  		   	]
+							 );
+			$body = $response->getBody()->getContents();
+			echo $body;
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new Package($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
 }

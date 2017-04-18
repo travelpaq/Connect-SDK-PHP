@@ -310,4 +310,20 @@ class PackagesAPI
         return $bookingService->cancelBooking($booking_id);
     }
 
+    /**
+     * Agrega un paquete al listado ya cargado por el operador que esta invocando al método
+     *
+     * @param Array $package Representa el paquete a cargar
+     *
+     * @return Package Retorna un objeto de tipo Package
+     */
+    public function addPackage($package)
+    {
+        if(!$package)
+            throw new ValidationException('El paquete enviado debe ser distinto de vacío');
+
+        $packageService = new PackageService();
+        return $packageService->addPackage($package);
+    }
+
 }

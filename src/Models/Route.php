@@ -22,8 +22,10 @@ class Route
     public $direction;
     public $travel_number;
     public $arrival_time;
+    public $arrival_date;
     public $order_number;
     public $departure_time;
+    public $departure_date;
 	public $DeparturePlace;
 	public $TransportCompany;
 	public $ArrivalPlace;
@@ -51,6 +53,10 @@ class Route
         if(!array_key_exists('arrival_time', $data))
             $data['arrival_time'] = "";
         $this->arrival_time = $data['arrival_time'];
+
+        if(!array_key_exists('arrival_date', $data))
+            $data['arrival_date'] = "";
+        $this->arrival_date = $data['arrival_date'];
 		        
         if(!array_key_exists('order_number', $data))
             $data['order_number'] = "";
@@ -59,6 +65,10 @@ class Route
         if(!array_key_exists('departure_time', $data))
             $data['departure_time'] = "";
         $this->departure_time = $data['departure_time'];
+
+        if(!array_key_exists('departure_date', $data))
+            $data['departure_date'] = "";
+        $this->departure_date = $data['departure_date'];
     }
 
 }
