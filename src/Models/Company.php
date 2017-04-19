@@ -34,7 +34,7 @@ class Company
         
         if(!array_key_exists('id', $data))
             $data['id'] = "";
-        $this->id = $data['id'];
+        $this->id = (int)$data['id'];
 
         if(!array_key_exists('cuit', $data))
             $data['cuit'] = "";

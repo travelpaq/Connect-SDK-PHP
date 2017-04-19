@@ -48,9 +48,18 @@ class Accommodation
 
         $this->number_nights = $data['number_nights'];
 
+        $date = explode('/', $data['check_in']);
+        if(count($date) == 3){
+            $data['check_in'] = $date[2] . "-" . $date[1] . "-" . $date[0];
+        }
         $this->check_in = $data['check_in'];
 
+        $date = explode('/', $data['check_out']);
+        if(count($date) == 3){
+            $data['check_out'] = $date[2] . "-" . $date[1] . "-" . $date[0];
+        }
         $this->check_out = $data['check_out'];
+
 
         $this->type_room = $data['type_room'];
 

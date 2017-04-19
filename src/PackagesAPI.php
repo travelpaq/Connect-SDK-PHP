@@ -326,4 +326,20 @@ class PackagesAPI
         return $packageService->addPackage($package);
     }
 
+    /**
+     * Retorna un paquete del listado ya cargado por el operador que esta invocando al método
+     *
+     * @param string $package_id Identificador del paquete y todas sus tarifas
+     *
+     * @return Package Retorna un objeto de tipo Package
+     */
+    public function viewPackage($package_id)
+    {
+        if(!$package_id)
+            throw new ValidationException('No se ha recibido el identificador del paquete.');
+
+        $packageService = new PackageService();
+        return $packageService->viewPackage($package_id);
+    }
+
 }

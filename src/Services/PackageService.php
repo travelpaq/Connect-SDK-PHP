@@ -84,12 +84,29 @@ class PackageService extends Service
 							  		   	]
 							 );
 			$body = $response->getBody()->getContents();
-			echo $body;
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
-			return new Package($body_decoded);
+			return new \TravelPAQ\PackagesAPI\Models\Input\Package ($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function viewPackage($package_id){
+		try {
+
+			$response = $this->http_client->http_client->request('GET',"Packages/view/$package_id");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new \TravelPAQ\PackagesAPI\Models\Input\Package ($body_decoded);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
