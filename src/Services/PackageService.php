@@ -148,7 +148,7 @@ class PackageService extends Service
 			$response = $this->http_client->http_client->request('GET',"Packages/index");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
+			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 

@@ -30,6 +30,7 @@ class Package
     public $title;
     public $observations;
     public $itinerary;
+    public $expiration_date;
     public $Category;
     public $Service;
     public $Departure;
@@ -48,37 +49,47 @@ class Package
     {
 
 
-      	if(!array_key_exists('id', $package))
-      		$this->id = "";
-  		else 
-  			$this->id = $package['id'];
-      
-      	if(!array_key_exists('title', $package))
-      		$this->title = '';
-  		else 
-  			$this->title = $package['title'];
+    	if(!array_key_exists('id', $package))
+    		$this->id = "";
+		  else 
+			 $this->id = $package['id'];
+    
+    	if(!array_key_exists('title', $package))
+    		$this->title = '';
+		  else 
+			 $this->title = $package['title'];
 
-        if(!array_key_exists('observations', $package))
-          $this->observations = '';
-        else 
-          $this->observations = $package['observations'];
+      if(!array_key_exists('observations', $package))
+        $this->observations = '';
+      else 
+        $this->observations = $package['observations'];
 
-        if(!array_key_exists('itinerary', $package))
-          $this->itinerary = '';
-        else 
-          $this->itinerary = $package['itinerary'];
-        
-         $this->Category = [];
-         foreach ($package['Category'] as $key => $value) {
-           $this->Category[] = new Category($value);
-         }
-      
-        $this->Service = [];
-        foreach ($package['Service'] as $key => $value) {
-          $this->Service[] = new Service($value);
+      if(!array_key_exists('itinerary', $package))
+        $this->itinerary = '';
+      else 
+        $this->itinerary = $package['itinerary'];
+
+      if(!array_key_exists('expiration_date', $package))
+        $this->expiration_date = '0000-00-00';
+      else {
+        $date = explode('/',$package['expiration_date']);
+        if(count($date) == 3){
+            $package['expiration_date'] = $date[2] . "-" . $date[1] . "-" . $date[0];
         }
+        $this->expiration_date = $package['expiration_date'];
+      }
       
-        $this->Departure = new Departure($package['Departure']);
+       $this->Category = [];
+       foreach ($package['Category'] as $key => $value) {
+         $this->Category[] = new Category($value);
+       }
+    
+      $this->Service = [];
+      foreach ($package['Service'] as $key => $value) {
+        $this->Service[] = new Service($value);
+      }
+    
+      $this->Departure = new Departure($package['Departure']);
 
       $this->Place = [];
       foreach ($package['Place'] as $key => $value) {
