@@ -97,10 +97,78 @@ class PackageService extends Service
 		}
 	}
 
+	public function editPackage($package){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('POST', 
+							  		   'Packages/edit/',
+							  		   [
+							  		   		'form_params' => 
+							  		   		[
+							  		   			'data' => base64_encode(json_encode($package))
+							  		   		]
+							  		   	]
+							 );
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new \TravelPAQ\PackagesAPI\Models\Input\Package ($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
 	public function viewPackage($package_id){
 		try {
 
 			$response = $this->http_client->http_client->request('GET',"Packages/view/$package_id");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new \TravelPAQ\PackagesAPI\Models\Input\Package ($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function indexPackage(){
+		try {
+
+			$response = $this->http_client->http_client->request('GET',"Packages/index");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+
+			$packages = [];
+			foreach($body_decoded as $package){
+				$packages[] = new \TravelPAQ\PackagesAPI\Models\Input\Package ($package);
+			}
+			return $packages;
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function deletePackage($package_id){
+		try {
+
+			$response = $this->http_client->http_client->request('GET',"Packages/delete/$package_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){

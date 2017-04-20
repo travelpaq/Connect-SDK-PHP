@@ -327,6 +327,22 @@ class PackagesAPI
     }
 
     /**
+     * Modifica un paquete del listado ya cargado por el operador que esta invocando al método
+     *
+     * @param Array $package Representa el paquete a modificar con las modificaciones cargadas
+     *
+     * @return Package Retorna un objeto de tipo Package
+     */
+    public function editPackage($package)
+    {
+        if(!$package)
+            throw new ValidationException('El paquete enviado debe ser distinto de vacío');
+
+        $packageService = new PackageService();
+        return $packageService->editPackage($package);
+    }
+
+    /**
      * Retorna un paquete del listado ya cargado por el operador que esta invocando al método
      *
      * @param string $package_id Identificador del paquete y todas sus tarifas
@@ -340,6 +356,28 @@ class PackagesAPI
 
         $packageService = new PackageService();
         return $packageService->viewPackage($package_id);
+    }
+
+    /**
+     * Retorna un listado de paquetes  ya cargadados por el operador que esta invocando al método
+     *
+     * @return Array Retorna un array de Package
+     */
+    public function indexPackage()
+    {
+        $packageService = new PackageService();
+        return $packageService->indexPackage();
+    }
+
+    /**
+     * Elimina un paquete del listado ya cargadados por el operador que esta invocando al método
+     *
+     * @return Package Retorna el objeto de tipo Package eliminado
+     */
+    public function deletePackage($package_id)
+    {
+        $packageService = new PackageService();
+        return $packageService->deletePackage();
     }
 
 }
