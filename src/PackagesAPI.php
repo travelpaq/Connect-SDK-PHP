@@ -377,7 +377,7 @@ class PackagesAPI
     public function deletePackage($package_id)
     {
         $packageService = new PackageService();
-        return $packageService->deletePackage();
+        return $packageService->deletePackage($package_id);
     }
 
 }
