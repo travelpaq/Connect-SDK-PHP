@@ -218,7 +218,7 @@
 	            },
 	            "transport_kind": {
 	              "type": "string",
-	              "enum":["air", "bus", "cruise"],
+	              "enum":["airline", "bus", "cruise"],
 	              "title": "Tipo de transporte.",
 	              "description": "Puerde ser airline, bus o cruise."
 	            }
