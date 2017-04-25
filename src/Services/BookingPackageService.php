@@ -60,12 +60,16 @@ class BookingPackageService extends Service
 			else 
 				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id");
 			$body = $response->getBody()->getContents();
+
 			if(!$html){
 				$body_decoded = json_decode($body,true);
 				if(!is_array($body_decoded) && $body_decoded == null) {
 					throw new \Exception($body);
 				}
-				return new BookingStatus($body_decoded);
+				if(array_key_exists('Passenger', $body_decoded))
+					return $body_decoded;
+				else 
+					return new BookingStatus($body_decoded);
 			} else {
 				return $body;
 			}
