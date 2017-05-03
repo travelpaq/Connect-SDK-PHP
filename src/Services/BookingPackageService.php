@@ -118,4 +118,42 @@ class BookingPackageService extends Service
 			return $response_str;			
 		}	
 	}
+
+	public function iConfirmBooking($booking_id){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET',"booking/iConfirmBooking/$booking_id");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null) {
+				throw new \Exception($body);
+			}
+			return new BookingStatus($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;			
+		}	
+	}
+
+	public function iCancelBooking($booking_id){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET',"booking/iCancelBooking/$booking_id");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null) {
+				throw new \Exception($body);
+			}
+			return new BookingStatus($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;			
+		}	
+	}
 }

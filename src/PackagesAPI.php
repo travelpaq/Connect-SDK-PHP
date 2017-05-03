@@ -284,7 +284,7 @@ class PackagesAPI
      *
      * @param int $booking_id Identificador de la reserva
      *
-     * @return BookingStatus Retorna la confirmación de un paquete
+     * @return BookingStatus Retorna la confirmación de una reserva
      */
     public function confirmBooking($booking_id)
     {
@@ -299,7 +299,7 @@ class PackagesAPI
      *
      * @param int $booking_id Identificador de la reserva
      *
-     * @return BookingStatus Retorna la cancelación de un paquete
+     * @return BookingStatus Retorna la cancelación de una reserva
      */
     public function cancelBooking($booking_id)
     {
@@ -308,6 +308,37 @@ class PackagesAPI
 
         $bookingService = new BookingPackageService();
         return $bookingService->cancelBooking($booking_id);
+    }
+
+    /**
+     * Confirma una reserva, fuerza la confirmación y es solo los operadores pueden usar este método
+     *
+     * @param int $booking_id Identificador de la reserva
+     *
+     * @return BookingStatus Retorna la confirmación de una reserva
+     */
+    public function iConfirmBooking($booking_id)
+    {
+        if(!is_numeric($booking_id) || $booking_id < 0)
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
+
+        $bookingService = new BookingPackageService();
+        return $bookingService->iConfirmBooking($booking_id);
+    }
+    /**
+     * Cancela una reserva, fuerza la cancelación y es solo los operadores pueden usar este método
+     *
+     * @param int $booking_id Identificador de la reserva
+     *
+     * @return BookingStatus Retorna la cancelación de una reserva
+     */
+    public function iCancelBooking($booking_id)
+    {
+        if(!is_numeric($booking_id) || $booking_id < 0)
+            throw new ValidationException('El identificador que debe recibir este método debe ser un número entero mayor a cero');
+
+        $bookingService = new BookingPackageService();
+        return $bookingService->iCancelBooking($booking_id);
     }
 
     /**
