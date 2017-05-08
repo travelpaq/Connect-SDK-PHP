@@ -5,7 +5,7 @@
     "license": "MIT",
     "description": "Api para la búsqueda y reserva de paquetes turísticos de Tour Operadores.",
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.4",
         "guzzlehttp/guzzle": "~6.0",
         "league/json-guard": "^0.3.2"
     },
