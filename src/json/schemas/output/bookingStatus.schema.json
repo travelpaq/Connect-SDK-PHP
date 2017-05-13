@@ -25,6 +25,18 @@
       "type": "string",
       "title": "Teléfono de contacto para la reserva."
     },
+    "agency_comission": {
+      "type": "number",
+      "title": "Comisión configurada en la agencia a la hora de realizarse la reserva."
+    },
+    "type_change": {
+      "type": "number",
+      "title": "tipo de cambio configurado en la agencia a la hora de realizarse la reserva."
+    },
+    "markup": {
+      "type": "number",
+      "title": "Comisión configurada en la agencia a la hora de realizarse la reserva."
+    },
     "Fare": {
       "type": "array",
       "title": "Tarifas de la reserva.",

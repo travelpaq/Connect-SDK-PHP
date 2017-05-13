@@ -51,6 +51,24 @@ class BookingStatus
     public $contact_phone;
 
     /*
+    * @var number Comisión de la agencia configurada al momento de realizarse la reserva
+    */
+
+    public $agency_commision;
+
+    /*
+    * @var number Tipo de cambio configurado al momento de realizarse la reserva
+    */
+
+    public $type_change;
+
+    /*
+    * @var number Markup configurado al momento de realizarse la reserva.
+    */
+
+    public $markup;
+
+    /*
     * @var Fare Tarifas de la reserva
     */
     public $Fare;
@@ -137,6 +155,18 @@ class BookingStatus
         if(!array_key_exists('external_id', $data))
             $data['external_id'] = "";
         $this->external_id = $data['external_id'];
+
+        if(!array_key_exists('ota_comission', $data))
+            $data['ota_comission'] = "";
+        $this->ota_comission = $data['ota_comission'];
+
+        if(!array_key_exists('type_change', $data))
+            $data['type_change'] = "";
+        $this->type_change = $data['type_change'];
+
+        if(!array_key_exists('markup', $data))
+            $data['markup'] = "";
+        $this->markup = $data['markup'];
     }
 
 }
