@@ -156,9 +156,9 @@ class BookingStatus
             $data['external_id'] = "";
         $this->external_id = $data['external_id'];
 
-        if(!array_key_exists('ota_comission', $data))
-            $data['ota_comission'] = "";
-        $this->ota_comission = $data['ota_comission'];
+        if(!array_key_exists('agency_comission', $data))
+            $data['agency_comission'] = "";
+        $this->agency_comission = $data['agency_comission'];
 
         if(!array_key_exists('type_change', $data))
             $data['type_change'] = "";
