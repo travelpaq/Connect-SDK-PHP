@@ -54,7 +54,7 @@ class BookingStatus
     * @var number Comisión de la agencia configurada al momento de realizarse la reserva
     */
 
-    public $agency_commision;
+    public $agency_commission;
 
     /*
     * @var number Tipo de cambio configurado al momento de realizarse la reserva
