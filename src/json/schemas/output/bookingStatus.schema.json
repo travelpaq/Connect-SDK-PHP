@@ -25,7 +25,7 @@
       "type": "string",
       "title": "Teléfono de contacto para la reserva."
     },
-    "agency_comission": {
+    "agency_commission": {
       "type": "number",
       "title": "Comisión configurada en la agencia a la hora de realizarse la reserva."
     },
