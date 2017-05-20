@@ -31,25 +31,41 @@ class Search
 		else 
 			throw new ValidationException("No se ha recibido el tipo de moneda los paquetes devueltos por la búsqueda");
 
-		if(array_key_exists('origin_place', $params))
-			$this->origin_place = $params['origin_place'];
+		if(array_key_exists('origin_place', $params)){
+			if(is_array($this->origin_place))
+				$this->origin_place = $params['origin_place'];
+			else {
+				if($params['origin_place'])
+					$this->origin_place = [$params['origin_place']];
+				else 
+					$this->origin_place = [];		
+			}
+		}
 		else 
-			throw new ValidationException("No se ha recibido el lugar de salida de los paquetes devueltos por la búsqueda");
+			$this->origin_place = [];
 
-		if(array_key_exists('destination_place', $params))
-			$this->destination_place = $params['destination_place'];
+		if(array_key_exists('destination_place', $params)){
+			if(is_array($this->destination_place))
+				$this->destination_place = $params['destination_place'];
+			else {
+				if($params['destination_place'])
+					$this->destination_place = [$params['destination_place']];
+				else 
+					$this->destination_place = [];
+			}
+		}
 		else 
-			throw new ValidationException("No se ha recibido el destino de los paquetes devueltos por la búsqueda");
+			$this->destination_place = [];
 
 		if(array_key_exists('month_departure', $params))
 			$this->month_departure = (int)$params['month_departure'];
 		else 
-			throw new ValidationException("No se ha recibido el mes de salida de los paquetes devueltos por la búsquedas");
+			$this->month_departure = 0;
 
 		if(array_key_exists('year_departure', $params))
 			$this->year_departure = (int)$params['year_departure'];
 		else 
-			throw new ValidationException("No se ha recibido el año de salida de los paquetes devueltos por la búsquedas");
+			$this->year_departure = 0;
 		
 		$this->Room = [];
 		if(array_key_exists('Room', $params))
@@ -57,8 +73,9 @@ class Search
 				foreach ($params['Room'] as $room) {
 					$this->Room[] = new Room($room);	
 				}
-			}
+			} else 
+				$this->Room[] = new Room(['adult' => 2, 'Children' => []]);
 		else 
-			throw new ValidationException("No se ha recibido el Room de los paquetes devueltos por la búsquedas");
+			$this->Room[] = new Room(['adult' => 2, 'Children' => []]);
 	}
 }
