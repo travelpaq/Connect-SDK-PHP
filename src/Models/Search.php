@@ -32,7 +32,7 @@ class Search
 			throw new ValidationException("No se ha recibido el tipo de moneda los paquetes devueltos por la búsqueda");
 
 		if(array_key_exists('origin_place', $params)){
-			if(is_array($this->origin_place))
+			if(is_array($params['origin_place']))
 				$this->origin_place = $params['origin_place'];
 			else {
 				if($params['origin_place'])
@@ -45,7 +45,7 @@ class Search
 			$this->origin_place = [];
 
 		if(array_key_exists('destination_place', $params)){
-			if(is_array($this->destination_place))
+			if(is_array($params['destination_place']))
 				$this->destination_place = $params['destination_place'];
 			else {
 				if($params['destination_place'])
