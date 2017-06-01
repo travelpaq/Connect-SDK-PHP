@@ -82,6 +82,11 @@ class PackagesPagination
 	* Cantidad máxima de fechas de salida para esa búsqueda
 	*/
 	public $max_date_departure;
+
+	/*
+	* Operadores a los que pertenecen los paquetes resultantes de la búsqueda.
+	*/
+	public $Company;
     
     /**
      * Constructor
@@ -115,6 +120,12 @@ class PackagesPagination
 
     	$this->min_date_departure = $packagesList['min_date_departure'];
     	$this->max_date_departure = $packagesList['max_date_departure'];
+
+    	if(!array_key_exists('Company', $packagesList) || !$packagesList['Company']){
+    		$packagesList['Company'] = [];
+    	}
+    	$this->Company = $packagesList['Company'];
+
     }
 
 }

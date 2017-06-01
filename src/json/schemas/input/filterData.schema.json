@@ -17,12 +17,18 @@
 	      "to": {
 	        "type": "string",
 	        "title": "Límite superior del filtro."
+	      },
+	      "companies": {
+	      	"type": "array",
+		      "title": "Operadores de los que se quiere  obtener los paquetes.",
+		      "items": {
+		        "type": "string",
+		        "title": "Nombre del Operador."
+		      }
 	      }
 	    },
 	    "required": [
-	      "name",
-	      "from",
-	      "to"
+	      "name"
 	    ]
 	}
 }

@@ -372,7 +372,7 @@
               "properties": {
                 "star_rating": {
                   "type": "integer",
-                  "minimum":1,
+                  "minimum":0,
                   "maximum":6,
                   "title": "Número de estrellas del hotel."
                 },

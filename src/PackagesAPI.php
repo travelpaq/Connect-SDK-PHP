@@ -117,7 +117,7 @@ class PackagesAPI
      */
     public function checkAvail($package_id)  
     {
-         if(!json_decode(base64_decode($package_id)))
+        if(!json_decode(base64_decode($package_id)))
             throw new ValidationException('El identificador no es correcto');
 
         $bookingService = new BookingPackageService();

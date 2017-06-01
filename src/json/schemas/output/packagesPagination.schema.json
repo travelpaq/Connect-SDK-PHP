@@ -62,6 +62,14 @@
     "max_date_departure": {
       "type": "string",
       "title": "Cantidad total de paquetes para esa búsqueda."
+    },
+    "Company": {
+      "type": "array",
+      "title": "Operadores a los que pertenecen los paquetes resultantes de la búsqueda.",
+      "items": {
+        "type": "string",
+        "title": "Nombre del Operador."
+      }
     }
   },
   "required": [
@@ -77,6 +85,7 @@
     "min_star",
     "max_star",
     "min_date_departure",
-    "max_date_departure"
+    "max_date_departure",
+    "Company"
   ]
 }
