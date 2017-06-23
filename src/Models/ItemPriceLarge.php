@@ -19,11 +19,11 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class ItemPriceLarge
 {
-	/*
+    /*
     * @var string Descripción del precio.
     */
-	public $description;
-	/*
+    public $description;
+    /*
     * @var float Base sobre la que se calcula el Rate.
     */
     public $base;

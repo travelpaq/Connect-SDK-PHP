@@ -19,11 +19,11 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class ItemPriceShort
 {
-	/*
+    /*
     * @var string Descripción del precio.
     */
-	public $description;
-	/*
+    public $description;
+    /*
     * @var float Cantidad del itemPrice.
     */
     public $amount;
