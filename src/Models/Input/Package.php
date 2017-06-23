@@ -49,15 +49,15 @@ class Package
     {
 
 
-    	if(!array_key_exists('id', $package))
-    		$this->id = "";
-		  else 
-			 $this->id = $package['id'];
-    
-    	if(!array_key_exists('title', $package))
-    		$this->title = '';
-		  else 
-			 $this->title = $package['title'];
+      if(!array_key_exists('id', $package))
+      	$this->id = "";
+  		else 
+  			$this->id = $package['id'];
+      
+      if(!array_key_exists('title', $package))
+      	$this->title = '';
+  		else 
+  			$this->title = $package['title'];
 
       if(!array_key_exists('observations', $package))
         $this->observations = '';
@@ -79,10 +79,10 @@ class Package
         $this->expiration_date = $package['expiration_date'];
       }
       
-       $this->Category = [];
-       foreach ($package['Category'] as $key => $value) {
-         $this->Category[] = new Category($value);
-       }
+      $this->Category = [];
+      foreach ($package['Category'] as $key => $value) {
+        $this->Category[] = new Category($value);
+      }
     
       $this->Service = [];
       foreach ($package['Service'] as $key => $value) {

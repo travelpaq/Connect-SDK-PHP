@@ -23,7 +23,7 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 class BookingStatus
 {
     /*
-    * @var integer Identificador de la reserva.
+    * @var string Identificador de la reserva.
     */
     public $booking_id;
     /*
@@ -69,6 +69,12 @@ class BookingStatus
     public $markup;
 
     /*
+    * @var string Fecha en al que se realizo la reserva.
+    */
+
+    public $date;
+
+    /*
     * @var Fare Tarifas de la reserva
     */
     public $Fare;
@@ -86,6 +92,16 @@ class BookingStatus
     * @var Pricing Muestra la liquidación con todos los datos que nevia el operador.
     */
     public $Pricing;
+
+    /*
+    * @var Operator Operador al que pertenece el paquete sobre el que se ha realizado la reserva.
+    */
+    public $Operator;
+
+    /*
+    * @var Agency Agencia que realizo la reserva.
+    */
+    public $Agency;
 
     
     /**
@@ -150,7 +166,7 @@ class BookingStatus
 
         if(!array_key_exists('booking_id', $data))
             $data['booking_id'] = "";
-        $this->booking_id = $data['booking_id'];
+        $this->booking_id = (string)$data['booking_id'];
 
         if(!array_key_exists('external_id', $data))
             $data['external_id'] = "";
@@ -167,6 +183,18 @@ class BookingStatus
         if(!array_key_exists('markup', $data))
             $data['markup'] = "";
         $this->markup = $data['markup'];
+
+        if(!array_key_exists('date', $data))
+            $data['date'] = "";
+        $this->date = $data['date'];
+
+        if(!array_key_exists('Agency', $data))
+            $data['Agency'] = [];
+        $this->Agency = new Company($data['Agency']);
+
+        if(!array_key_exists('Operator', $data))
+            $data['Operator'] = [];
+        $this->Operator = new Company($data['Operator']);
     }
 
 }

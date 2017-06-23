@@ -5,6 +5,8 @@ namespace TravelPAQ\PackagesAPI\Services;
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Models\PackageStatus;
 use TravelPAQ\PackagesAPI\Models\BookingStatus;
+use TravelPAQ\PackagesAPI\Models\BookingStatusTravelPAQ;
+use TravelPAQ\PackagesAPI\Models\BookingsPagination;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 
@@ -60,7 +62,6 @@ class BookingPackageService extends Service
 			else 
 				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id");
 			$body = $response->getBody()->getContents();
-
 			if(!$html){
 				$body_decoded = json_decode($body,true);
 				if(!is_array($body_decoded) && $body_decoded == null) {
@@ -68,8 +69,13 @@ class BookingPackageService extends Service
 				}
 				if(array_key_exists('Passenger', $body_decoded))
 					return $body_decoded;
-				else 
-					return new BookingStatus($body_decoded);
+				else {
+					if(array_key_exists('percentage_tp_ota', $body_decoded) && array_key_exists('percentage_tp_operator', $body_decoded) && $body_decoded['percentage_tp_ota'] && $body_decoded['percentage_tp_operator']){
+						return new BookingStatusTravelPAQ($body_decoded);
+					} else {
+						return new BookingStatus($body_decoded);
+					}
+				}
 			} else {
 				return $body;
 			}
@@ -81,6 +87,24 @@ class BookingPackageService extends Service
 		}
 
 	}
+
+	public function getBookingList($status = 'ALL', $page = 0, $sizeOfPage = 10){
+		try {
+			$response = $this->http_client->http_client->request('GET', 'Booking/getBookingList/' . $status . '/' . $page . '/' . $sizeOfPage);
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new BookingsPagination($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
 	public function confirmBooking($booking_id){
 		try {
 			$response = $this->http_client

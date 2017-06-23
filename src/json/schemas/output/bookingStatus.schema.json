@@ -5,7 +5,7 @@
   "description": "Estructura de datos retornados por el método bookingPackage.",
   "properties": {
     "booking_id": {
-      "type": "integer",
+      "type": "string",
       "title": "Identificador de la reserva."
     },
     "external_id": {
@@ -143,6 +143,53 @@
           }
         }
       }
+    },
+    "Operator": {
+      "type": ["object", "null"],
+      "title": "Operador del paquete reservado.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Identificador del operador."
+        },
+        "name": {
+          "type": "string",
+          "title": "Nombre del operador."
+        },
+        "cuit": {
+          "type": "string",
+          "title": "CUIT del operador."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "cuit"
+      ]
+    }
+    ,
+    "Agency": {
+      "type": ["object", "null"],
+      "title": "Agencia que realizó la reserva.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "Identificador del operador."
+        },
+        "name": {
+          "type": "string",
+          "title": "Nombre del operador."
+        },
+        "cuit": {
+          "type": "string",
+          "title": "CUIT del operador."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "cuit"
+      ]
     },
     "Package": {
       "$ref": "file://%%PATH%%/json/schemas/output/package.schema.json"

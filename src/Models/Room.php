@@ -20,15 +20,7 @@ class Room
 				foreach ($params['Children'] as $child) {
 					$this->Children[] = new Child($child);	
 				}
-			} else {
-				if(count($params['Children']) == 0){
-					$this->Children = [];
-				} else {
-					throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
-				}
-			}
-		} else {
-			throw new ValidationException("No se ha recibido el número de niños que viajarán en los paquetes devueltos por la búsquedas");
-		}
+			} 
+		} 
 	}
 }

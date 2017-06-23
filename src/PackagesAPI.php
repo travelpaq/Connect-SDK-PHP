@@ -247,7 +247,6 @@ class PackagesAPI
      * - CANCELED
      * - CONFIRMING
      * - CONFIRMED
-     * - ACTIVE
      * - ERROR
      *
      */
@@ -279,6 +278,36 @@ class PackagesAPI
         $bookingService = new BookingPackageService();
         return $bookingService->getBooking($booking_id, $html);
     }
+
+    /**
+     * Obtiene el listado de reservas paginado y clasificado por estado
+     *
+     * @param string $state Estado de las reservas que retornará el método
+     * - ALL Todas las reservas
+     * - WAITING
+     * - EXPIRED
+     * - CANCELING
+     * - CANCELED
+     * - CONFIRMING
+     * - CONFIRMED
+     * - ERROR
+     * @param int $page Número de página del listado de reservas que retornará el método partiendo desde pagina 0
+     *
+     * @return BookingsPagination Representa una página de resultado de búsqueda.
+     *
+     */
+    public function getBookingList($status = 'ALL', $page = 0, $sizeOfPage = 10)
+    {
+        if(!is_numeric($page) || $page < 0)
+            throw new ValidationException('El número de páginas que debe recibir este método debe ser un número entero mayor a cero');
+
+        if(!is_numeric($sizeOfPage) || $sizeOfPage < 1)
+            throw new ValidationException('El tamaño de página que debe recibir este método debe ser un número entero mayor a uno');
+
+        $bookingService = new BookingPackageService();
+        return $bookingService->getBookingList($status, $page, $sizeOfPage);
+    }
+
     /**
      * Confirma una reserva, retornando los mismos datos que el bookingPackage
      *
