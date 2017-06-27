@@ -10,7 +10,7 @@ use TravelPAQ\PackagesAPI\Models\Month;
 use TravelPAQ\PackagesAPI\Models\Category;
 use TravelPAQ\PackagesAPI\Models\ServiceKind;
 use TravelPAQ\PackagesAPI\Models\FarePackage;
-use TravelPAQ\PackagesAPI\Models\PlaceFare;
+use TravelPAQ\PackagesAPI\Models\OriginPlaceFare;
 
 class TravelService extends Service
 {
@@ -168,7 +168,7 @@ class TravelService extends Service
 			$faresTree = [];
 
 			foreach($body_decoded as $fares){
-				$faresTree[] = new PlaceFare($fares);
+				$faresTree[] = new OriginPlaceFare($fares);
 			}
 
 			return $faresTree;
