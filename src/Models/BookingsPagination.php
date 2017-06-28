@@ -51,7 +51,7 @@ class BookingsPagination
     {
     	$this->result = [];
     	foreach ($bookingsList['result'] as $key => $booking) {
-    		if(array_key_exists('percentage_tp_ota', $booking) && array_key_exists('percentage_tp_operator', $booking) && $booking['percentage_tp_ota'] && $booking['percentage_tp_operator']){
+    		if(array_key_exists('percentage_tp_ota', $booking) && array_key_exists('percentage_tp_operator', $booking) && $booking['percentage_tp_ota'] !== null && $booking['percentage_tp_operator'] !== null){
     			$this->result[] = new BookingStatusTravelPAQ($booking);
     		} else {
     			$this->result[] = new BookingStatus($booking);
