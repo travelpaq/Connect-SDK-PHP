@@ -34,12 +34,20 @@ class ItemPriceShort
      */
     public function __construct($data)
     {
-        if(!array_key_exists('description', $data) && $data['description'])
-        	$data['description'] = '';
+        if(!array_key_exists('description', $data)){
+            if(!array_key_exists('Description', $data))
+               $data['description'] = '';
+            else 
+                $data['description'] = $data['Description'];
+        }
         $this->description = $data['description'];
 
-        if(!array_key_exists('amount', $data) && $data['amount'])
-        	$data['amount'] = 0;
+        if(!array_key_exists('amount', $data)){
+            if(!array_key_exists('amount', $data))
+                $data['amount'] = 0;
+            else 
+                $data['amount'] = $data['amount'];
+        }
         $this->amount = (float)$data['amount'];
     }
 

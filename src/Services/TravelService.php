@@ -11,6 +11,7 @@ use TravelPAQ\PackagesAPI\Models\Category;
 use TravelPAQ\PackagesAPI\Models\ServiceKind;
 use TravelPAQ\PackagesAPI\Models\FarePackage;
 use TravelPAQ\PackagesAPI\Models\OriginPlaceFare;
+use TravelPAQ\PackagesAPI\Models\PlaceFare;
 
 class TravelService extends Service
 {
@@ -154,12 +155,38 @@ class TravelService extends Service
 		}
 	}
 
-		public function getFaresTree(){
+	public function getFaresTree(){
 
 		try {
 			$response = $this->http_client
 						 ->http_client
 						 ->request('GET',"travel/getFaresTree");
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if(!is_array($body_decoded) && $body_decoded == null){
+				throw new \Exception($body);
+			}
+			$faresTree = [];
+
+			foreach($body_decoded as $fares){
+				$faresTree[] = new PlaceFare($fares);
+			}
+
+			return $faresTree;
+			
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function getFaresTreeWithOrigin(){
+		try {
+			$response = $this->http_client
+						 ->http_client
+						 ->request('GET',"travel/getFaresTreeWithOrigin");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){

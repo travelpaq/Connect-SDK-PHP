@@ -46,6 +46,14 @@
             "type": "number",
             "title": "Comisión configurada en la agencia a la hora de realizarse la reserva."
           },
+          "discount": {
+            "type": "number",
+            "title": "Descuento que se aplicó al paquete al momento de la reserva."
+          },
+          "discount_label": {
+            "type": "string",
+            "title": "Etiqueta del descuento que se aplicó al paquete al momento de la reserva."
+          },
           "Fare": {
             "type": "array",
             "title": "Tarifas de la reserva.",

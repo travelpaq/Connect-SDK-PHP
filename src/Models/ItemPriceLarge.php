@@ -42,20 +42,36 @@ class ItemPriceLarge
      */
     public function __construct($data)
     {
-        if(!array_key_exists('description', $data) && $data['description'])
-        	$data['description'] = '';
+        if(!array_key_exists('description', $data)){
+            if(!array_key_exists('Description', $data))
+               $data['description'] = '';
+            else 
+                $data['description'] = $data['Description'];
+        }
         $this->description = $data['description'];
 
-        if(!array_key_exists('base', $data) && $data['base'])
-        	$data['base'] = 0;
+        if(!array_key_exists('base', $data)){
+            if(!array_key_exists('Base', $data))
+                $data['base'] = 0;
+            else 
+                $data['base'] = $data['Base'];
+        }
         $this->base = (float)$data['base'];
 
-        if(!array_key_exists('rate', $data) && $data['rate'])
-        	$data['rate'] = 0;
+        if(!array_key_exists('rate', $data)){
+            if(!array_key_exists('Rate', $data))
+                $data['rate'] = 0;
+            else 
+                $data['rate'] = $data['Rate'];
+        }
         $this->rate = (float)$data['rate'];
 
-        if(!array_key_exists('amount', $data) && $data['amount'])
-        	$data['amount'] = 0;
+        if(!array_key_exists('amount', $data)){
+            if(!array_key_exists('Amount', $data))
+                $data['amount'] = 0;
+            else 
+                $data['amount'] = $data['Amount'];
+        }
         $this->amount = (float)$data['amount'];
 
 

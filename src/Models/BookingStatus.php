@@ -69,6 +69,18 @@ class BookingStatus
     public $markup;
 
     /*
+    * @var number Descuento configurado al momento de realizarse la reserva.
+    */
+
+    public $discount;
+
+    /*
+    * @var number Etiqueta de descuento configurado al momento de realizarse la reserva.
+    */
+
+    public $discount_label;
+
+    /*
     * @var string Fecha en al que se realizo la reserva.
     */
 
@@ -177,15 +189,27 @@ class BookingStatus
         $this->agency_commission = $data['agency_commission'];
 
         if(!array_key_exists('type_change', $data))
-            $data['type_change'] = "";
+            $data['type_change'] = 1;
         $this->type_change = $data['type_change'];
 
         if(!array_key_exists('markup', $data))
-            $data['markup'] = "";
+            $data['markup'] = 0;
         $this->markup = $data['markup'];
 
-        if(!array_key_exists('date', $data))
-            $data['date'] = "";
+        if(!array_key_exists('discount', $data))
+            $data['discount'] = 0;
+        $this->discount = $data['discount'];
+
+        if(!array_key_exists('discount_label', $data))
+            $data['discount_label'] = "";
+        $this->discount_label = $data['discount_label'];
+
+        if(!array_key_exists('date', $data)){
+            if(array_key_exists('created', $data))
+                $data['date'] = $data['created'];
+            else 
+                $data['date'] = '';
+        }
         $this->date = $data['date'];
 
         if(!array_key_exists('Agency', $data))

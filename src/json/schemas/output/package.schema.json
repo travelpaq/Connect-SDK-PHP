@@ -497,6 +497,14 @@
             "title": "Markup.",
             "description": "."
           },
+          "discount": {
+            "type": "number",
+            "title": "Desuento aplicado al paquete."
+          },
+          "discount_label": {
+            "type": "string",
+            "title": "Etiqueta del descuento."
+          },
           "change": {
             "type": "number",
             "title": "Tipo de cambio del paquete.",
@@ -582,6 +590,8 @@
           "price_per_person",
           "final_price",
           "markup",
+          "discount",
+          "discount_label",
           "change",
           "RoomsPrice"
         ]

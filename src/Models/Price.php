@@ -23,6 +23,8 @@ class Price
     public $price_per_person;
     public $final_price;
     public $markup;
+    public $discount;
+    public $discount_label;
     public $change;
     public $ota_comission;
     public $TotalPrice;
@@ -48,6 +50,14 @@ class Price
         if(!array_key_exists('markup', $data))
             $data['markup'] = 0;
         $this->markup = $data['markup'];
+
+        if(!array_key_exists('discount', $data))
+            $data['discount'] = 0;
+        $this->discount = (float)$data['discount'];
+
+        if(!array_key_exists('discount_label', $data))
+            $data['discount_label'] = '';
+        $this->discount_label = (string)$data['discount_label'];
 
         if(!array_key_exists('change', $data))
             $data['change'] = 1;
