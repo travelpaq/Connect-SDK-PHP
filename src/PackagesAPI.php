@@ -87,6 +87,27 @@ class PackagesAPI
     }
 
     /**
+     * Obtiene un listado de paquetes en base a un conjunto de parámetros
+     * que filtrán la búsqueda agrupado en región, país o ciudad
+     * 
+     * @param Array $params Representa los parametros de búsqueda
+     * 
+     * @param string $type Tipo de destino
+     *
+     * 
+     * @return Array Listado de destinos resultantes.
+     */
+    public function getDestinyList($params, $type)
+    {
+        $sd = new SearchData($params);
+        if(!$sd->validate()){
+            throw new ValidationException($sd->get_last_error());
+        }
+        $ps = new PackageService();
+        return $ps->getDestinyList($params, $type); 
+    }
+
+    /**
      * Obtiene un paquete en dado un identificador
      *
      * @param int $package_id Identificador del paquete que se desea obtener

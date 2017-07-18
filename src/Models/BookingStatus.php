@@ -198,11 +198,11 @@ class BookingStatus
 
         if(!array_key_exists('discount', $data))
             $data['discount'] = 0;
-        $this->discount = $data['discount'];
+        $this->discount = (float)$data['discount'];
 
         if(!array_key_exists('discount_label', $data))
             $data['discount_label'] = "";
-        $this->discount_label = $data['discount_label'];
+        $this->discount_label = (string)$data['discount_label'];
 
         if(!array_key_exists('date', $data)){
             if(array_key_exists('created', $data))
