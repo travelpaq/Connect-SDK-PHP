@@ -75,7 +75,7 @@ class PackageService extends Service
 			foreach($body_decoded as $destinyResult){
 				$destinyResults[] = new DestinyResult($destinyResult);
 			}
-			return $destinyResults
+			return $destinyResults;
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
