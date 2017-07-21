@@ -53,12 +53,12 @@ class PackageService extends Service
 		}
 	}
 
-	public function getDestinyList($params, $type){
+	public function getDestinyList($params, $type, $page){
 		try {
 			$response = $this->http_client
 							 ->http_client
 							 ->request('POST', 
-							  		   'Packages/getDestinyList/' . $type,
+							  		   'Packages/getDestinyList/' . $type . '/' . $page,
 							  		   [
 							  		   		'form_params' => 
 							  		   		[

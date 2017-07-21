@@ -97,7 +97,7 @@ class PackagesAPI
      * 
      * @return Array Listado de destinos resultantes.
      */
-    public function getDestinyList($params, $type)
+    public function getDestinyList($params, $type, $page = 0)
     {
         $sd = new SearchData($params);
         if(!$sd->validate()){

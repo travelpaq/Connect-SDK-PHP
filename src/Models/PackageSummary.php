@@ -39,6 +39,11 @@ class PackageSummary
 	* Destino del paquete
 	*/
 	public $DestinationPlace;	
+
+	/*
+	* Hotel del paquete
+	*/
+	public $Hotel;	
     
     /**
      * Constructor
@@ -74,7 +79,12 @@ class PackageSummary
 						}	
 					}	
 				}
-			} 
+			}
+		}
+
+		$this->Hotel = [];
+		if(array_key_exists('Hotel', $data) && $data['Hotel']){
+			$this->Hotel = new Hotel($data['Hotel']);
 		}
     }
 }
