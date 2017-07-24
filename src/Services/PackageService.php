@@ -5,7 +5,7 @@ namespace TravelPAQ\PackagesAPI\Services;
 use TravelPAQ\PackagesAPI\Services\Service;
 use TravelPAQ\PackagesAPI\Models\PackagesPagination;
 use TravelPAQ\PackagesAPI\Models\Package;
-use TravelPAQ\PackagesAPI\Models\DestinyResult;
+use TravelPAQ\PackagesAPI\Models\DestinyResultPagination;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
 
@@ -71,11 +71,7 @@ class PackageService extends Service
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
-			$destinyResults = [];
-			foreach($body_decoded as $destinyResult){
-				$destinyResults[] = new DestinyResult($destinyResult);
-			}
-			return $destinyResults;
+			return new DestinyResultPagination($body_decoded);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())

@@ -104,7 +104,7 @@ class PackagesAPI
             throw new ValidationException($sd->get_last_error());
         }
         $ps = new PackageService();
-        return $ps->getDestinyList($params, $type); 
+        return $ps->getDestinyList($params, $type, $page); 
     }
 
     /**
