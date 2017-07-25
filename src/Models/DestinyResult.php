@@ -12,7 +12,7 @@
 namespace TravelPAQ\PackagesAPI\Models;
 
 /**
- * Class DestintResult
+ * Class DestinyResult
  * 
  * Clase que contiene un listado de destinos
  *
@@ -24,6 +24,16 @@ class DestinyResult
 	* Tipo de desino
 	*/
 	public $type;
+
+	/*
+	* Campo principal de agrupamiento 
+	*/
+	public $main_group_by;
+
+	/*
+	* Campo secundario de agrupamiento 
+	*/
+	public $secondary_group_by;
 
 	/*
 	* Destino
@@ -46,10 +56,18 @@ class DestinyResult
      */
     public function __construct($data)
     {	
-
     	$this->type = '';
     	if(array_key_exists('type', $data) && $data['type'])
 			$this->type = $data['type'];
+
+
+		$this->main_group_by = 'REGION';
+    	if(array_key_exists('main_group_by', $data) && $data['main_group_by'])
+			$this->main_group_by = $data['main_group_by'];
+
+		$this->secondary_group_by = 'COUNTRY';
+    	if(array_key_exists('secondary_group_by', $data) && $data['secondary_group_by'])
+			$this->secondary_group_by = $data['secondary_group_by'];
 
 		
 		$this->Destiny = [];

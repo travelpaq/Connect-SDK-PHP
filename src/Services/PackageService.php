@@ -53,12 +53,12 @@ class PackageService extends Service
 		}
 	}
 
-	public function getDestinyList($params, $type, $page){
+	public function getPackagesGrouped($params, $type, $page, $main_group_by , $secondary_group_by){
 		try {
 			$response = $this->http_client
 							 ->http_client
 							 ->request('POST', 
-							  		   'Packages/getDestinyList/' . $type . '/' . $page,
+							  		   'Packages/getPackagesGrouped/' . $type . '/' . $page . '/' . $main_group_by . '/' . $secondary_group_by,
 							  		   [
 							  		   		'form_params' => 
 							  		   		[

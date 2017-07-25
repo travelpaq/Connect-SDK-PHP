@@ -61,19 +61,18 @@ class DestinyResultPagination
 
 		$this->current_page = 0;
 		if(array_key_exists('current_page', $data) && $data['current_page'])
-			$this->current_page = $data['current_page'];
+			$this->current_page = (int)$data['current_page'];
 
 		$this->total_page = 0;
 		if(array_key_exists('total_page', $data) && $data['total_page'])
-			$this->total_page = $data['total_page'];
+			$this->total_page = (int)$data['total_page'];
 
 		$this->item_per_page = 0;
 		if(array_key_exists('item_per_page', $data) && $data['item_per_page'])
-			$this->item_per_page = $data['item_per_page'];
+			$this->item_per_page = (int)$data['item_per_page'];
 
 		$this->total_items = 0;
 		if(array_key_exists('total_items', $data) && $data['total_items'])
-			$this->total_items = $data['total_items'];
-
+			$this->total_items = (int)$data['total_items'];
     }
 }

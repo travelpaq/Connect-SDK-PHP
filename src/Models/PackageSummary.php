@@ -41,9 +41,9 @@ class PackageSummary
 	public $DestinationPlace;	
 
 	/*
-	* Hotel del paquete
+	* Accommodation del paquete
 	*/
-	public $Hotel;	
+	public $Accommodation;	
     
     /**
      * Constructor
@@ -82,9 +82,9 @@ class PackageSummary
 			}
 		}
 
-		$this->Hotel = [];
-		if(array_key_exists('Hotel', $data) && $data['Hotel']){
-			$this->Hotel = new Hotel($data['Hotel']);
+		$this->Accommodation = [];
+		if(array_key_exists('Accommodation', $data) && $data['Accommodation']){
+			$this->Accommodation = new Accommodation($data['Accommodation']);
 		}
     }
 }

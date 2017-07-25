@@ -97,14 +97,14 @@ class PackagesAPI
      * 
      * @return Array Listado de destinos resultantes.
      */
-    public function getDestinyList($params, $type, $page = 0)
+    public function getPackagesGrouped($params, $type = 'ALL', $page = 0, $main_group_by = 'REGION', $secondary_group_by = 'COUNTRY')
     {
         $sd = new SearchData($params);
         if(!$sd->validate()){
             throw new ValidationException($sd->get_last_error());
         }
         $ps = new PackageService();
-        return $ps->getDestinyList($params, $type, $page); 
+        return $ps->getPackagesGrouped($params, $type, $page, $main_group_by , $secondary_group_by); 
     }
 
     /**
