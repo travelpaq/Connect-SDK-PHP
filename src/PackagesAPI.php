@@ -55,6 +55,33 @@ class PackagesAPI
                 'item_per_page' => $config['item_per_page']
             ]);
         }
+
+    }
+
+     /**
+     * Obtiene un listado de paquetes en base a un el nombre de una búsqueda fija
+     * 
+     * @param string $name Nombre de la búsqueda
+     * 
+     * @return PackagesPagination Representa una página de resultado de búsqueda.
+     */
+    public function getPackageByFixedSearches()
+    {
+        $ps = new PackageService();
+        return $ps->getPackageByFixedSearches(); 
+    }
+
+    /**
+     * Obtiene un listado de paquetes en base a un el nombre de una búsqueda fija
+     * 
+     * @param string $name Nombre de la búsqueda
+     * 
+     * @return PackagesPagination Representa una página de resultado de búsqueda.
+     */
+    public function getPackageByFixedSearch($name = "", $page = 0)
+    {
+        $ps = new PackageService();
+        return $ps->getPackageByFixedSearch($name, $page); 
     }
 
     /**

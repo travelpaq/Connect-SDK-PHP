@@ -11,6 +11,44 @@ use GuzzleHttp\Exception\RequestException;
 
 class PackageService extends Service
 {
+	public function getPackageByFixedSearches(){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET', 'Packages/getPackageByFixedSearches');
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return $body_decoded;
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function getPackageByFixedSearch($name, $page){
+		try {
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET', 'Packages/getPackageByFixedSearch/' . $name . '/' . $page);
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+			return new PackagesPagination($body_decoded);
+		} catch (RequestException $e) {
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
 	public function getPackageList($params, $page = 0, $filters = null){
 		try {
 			if($filters){
