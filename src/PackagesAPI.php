@@ -113,6 +113,35 @@ class PackagesAPI
         return $ps->getPackageList($params,$page); 
     }
 
+        /**
+     * Obtiene un listado de paquetes en base a un conjunto de parámetros
+     * que filtrán la búsqueda y agrupa por fechas, trayendo el paquete más barato.
+     * 
+     * @param Array $params Representa los parametros de búsqueda
+     * 
+     * @param int $page Número de página
+     *
+     * @param Array $filters Representa los filtros para hacer más precisa la búsqeuda
+     * 
+     * @return PackagesPagination Representa una página de resultado de búsqueda.
+     */
+    public function getPackageListDateGrouped($params,$page = 0, $filters = null)
+    {
+        $sd = new SearchData($params);
+        if(!$sd->validate()){
+            throw new ValidationException($sd->get_last_error());
+        }
+        $ps = new PackageService();
+        if($filters){
+            $fi = new FilterData($filters);
+            if(!$fi->validate()){
+                throw new ValidationException($fi->get_last_error());
+            }
+            return $ps->getPackageListDateGrouped($params,$page,$filters);
+        }
+        return $ps->getPackageListDateGrouped($params,$page); 
+    }
+
     /**
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda agrupado en región, país o ciudad
