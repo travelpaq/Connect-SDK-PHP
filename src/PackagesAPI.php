@@ -142,6 +142,23 @@ class PackagesAPI
         return $ps->getPackageListDateGrouped($params,$page); 
     }
 
+    public function getPackageListDateHotelGrouped($params,$page = 0, $filters = null){
+
+        $sd = new SearchData($params);
+        if(!$sd->validate()){
+            throw new ValidationException($sd->get_last_error());
+        }
+        $ps = new PackageService();
+        if($filters){
+            $fi = new FilterData($filters);
+            if(!$fi->validate()){
+                throw new ValidationException($fi->get_last_error());
+            }
+            return $ps->getPackageListDateHotelGrouped($params,$page,$filters);
+        }
+        return $ps->getPackageListDateHotelGrouped($params,$page); 
+    }
+
     /**
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda agrupado en región, país o ciudad
