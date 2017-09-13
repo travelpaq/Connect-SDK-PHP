@@ -312,10 +312,10 @@ class PackagesAPI
      * @return Array PackageFares Retorna un listado de tarifas de paquetes inclyendo los lugares de salida
      *
      */
-    public function getFaresTreeWithOrigin()  
+    public function getFaresTreeWithOrigin($iata = '')  
     {
         $travelService = new TravelService();
-        return $travelService->getFaresTreeWithOrigin();
+        return $travelService->getFaresTreeWithOrigin($iata);
     }
 
 

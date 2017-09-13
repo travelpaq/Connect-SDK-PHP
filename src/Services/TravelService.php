@@ -182,11 +182,11 @@ class TravelService extends Service
 		}
 	}
 
-	public function getFaresTreeWithOrigin(){
+	public function getFaresTreeWithOrigin($iata){
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"travel/getFaresTreeWithOrigin");
+						 ->request('GET',"travel/getFaresTreeWithOrigin/" . $iata);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){
