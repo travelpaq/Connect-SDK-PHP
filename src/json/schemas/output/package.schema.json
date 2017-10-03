@@ -380,11 +380,55 @@
                   "type": "string",
                   "title": "Nombre del hotel."
                 },
+                "address": {
+                  "type": "string",
+                  "title": "Dirección del hotel."
+                },
+                "lat": {
+                  "type": "string",
+                  "title": "Latitud del Hotel."
+                },
+                "lng": {
+                  "type": "string",
+                  "title": "Longitud del Hotel."
+                },
+                "url": {
+                  "type": "string",
+                  "title": "Web del Hotel."
+                },
+                "star_rating_trip_advisor": {
+                  "type": "number",
+                  "title": "Calificación en TripAdvisor del hotel."
+                },
+                "popularity": {
+                  "type": "number",
+                  "title": "Cantidad de reviews en TripAdvisor del hotel."
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Descripción del hotel."
+                },
                 "Place": {
                   "type": "object",
                   "title": "Destino al que pertenece el hotel.",
                   "properties": {
                     "$ref": "#/definitions/Place" 
+                  }
+                },
+                "Regimes":{
+                  "type": "array",
+                  "title": "Regímenes que provee el Hotel.",
+                  "items": {
+                    "type": "string",
+                    "title": "Nombre del Régimen."
+                  }
+                },
+                "RoomsKind":{
+                  "type": "array",
+                  "title": "Tipos de habitaciones que provee el Hotel.",
+                  "items": {
+                    "type": "string",
+                    "title": "Nombre del tipo de habitación."
                   }
                 }
               },
