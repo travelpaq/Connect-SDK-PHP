@@ -26,7 +26,7 @@ class Hotel
     public $lat;
     public $lng;
     public $url;
-    public $star_rating_trip_advisor;
+    public $tripadvisor_rating;
     public $popularity;
     public $description;
     public $Regimes;
@@ -74,10 +74,10 @@ class Hotel
         else 
             $this->url = '';
         
-        if(array_key_exists('star_rating_trip_advisor', $data))
-            $this->star_rating_trip_advisor = (int)$data['star_rating_trip_advisor'];
+        if(array_key_exists('tripadvisor_rating', $data))
+            $this->tripadvisor_rating = (float)$data['tripadvisor_rating'];
         else 
-            $this->star_rating_trip_advisor = 0;
+            $this->tripadvisor_rating = 0;
         
         if(array_key_exists('popularity', $data))
             $this->popularity = (int)$data['popularity'];

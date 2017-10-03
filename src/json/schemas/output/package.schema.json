@@ -396,7 +396,7 @@
                   "type": "string",
                   "title": "Web del Hotel."
                 },
-                "star_rating_trip_advisor": {
+                "tripadvisor_rating": {
                   "type": "number",
                   "title": "Calificación en TripAdvisor del hotel."
                 },
