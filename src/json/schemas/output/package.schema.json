@@ -253,6 +253,10 @@
                     "name": {
                       "type": "string",
                       "title": "Nombre de la empresa de transporte."
+                    },
+                    "picture": {
+                      "type": "string",
+                      "title": "Logo de la empresa de transporte."
                     }
                   },
                   "required": [

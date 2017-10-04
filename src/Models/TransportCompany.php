@@ -19,16 +19,21 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class TransportCompany
 {
-	public $name;
+    public $name;
+    public $picture;
     /**
      * Constructor
      * @param Array data datos la compañia de transporte
      */
     public function __construct($data)
     {
-    	if(!array_key_exists('name', $data))
-    		$data['name'] = "";
-    	$this->name = $data['name'];
+        if(!array_key_exists('name', $data))
+            $data['name'] = "";
+        $this->name = $data['name'];
+
+        if(!array_key_exists('picture', $data))
+            $data['picture'] = "";
+        $this->picture = $data['picture'];
     }
 
 }
