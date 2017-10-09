@@ -255,7 +255,7 @@
                       "title": "Nombre de la empresa de transporte."
                     },
                     "picture": {
-                      "type": "string",
+                      "type": ["string",null],
                       "title": "Logo de la empresa de transporte."
                     }
                   },
@@ -385,19 +385,19 @@
                   "title": "Nombre del hotel."
                 },
                 "address": {
-                  "type": "string",
+                  "type": ["string", null],
                   "title": "Dirección del hotel."
                 },
                 "lat": {
-                  "type": "string",
+                  "type": ["string", null],
                   "title": "Latitud del Hotel."
                 },
                 "lng": {
-                  "type": "string",
+                  "type": ["string", null],
                   "title": "Longitud del Hotel."
                 },
                 "url": {
-                  "type": "string",
+                  "type": ["string", null],
                   "title": "Web del Hotel."
                 },
                 "tripadvisor_rating": {
@@ -409,7 +409,7 @@
                   "title": "Cantidad de reviews en TripAdvisor del hotel."
                 },
                 "description": {
-                  "type": "string",
+                  "type": ["string", null],
                   "title": "Descripción del hotel."
                 },
                 "Place": {
