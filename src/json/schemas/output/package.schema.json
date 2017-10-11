@@ -167,6 +167,10 @@
                 "detail": {
                   "type": "string",
                   "title": "Nombre de tipo de servicio."
+                },
+                "icon": {
+                  "type": ["string", null],
+                  "title": "Nombre de tipo de servicio."
                 }
               },
               "required": [

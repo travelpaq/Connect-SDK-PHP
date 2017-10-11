@@ -19,7 +19,8 @@ use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
  */
 class ServiceKind
 {
-	public $detail;
+    public $detail;
+    public $icon;
     /**
      * Constructor
      * @param Array data datos del tipo de servicio
@@ -32,6 +33,12 @@ class ServiceKind
             else $data['detail'] = $data['name'];
         }
         $this->detail = $data['detail'];
+
+        
+        if(!array_key_exists('icon', $data)){
+            $data['icon'] = "";
+        }
+        $this->icon = $data['icon'];
     }
 
 }
