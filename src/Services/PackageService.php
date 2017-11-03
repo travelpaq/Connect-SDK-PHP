@@ -37,10 +37,11 @@ class PackageService extends Service
 							 ->request('GET', 'Packages/getPackageByFixedSearch/' . $name . '/' . $page);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
-			if($body_decoded == null){
-				throw new \Exception($body);
+			$packages = [];
+			foreach($body_decoded as $package){
+				$packages[] = new Package($package);
 			}
-			return new PackagesPagination($body_decoded);
+			return $packages;
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
