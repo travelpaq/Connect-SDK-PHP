@@ -24,14 +24,18 @@ class Accommodation
     public $check_out;
     public $type_room;
     public $hotel_service;
+    public $room_kind;
+    public $regime;
 	public $Hotel;
     private $required_fields = [
         "number_nights",
         "check_in",
         "check_out",
-        "type_room",
-        "hotel_service",
-        "Hotel"
+        'regime',
+        'room_kind',
+        // "type_room",
+        // "hotel_service",
+        "hotel"
     ];
     /**
      * Constructor
@@ -60,13 +64,22 @@ class Accommodation
         }
         $this->check_out = $data['check_out'];
 
+        if(array_key_exists('room_kind', $data)){
+            if(array_key_exists('name', $data['room_kind'])){
+                $this->type_room = $data['room_kind']['name'];            
+                $this->room_kind = new RoomKind($data['room_kind']);
+            }
+        }
 
-        $this->type_room = $data['type_room'];
-
-        $this->hotel_service = $data['hotel_service'];
-
-		$this->Hotel = new Hotel($data['Hotel']);
-
+        if(array_key_exists('regime', $data)){
+            if(array_key_exists('name', $data['regime'])){
+                $this->hotel_service = $data['regime']['name'];            
+                $this->regime = new Regime($data['regime']);
+            }
+        }        
+        if(array_key_exists('hotel', $data))
+		  $this->Hotel = new Hotel($data['hotel']);
+        else $this->Hotel = [];
     }
 
 }

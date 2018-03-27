@@ -34,16 +34,27 @@ class Route
      * Constructor
      * @param Array data datos de la ruta
      */
-    public function __construct($data)
-    {
-		$this->DeparturePlace = new Place($data['DeparturePlace']);
+    public function __construct($data,$key = false)
+    {       
 
-		$this->TransportCompany = new TransportCompany($data['TransportCompany']);
+        if($key!==false){                   
+            $this->order_number = ((int)$key)+1;
+        }
 
-		$this->ArrivalPlace = new Place($data['ArrivalPlace']);
+        if(array_key_exists('departure_place',$data))
+		  $this->DeparturePlace = new Place($data['departure_place']);
+        else $this->DeparturePlace = [];
 
+        if(array_key_exists('transport_company',$data))        
+		  $this->TransportCompany = new TransportCompany($data['transport_company']);
+        else $this->TransportCompany = [];
+
+        if(array_key_exists('arrival_place',$data))                
+		  $this->ArrivalPlace = new Place($data['arrival_place']);
+        else $this->ArrivalPlace = [];
+        
         if(!array_key_exists('direction', $data))
-            $data['direction'] = "";
+            $data['direction'] = 1;
         $this->direction = $data['direction'];
 		        
         if(!array_key_exists('travel_number', $data))
@@ -52,19 +63,19 @@ class Route
 		
         if(!array_key_exists('arrival_time', $data))
             $data['arrival_time'] = "";
-        $this->arrival_time = $data['arrival_time'];
+        $this->arrival_time = date('H:m',strtotime($data['arrival_time']));;
 
         if(!array_key_exists('arrival_date', $data))
             $data['arrival_date'] = "";
         $this->arrival_date = $data['arrival_date'];
 		        
-        if(!array_key_exists('order_number', $data))
-            $data['order_number'] = "";
-        $this->order_number = $data['order_number'];
+        // if(!array_key_exists('order_number', $data))
+        //     $data['order_number'] = "";
+        // $this->order_number = $data['order_number'];
 		
         if(!array_key_exists('departure_time', $data))
             $data['departure_time'] = "";
-        $this->departure_time = $data['departure_time'];
+        $this->departure_time = date('H:m',strtotime($data['departure_time']));
 
         if(!array_key_exists('departure_date', $data))
             $data['departure_date'] = "";

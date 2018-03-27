@@ -35,7 +35,7 @@ class ChildPrice
         if(!array_key_exists('final_price', $data))
             $data['final_price'] = 0;
         $this->final_price = $data['final_price'];
-
-        $this->TotalPrice = new TotalPrice($data['TotalPrice']);
+        if(array_key_exists('total_price', $data))
+            $this->TotalPrice = new TotalPrice($data['total_price']);
     }
 }

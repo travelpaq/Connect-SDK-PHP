@@ -33,19 +33,19 @@ class Price
      * Constructor
      * @param Array data datos del precio
      */
-    public function __construct($data, $rooms)
+    public function __construct($data, $rooms = null)
     {
     	if(!array_key_exists('currency', $data))
     		$data['currency'] = "";
     	$this->currency = $data['currency'];
  
-        if(!array_key_exists('price_per_person', $data))
-            $data['price_per_person'] = "";
-        $this->price_per_person = $data['price_per_person'];
-
         if(!array_key_exists('final_price', $data))
             $data['final_price'] = "";
-        $this->final_price = $data['final_price'];
+        $this->final_price = $data['final_price'];        
+
+        if(!array_key_exists('price_per_person', $data))
+            $data['price_per_person'] = "";
+        $this->price_per_person = $data['price_per_person'];        
 
         if(!array_key_exists('markup', $data))
             $data['markup'] = 0;
@@ -66,13 +66,16 @@ class Price
         if(!array_key_exists('ota_comission', $data))
             $data['ota_comission'] = 0;
         $this->ota_comission = $data['ota_comission'];
- 
-    	$this->TotalPrice = new TotalPrice($data['TotalPrice']);
+        
+        if(array_key_exists('total_price', $data))
+    	   $this->TotalPrice = new TotalPrice($data['total_price']);
+        else $this->TotalPrice = [];
 
         $this->RoomsPrice = [];
-        foreach($data['RoomsPrice'] as $i => $roomPrice){
-            $this->RoomsPrice[] = new RoomPrice($roomPrice, $rooms[$i]);
+        if(array_key_exists('room_prices', $data)){
+            foreach($data['room_prices'] as $i => $roomPrice){
+                $this->RoomsPrice[] = new RoomPrice($roomPrice, $rooms[$i]);
+            }
         }
     }
-
 }

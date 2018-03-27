@@ -30,10 +30,15 @@ class Departure
     public function __construct($data)
     {
 		$this->Route = [];
-		foreach ($data['Route'] as $key => $value) {
-			$this->Route[] = new Route($value);
-		}
-        $this->Place = new Place($data['Place']);
+        if(array_key_exists('routes', $data)){
+    		foreach ($data['routes'] as $key => $value) {    			
+                $this->Route[] = new Route($value,$key);
+    		}            
+        }else $this->Route = []; 
+        
+        if(array_key_exists('place', $data))
+            $this->Place = new Place($data['place']);
+        else $this->Place = [];
 
         if(!array_key_exists('date', $data))
             $data['date'] = "";

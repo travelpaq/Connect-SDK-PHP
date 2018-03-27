@@ -126,8 +126,8 @@ class BookingStatus
             $data['status'] = "";
         $this->status = $data['status'];
         
-        if($this->status != 'ERROR' && array_key_exists('Package', $data) && $data['Package']){
-            $this->Package = new Package($data['Package']);
+        if($this->status != 'ERROR' && array_key_exists('package', $data) && $data['package']){
+            $this->Package = new Package($data['package']);
         } else {
             $this->Package = null;
         }
@@ -140,15 +140,11 @@ class BookingStatus
             }
         }
         $this->currency = $data['currency'];
-
-
-        $this->Fare = [];
-        foreach ($data['Fare'] as $key => $fare) {
-            $this->Fare[] = new Fare($fare);
-        }
         
-        if(array_key_exists('Room', $data))   
-            foreach ($data['Room'] as $i => $room){
+        
+        
+        if(array_key_exists('rooms', $data))   
+            foreach ($data['rooms'] as $i => $room){
                 
                 $this->Room[] = [];
                 foreach ($room as $passenger)
@@ -158,10 +154,10 @@ class BookingStatus
             throw new ValidationException("No se han los pasajeros que viajarán con el paquete sobre el cual se desea realizar la reserva");
         
 
-        if(!(array_key_exists('Pricing', $data) && $data['Pricing'] && count($data['Pricing']))){
-            $data['Pricing'] = null;
+        if(!(array_key_exists('pricing', $data) && $data['pricing'] && count($data['pricing']))){
+            $data['pricing'] = null;
         } else {
-            $this->Pricing = new Pricing($data['Pricing']);
+            $this->Pricing = new Pricing($data['pricing']);
         }
 
         if(array_key_exists('message_error', $data) && $data['message_error']){
@@ -176,17 +172,20 @@ class BookingStatus
             $this->contact_phone = "";
         }
 
-        if(!array_key_exists('booking_id', $data))
-            $data['booking_id'] = "";
-        $this->booking_id = (string)$data['booking_id'];
-
+        if(!array_key_exists('id', $data))
+            $data['id'] = "";
+        $this->booking_id = (string)$data['id'];
+                
         if(!array_key_exists('external_id', $data))
             $data['external_id'] = "";
         $this->external_id = $data['external_id'];
-
-        if(!array_key_exists('agency_commission', $data))
-            $data['agency_commission'] = "";
-        $this->agency_commission = $data['agency_commission'];
+        
+        $this->agency_commission = "";
+        if(array_key_exists('package', $data) && 
+            array_key_exists('price', $data['package']) && 
+                array_key_exists('agency_commission', $data['package']['price'])){            
+            $this->agency_commission = $data['package']['price']['agency_commission'];
+        }
 
         if(!array_key_exists('type_change', $data))
             $data['type_change'] = 1;
@@ -212,13 +211,13 @@ class BookingStatus
         }
         $this->date = $data['date'];
 
-        if(!array_key_exists('Agency', $data))
-            $data['Agency'] = [];
-        $this->Agency = new Company($data['Agency']);
+        if(!array_key_exists('agency', $data))
+            $data['agency'] = [];
+        $this->Agency = new Company($data['agency']);
 
-        if(!array_key_exists('Operator', $data))
-            $data['Operator'] = [];
-        $this->Operator = new Company($data['Operator']);
+        if(!array_key_exists('operator', $data))
+            $data['operator'] = [];
+        $this->Operator = new Company($data['operator']);
     }
 
 }

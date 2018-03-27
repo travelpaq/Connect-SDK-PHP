@@ -10,7 +10,7 @@ class Book
 	var $contact_phone;
 	var $Room;
 	
-	function __construct($params) 
+	function __construct($params)
 	{
 		$this->Room = [];
 		if(array_key_exists('package_id', $params))

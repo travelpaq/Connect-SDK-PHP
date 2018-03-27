@@ -39,15 +39,19 @@ class MonthFare
      * @param data 
      */
     public function __construct($data)
-    {
-        if(array_key_exists('Month', $data) && $data['Month'])
-            $this->Month = new Month($data['Month']);
+    {   
+        if(array_key_exists('month', $data) && $data['month'])
+            $this->Month = new Month($data);
         else $this->Month = [];
 
-        if(array_key_exists('PackageFares', $data) && count($data['PackageFares']) > 0){
+        if(array_key_exists('package_fares', $data) && count($data['package_fares']) > 0){
+            $data['haveChildrenFare'] = false;
             $this->PackageFares = [];
-            foreach($data['PackageFares'] as $PackageFare){
-                $this->PackageFares[] = new PackageFare($PackageFare);
+            foreach($data['package_fares'] as $PackageFare){
+                $package_fares = new PackageFare($PackageFare);
+                $this->PackageFares[] = $package_fares;
+                if($package_fares->max_number_children > 0)
+                    $data['haveChildrenFare'] = true;
             }
         } else {
             $this->PackageFares = [];
@@ -56,5 +60,6 @@ class MonthFare
         if(array_key_exists('haveChildrenFare', $data) && $data['haveChildrenFare'])
             $this->haveChildrenFare = $data['haveChildrenFare'];
         else $this->haveChildrenFare = false;
+
     }
 }

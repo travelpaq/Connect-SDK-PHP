@@ -161,7 +161,9 @@ class TravelService extends Service
 			$response = $this->http_client
 						 ->http_client
 						 ->request('GET',"travel/getFaresTree");
+
 			$body = $response->getBody()->getContents();
+
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
@@ -183,18 +185,23 @@ class TravelService extends Service
 	}
 
 	public function getFaresTreeWithOrigin($iata){
+		
 		try {
+
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"travel/getFaresTreeWithOrigin/" . $iata);
+						 ->request('GET',"fares/?with_origin=true" . $iata);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
+						
 			if(!is_array($body_decoded) && $body_decoded == null){
 				throw new \Exception($body);
 			}
 			$faresTree = [];
 
-			foreach($body_decoded as $fares){
+
+
+			foreach($body_decoded['data'] as $fares){
 				$faresTree[] = new OriginPlaceFare($fares);
 			}
 

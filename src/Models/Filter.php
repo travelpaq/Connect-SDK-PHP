@@ -11,6 +11,10 @@ class Filter
 	var $from;
 	var $to;
 	var $companies;
+	var $hotel_names;
+	var $hotel_regimes;
+	var $hotel_room_kinds;
+
 	function __construct($params){
 		if(array_key_exists('name', $params))
 			$this->name = (string)$params['name'];
@@ -27,7 +31,23 @@ class Filter
 			if(array_key_exists('companies', $params))
 				$this->companies = $params['companies'];
 			else 
-				$this->companies = [];
+				$this->companies = [];			
+
+			if(array_key_exists('hotel_names', $params))
+				$this->hotel_names = $params['hotel_names'];
+			else 
+				$this->hotel_names = [];
+
+			if(array_key_exists('hotel_regimes', $params))
+				$this->hotel_regimes = $params['hotel_regimes'];
+			else 
+				$this->hotel_regimes = [];
+
+			if(array_key_exists('hotel_room_kinds', $params))
+				$this->hotel_room_kinds = $params['hotel_room_kinds'];
+			else 
+				$this->hotel_room_kinds = [];
+
 		}	
 	}
 }

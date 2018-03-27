@@ -26,7 +26,7 @@ class Region
      * @param Array data datos de una Región
      */
     public function __construct($data)
-    {
+    {   
     	if(!array_key_exists('name', $data))
             $data['name'] = "";
         $this->name = $data['name'];

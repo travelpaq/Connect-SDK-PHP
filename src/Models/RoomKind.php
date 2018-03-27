@@ -13,26 +13,21 @@ namespace TravelPAQ\PackagesAPI\Models;
 
 use TravelPAQ\PackagesAPI\Models\Exceptions\ValidationException;
 /**
- * Class Service
+ * Class Region
  *
  * @package TravelPAQ
  */
-class Service
+class RoomKind
 {
-	public $detail;
-	public $ServiceKind;
+    public $name;
     /**
      * Constructor
-     * @param Array data datos del servicio
+     * @param Array data datos de una Región
      */
     public function __construct($data)
-    {
-    	if(!array_key_exists('detail', $data))
-    		$data['detail'] = "";
-    	$this->detail = $data['detail'];
-        if(array_key_exists('service_kind', $data['service_kind']))
-    	   $this->ServiceKind = new ServiceKind($data['service_kind']);
-        else $this->ServiceKind = [];
+    {   
+    	if(!array_key_exists('name', $data))
+            $data['name'] = "";
+        $this->name = $data['name'];
     }
-
 }

@@ -55,40 +55,40 @@ class Pricing
     public function __construct($data)
     {
         $this->NonCommissionableService = [];
-        if(array_key_exists('NonCommissionableService', $data))  {
-            if(array_key_exists(0, ($data['NonCommissionableService']))){
-                foreach ($data['NonCommissionableService'] as $key => $value) {
+        if(array_key_exists('non_commissionable_services', $data))  {
+            if(array_key_exists(0, ($data['non_commissionable_services']))){
+                foreach ($data['non_commissionable_services'] as $key => $value) {
                     $this->NonCommissionableService[] = new ItemPriceShort($value);
                 }
             } else {
-                if($data['NonCommissionableService']){
-                    $this->NonCommissionableService = array(new ItemPriceShort($data['NonCommissionableService']));
+                if($data['non_commissionable_services']){
+                    $this->NonCommissionableService = array(new ItemPriceShort($data['non_commissionable_services']));
                 }
             }
         }
 
         $this->TourismTaxes = [];
-        if(array_key_exists('TourismTaxes', $data)) {
-            if(array_key_exists(0, ($data['TourismTaxes']))){
-                foreach ($data['TourismTaxes'] as $key => $value) {
+        if(array_key_exists('tourism_taxes', $data)) {
+            if(array_key_exists(0, ($data['tourism_taxes']))){
+                foreach ($data['tourism_taxes'] as $key => $value) {
                     $this->TourismTaxes[] = new ItemPriceLarge($value);
                 }
             } else {
-                if($data['TourismTaxes']){
-                    $this->TourismTaxes = array(new ItemPriceLarge($data['TourismTaxes']));
+                if($data['tourism_taxes']){
+                    $this->TourismTaxes = array(new ItemPriceLarge($data['tourism_taxes']));
                 }
             }
         }
 
         $this->FiscalTaxes = [];
-        if(array_key_exists('FiscalTaxes', $data)) {
-            if(array_key_exists(0, ($data['FiscalTaxes']))){
-                foreach ($data['FiscalTaxes'] as $key => $value) {
+        if(array_key_exists('fiscal_taxes', $data)) {
+            if(array_key_exists(0, ($data['fiscal_taxes']))){
+                foreach ($data['fiscal_taxes'] as $key => $value) {
                     $this->FiscalTaxes[] = new ItemPriceLarge($value);
                 }
             } else {
-                if($data['FiscalTaxes']){
-                    $this->FiscalTaxes = array(new ItemPriceLarge($data['FiscalTaxes']));
+                if($data['fiscal_taxes']){
+                    $this->FiscalTaxes = array(new ItemPriceLarge($data['fiscal_taxes']));
                 }
             }
         }

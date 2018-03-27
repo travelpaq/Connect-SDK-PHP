@@ -35,22 +35,25 @@ class Package
     public $Room;
     public $Company;
     public $Avail;
+    public $PackagesSumarized;
+
+
   	/*
   	* @var Array Campos requeridos en el paquete
   	*/
   	private $required_fields = [
-      "Category",
-      "Service",
+      // "Category",
+      "services",
       "title",
-      "Image",
-      "Departure",
+      // "Image",
+      "departure",
       "id",
-      "Place",
-      "Price",
-      "Accommodation",
-      "Room",
-      //"Company", 
-      "transport",
+      "places",
+      "price",
+      "accommodations",
+      // "Room",
+      "company", 
+      // "transport",
       "total_nights"
     ];
     /**
@@ -58,9 +61,19 @@ class Package
      * @param Array Listado de paquetes
      */
     public function __construct($package)
-    {
-      $packageKeys = array_keys($package);
+    { 
+      // echo "<pre>";
+      // print_r($package);
+      // echo "</pre>";
 
+      $packages_sumarized = [];
+      if(array_key_exists('packages_sumarized', $package)){
+          $packages_sumarized = $package['packages_sumarized'];
+          $package = $package['package'];
+      }    
+
+      $packageKeys = array_keys($package);
+      
       foreach ($this->required_fields as $required_field) {
     		if(!in_array($required_field,$packageKeys))
     		  throw new ValidationException("Falta el campo $required_field");
@@ -68,7 +81,7 @@ class Package
       $this->id = $package['id'];
       $this->title = $package['title'];
       $this->total_nights = $package['total_nights'];
-      $this->transport = $package['transport'];
+      $this->transport = 1;
 
       if(!array_key_exists('observations', $package))
         $this->observations = '';
@@ -81,52 +94,61 @@ class Package
         $this->itinerary = $package['itinerary'];
         
       $this->Category = [];
-      foreach ($package['Category'] as $key => $value) {
-        $this->Category[] = new Category($value);
-      }
-      
+      // foreach ($package['Category'] as $key => $value) {
+      $this->Category[] = new Category([]);
+      // }
       $this->Service = [];
-      foreach ($package['Service'] as $key => $value) {
+      foreach ($package['services'] as $key => $value) {
         $this->Service[] = new Service($value);
       }
-      
-      $this->Image = [];
-      foreach ($package['Image'] as $key => $value) {
-        $this->Image[] = new Image($value);
-      }
 
-      $this->Departure = new Departure($package['Departure']);
-
+      if(array_key_exists('departure', $package))
+        $this->Departure = new Departure($package['departure']);
+      else $this->Departure =[];
+            
       $this->Place = [];
-      foreach ($package['Place'] as $key => $value) {
+      foreach ($package['places'] as $key => $value) {
         $this->Place[] = new Place($value);
       }
       
-      $this->Room = [];
-      foreach ($package['Room'] as $room) {
-        $this->Room[] = new Room($room);
-      }
 
-      $this->Price = new Price($package['Price'], $this->Room);
-
-      $this->Accommodation = [];
-      foreach ($package['Accommodation'] as $accommodation) {
-        $this->Accommodation[] = new Accommodation($accommodation);
-      }
-      
-      
-
-      if(array_key_exists('Company', $package) && $package['Company']){
-            $this->Company = new Company($package['Company']);
-        } else {
-            $this->Company = null;
+      $this->Image = [];      
+      foreach ($this->Place as $key => $place) {
+        foreach ($place->images as $i => $image) {
+          $this->Image[] = $image;
         }
+      }
 
-      if(array_key_exists('Avail', $package) && $package['Avail']){
-          $this->Avail = new Avail($package['Avail']);
+      $this->Room = [];
+
+      foreach ($package['price']['room_prices'] as $room) {
+        $this->Room[] = new Room($room,true);
+      }
+      
+      if(array_key_exists('price', $package))
+      $this->Price = new Price($package['price'], $this->Room);
+  
+      $this->Accommodation = [];
+      foreach ($package['accommodations'] as $accommodation) {
+        $this->Accommodation[] = new Accommodation($accommodation);
+      }           
+
+      if(array_key_exists('company', $package) && $package['company']){
+            $this->Company = new Company($package['company']);
+      } else {
+            $this->Company = null;
+      }      
+
+      if(array_key_exists('avail', $package) && $package['avail']){
+          $this->Avail = new Avail($package['avail']);
       } else {
           $this->Avail = null;
-      }
+      }     
 
+      if(count($packages_sumarized)>0){
+          foreach ($packages_sumarized as $packages_sumarized__) {
+            $this->PackagesSumarized[] = new PackagesSumarized($packages_sumarized__);
+          }
+      }else $this->PackagesSumarized = $packages_sumarized;
     }
 }

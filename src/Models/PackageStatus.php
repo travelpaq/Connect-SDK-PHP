@@ -35,10 +35,10 @@ class PackageStatus
      */
     public function __construct($data)
     {
-    	$this->Package = new Package($data['Package']);
-    	if(!array_key_exists('status', $data))
+    	$this->Package = new Package($data['package_status']['package']);
+    	if(!array_key_exists('status', $data['package_status']))
             $data['status'] = "";
-        $this->status = $data['status'];
+        $this->status = $data['package_status']['status'];
     }
 
 }

@@ -12,11 +12,11 @@ use GuzzleHttp\Exception\RequestException;
 
 class BookingPackageService extends Service
 {
-	public function checkAvail($booking_id){
+	public function checkAvail($package_id){
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"booking/checkAvail/$booking_id");
+						 ->request('GET',"packages/checkAvail?package_id=$package_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){
@@ -31,23 +31,26 @@ class BookingPackageService extends Service
 		}
 	}
 	public function bookingPackage($params){
+		
+		$params['rooms'] = $params['Room'];
+		unset($params['Room']);
+
 		try {
 			$response = $this->http_client
 							 ->http_client
 							 ->request('POST',
-							 		   'booking/bookingPackage',
+							 		   'bookings',
 							 		   [
-								 		   	'form_params' => 
-							 		   		[
-							 		   			'data' => base64_encode(json_encode($params))
-							 		   		]
+								 		   	'json' => $params,
+							 		   		'header'=>['Accept'=>'application/json']
+							 		   		
 							 		   ]);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null) {
 				throw new \Exception($body);
 			}
-			return new BookingStatus($body_decoded);	
+			return new BookingStatus($body_decoded['booking']);	
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -57,28 +60,26 @@ class BookingPackageService extends Service
 	}
 	public function getBooking($booking_id, $html){
 		try {
-			if($html)
-				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id", ['headers' => ['ACCEPT' => 'text/html']]);
-			else 
-				$response = $this->http_client->http_client->request('GET',"booking/getBooking/$booking_id");
+			
+			$response = $this->http_client->http_client->request('GET',"bookings?booking_id=$booking_id");
+			
 			$body = $response->getBody()->getContents();
-			if(!$html){
-				$body_decoded = json_decode($body,true);
-				if(!is_array($body_decoded) && $body_decoded == null) {
-					throw new \Exception($body);
-				}
-				if(array_key_exists('Passenger', $body_decoded))
-					return $body_decoded;
-				else {
-					if(array_key_exists('percentage_tp_ota', $body_decoded) && array_key_exists('percentage_tp_operator', $body_decoded) && $body_decoded['percentage_tp_ota'] && $body_decoded['percentage_tp_operator']){
-						return new BookingStatusTravelPAQ($body_decoded);
-					} else {
-						return new BookingStatus($body_decoded);
-					}
-				}
-			} else {
-				return $body;
+			$body_decoded = json_decode($body,true);
+			
+			if(!is_array($body_decoded) && $body_decoded == null) {
+				throw new \Exception($body);
 			}
+			if(array_key_exists('Passenger', $body_decoded))
+				return $body_decoded;
+			else {
+				if(array_key_exists('percentage_tp_ota', $body_decoded) && array_key_exists('percentage_tp_operator', $body_decoded) && $body_decoded['percentage_tp_ota'] && $body_decoded['percentage_tp_operator']){
+					return new BookingStatusTravelPAQ($body_decoded['booking']);
+				} else {
+					return new BookingStatus($body_decoded['booking']);
+				}
+			}
+			
+
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -109,13 +110,13 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/confirmBooking/$booking_id");
+							 ->request('GET',"bookings/confirm?booking_id=$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
 				throw new \Exception($body);
 			}
-			return new BookingStatus($body_decoded);
+			return new BookingStatus($body_decoded['booking']);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -128,13 +129,13 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/cancelBooking/$booking_id");
+							 ->request('GET',"bookings/cancel?booking_id=$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
 				throw new \Exception($body);
 			}
-			return new BookingStatus($body_decoded);
+			return new BookingStatus($body_decoded['booking']);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -147,13 +148,15 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/iConfirmBooking/$booking_id");
+							 ->request('GET',"bookings/iConfirm?booking_id=$booking_id");
+
+
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
 				throw new \Exception($body);
 			}
-			return new BookingStatus($body_decoded);
+			return new BookingStatus($body_decoded['booking']);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -166,13 +169,13 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"booking/iCancelBooking/$booking_id");
+							 ->request('GET',"bookings/iCancel?booking_id=$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
 				throw new \Exception($body);
 			}
-			return new BookingStatus($body_decoded);
+			return new BookingStatus($body_decoded['booking']);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())

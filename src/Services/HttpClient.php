@@ -31,7 +31,7 @@ class HttpClient
 		    'timeout'  => $params['timeout'],
             'verify'   => __DIR__.'/cacert.pem',
                     'headers' => [
-                            'TP-AUTH' => $params['key'],
+                            'Authorization' => 'Bearer '. $params['key'],
                             'TP-IPP' => $params['item_per_page'],
                             'ACCEPT' => 'application/json'
                           ]

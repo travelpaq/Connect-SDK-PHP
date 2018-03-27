@@ -44,6 +44,16 @@ class PackagesPagination
 	public $total_items;
 
 	/*
+	* Existe pagina anterior
+	*/
+	public $has_prev_page;
+
+	/*
+	* Existe pagina siguiente
+	*/
+	public $has_next_page;
+
+	/*
 	* Precio mínimo para esa búsqueda
 	*/
 	public $min_price;
@@ -84,6 +94,26 @@ class PackagesPagination
 	public $max_date_departure;
 
 	/*
+	* Cantidad de estrellas para esa búsqueda
+	*/
+	public $hotel_star_ratings;
+
+	/*
+	* Nombre de hoteles para esa búsqueda
+	*/
+	public $hotel_names;
+
+	/*
+	* Tipo de cuartos para esa búsqueda
+	*/
+	public $hotel_room_kinds;
+
+	/*
+	* Regimes de hoteles para esa búsqueda
+	*/
+	public $hotel_regimes;
+
+	/*
 	* Operadores a los que pertenecen los paquetes resultantes de la búsqueda.
 	*/
 	public $Company;
@@ -93,38 +123,64 @@ class PackagesPagination
      * @param Array Listado de paquetes desde la API
      */
     public function __construct($packagesList)
-    {
+    {	
     	$this->result = [];
-    	foreach ($packagesList['result'] as $key => $package) {
+    	foreach ($packagesList['data'] as $key => $package) {
     		$this->result[] = new Package($package);
     	}
-    	$this->current_page = (int)$packagesList['current_page'];
-    	$this->total_page = (int)$packagesList['total_page'];
-    	$this->item_per_page = (int)$packagesList['item_per_page'];
-    	$this->total_items = (int)$packagesList['total_items'];
+    	$this->current_page = (int)$packagesList['pagination']['page_index'];
+    	$this->total_page = (int)$packagesList['pagination']['count_pages'];
+    	$this->item_per_page = (int)$packagesList['pagination']['page_size'];
+    	$this->total_items = (int)$packagesList['pagination']['count_items'];    	
+    	$this->has_next_page = (int)$packagesList['pagination']['has_next_page'];
+    	$this->has_prev_page = (int)$packagesList['pagination']['has_prev_page'];
+
     	
-    	$this->min_price = (int)round($packagesList['min_price']);
+    	$this->min_price = (int)round($packagesList['filters_data']['min_price']);
+
     	if($this->min_price < 0 || $this->min_price > 10000000)
     		$this->min_price = 0;
-    	$this->max_price = (int)round($packagesList['max_price']);
+    	$this->max_price = (int)round($packagesList['filters_data']['max_price']);
 	
-	   	$this->min_nights = (int)$packagesList['min_nights'];
+	   	$this->min_nights = (int)$packagesList['filters_data']['min_nights'];
     	if($this->min_nights < 0 || $this->min_nights > 10000000)
     		$this->min_nights = 0;
-    	$this->max_nights = (int)$packagesList['max_nights'];
+    	$this->max_nights = (int)$packagesList['filters_data']['max_nights'];
 
-    	$this->min_star = (int)$packagesList['min_star'];
-    	if($this->min_star < 0 || $this->min_star > 10000000)
-    		$this->min_star = 0;
-    	$this->max_star = (int)$packagesList['max_star'];
+    	if(count($packagesList['filters_data']['hotel_star_ratings']) > 0){
+	    	$this->min_star = (int)$packagesList['filters_data']['hotel_star_ratings'][0];
+	    	
+	    	$this->max_star = (int)$packagesList['filters_data']['hotel_star_ratings'][count($packagesList['filters_data']['hotel_star_ratings'])-1];
+    	}
 
-    	$this->min_date_departure = $packagesList['min_date_departure'];
-    	$this->max_date_departure = $packagesList['max_date_departure'];
+    	$this->min_date_departure = $packagesList['filters_data']['min_departure_date'];
+    	$this->max_date_departure = $packagesList['filters_data']['max_departure_date'];
 
-    	if(!array_key_exists('Company', $packagesList) || !$packagesList['Company']){
+    	if(!array_key_exists('companies', $packagesList['filters_data']) || !$packagesList['filters_data']['companies']){
     		$packagesList['Company'] = [];
     	}
-    	$this->Company = $packagesList['Company'];
+    	$this->Company = $packagesList['filters_data']['companies'];
+
+    	$hotel_regimes = [];
+    	if(array_key_exists('hotel_regimes', $packagesList['filters_data'])){
+    		$this->hotel_regimes = $packagesList['filters_data']['hotel_regimes'];	
+    	}
+
+    	$hotel_room_kinds = [];
+    	if(array_key_exists('hotel_room_kinds', $packagesList['filters_data'])){
+    		$this->hotel_room_kinds = $packagesList['filters_data']['hotel_room_kinds'];
+    	}
+
+    	$hotel_names = [];
+    	if(array_key_exists('hotel_names', $packagesList['filters_data'])){
+    		$this->hotel_names = $packagesList['filters_data']['hotel_names'];	
+    	}
+
+    	$hotel_star_ratings = [];
+    	if(array_key_exists('hotel_star_ratings', $packagesList['filters_data'])){
+    		$this->hotel_star_ratings = $packagesList['filters_data']['hotel_star_ratings'];	
+    	}
+
 
     }
 

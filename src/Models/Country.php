@@ -36,8 +36,8 @@ class Country
             $data['iata'] = "";
         $this->iata = $data['iata'];
 
-        if(!array_key_exists('Region', $data))
-            $data['Region'] = "";
-        $this->Region = new Region($data['Region']);
+        if(!array_key_exists('region', $data))
+            $data['region'] = "";
+        $this->Region = new Region($data['region']);
     }
 }

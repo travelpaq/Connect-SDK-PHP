@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Esquema de validación para parámetros de getPackageGroup.",
+  "description": "Este esquema contiene los datos que se reciben como parámetro de entrada para el método getPackageGroup.",
+  "properties": {
+    "primary_group": {
+      "type": "string",
+      "enum": ["hotel","hotel_regime","month_year","hote_room_kind","place","departure_date"],
+      "title": "Campo que marcará agrupamiento primario.",
+      "description": "Atributo que marcará que agrupamiento primario se utilizará."
+    },
+    "secondary_group": {
+      "type": "string",
+      "enum": ["hotel","hotel_regime","month_year","hote_room_kind","place","departure_date"],
+      "title": "Campo que marcará agrupamiento secundario.",
+      "description": "Atributo que marcará que agrupamiento secundario se utilizará."
+    }
+  },
+  "required": [
+    "primary_group",
+    "secondary_group"    
+  ]
+}

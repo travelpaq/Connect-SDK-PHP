@@ -40,19 +40,26 @@ class OriginPlaceFare
      */
     public function __construct($data)
     {
-        if(array_key_exists('OriginPlace', $data) && $data['OriginPlace'])
-            $this->OriginPlace = new Place($data['OriginPlace']);
-        else $this->OriginPlace = [];
 
-        if(array_key_exists('DestinationPlace', $data) && $data['DestinationPlace']){
-            foreach ($data['DestinationPlace'] as $DestinationPlace) {
+        $OriginPlace = ['name'=>$data['name'],
+                        'iata'=>$data['iata'],
+                        'Country'=>$data['country']
+                        ];
+
+        if($data['name'])
+            $this->OriginPlace = new Place($OriginPlace);
+        else $this->OriginPlace = [];
+        
+        if(array_key_exists('destinations_fares', $data) && $data['destinations_fares']){
+            foreach ($data['destinations_fares'] as $DestinationPlace) {
                 $this->DestinationPlace[] = new PlaceFare($DestinationPlace);
             }
         }
         else $this->DestinationPlace = [];
-
+        
         if(array_key_exists('haveChildrenFare', $data) && $data['haveChildrenFare'])
             $this->haveChildrenFare = $data['haveChildrenFare'];
         else $this->haveChildrenFare = false;
+
     }
 }

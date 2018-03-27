@@ -39,14 +39,20 @@ class PlaceFare
      * @param data 
      */
     public function __construct($data)
-    {
-        if(array_key_exists('Place', $data) && $data['Place'])
-            $this->Place = new Place($data['Place']);
+    {   
+        $Placex = ['name'=>$data['name'],
+                        'iata'=>$data['iata'],
+                        'Country'=>$data['country']
+                        ];
+        
+
+        if($Placex['name'])
+            $this->Place = new Place($Placex);
         else $this->Place = [];
 
-        if(array_key_exists('MonthFares', $data) && count($data['MonthFares']) > 0){
+        if(array_key_exists('month_fares', $data) && count($data['month_fares']) > 0){
             $this->MonthFares = [];
-            foreach($data['MonthFares'] as $MonthFare){
+            foreach($data['month_fares'] as $MonthFare){
                 $this->MonthFares[] = new MonthFare($MonthFare);
             }
         } else {

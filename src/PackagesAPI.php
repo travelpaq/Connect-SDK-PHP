@@ -16,6 +16,7 @@ namespace TravelPAQ\PackagesAPI;
 use TravelPAQ\PackagesAPI\Models\BookData;
 use TravelPAQ\PackagesAPI\Models\SearchData;
 use TravelPAQ\PackagesAPI\Models\FilterData;
+use TravelPAQ\PackagesAPI\Models\GroupData;
 
 use TravelPAQ\PackagesAPI\Services\HttpClient;
 use TravelPAQ\PackagesAPI\Services\PackageService;
@@ -41,21 +42,22 @@ class PackagesAPI
      * @param mixed $config 
      */
     public function __construct($config) 
-    {
-        if(array_key_exists('test', $config) && $config['test'] == true){
-            HttpClient::getInstance([
-                'url' => 'http://travelpaq-connect-test.us-east-1.elasticbeanstalk.com/' . $config['version'] . '/',
-                'key' => $config['api_key'],
-                'item_per_page' => $config['item_per_page']
-            ]);
-        }else{
-            HttpClient::getInstance([
-                'url' => 'https://api.travelpaq.com.ar/'.$config['version'] .'/',
-                'key' => $config['api_key'],
-                'item_per_page' => $config['item_per_page']
-            ]);
-        }
-
+    {   
+        if(!array_key_exists('version', $config) || $config['version']=='v3'){
+            if(array_key_exists('test', $config) && $config['test'] == true){
+                HttpClient::getInstance([
+                    'url' => 'http://travelpaq-api-3-dev.us-east-1.elasticbeanstalk.com/',
+                    'key' => $config['api_key'],
+                    'item_per_page' => $config['item_per_page']
+                ]);
+            }else{
+                HttpClient::getInstance([
+                    'url' => 'http://travelpaq-api-3.us-east-1.elasticbeanstalk.com/',
+                    'key' => $config['api_key'],
+                    'item_per_page' => $config['item_per_page']
+                ]);
+            }
+        }else throw new ValidationException('Solo versión 3.* soportada.',1);
     }
 
      /**
@@ -92,7 +94,7 @@ class PackagesAPI
      * 
      * @param int $page Número de página
      *
-     * @param Array $filters Representa los filtros para hacer más precisa la búsqeuda
+     * @param Array $filters Representa los filtros para hacer más precisa la búsqueda
      * 
      * @return PackagesPagination Representa una página de resultado de búsqueda.
      */
@@ -113,6 +115,45 @@ class PackagesAPI
         return $ps->getPackageList($params,$page); 
     }
 
+
+    /**
+     * Obtiene un listado de paquetes en base a un agrupamiento
+     * 
+     * @param Array $params Representa los parametros de búsqueda
+     * 
+     * @param int $page Número de página
+     *
+     * @param Array $filters Representa los filtros para hacer más precisa la búsqueda
+     *
+     * @param Array $groups Representa los parametro para realizar el agrupamiento
+     * 
+     * @return PackagesPagination Representa una página de resultado de búsqueda.
+     */
+    public function getPackageGroup($params,$group = null,$page = 0, $filters = null)
+    {   
+        $ps = new PackageService();
+        if($group){
+            $gr = new GroupData($group);
+            if(!$gr->validate()){
+                throw new ValidationException($gr->get_last_error());
+            }
+        } else throw new ValidationException('Se necesitan agrupamientos.');
+
+        $sd = new SearchData($params);
+        if(!$sd->validate()){
+            throw new ValidationException($sd->get_last_error());
+        }
+
+        if($filters){            
+            $fi = new FilterData($filters);
+            if(!$fi->validate()){
+                throw new ValidationException($fi->get_last_error());
+            }
+            return $ps->getPackageGroup($params,$group,$page,$filters);
+        }
+        return $ps->getPackageGroup($params,$group,$page); 
+    }
+
         /**
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda y agrupa por fechas, trayendo el paquete más barato.
@@ -121,7 +162,7 @@ class PackagesAPI
      * 
      * @param int $page Número de página
      *
-     * @param Array $filters Representa los filtros para hacer más precisa la búsqeuda
+     * @param Array $filters Representa los filtros para hacer más precisa la búsqueda
      * 
      * @return PackagesPagination Representa una página de resultado de búsqueda.
      */

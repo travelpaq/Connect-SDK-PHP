@@ -94,8 +94,13 @@ class Passenger
 		else
 			$this->gender = $data['gender'];
 		
-		if(!array_key_exists('birthdate', $data))
-			throw new ValidationException("Falta el campo 'birthdate'");
+		if(!array_key_exists('birthdate', $data)){
+			if(!array_key_exists('birthday', $data))
+				throw new ValidationException("Falta el campo 'birthdate'");
+			else
+				$this->birthdate = date('Y-m-d', strtotime($data['birthday']));
+			
+		}
 		else
 			$this->birthdate = date('Y-m-d', strtotime($data['birthdate']));
 		

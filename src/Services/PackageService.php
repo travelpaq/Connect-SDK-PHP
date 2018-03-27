@@ -50,41 +50,214 @@ class PackageService extends Service
 		}
 	}
 
-	public function getPackageList($params, $page = 0, $filters = null){
-		try {
-			if($filters){
-			    $response = $this->http_client
-								 ->http_client
-								 ->request('POST', 
-								  		   'Packages/getPackageList/' . $page,
-								  		   [
-								  		   		'form_params' => 
-								  		   		[
-								  		   			'data' => base64_encode(json_encode($params))
-								  		   		],
-								  		   		'headers' => ['TP-FILTERS' => base64_encode(json_encode($filters))]
-								  		   	]
-								 );
-			} else {
-				$response = $this->http_client
-								 ->http_client
-								 ->request('POST', 
-								  		   'Packages/getPackageList/' . $page,
-								  		   [
-								  		   		'form_params' => 
-								  		   		[
-								  		   			'data' => base64_encode(json_encode($params))
-								  		   		]
-								  		   	]
-								 );
+	public function getPackageGroup($params, $groups = null,$page = 0,$filters = null){
+		
+		/**
+		* 
+		* Formato v3
+		*
+		*/
+		// rooms
+		$room__ = [];
+		foreach ($params['Room'] as $r => $room) {	
+			$room__[$r]['adult'] = $room['adult'];
+			if(array_key_exists('Children', $room)){ 
+				if(count($room['Children']) > 0 ){ 
+					foreach ($room['Children'] as $c => $child) {	
+						$room__[$r]['children'][] = $child['age'];
+					}
+					$room__[$r]['children'] = implode(',', $room__[$r]['children']);
+				}
 			}
+		}
+		$params['rooms'] = $room__;
+		unset($params['Room']);		
+		$params_get_url = http_build_query($params);	
+		
+		
+		// filters
+		$filter__ = [];	
+		if($filters){
+			
+			// hotel star rating
+
+			foreach ($filters as $f => $filter) {
+				
+				switch ($filter['name']) {
+					case 'companies':
+						$filter__['companies']	= implode(',', $filter['companies']);			
+						break;
+
+					case 'hotel_names':
+						$filter__['hotel_names']	= implode(',', $filter['hotel_names']);			
+						break;
+
+					case 'hotel_regimes':
+						$filter__['hotel_regimes']	= implode(',', $filter['hotel_regimes']);			
+						break;
+
+					case 'hotel_room_kinds':
+						$filter__['hotel_room_kinds']	= implode(',', $filter['hotel_room_kinds']);			
+						break;
+
+					case 'stars':
+						$filter__['hotel_star_ratings']	= "{$filter['from']},{$filter['to']}";			
+						break;
+
+					case 'nights':
+						$filter__['min_nights'] = $filter['from'];	
+						$filter__['max_nights'] = $filter['to'];	
+						break;
+
+					case 'price':
+						$filter__['min_price'] = $filter['from'];	
+						$filter__['max_price'] = $filter['to'];	
+						break;	
+
+					case 'departure':
+						$filter__['min_departure_date'] = date('Y-m-d',strtotime($filter['from']));
+						$filter__['max_departure_date'] = date('Y-m-d',strtotime($filter['to']));		
+						break;	
+				}
+
+			}
+
+			
+			$filter__['index_page'] = $page;
+			
+		}
+
+		$filters_get_url = http_build_query($filter__);
+		if(count($filter__)>0)
+			$filters_get_url =  '&'.$filters_get_url;		
+		
+		// groups
+		$groups_get_url = '';		
+		if($groups)
+			$groups_get_url =  '&'.http_build_query($groups);
+		
+		try {
+			
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET', 
+							  		   "packages?{$params_get_url}{$filters_get_url}{$groups_get_url}"
+							 );
+			
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
+			
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
+
 			return new PackagesPagination($body_decoded);
 		} catch (RequestException $e) {
+
+			$response_str = "";
+			if ($e->hasResponse())
+				$response_str = $e->getResponse()->getBody()->getContents();
+			return $response_str;
+		}
+	}
+
+	public function getPackageList($params, $page = 0, $filters = null){
+		
+		/**
+		* 
+		* Formato v3
+		*
+		*/
+		// rooms
+		$room__ = [];
+		foreach ($params['Room'] as $r => $room) {	
+			$room__[$r]['adult'] = $room['adult'];
+			if(array_key_exists('Children', $room)){ 
+				if(count($room['Children']) > 0 ){ 
+					foreach ($room['Children'] as $c => $child) {	
+						$room__[$r]['children'][] = $child['age'];
+					}
+					$room__[$r]['children'] = implode(',', $room__[$r]['children']);
+				}
+			}
+		}
+		$params['rooms'] = $room__;
+		unset($params['Room']);		
+		$params_get_url = http_build_query($params);	
+		// +++++++++++
+		$filter__ = [];	
+		if($filters){
+			
+			// hotel star rating
+
+			foreach ($filters as $f => $filter) {
+				
+				switch ($filter['name']) {
+					case 'companies':
+						$filter__['companies']	= implode(',', $filter['companies']);			
+						break;
+
+					case 'hotel_names':
+						$filter__['hotel_names']	= implode(',', $filter['hotel_names']);			
+						break;
+
+					case 'hotel_regimes':
+						$filter__['hotel_regimes']	= implode(',', $filter['hotel_regimes']);			
+						break;
+
+					case 'hotel_room_kinds':
+						$filter__['hotel_room_kinds']	= implode(',', $filter['hotel_room_kinds']);			
+						break;
+
+					case 'stars':
+						$filter__['hotel_star_ratings']	= "{$filter['from']},{$filter['to']}";			
+						break;
+
+					case 'nights':
+						$filter__['min_nights'] = $filter['from'];	
+						$filter__['max_nights'] = $filter['to'];	
+						break;
+
+					case 'price':
+						$filter__['min_price'] = $filter['from'];	
+						$filter__['max_price'] = $filter['to'];	
+						break;	
+
+					case 'departure':
+						$filter__['min_departure_date'] = date('Y-m-d',strtotime($filter['from']));
+						$filter__['max_departure_date'] = date('Y-m-d',strtotime($filter['to']));		
+						break;	
+				}
+
+			}
+
+			
+			$filter__['index_page'] = $page;
+			
+		}
+		$filters_get_url = http_build_query($filter__);
+		if(count($filter__)>0)
+			$filters_get_url =  '&'.$filters_get_url;		
+				
+		try {
+			
+			$response = $this->http_client
+							 ->http_client
+							 ->request('GET', 
+							  		   "packages?{$params_get_url}{$filters_get_url}"
+							 );
+			
+			$body = $response->getBody()->getContents();
+			$body_decoded = json_decode($body,true);
+		
+
+			if($body_decoded == null){
+				throw new \Exception($body);
+			}
+
+			return new PackagesPagination($body_decoded);
+		} catch (RequestException $e) {
+
 			$response_str = "";
 			if ($e->hasResponse())
 				$response_str = $e->getResponse()->getBody()->getContents();
@@ -206,13 +379,13 @@ class PackageService extends Service
 	public function getPackage($package_id){
 		try {
 
-			$response = $this->http_client->http_client->request('GET',"Packages/getPackage/$package_id");
+			$response = $this->http_client->http_client->request('GET',"packages?package_id=$package_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
-			return new Package($body_decoded);
+			return new Package($body_decoded['package'][0]);
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())

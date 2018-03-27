@@ -29,17 +29,18 @@ class RoomPrice
      * @param Array data datos del precio
      */
     public function __construct($data, $room)
-    {
-    	$this->AdultPrice = new AdultPrice($data['AdultPrice']);
+    {      
+        if(array_key_exists('adult_price',$data))
+    	   $this->AdultPrice = new AdultPrice($data['adult_price']);
+        
+        if(array_key_exists('total_price',$data))        
+            $this->TotalPrice = new TotalPrice($data['total_price']);
 
-        $this->TotalPrice = new TotalPrice($data['TotalPrice']);
-
-        if(count($data['ChildrenPrice']) > 0){
-            foreach($data['ChildrenPrice'] as $childPrice){
+        $this->ChildrenPrice = [];
+        if(array_key_exists('children_prices', $data) && count($data['children_prices']) > 0){
+            foreach($data['children_prices'] as $childPrice){
                 $this->ChildrenPrice[] = new ChildPrice($childPrice);
             }
-        } else {
-            $this->ChildrenPrice = [];
         }
 
         $this->Room = $room;

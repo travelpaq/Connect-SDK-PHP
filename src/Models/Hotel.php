@@ -99,14 +99,11 @@ class Hotel
         else 
             $this->RoomsKind = [];
 
-
         $this->Image = [];
-        if(array_key_exists('Image', $data)){
-            foreach ($data['Image'] as $key => $value) {
+        if(array_key_exists('images', $data)){
+            foreach ($data['images'] as $key => $value) {
                 $this->Image[] = new Image($value);
             }
         }
-
     }
-
 }
