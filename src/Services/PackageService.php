@@ -15,13 +15,28 @@ class PackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET', 'Packages/getPackageByFixedSearches');
+							 ->request('GET', 'sliders');
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
 				throw new \Exception($body);
 			}
-			return $body_decoded;
+			$response = [];			
+			foreach ($body_decoded['data'] as $key => $fixed) {
+				$respon = [];
+				$respon['id'] = $fixed['id']; 
+				$respon['name'] = $fixed['name']; 
+				$respon['active'] = $fixed['active']; 
+				$respon['main'] = $fixed['main']; 
+				$respon['packages'] = [];
+				foreach($fixed['packages'] as $package){
+					$respon['packages'][] = new Package($package);						
+				}
+
+				$response[] = $respon;
+			}
+
+			return $response;
 		} catch (RequestException $e) {
 			$response_str = "";
 			if ($e->hasResponse())
@@ -52,6 +67,8 @@ class PackageService extends Service
 
 	public function getPackageGroup($params, $groups = null,$page = 0,$filters = null){
 		
+		if(array_key_exists('order_field', $params) && $params['order_field'] === 'DEPARTURE_DATE')
+			$params['order_field'] = 'DEPARTURE';
 		/**
 		* 
 		* Formato v3
@@ -121,10 +138,6 @@ class PackageService extends Service
 				}
 
 			}
-
-			
-			$filter__['index_page'] = $page;
-			
 		}
 
 		$filters_get_url = http_build_query($filter__);
@@ -141,7 +154,7 @@ class PackageService extends Service
 			$response = $this->http_client
 							 ->http_client
 							 ->request('GET', 
-							  		   "packages?{$params_get_url}{$filters_get_url}{$groups_get_url}"
+							  		   "packages?{$params_get_url}{$filters_get_url}&page_index=$page{$groups_get_url}"
 							 );
 			
 			$body = $response->getBody()->getContents();
@@ -162,7 +175,8 @@ class PackageService extends Service
 	}
 
 	public function getPackageList($params, $page = 0, $filters = null){
-		
+		if(array_key_exists('order_field', $params) && $params['order_field'] === 'DEPARTURE_DATE')
+			$params['order_field'] = 'DEPARTURE';
 		/**
 		* 
 		* Formato v3
@@ -230,21 +244,17 @@ class PackageService extends Service
 				}
 
 			}
-
-			
-			$filter__['index_page'] = $page;
-			
 		}
 		$filters_get_url = http_build_query($filter__);
 		if(count($filter__)>0)
-			$filters_get_url =  '&'.$filters_get_url;		
-				
+			$filters_get_url =  '&'.$filters_get_url;				
+			
 		try {
 			
 			$response = $this->http_client
 							 ->http_client
 							 ->request('GET', 
-							  		   "packages?{$params_get_url}{$filters_get_url}"
+							  		   "packages?{$params_get_url}&page_index=$page{$filters_get_url}"
 							 );
 			
 			$body = $response->getBody()->getContents();
@@ -266,6 +276,9 @@ class PackageService extends Service
 	}
 
 	public function getPackageListDateGrouped($params, $page = 0, $filters = null){
+		if(array_key_exists('order_field', $params) && $params['order_field'] === 'DEPARTURE_DATE')
+			$params['order_field'] = 'DEPARTURE';
+
 		try {
 			if($filters){
 			    $response = $this->http_client
