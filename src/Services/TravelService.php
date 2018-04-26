@@ -160,7 +160,7 @@ class TravelService extends Service
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"travel/getFaresTree");
+						 ->request('GET',"fares");
 
 			$body = $response->getBody()->getContents();
 
@@ -190,7 +190,7 @@ class TravelService extends Service
 
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"fares/?with_origin=true" . $iata);
+						 ->request('GET',"fares/with_origin" . $iata);
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 						

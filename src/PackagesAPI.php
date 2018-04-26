@@ -46,7 +46,7 @@ class PackagesAPI
         if(!array_key_exists('version', $config) || $config['version']=='v3'){
             if(array_key_exists('test', $config) && $config['test'] == true){
                 HttpClient::getInstance([
-                    'url' => 'http://travelpaq-api-3-dev.us-east-1.elasticbeanstalk.com/',
+                    'url' => 'http://travelpaq-api-3-sandbox.us-east-1.elasticbeanstalk.com/',
                     'key' => $config['api_key'],
                     'item_per_page' => $config['item_per_page']
                 ]);

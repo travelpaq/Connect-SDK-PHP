@@ -16,7 +16,7 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 						 ->http_client
-						 ->request('GET',"packages/checkAvail?package_id=$package_id");
+						 ->request('GET',"packages/check_avail/$package_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if(!is_array($body_decoded) && $body_decoded == null){
@@ -61,7 +61,7 @@ class BookingPackageService extends Service
 	public function getBooking($booking_id, $html){
 		try {
 			
-			$response = $this->http_client->http_client->request('GET',"bookings?booking_id=$booking_id");
+			$response = $this->http_client->http_client->request('GET',"bookings/$booking_id");
 			
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
@@ -110,7 +110,7 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"bookings/confirm?booking_id=$booking_id");
+							 ->request('GET',"bookings/confirm/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
@@ -129,7 +129,7 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"bookings/cancel?booking_id=$booking_id");
+							 ->request('GET',"bookings/cancel/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {
@@ -148,7 +148,7 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"bookings/iConfirm?booking_id=$booking_id");
+							 ->request('GET',"bookings/iConfirm/$booking_id");
 
 
 			$body = $response->getBody()->getContents();
@@ -169,7 +169,7 @@ class BookingPackageService extends Service
 		try {
 			$response = $this->http_client
 							 ->http_client
-							 ->request('GET',"bookings/iCancel?booking_id=$booking_id");
+							 ->request('GET',"bookings/iCancel/$booking_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null) {

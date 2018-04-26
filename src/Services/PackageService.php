@@ -132,8 +132,8 @@ class PackageService extends Service
 						break;	
 
 					case 'departure':
-						$filter__['min_departure_date'] = date('Y-m-d',strtotime($filter['from']));
-						$filter__['max_departure_date'] = date('Y-m-d',strtotime($filter['to']));		
+						$filter__['min_departure_date'] = date('Y-m-d',strtotime(str_replace('/', '-', $filter['from'])));
+						$filter__['max_departure_date'] = date('Y-m-d',strtotime(str_replace('/', '-', $filter['to'])));		
 						break;	
 				}
 
@@ -392,7 +392,7 @@ class PackageService extends Service
 	public function getPackage($package_id){
 		try {
 
-			$response = $this->http_client->http_client->request('GET',"packages?package_id=$package_id");
+			$response = $this->http_client->http_client->request('GET',"packages/$package_id");
 			$body = $response->getBody()->getContents();
 			$body_decoded = json_decode($body,true);
 			if($body_decoded == null){
