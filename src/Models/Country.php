@@ -21,7 +21,7 @@ class Country
 {
     public $name;
     public $iata;
-    public $Region;
+    // public $Region;
     /**
      * Constructor
      * @param Array data datos de un Pais
@@ -36,8 +36,8 @@ class Country
             $data['iata'] = "";
         $this->iata = $data['iata'];
 
-        if(!array_key_exists('region', $data))
-            $data['region'] = "";
-        $this->Region = new Region($data['region']);
+        // if(!array_key_exists('region', $data))
+        //     $data['region'] = "";
+        // $this->Region = new Region($data['region']);
     }
 }
