@@ -154,7 +154,7 @@ class PackageService extends Service
 			$response = $this->http_client
 							 ->http_client
 							 ->request('GET', 
-							  		   "packages?{$params_get_url}{$filters_get_url}&page_index=$page{$groups_get_url}"
+							  		   "packages/grouped?{$params_get_url}{$filters_get_url}&page_index=$page"
 							 );
 			
 			$body = $response->getBody()->getContents();
