@@ -30,7 +30,7 @@ class Service
     	if(!array_key_exists('detail', $data))
     		$data['detail'] = "";
     	$this->detail = $data['detail'];
-        if(array_key_exists('service_kind', $data['service_kind']))
+        if(array_key_exists('service_kind', $data))
     	   $this->ServiceKind = new ServiceKind($data['service_kind']);
         else $this->ServiceKind = [];
     }

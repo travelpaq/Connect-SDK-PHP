@@ -29,8 +29,8 @@ class Place
      */
     public function __construct($data)
     {           
-        if(array_key_exists('Country', $data))
-            $this->Country = new Country($data['Country']);
+        if(array_key_exists('country', $data))
+            $this->Country = new Country($data['country']);
         else $this->Country = [];
     	
         if(!array_key_exists('name', $data))
