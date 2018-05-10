@@ -43,7 +43,7 @@ class OriginPlaceFare
 
         $OriginPlace = ['name'=>$data['name'],
                         'iata'=>$data['iata'],
-                        'Country'=>$data['country']
+                        'country'=>$data['country']
                         ];
 
         if($data['name'])

@@ -42,7 +42,7 @@ class PlaceFare
     {   
         $Placex = ['name'=>$data['name'],
                         'iata'=>$data['iata'],
-                        'Country'=>$data['country']
+                        'country'=>$data['country']
                         ];
         
 
