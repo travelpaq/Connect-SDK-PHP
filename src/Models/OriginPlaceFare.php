@@ -10,6 +10,7 @@
  * file that was distributed with this source code.
  */
 namespace TravelPAQ\PackagesAPI\Models;
+
 /**
  * Class OriginPlaceFare
  * 
@@ -41,8 +42,7 @@ class OriginPlaceFare
     {
 
         $OriginPlace = ['name'=>$data['name'],
-                        'iata'=>$data['ia
-                        ta'],
+                        'iata'=>$data['iata'],
                         'country'=>$data['country']
                         ];
 
