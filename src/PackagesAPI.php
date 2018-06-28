@@ -134,9 +134,6 @@ class PackagesAPI
         $ps = new PackageService();
         if($group){
             $gr = new GroupData($group);
-            if(!$gr->validate()){
-                throw new ValidationException($gr->get_last_error());
-            }
         } else throw new ValidationException('Se necesitan agrupamientos.');
 
         $sd = new SearchData($params);
