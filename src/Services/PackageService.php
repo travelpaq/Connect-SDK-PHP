@@ -65,7 +65,7 @@ class PackageService extends Service
 		}
 	}
 
-	public function getPackageGroup($params, $groups = null,$page = 0,$filters = null){
+	public function getPackageGroup($item_per_page, $params, $groups = null,$page = 0,$filters = null){
 		
 		if(array_key_exists('order_field', $params) && $params['order_field'] === 'DEPARTURE_DATE')
 			$params['order_field'] = 'DEPARTURE';
@@ -154,7 +154,7 @@ class PackageService extends Service
 			$response = $this->http_client
 							 ->http_client
 							 ->request('GET', 
-							  		   "packages/grouped?{$params_get_url}{$filters_get_url}&page_index=$page{$groups_get_url}"
+							  		   "packages/grouped?{$params_get_url}{$filters_get_url}&page_size=$item_per_page&page_index=$page{$groups_get_url}"
 							 );
 			
 			$body = $response->getBody()->getContents();
@@ -174,7 +174,7 @@ class PackageService extends Service
 		}
 	}
 
-	public function getPackageList($params, $page = 0, $filters = null){
+	public function getPackageList($item_per_page, $params, $page = 0, $filters = null){
 		if(array_key_exists('order_field', $params) && $params['order_field'] === 'DEPARTURE_DATE')
 			$params['order_field'] = 'DEPARTURE';
 		/**
@@ -254,7 +254,7 @@ class PackageService extends Service
 			$response = $this->http_client
 							 ->http_client
 							 ->request('GET', 
-							  		   "packages?{$params_get_url}&page_index=$page{$filters_get_url}"
+							  		   "packages?{$params_get_url}&page_index=$page{$filters_get_url}&page_size=$item_per_page"
 							 );
 			
 			$body = $response->getBody()->getContents();

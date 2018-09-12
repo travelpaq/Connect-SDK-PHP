@@ -41,9 +41,13 @@ class PackagesAPI
      *
      * @param mixed $config 
      */
+
+    public $item_per_page;
+
     public function __construct($config) 
     {   
         if(!array_key_exists('version', $config) || $config['version']=='v3'){
+            $this->item_per_page = $config['item_per_page'];
             if(array_key_exists('test', $config) && $config['test'] == true){
                 HttpClient::getInstance([
                     'url' => 'http://travelpaq-api-3-sandbox.us-east-1.elasticbeanstalk.com/',
@@ -60,7 +64,7 @@ class PackagesAPI
         }else throw new ValidationException('Solo versión 3.* soportada.',1);
     }
 
-     /**
+    /**
      * Obtiene un listado de paquetes en base a un el nombre de una búsqueda fija
      * 
      * @param string $name Nombre de la búsqueda
@@ -110,11 +114,10 @@ class PackagesAPI
             if(!$fi->validate()){
                 throw new ValidationException($fi->get_last_error());
             }
-            return $ps->getPackageList($params,$page,$filters);
+            return $ps->getPackageList($this->item_per_page, $params,$page,$filters);
         }
-        return $ps->getPackageList($params,$page); 
+        return $ps->getPackageList($this->item_per_page, $params,$page); 
     }
-
 
     /**
      * Obtiene un listado de paquetes en base a un agrupamiento
@@ -141,17 +144,17 @@ class PackagesAPI
             throw new ValidationException($sd->get_last_error());
         }
 
-        if($filters){            
+        if($filters){
             $fi = new FilterData($filters);
             if(!$fi->validate()){
                 throw new ValidationException($fi->get_last_error());
             }
-            return $ps->getPackageGroup($params,$group,$page,$filters);
+            return $ps->getPackageGroup($this->item_per_page, $params,$group,$page,$filters);
         }
-        return $ps->getPackageGroup($params,$group,$page); 
+        return $ps->getPackageGroup($this->item_per_page, $params,$group,$page); 
     }
 
-        /**
+    /**
      * Obtiene un listado de paquetes en base a un conjunto de parámetros
      * que filtrán la búsqueda y agrupa por fechas, trayendo el paquete más barato.
      * 
@@ -349,7 +352,7 @@ class PackagesAPI
         return $travelService->getFaresPackage($origin_place, $departure_place, $month, $year);
     }
 
-     /**
+    /**
      * Obtiene todas las tarifas 
      *
      * @return Array PackageFares Retorna un listado de tarifas de paquetes
